@@ -1,3 +1,39 @@
+/* CSS Variables */
+:root {
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-muted: #666666;
+  --color-border: #e5e5e5;
+  --color-accent: #0066cc;
+
+  /* Typography */
+  --font-base:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-h1: 48px;
+  --font-size-h2: 36px;
+  --font-size-h3: 28px;
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+
+  /* Container */
+  --container-width: 1200px;
+  --container-padding: 24px;
+}
+
 /* Box sizing */
 *,
 *::before,
@@ -10,22 +46,11 @@ body {
   margin: 0;
   min-height: 100vh;
 
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif;
-
-  line-height: 1.5;
-  color: #111;
-  background-color: #fff;
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,8 +61,41 @@ h1,
 h2,
 h3,
 h4,
-p {
+h5,
+h6,
+p,
+ul,
+ol {
   margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  line-height: var(--line-height-heading);
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  color: var(--color-text);
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
 }
 
 /* Media defaults */
@@ -48,10 +106,17 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 /* Links */
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
 }
