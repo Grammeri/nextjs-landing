@@ -1,74 +1,47 @@
-# Frontend Test Assignment
+# Next.js Landing
 
-## Описание проекта
+Public marketing landing page for multiple products and services.
 
-Это проект, реализованный в рамках тестового задания. Разработан на Next.js с использованием TypeScript и современных инструментов разработки.
+This repository contains a shared landing used to present and promote
+different projects, SaaS platforms, and technical solutions.
 
-## Запуск проекта
+The landing is fully public and focused on marketing, product overview,
+and high-level communication.
 
-Установите зависимости:
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- CSS Modules
+- ESLint
+- Prettier
+
+## Development
+
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-или
-
-```bash
-npm install
-```
-
-Запустите dev-сервер:
+Start development server:
 
 ```bash
 pnpm dev
 ```
 
-или
+Open http://localhost:3000 in your browser.
 
-```bash
-npm run dev
-```
+## Build
 
-Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000)
-
-Для сборки production-версии:
+To build the production version:
 
 ```bash
 pnpm build
 ```
 
-## Стек технологий
+## Notes
 
-- Next.js — фреймворк для React-приложений
-- React — библиотека для построения пользовательских интерфейсов
-- TypeScript — типизированный JavaScript
-- ESLint — инструмент для статического анализа кода
-- Prettier — инструмент для форматирования кода
-
-## Структура проекта
-
-Проект организован стандартным для Next.js образом:
-
-- `src/app/` — основной код приложения (страницы, layouts, компоненты)
-- `public/` — статические файлы (изображения, иконки)
-- `src/app/globals.css` — глобальные стили приложения
-
-Основные конфигурационные файлы:
-
-- `next.config.ts` — конфигурация Next.js
-- `tsconfig.json` — настройки TypeScript
-- `eslint.config.mjs` — настройки ESLint
-- `.prettierrc` — настройки Prettier
-
-## Доступные команды
-
-- `pnpm dev` или `npm run dev` — запуск dev-сервера
-- `pnpm build` или `npm run build` — сборка production-версии
-- `pnpm start` или `npm run start` — запуск production-сервера (после сборки)
-- `pnpm lint` или `npm run lint` — проверка кода с помощью ESLint
-- `pnpm format` или `npm run format` — форматирование кода с помощью Prettier
-
-## Примечания
-
-Проект реализован в рамках тестового задания для позиции frontend-разработчика.
+This repository contains only the public-facing landing.
+Authentication, private dashboards, and backend logic are not included here.
