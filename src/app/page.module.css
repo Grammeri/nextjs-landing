@@ -1,41 +1,57 @@
 .page {
-  background-color: var(--color-bg);
   color: var(--color-text);
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: var(--hero-min-height);
   width: 100%;
-  background-image: url('/images/hero/tx-inspired-home-page-bg.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* затемнение для будущего текста */
   position: relative;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+.heroContent {
+  padding-top: var(--spacing-5xl);
+  position: relative;
 }
 
-.heroFooter {
-  position: absolute;
-  bottom: var(--spacing-lg);
-  left: 50%;
-  transform: translateX(-50%);
+.headline {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+  color: rgba(255, 255, 255, 0.95);
+  max-width: var(--hero-max-width);
+  margin: 0 0 var(--spacing-xl) 0;
+  text-align: left;
+}
 
+.lead {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-base);
+  color: rgba(255, 255, 255, 0.95);
+  max-width: var(--hero-max-width);
+  margin: 0;
+  text-align: left;
+}
+
+.nextSection {
+  min-height: 40vh;
+}
+
+.footer {
+  background: transparent;
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-xs);
-
   font-size: var(--font-size-sm);
   color: rgba(255, 255, 255, 0.65);
-  text-align: center;
+}
 
-  z-index: 1;
+.footer .container span {
+  color: rgba(255, 255, 255, 0.65);
 }

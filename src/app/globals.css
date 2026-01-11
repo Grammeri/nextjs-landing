@@ -62,6 +62,11 @@
   --container-width: 1200px;
   --container-padding: 24px;
 
+  /* Layout */
+  --header-height: 72px;
+  --hero-min-height: 80vh;
+  --hero-max-width: 1200px;
+
   /* Focus ring */
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
@@ -76,6 +81,15 @@
   box-sizing: border-box;
 }
 
+/* Global background */
+html,
+body {
+  background-image: url('/images/hero/tx-inspired-home-page-bg.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
 /* Base body styles */
 body {
   margin: 0;
@@ -85,7 +99,7 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: transparent;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
