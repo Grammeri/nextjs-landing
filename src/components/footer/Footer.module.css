@@ -1,0 +1,23 @@
+.footer {
+  width: 100%;
+  background: transparent;
+  padding: var(--spacing-lg) 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.copyright {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.origin {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  opacity: 0.9;
+}
