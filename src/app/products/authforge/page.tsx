@@ -1,6 +1,6 @@
 export default function AuthForgeProductPage() {
   return (
-    <main style={{ maxWidth: 1100, margin: '0 auto', padding: '48px 16px' }}>
+    <main>
       {/* HERO */}
       <section style={{ marginBottom: 48 }}>
         <h1 style={{ fontSize: 48, lineHeight: 1.1, marginBottom: 12 }}>AuthForge</h1>
