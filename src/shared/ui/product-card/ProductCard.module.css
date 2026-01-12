@@ -14,7 +14,7 @@
 
 .card:hover {
   box-shadow: var(--card-shadow-hover);
-  transform: translateY(-2px);
+  transform: translateY(var(--motion-card-hover-translate-y));
 }
 
 .card.placeholder {
@@ -27,6 +27,6 @@
 }
 
 .card p {
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--color-on-image-primary);
   line-height: 1.7;
 }

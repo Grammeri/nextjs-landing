@@ -63,5 +63,5 @@
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-sm);
-  color: #ffffff;
+  color: var(--color-on-image-hover);
 }

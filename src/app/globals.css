@@ -25,6 +25,8 @@
   --color-on-image-primary: rgba(255, 255, 255, 0.95);
   --color-on-image-secondary: rgba(255, 255, 255, 0.9);
   --color-on-image-hover: #ffffff;
+  --color-on-image-footer: rgba(255, 255, 255, 0.65);
+  --color-on-image-footer-muted: rgba(255, 255, 255, 0.55);
 
   /* Typography — final marketing scale */
   --font-base:
@@ -72,6 +74,7 @@
   --header-height: 72px;
   --hero-min-height: 30vh;
   --hero-max-width: 1200px;
+  --section-min-height-next: 40vh;
 
   /* Section layout paddings */
   --section-padding-top-hero: var(--spacing-sm);
@@ -102,6 +105,9 @@
   --card-shadow-hover: 0 28px 60px rgba(0, 0, 0, 0.35);
   --card-border-color: rgba(255, 255, 255, 0.08);
   --card-border-radius: var(--radius-lg);
+
+  /* Motion */
+  --motion-card-hover-translate-y: -2px;
 
   /* Focus ring */
   --focus-ring-width: 2px;

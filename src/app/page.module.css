@@ -8,7 +8,6 @@
   position: relative;
   padding-top: var(--section-padding-top-hero);
   padding-bottom: var(--section-padding-bottom-hero);
-  border: 3px solid red;
 }
 
 .heroContent {
@@ -20,7 +19,7 @@
   font-size: var(--font-size-h1);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-heading);
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-on-image-primary);
   max-width: var(--hero-max-width);
   margin: 0 0 var(--spacing-xl) 0;
   text-align: left;
@@ -29,7 +28,7 @@
 .lead {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-on-image-primary);
   max-width: var(--hero-max-width);
   margin: 0;
   text-align: left;
@@ -38,7 +37,6 @@
 .productsSection {
   padding-top: var(--section-padding-top-compact);
   padding-bottom: var(--section-padding-bottom-default);
-  border: 3px solid green;
 }
 
 .productsGrid {
@@ -60,14 +58,14 @@
 }
 
 .nextSection {
-  min-height: 40vh;
+  min-height: var(--section-min-height-next);
 }
 
 .footer {
   background: transparent;
   padding: var(--spacing-xl) 0;
   text-align: center;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-on-image-footer);
 }
 
 .footer :global(.container) {
@@ -76,9 +74,9 @@
   align-items: center;
   gap: var(--spacing-xs);
   font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-on-image-footer);
 }
 
 .footer :global(.container) span {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-on-image-footer);
 }
