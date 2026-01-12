@@ -55,6 +55,7 @@
   --spacing-3xl: 64px;
   --spacing-4xl: 96px;
   --spacing-5xl: 128px;
+  --spacing-6xl: 200px;
 
   /* Border radius */
   --radius-sm: 4px;
@@ -69,8 +70,18 @@
 
   /* Layout */
   --header-height: 72px;
-  --hero-min-height: 80vh;
+  --hero-min-height: 30vh;
   --hero-max-width: 1200px;
+
+  /* Section layout paddings */
+  --section-padding-top-hero: var(--spacing-sm);
+  --section-padding-bottom-hero: var(--spacing-sm);
+
+  --section-padding-top-default: var(--spacing-3xl);
+  --section-padding-bottom-default: var(--spacing-3xl);
+
+  --section-padding-top-compact: var(--spacing-xl);
+  --section-padding-bottom-compact: var(--spacing-xl);
 
   /* Header surface */
   --header-bg-transparent: transparent;
@@ -79,6 +90,18 @@
   --header-transition-duration: 0.2s;
   --header-transition-easing: ease;
   --header-z-index: 10;
+
+  /* Surface / Card */
+  --surface-card-bg: rgba(10, 20, 35, 0.55);
+  --surface-card-backdrop: blur(10px);
+  --surface-card-border: rgba(255, 255, 255, 0.08);
+  --surface-card-radius: var(--radius-lg);
+
+  /* Product card surface */
+  --card-shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.25);
+  --card-shadow-hover: 0 28px 60px rgba(0, 0, 0, 0.35);
+  --card-border-color: rgba(255, 255, 255, 0.08);
+  --card-border-radius: var(--radius-lg);
 
   /* Focus ring */
   --focus-ring-width: 2px;

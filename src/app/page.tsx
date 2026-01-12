@@ -1,4 +1,6 @@
 import styles from './page.module.css';
+import { AuthForgeCard } from '@/components/authforge-card/AuthForgeCard';
+import { TestAssignmentKitCard } from '@/components/test-assignment-kit-card/TestAssignmentKitCard';
 
 export default function HomePage() {
   return (
@@ -12,6 +14,14 @@ export default function HomePage() {
               developers, startups, and product teams — designed to be easy to learn from and ready
               for real production.
             </p>
+          </div>
+        </div>
+      </section>
+      <section className={styles.productsSection}>
+        <div className="container">
+          <div className={styles.productsGrid}>
+            <AuthForgeCard />
+            <TestAssignmentKitCard />
           </div>
         </div>
       </section>
