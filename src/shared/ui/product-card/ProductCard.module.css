@@ -1,7 +1,9 @@
 .card {
   position: relative;
   padding: var(--spacing-xl);
-  background: transparent;
+  background: var(--surface-card-bg);
+  -webkit-backdrop-filter: var(--surface-card-backdrop);
+  backdrop-filter: var(--surface-card-backdrop);
   border: 1px solid var(--card-border-color);
   border-radius: var(--card-border-radius);
   box-shadow: var(--card-shadow-soft);
@@ -15,11 +17,16 @@
   transform: translateY(-2px);
 }
 
+.card.placeholder {
+  cursor: default;
+}
+
 .card h3 {
   color: var(--color-on-image-primary);
   margin-bottom: var(--spacing-md);
 }
 
 .card p {
-  color: var(--color-on-image-secondary);
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.7;
 }

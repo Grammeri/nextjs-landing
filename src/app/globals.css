@@ -92,8 +92,8 @@
   --header-z-index: 10;
 
   /* Surface / Card */
-  --surface-card-bg: rgba(10, 20, 35, 0.55);
-  --surface-card-backdrop: blur(10px);
+  --surface-card-bg: rgba(12, 28, 48, 0.4);
+  --surface-card-backdrop: blur(12px);
   --surface-card-border: rgba(255, 255, 255, 0.08);
   --surface-card-radius: var(--radius-lg);
 
@@ -211,6 +211,12 @@ ol {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
+}
+
+.container-wide {
+  width: 100%;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
 }
 
 .section {
