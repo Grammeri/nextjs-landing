@@ -1,16 +1,16 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: transparent;
+  z-index: var(--header-z-index);
+  background: var(--header-bg-transparent);
   transition:
-    background-color 0.2s ease,
-    backdrop-filter 0.2s ease;
+    background-color var(--header-transition-duration) var(--header-transition-easing),
+    backdrop-filter var(--header-transition-duration) var(--header-transition-easing);
 }
 
 .scrolled {
-  background-color: rgba(10, 20, 35, 0.85);
-  backdrop-filter: blur(6px);
+  background-color: var(--header-bg-scrolled);
+  backdrop-filter: var(--header-backdrop-blur);
 }
 
 .inner {
@@ -23,7 +23,7 @@
 .brand {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-on-image-primary);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -47,7 +47,7 @@
 .navLink {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-on-image-secondary);
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -55,7 +55,7 @@
 }
 
 .navLink:hover {
-  color: #ffffff;
+  color: var(--color-on-image-hover);
   opacity: 1;
 }
 

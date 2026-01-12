@@ -21,6 +21,11 @@
   --color-error: #d32f2f;
   --color-error-faded: rgba(211, 47, 47, 0.1);
 
+  /* On-image text colors */
+  --color-on-image-primary: rgba(255, 255, 255, 0.95);
+  --color-on-image-secondary: rgba(255, 255, 255, 0.9);
+  --color-on-image-hover: #ffffff;
+
   /* Typography — final marketing scale */
   --font-base:
     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
@@ -66,6 +71,14 @@
   --header-height: 72px;
   --hero-min-height: 80vh;
   --hero-max-width: 1200px;
+
+  /* Header surface */
+  --header-bg-transparent: transparent;
+  --header-bg-scrolled: rgba(10, 20, 35, 0.85);
+  --header-backdrop-blur: blur(6px);
+  --header-transition-duration: 0.2s;
+  --header-transition-easing: ease;
+  --header-z-index: 10;
 
   /* Focus ring */
   --focus-ring-width: 2px;
