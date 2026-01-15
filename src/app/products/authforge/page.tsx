@@ -1,127 +1,81 @@
-'use client';
+import { ProductCTA, ProductHero, ProductSection } from '@/shared/ui/product';
 
 export default function AuthForgeProductPage() {
   return (
     <main>
-      {/* HERO */}
-      <section style={{ marginBottom: 64 }}>
-        <h1 style={{ fontSize: 48, lineHeight: 1.1, marginBottom: 12, color: '#0f172a' }}>
-          AuthForge
-        </h1>
-        <p style={{ fontSize: 18, color: '#334155', lineHeight: 1.6, marginBottom: 24 }}>
-          Production-ready authentication boilerplate for modern SaaS products.
-        </p>
+      <ProductHero
+        title="AuthForge"
+        subtitle="Production-ready authentication system for modern SaaS products."
+        primaryAction={<a href="#">View Demo</a>}
+        secondaryAction={<a href="#">Read Docs</a>}
+      />
 
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <a
-            href="#"
-            style={buttonStylePrimary}
-            onMouseEnter={(e) => {
-              Object.assign(e.currentTarget.style, buttonStylePrimaryHover);
-            }}
-            onMouseLeave={(e) => {
-              Object.assign(e.currentTarget.style, buttonStylePrimary);
-            }}
-          >
-            View Demo
-          </a>
-          <a href="#" style={buttonStyleSecondary}>
-            Read Docs
-          </a>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section style={{ marginBottom: 64 }}>
-        <h2 style={sectionTitleStyle}>Why AuthForge</h2>
-        <ul style={{ paddingLeft: 18, margin: 0, display: 'grid', gap: 10 }}>
-          <li style={{ color: '#334155', lineHeight: 1.6 }}>Secure sessions (access / refresh)</li>
-          <li style={{ color: '#334155', lineHeight: 1.6 }}>Role-based access control</li>
-          <li style={{ color: '#334155', lineHeight: 1.6 }}>Email verification & password reset</li>
-          <li style={{ color: '#334155', lineHeight: 1.6 }}>Clean, scalable architecture</li>
-          <li style={{ color: '#334155', lineHeight: 1.6 }}>Ready for production</li>
+      <ProductSection title="Who is AuthForge for">
+        <ul>
+          <li>SaaS founders who don’t want to build authentication from scratch</li>
+          <li>Developers shipping MVPs and production apps</li>
+          <li>Teams that need a real-world auth reference</li>
+          <li>Engineers learning modern authentication architecture</li>
         </ul>
-      </section>
+      </ProductSection>
 
-      {/* DEMO / PROOF */}
-      <section style={{ marginBottom: 64 }}>
-        <h2 style={sectionTitleStyle}>Proof of work</h2>
-        <p style={{ color: '#334155', lineHeight: 1.6, marginBottom: 12 }}>
-          Source code and real production-ready setup (links will be added later).
-        </p>
-        <a href="#" style={{ ...linkStyle, color: '#334155' }}>
-          View source code →
-        </a>
-      </section>
+      <ProductSection title="What’s included">
+        <h3>Authentication</h3>
+        <ul>
+          <li>Email &amp; password authentication</li>
+          <li>Email verification</li>
+          <li>Password reset flows</li>
+        </ul>
 
-      {/* CTA */}
-      <section style={ctaStyle}>
-        <h2 style={{ margin: 0, marginBottom: 10, color: '#0f172a' }}>
-          Ready to use AuthForge in your project?
-        </h2>
-        <p style={{ margin: 0, color: '#475569', lineHeight: 1.6, marginBottom: 18 }}>
-          We&apos;ll add billing and onboarding later. For now — the structure is ready.
+        <h3>Sessions &amp; Security</h3>
+        <ul>
+          <li>Access and refresh sessions</li>
+          <li>HttpOnly cookies</li>
+          <li>Secure session handling</li>
+        </ul>
+
+        <h3>Architecture</h3>
+        <ul>
+          <li>Clean and scalable structure</li>
+          <li>Prisma + PostgreSQL</li>
+          <li>Production-ready setup</li>
+        </ul>
+      </ProductSection>
+
+      <ProductSection title="How it works">
+        <ol>
+          <li>Clone the repository</li>
+          <li>Configure environment variables</li>
+          <li>Connect your database</li>
+          <li>Run migrations</li>
+          <li>Start building your product</li>
+        </ol>
+      </ProductSection>
+
+      <ProductSection title="Try before you buy">
+        <p>
+          Before purchasing, you can explore the code, review the documentation, and see the
+          authentication flows in action.
         </p>
-        <button type="button" style={buttonStyleDisabled} disabled>
-          Coming soon
-        </button>
-      </section>
+        <ul>
+          <li>Live demo</li>
+          <li>Full documentation</li>
+          <li>Architecture overview</li>
+        </ul>
+      </ProductSection>
+
+      <ProductSection title="Built for real production use">
+        <p>
+          AuthForge is not a toy example. It is built using the same patterns and constraints found
+          in real-world SaaS products.
+        </p>
+      </ProductSection>
+
+      <ProductCTA
+        title="Ready to build with AuthForge?"
+        description="AuthForge will be available as a one-time purchase with lifetime access."
+        actions={<a href="#">Coming soon</a>}
+      />
     </main>
   );
 }
-
-const sectionTitleStyle: React.CSSProperties = {
-  fontSize: 22,
-  marginBottom: 14,
-  color: '#0f172a',
-};
-
-const buttonBase: React.CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '10px 14px',
-  borderRadius: 10,
-  textDecoration: 'none',
-  fontWeight: 600,
-  border: '1px solid transparent',
-};
-
-const buttonStylePrimary: React.CSSProperties = {
-  ...buttonBase,
-  background: '#dc2626',
-  color: '#fff',
-};
-
-const buttonStylePrimaryHover: React.CSSProperties = {
-  ...buttonBase,
-  background: '#b91c1c',
-  color: '#fff',
-};
-
-const buttonStyleSecondary: React.CSSProperties = {
-  ...buttonBase,
-  background: 'transparent',
-  color: '#111',
-  borderColor: '#ddd',
-};
-
-const buttonStyleDisabled: React.CSSProperties = {
-  ...buttonBase,
-  background: '#eee',
-  color: '#777',
-  borderColor: '#e5e5e5',
-  cursor: 'not-allowed',
-};
-
-const linkStyle: React.CSSProperties = {
-  display: 'inline-block',
-  textDecoration: 'none',
-  fontWeight: 600,
-};
-
-const ctaStyle: React.CSSProperties = {
-  padding: 20,
-  borderRadius: 16,
-  border: '1px solid #eee',
-};
