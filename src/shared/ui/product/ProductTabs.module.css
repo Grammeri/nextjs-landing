@@ -14,7 +14,6 @@
   border-radius: var(--card-border-radius);
   border: 1px solid var(--card-border-color);
   background: transparent;
-  color: var(--color-on-image-secondary);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
   padding: var(--spacing-sm) var(--spacing-lg);
@@ -25,12 +24,10 @@
 }
 
 .tabButton:hover {
-  color: var(--color-on-image-primary);
   background: var(--surface-card-bg);
 }
 
 .tabButtonActive {
-  color: var(--color-on-image-primary);
   background: var(--surface-card-bg);
 }
 
@@ -40,5 +37,4 @@
   background: var(--surface-card-bg);
   backdrop-filter: var(--surface-card-backdrop);
   padding: var(--spacing-xl);
-  color: var(--color-on-image-primary);
 }

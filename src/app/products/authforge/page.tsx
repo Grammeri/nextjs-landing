@@ -1,3 +1,4 @@
+import { Button } from '@/shared/ui/button';
 import { ProductCTA, ProductHero, ProductSection } from '@/shared/ui/product';
 import styles from './page.module.css';
 
@@ -8,15 +9,17 @@ export default function AuthForgeProductPage() {
         <ProductHero
           title="AuthForge"
           subtitle="Production-ready authentication system for modern SaaS products."
+          trustTitle="Built for real production use"
+          trustDescription="AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products."
           primaryAction={
-            <a className={styles.primaryAction} href="#">
+            <Button as="a" href="#" variant="primary">
               View Demo
-            </a>
+            </Button>
           }
           secondaryAction={
-            <a className={styles.secondaryAction} href="#">
+            <Button as="a" href="#" variant="secondary">
               Read Docs
-            </a>
+            </Button>
           }
         />
       </div>
@@ -91,25 +94,14 @@ export default function AuthForgeProductPage() {
         </ProductSection>
       </div>
 
-      <div className="container">
-        <ProductSection title="Built for real production use">
-          <div className={styles.productionBlock}>
-            <p className={styles.productionText}>
-              AuthForge is not a toy example. It is built using the same patterns and constraints
-              found in real-world SaaS products.
-            </p>
-          </div>
-        </ProductSection>
-      </div>
-
       <div className="container-wide">
         <ProductCTA
           title="Ready to build with AuthForge?"
           description="AuthForge will be available as a one-time purchase with lifetime access."
           actions={
-            <a className={styles.primaryAction} href="#">
+            <Button as="a" href="#" variant="primary">
               Coming soon
-            </a>
+            </Button>
           }
         />
       </div>

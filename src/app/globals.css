@@ -14,6 +14,13 @@
   --color-secondary-faded: rgba(51, 63, 72, 0.1);
   --color-tertiary: #9d2235;
   --color-tertiary-faded: rgba(157, 34, 53, 0.1);
+  /* Texas flag inspired */
+  --color-texas-blue: var(--color-product-text);
+  --color-texas-red: #c0392b;
+  /* softer version for dark backgrounds */
+  --color-texas-red-soft: color-mix(in srgb, var(--color-texas-red) 70%, white 30%);
+  /* List markers (checkmarks, bullets) */
+  --color-list-marker: var(--color-tertiary); /* Texas red */
   --color-success: #009639;
   --color-success-faded: rgba(0, 150, 57, 0.1);
   --color-warning: #ffc72c;
@@ -90,6 +97,12 @@
   --section-padding-top-product: var(--spacing-xl);
   --section-padding-bottom-product: var(--spacing-xl);
 
+  --spacing-icon-text: 12px;
+
+  /* Product page text */
+  --color-product-text: #223a5e;
+  --color-product-text-muted: #415a77;
+
   /* Header surface */
   --header-bg-transparent: transparent;
   --header-bg-scrolled: rgba(10, 20, 35, 0.85);
@@ -127,15 +140,6 @@
   box-sizing: border-box;
 }
 
-/* Global background */
-html,
-body {
-  background-image: url('/images/hero/tx-inspired-home-page-bg.webp');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-}
-
 /* Base body styles */
 body {
   margin: 0;
@@ -144,8 +148,7 @@ body {
   font-family: var(--font-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  color: var(--color-text);
-  background-color: transparent;
+  background-color: var(--color-bg);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -168,29 +171,25 @@ ol {
 /* Typography */
 h1 {
   font-size: var(--font-size-h1);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   line-height: var(--line-height-heading);
-  color: var(--color-text);
 }
 
 h2 {
   font-size: var(--font-size-h2);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
-  color: var(--color-text);
 }
 
 h3 {
   font-size: var(--font-size-h3);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
-  color: var(--color-text);
 }
 
 p {
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  color: var(--color-text);
 }
 
 /* Media defaults */

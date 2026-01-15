@@ -1,43 +1,7 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.primaryAction,
-.secondaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  border: var(--focus-ring-width) solid transparent;
-  transition:
-    background var(--header-transition-duration) var(--header-transition-easing),
-    color var(--header-transition-duration) var(--header-transition-easing),
-    border-color var(--header-transition-duration) var(--header-transition-easing);
-}
-
-.primaryAction {
-  background: var(--color-primary);
-  color: var(--color-on-image-primary);
-}
-
-.primaryAction:hover {
-  background: var(--color-primary-faded);
-  color: var(--color-text);
-}
-
-.secondaryAction {
-  background: transparent;
-  color: var(--color-text);
-  border-color: var(--card-border-color);
-}
-
-.secondaryAction:hover {
-  background: var(--surface-card-bg);
+  gap: var(--spacing-xl);
 }
 
 .audienceList {
@@ -47,8 +11,7 @@
 
 .audienceList li {
   position: relative;
-  padding-left: var(--spacing-xl);
-  color: var(--color-text);
+  padding-left: calc(var(--spacing-2xl) + var(--spacing-icon-text));
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
 }
@@ -58,8 +21,13 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
+}
+
+/* All checkmarks on product page */
+.audienceList li::before,
+.featureList li::before {
+  color: var(--color-list-marker);
 }
 
 .featureGrid {
@@ -73,7 +41,6 @@
   border-radius: var(--card-border-radius);
   border: var(--focus-ring-width) solid var(--color-tertiary-faded);
   background: var(--color-secondary-faded);
-  color: var(--color-text);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -96,7 +63,6 @@
 .featureList li {
   position: relative;
   padding-left: var(--spacing-lg);
-  color: var(--color-muted);
 }
 
 .featureList li::before {
@@ -104,7 +70,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-primary-faded);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -116,16 +81,22 @@
 
 .trustList li {
   position: relative;
-  padding-left: var(--spacing-lg);
-  color: var(--color-on-image-secondary);
+  padding-left: calc(var(--spacing-2xl) + var(--spacing-icon-text));
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-base);
 }
 
 .trustList li::before {
-  content: '•';
+  content: '✓';
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-on-image-primary);
+  color: var(--color-list-marker);
+  font-weight: var(--font-weight-semibold);
+}
+
+.trustBlock li::before {
+  color: var(--color-texas-red-soft);
 }
 
 .steps {
@@ -139,7 +110,6 @@
   grid-template-columns: var(--spacing-2xl) 1fr;
   gap: var(--spacing-md);
   align-items: center;
-  color: var(--color-text);
   counter-increment: steps;
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
@@ -154,7 +124,6 @@
   height: var(--spacing-2xl);
   border-radius: var(--radius-full);
   background: var(--surface-card-bg);
-  color: var(--color-on-image-primary);
   font-weight: var(--font-weight-semibold);
   border: var(--focus-ring-width) solid var(--card-border-color);
 }
@@ -163,25 +132,15 @@
   padding: var(--spacing-2xl);
   border-radius: var(--card-border-radius);
   border: var(--focus-ring-width) solid var(--card-border-color);
-  background: var(--surface-card-bg);
-  backdrop-filter: var(--surface-card-backdrop);
+  background: var(--color-secondary);
+  color: var(--color-on-image-primary);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
 }
 
-.trustText,
-.productionText {
+.trustText {
   margin: 0;
-  color: var(--color-on-image-secondary);
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
-}
-
-.productionBlock {
-  padding: var(--spacing-2xl);
-  border-radius: var(--card-border-radius);
-  border: var(--focus-ring-width) solid var(--card-border-color);
-  background: var(--surface-card-bg);
-  backdrop-filter: var(--surface-card-backdrop);
 }

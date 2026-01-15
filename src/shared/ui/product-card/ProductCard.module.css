@@ -45,5 +45,5 @@
 
 .card p {
   color: var(--color-on-image-primary);
-  line-height: 1.7;
+  line-height: var(--line-height-base);
 }
