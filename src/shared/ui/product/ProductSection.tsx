@@ -9,7 +9,7 @@ type ProductSectionProps = {
 export function ProductSection({ title, children }: ProductSectionProps) {
   return (
     <section className={styles.section}>
-      {title && <h2 className={styles.title}>{title}</h2>}
+      {title && <h3 className={styles.title}>{title}</h3>}
       <div className={styles.content}>{children}</div>
     </section>
   );

@@ -20,7 +20,7 @@ export function ProductCard({
   const content = childrenArray.map((child, index) => {
     if (index === titleIndex && isValidElement(child) && child.type === 'h3') {
       return (
-        <div className={styles.title} key={`product-card-title-${index}`}>
+        <div className={styles.header} key={`product-card-title-${index}`}>
           {child}
         </div>
       );

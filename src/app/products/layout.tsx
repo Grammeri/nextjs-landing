@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import styles from './layout.module.css';
 
 type ProductsLayoutProps = {
   children: ReactNode;
@@ -6,26 +7,8 @@ type ProductsLayoutProps = {
 
 export default function ProductsLayout({ children }: ProductsLayoutProps) {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: '#f8fafc',
-        padding: '64px 16px',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: '0 auto',
-          background: '#ffffff',
-          borderRadius: 16,
-          border: '1px solid #e5e7eb',
-          boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
-          padding: '48px',
-        }}
-      >
-        {children}
-      </div>
+    <div className={styles.productLayout}>
+      <div className={styles.productSurface}>{children}</div>
     </div>
   );
 }

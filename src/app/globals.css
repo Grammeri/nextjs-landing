@@ -86,6 +86,10 @@
   --section-padding-top-compact: var(--spacing-xl);
   --section-padding-bottom-compact: var(--spacing-xl);
 
+  /* Product page sections */
+  --section-padding-top-product: var(--spacing-xl);
+  --section-padding-bottom-product: var(--spacing-xl);
+
   /* Header surface */
   --header-bg-transparent: transparent;
   --header-bg-scrolled: rgba(10, 20, 35, 0.85);

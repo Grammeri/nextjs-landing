@@ -2,11 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
-  padding: var(--spacing-3xl) 0;
+  padding-top: var(--section-padding-top-product);
+  padding-bottom: var(--section-padding-bottom-product);
 }
 
 .title {
   margin: 0;
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-semibold);
 }
 
 .content {

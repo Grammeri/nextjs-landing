@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
-  padding: var(--spacing-3xl) 0;
+  padding-top: var(--section-padding-top-compact);
+  padding-bottom: var(--section-padding-bottom-product);
 }
 
 .text {
@@ -14,11 +15,17 @@
 
 .title {
   margin: 0;
+  text-align: center;
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-bold);
 }
 
 .subtitle {
   margin: 0;
   color: var(--color-muted);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-base);
 }
 
 .actions {
