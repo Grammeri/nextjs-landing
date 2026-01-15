@@ -1,7 +1,5 @@
 import styles from './page.module.css';
-import { AuthForgeCard } from '@/components/authforge-card/AuthForgeCard';
-import { TestAssignmentKitCard } from '@/components/test-assignment-kit-card/TestAssignmentKitCard';
-import { PlaceholderProductCard } from '@/components/placeholder-product-card/PlaceholderProductCard';
+import { ProductsGrid } from '@/components/products-grid/ProductsGrid';
 
 export default function HomePage() {
   return (
@@ -21,10 +19,7 @@ export default function HomePage() {
       <section className={styles.productsSection}>
         <div className="container-wide">
           <div className={styles.productsGrid}>
-            <AuthForgeCard />
-            <TestAssignmentKitCard />
-            <PlaceholderProductCard />
-            <PlaceholderProductCard />
+            <ProductsGrid />
           </div>
         </div>
       </section>

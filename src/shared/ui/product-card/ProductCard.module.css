@@ -7,9 +7,23 @@
   border: 1px solid var(--card-border-color);
   border-radius: var(--card-border-radius);
   box-shadow: var(--card-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   transition:
     box-shadow 0.25s ease,
     transform 0.25s ease;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--spacing-sm);
+}
+
+.title {
+  min-height: calc(var(--font-size-h3) * var(--line-height-heading) * 2);
 }
 
 .card:hover {
@@ -23,7 +37,7 @@
 
 .card h3 {
   color: var(--color-on-image-primary);
-  margin-bottom: var(--spacing-md);
+  margin: 0;
 }
 
 .card p {
