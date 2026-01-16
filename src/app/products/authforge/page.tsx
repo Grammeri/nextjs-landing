@@ -12,7 +12,7 @@ export default function AuthForgeProductPage() {
           trustTitle="Built for real production use"
           trustDescription="AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products."
           primaryAction={
-            <Button as="a" href="#" variant="primary">
+            <Button as="a" href="/demo" variant="primary">
               View Demo
             </Button>
           }
