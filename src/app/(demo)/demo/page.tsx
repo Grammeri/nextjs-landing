@@ -28,10 +28,10 @@ export default function AuthForgeDemoPage() {
           maxWidth: 'var(--container-width)',
         }}
       >
-        <div>✅ Secure authentication flows</div>
-        <div>✅ Email verification &amp; sessions</div>
-        <div>✅ HttpOnly cookies</div>
-        <div>✅ Production-ready architecture</div>
+        <p>✅ Secure authentication flows</p>
+        <p>✅ Email verification &amp; sessions</p>
+        <p>✅ HttpOnly cookies</p>
+        <p>✅ Production-ready architecture</p>
       </div>
 
       <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap' }}>
