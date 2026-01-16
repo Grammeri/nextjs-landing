@@ -1,41 +1,24 @@
 import { Button } from '@/shared/ui/button';
+import { DEMO_URL } from '@/shared/config/demo';
+import styles from './page.module.css';
 
 export default function AuthForgeDemoPage() {
   return (
-    <section
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-xl)',
-        alignItems: 'center',
-      }}
-    >
-      <header style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm)' }}>
+    <section className={styles.section}>
+      <header className={styles.header}>
         <h1>AuthForge Demo</h1>
-        <p>Production-ready authentication system for SaaS</p>
+        <p className={styles.bodyText}>Production-ready authentication system for SaaS</p>
       </header>
-      <p>
-        This is a live demonstration of AuthForge. You can explore authentication flows and
-        dashboard behavior without installing or configuring anything.
+      <p className={styles.bodyText}>
+        This demo runs a real instance of AuthForge in a separate environment.
       </p>
 
-      <div
-        style={{
-          display: 'grid',
-          gap: 'var(--spacing-sm)',
-          textAlign: 'left',
-          width: '100%',
-          maxWidth: 'var(--container-width)',
-        }}
-      >
-        <p>→ Try the complete login and registration flow</p>
-        <p>→ See email verification and session handling in action</p>
-        <p>→ Inspect secure HttpOnly cookies in your browser</p>
-        <p>→ Explore a real production-ready auth setup</p>
+      <div className={styles.grid}>
+        <p className={styles.bodyText}>You will be redirected to the live application.</p>
       </div>
 
-      <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap' }}>
-        <Button as="a" href="https://authforge-demo.vercel.app" variant="primary">
+      <div className={styles.actions}>
+        <Button as="a" href={DEMO_URL} variant="primary">
           Open Live Demo
         </Button>
         <Button as="a" href="/products/authforge" variant="secondary">

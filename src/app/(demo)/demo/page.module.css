@@ -1,0 +1,31 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.grid {
+  display: grid;
+  gap: var(--spacing-sm);
+  text-align: left;
+  width: 100%;
+  max-width: var(--container-width);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.bodyText {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-base);
+}

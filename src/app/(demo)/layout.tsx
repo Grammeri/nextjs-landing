@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import styles from './layout.module.css';
 
 type DemoLayoutProps = {
   children: ReactNode;
@@ -6,19 +7,8 @@ type DemoLayoutProps = {
 
 export default function DemoLayout({ children }: DemoLayoutProps) {
   return (
-    <main
-      className="container"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--spacing-xl)',
-        paddingTop: 'var(--spacing-xl)',
-        paddingBottom: 'var(--spacing-xl)',
-        textAlign: 'center',
-      }}
-    >
-      <aside role="note" aria-live="polite">
+    <main className={`${styles.main} container`}>
+      <aside role="note" aria-live="polite" className={styles.notice}>
         <strong>⚠️ This is a demo environment.</strong>
         <div>This demo shows how AuthForge works in production.</div>
       </aside>
