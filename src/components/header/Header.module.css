@@ -3,6 +3,8 @@
   top: 0;
   z-index: var(--header-z-index);
   background: var(--header-bg-transparent);
+  --header-link-color: var(--color-product-text-muted);
+  --header-brand-color: var(--color-product-text);
   transition:
     background-color var(--header-transition-duration) var(--header-transition-easing),
     backdrop-filter var(--header-transition-duration) var(--header-transition-easing);
@@ -11,6 +13,8 @@
 .scrolled {
   background-color: var(--header-bg-scrolled);
   backdrop-filter: var(--header-backdrop-blur);
+  --header-link-color: var(--color-on-image-secondary);
+  --header-brand-color: var(--color-on-image-primary);
 }
 
 .inner {
@@ -23,7 +27,7 @@
 .brand {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--color-on-image-primary);
+  color: var(--header-brand-color);
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -47,7 +51,7 @@
 .navLink {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  color: var(--color-on-image-secondary);
+  color: var(--header-link-color);
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -55,7 +59,7 @@
 }
 
 .navLink:hover {
-  color: var(--color-on-image-hover);
+  color: var(--header-link-color);
   opacity: 1;
 }
 
@@ -63,5 +67,5 @@
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-sm);
-  color: var(--color-on-image-hover);
+  color: var(--header-link-color);
 }
