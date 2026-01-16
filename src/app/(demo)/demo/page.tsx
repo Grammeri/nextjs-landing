@@ -28,10 +28,10 @@ export default function AuthForgeDemoPage() {
           maxWidth: 'var(--container-width)',
         }}
       >
-        <p>→ Try the complete login and registration flow</p>
-        <p>→ See email verification and session handling in action</p>
-        <p>→ Inspect secure HttpOnly cookies in your browser</p>
-        <p>→ Explore a real production-ready auth setup</p>
+        <p>✅ Secure authentication flows</p>
+        <p>✅ Email verification &amp; sessions</p>
+        <p>✅ HttpOnly cookies</p>
+        <p>✅ Production-ready architecture</p>
       </div>
 
       <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap' }}>
