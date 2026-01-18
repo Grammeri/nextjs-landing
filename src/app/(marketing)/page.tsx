@@ -24,12 +24,6 @@ export default function HomePage() {
         </div>
       </section>
       <section className={styles.nextSection}></section>
-      <footer className={styles.footer}>
-        <div className="container">
-          <span>© 2026 Software Forge</span>
-          <span>Engineered in Texas. Used worldwide.</span>
-        </div>
-      </footer>
     </main>
   );
 }

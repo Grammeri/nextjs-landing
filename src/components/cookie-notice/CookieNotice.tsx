@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/shared/ui/button';
 import styles from './CookieNotice.module.css';
@@ -9,19 +9,30 @@ const STORAGE_KEY = 'cookie_notice_accepted';
 
 export default function CookieNotice() {
   const pathname = usePathname();
-  const [hasAccepted, setHasAccepted] = useState(() => {
-    if (typeof window === 'undefined') {
-      return false;
+  const [hasAccepted, setHasAccepted] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    try {
+      const accepted = window.localStorage.getItem(STORAGE_KEY) === 'true';
+      setHasAccepted(accepted);
+    } catch {
+      // ignore storage errors
+    } finally {
+      setIsReady(true);
     }
-    return window.localStorage.getItem(STORAGE_KEY) === 'true';
-  });
+  }, []);
 
   const handleAccept = () => {
-    window.localStorage.setItem(STORAGE_KEY, 'true');
     setHasAccepted(true);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, 'true');
+    } catch {
+      // Ignore storage errors; state already hides the notice.
+    }
   };
 
-  if (pathname?.startsWith('/demo') || hasAccepted) {
+  if (!isReady || pathname?.startsWith('/demo') || hasAccepted) {
     return null;
   }
 

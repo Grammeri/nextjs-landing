@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header/Header';
+import Footer from '@/components/footer/Footer';
 import CookieNotice from '@/components/cookie-notice/CookieNotice';
 
 export const metadata: Metadata = {
@@ -17,7 +18,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <main>{children}</main>
+        <Footer />
         <CookieNotice />
       </body>
     </html>
