@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header/Header';
+import CookieNotice from '@/components/cookie-notice/CookieNotice';
 
 export const metadata: Metadata = {
   title: 'Next.js Landing',
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+        <CookieNotice />
       </body>
     </html>
   );
