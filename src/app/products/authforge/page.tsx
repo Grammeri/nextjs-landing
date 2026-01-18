@@ -83,7 +83,9 @@ export default function AuthForgeProductPage() {
           <div className={styles.trustBlock}>
             <p className={styles.trustText}>
               Before purchasing, you can explore the code, review the documentation, and see the
-              authentication flows in action.
+              authentication flows in action. AuthForge uses secure HttpOnly cookie-based sessions
+              with server-side session storage by default, and the architecture can be adapted to
+              other approaches if required.
             </p>
             <ul className={styles.trustList}>
               <li>Live demo</li>
