@@ -13,9 +13,7 @@
 .inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding:
-    var(--spacing-lg)
-    clamp(var(--spacing-lg), 5vw, var(--spacing-3xl));
+  padding: var(--spacing-lg) clamp(var(--spacing-lg), 5vw, var(--spacing-3xl));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,4 +52,3 @@
 .notice :global(button:hover) {
   background-color: var(--color-surface-accent);
 }
-

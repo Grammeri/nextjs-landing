@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background-color: var(--color-surface-system);
+  background-color: rgb(10, 20, 35);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
