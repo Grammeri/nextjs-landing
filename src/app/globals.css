@@ -119,10 +119,13 @@
   --header-z-index: 10;
 
   /* Surface / Card */
-  --surface-card-bg: rgba(12, 28, 48, 0.4);
+  --surface-card-bg: rgba(12, 28, 48, 0.85);
   --surface-card-backdrop: blur(12px);
   --surface-card-border: rgba(255, 255, 255, 0.08);
   --surface-card-radius: var(--radius-lg);
+
+  /* Surface / Step indicator */
+--surface-step-bg: rgba(12, 28, 48, 0.4);
 
   /* Product card surface */
   --card-shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.25);
