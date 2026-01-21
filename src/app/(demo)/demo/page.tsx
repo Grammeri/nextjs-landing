@@ -18,9 +18,10 @@ export default function AuthForgeDemoPage() {
       </div>
 
       <div className={styles.actions}>
-        <Button as="a" href={DEMO_URL} variant="primary">
+        <Button as="a" href={DEMO_URL} variant="primary" target="_blank" rel="noopener noreferrer">
           Open Live Demo
         </Button>
+
         <Button as="a" href="/products/authforge" variant="secondary">
           Back to Product Overview
         </Button>
