@@ -154,6 +154,8 @@
 body {
   margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   font-family: var(--font-base);
   font-size: var(--font-size-base);
@@ -162,6 +164,10 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  flex: 1;
 }
 
 /* Remove default margins */
