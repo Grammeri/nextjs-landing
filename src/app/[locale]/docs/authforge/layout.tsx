@@ -11,8 +11,8 @@ type AuthForgeDocsLayoutProps = {
   };
 };
 
-export default function AuthForgeDocsLayout({ children, params }: AuthForgeDocsLayoutProps) {
-  const { locale } = params;
+export default async function AuthForgeDocsLayout({ children, params }: AuthForgeDocsLayoutProps) {
+  const { locale } = await params;
 
   return (
     <section className={styles.pageShell}>
