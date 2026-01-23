@@ -1,0 +1,34 @@
+.page {
+  padding-top: var(--section-padding-top-default);
+  padding-bottom: var(--section-padding-bottom-default);
+  background-color: var(--color-bg);
+  color: var(--color-product-text);
+}
+
+.title {
+  margin: 0 0 var(--spacing-sm);
+  text-align: center;
+  color: var(--color-product-text);
+}
+
+.subtitle {
+  margin: 0 0 var(--spacing-2xl);
+  text-align: center;
+  color: var(--color-product-text-muted);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-product-text);
+}
+
+.paragraph {
+  margin: 0 0 var(--spacing-xl);
+  color: var(--color-product-text-muted);
+}
+
+.list {
+  margin: 0 0 var(--spacing-2xl);
+  padding-left: var(--spacing-xl);
+  color: var(--color-product-text-muted);
+}
