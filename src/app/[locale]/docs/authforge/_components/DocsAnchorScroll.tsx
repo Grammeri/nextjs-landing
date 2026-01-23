@@ -2,80 +2,61 @@
 
 import { useEffect } from 'react';
 
-const parsePxVar = (value: string): number => {
-  const parsed = Number.parseFloat(value);
-  return Number.isFinite(parsed) ? parsed : 0;
+const getCssPx = (varName: string, fallback: number) => {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  const value = Number.parseInt(raw, 10);
+  return Number.isFinite(value) ? value : fallback;
 };
 
 export default function DocsAnchorScroll() {
   useEffect(() => {
-    const scope = document.querySelector('[data-docs-anchor-scope="authforge"]');
-    if (!scope) {
+    const scopeEl = document.querySelector('[data-docs-scope="authforge"]');
+    if (!(scopeEl instanceof HTMLElement)) {
       return;
     }
 
-    const root = document.documentElement;
-    const body = document.body;
-    const prevRootScrollBehavior = root.style.scrollBehavior;
-    const prevRootScrollPadding = root.style.scrollPaddingTop;
-    const prevBodyScrollBehavior = body.style.scrollBehavior;
-    const prevBodyScrollPadding = body.style.scrollPaddingTop;
-
-    root.style.scrollBehavior = 'auto';
-    root.style.scrollPaddingTop = '0px';
-    body.style.scrollBehavior = 'auto';
-    body.style.scrollPaddingTop = '0px';
-
-    const getOffset = () => {
-      const computed = getComputedStyle(root);
-      const headerHeight = parsePxVar(computed.getPropertyValue('--header-height'));
-      const spacingMd = parsePxVar(computed.getPropertyValue('--spacing-md'));
-      return headerHeight + spacingMd;
-    };
-
-    const handleClick = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0) {
+    const onClick = (ev: MouseEvent) => {
+      const target = ev.target;
+      if (!(target instanceof Element)) {
         return;
       }
 
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      const anchor = target.closest('a[href^="#"]');
+      if (!(anchor instanceof HTMLAnchorElement)) {
         return;
       }
 
-      const target = event.target as Element | null;
-      const link = target?.closest('a[href^="#"]');
-      if (!link || !scope.contains(link)) {
+      if (!scopeEl.contains(anchor)) {
         return;
       }
 
-      const href = link.getAttribute('href') ?? '';
-      if (href.length < 2) {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') {
         return;
       }
 
-      const id = decodeURIComponent(href.slice(1));
-      const heading = document.getElementById(id);
-      if (!heading) {
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (!el) {
         return;
       }
 
-      event.preventDefault();
+      ev.preventDefault();
 
-      const offset = getOffset();
-      const top = heading.getBoundingClientRect().top + window.scrollY - offset;
+      const header = getCssPx('--header-height', 72);
+      const spacing = getCssPx('--spacing-md', 16);
+      const offset = header + spacing;
 
-      history.pushState(null, '', `#${id}`);
+      const top = window.scrollY + el.getBoundingClientRect().top - offset;
+
       window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', `#${id}`);
     };
 
-    scope.addEventListener('click', handleClick);
+    document.addEventListener('click', onClick);
 
     return () => {
-      scope.removeEventListener('click', handleClick);
-      root.style.scrollBehavior = prevRootScrollBehavior;
-      root.style.scrollPaddingTop = prevRootScrollPadding;
-      body.style.scrollBehavior = prevBodyScrollBehavior;
-      body.style.scrollPaddingTop = prevBodyScrollPadding;
+      document.removeEventListener('click', onClick);
     };
   }, []);
 

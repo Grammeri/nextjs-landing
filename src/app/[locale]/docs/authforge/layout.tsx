@@ -11,7 +11,7 @@ type AuthForgeDocsLayoutProps = {
 
 export default function AuthForgeDocsLayout({ children }: AuthForgeDocsLayoutProps) {
   return (
-    <section className={styles.pageShell} data-docs-anchor-scope="authforge">
+    <section className={styles.pageShell} data-docs-scope="authforge">
       <DocsAnchorScroll />
       <div className={styles.layout}>
         <aside className={styles.sidebar} aria-label="AuthForge documentation">
