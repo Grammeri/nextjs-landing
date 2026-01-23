@@ -1,0 +1,83 @@
+.pageShell {
+  width: 100%;
+  padding-top: var(--section-padding-top-default);
+  padding-bottom: var(--section-padding-bottom-default);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns:
+    calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm))
+    var(--focus-ring-width)
+    calc(var(--spacing-6xl) * 8);
+  column-gap: var(--spacing-3xl);
+  align-items: start;
+  padding-left: var(--spacing-3xl);
+  padding-right: var(--container-padding);
+}
+
+.sidebar {
+  width: calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm));
+  align-self: stretch;
+}
+
+.sidebarInner {
+  position: sticky;
+  top: var(--header-height);
+  padding-top: var(--spacing-md);
+}
+
+.content {
+  padding-left: var(--spacing-3xl);
+  padding-right: var(--spacing-3xl);
+  color: var(--color-product-text);
+}
+
+.divider {
+  width: var(--focus-ring-width);
+  background-color: var(--color-border);
+  height: 100%;
+}
+
+.navList,
+.navSubList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.navGroup {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-product-text);
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-product-text-muted);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+}
+
+.navLink:hover {
+  color: var(--color-accent);
+}
+
+.navLinkActive {
+  color: var(--color-accent);
+  background-color: var(--color-secondary-faded);
+}
+
+.navSubList {
+  padding-left: var(--spacing-md);
+}

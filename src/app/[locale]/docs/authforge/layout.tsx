@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
+
+import SidebarNav from './_components/SidebarNav';
+import { DOCS_NAV_ITEMS } from './_lib/docs';
+import styles from './layout.module.css';
 
 type AuthForgeDocsLayoutProps = {
   children: ReactNode;
@@ -12,35 +15,16 @@ export default function AuthForgeDocsLayout({ children, params }: AuthForgeDocsL
   const { locale } = params;
 
   return (
-    <section className="container">
-      <nav aria-label="AuthForge documentation">
-        <ul>
-          <li>
-            <Link href={`/${locale}/docs/authforge/getting-started`}>Getting Started</Link>
-          </li>
-          <li>
-            <Link href={`/${locale}/docs/authforge/architecture`}>Architecture</Link>
-          </li>
-          <li>
-            <Link href={`/${locale}/docs/authforge/demo-mode`}>Demo Mode</Link>
-          </li>
-          <li>
-            <Link href={`/${locale}/docs/authforge/environment`}>Environment</Link>
-          </li>
-          <li>
-            <span>Adapting</span>
-            <ul>
-              <li>
-                <Link href={`/${locale}/docs/authforge/adapting/after-login`}>After Login</Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/docs/authforge/adapting/email`}>Email</Link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <div>{children}</div>
+    <section className={styles.pageShell}>
+      <div className={styles.layout}>
+        <aside className={styles.sidebar} aria-label="AuthForge documentation">
+          <div className={styles.sidebarInner}>
+            <SidebarNav locale={locale} items={DOCS_NAV_ITEMS} />
+          </div>
+        </aside>
+        <div className={styles.divider} aria-hidden="true" />
+        <div className={styles.content}>{children}</div>
+      </div>
     </section>
   );
 }
