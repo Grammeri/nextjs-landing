@@ -30,7 +30,10 @@ export function ProductCard({
   });
 
   return (
-    <div className={`${styles.card} ${isPlaceholder ? styles.placeholder : ''}`}>
+    <div
+      className={`${styles.card} ${isPlaceholder ? styles.placeholder : ''}`}
+      data-interactive={interactive}
+    >
       <div className={styles.content}>{content}</div>
     </div>
   );

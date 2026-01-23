@@ -58,4 +58,6 @@ export const getDocMarkdown = async (slug: string): Promise<string> => {
   }
 };
 
-export const renderMarkdown = (markdown: string): string => marked.parse(markdown);
+export const renderMarkdown = async (markdown: string): Promise<string> => {
+  return marked.parse(markdown);
+};

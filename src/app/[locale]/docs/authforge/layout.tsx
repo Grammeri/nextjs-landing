@@ -6,20 +6,15 @@ import styles from './layout.module.css';
 
 type AuthForgeDocsLayoutProps = {
   children: ReactNode;
-  params: {
-    locale: string;
-  };
 };
 
-export default async function AuthForgeDocsLayout({ children, params }: AuthForgeDocsLayoutProps) {
-  const { locale } = await params;
-
+export default function AuthForgeDocsLayout({ children }: AuthForgeDocsLayoutProps) {
   return (
     <section className={styles.pageShell}>
       <div className={styles.layout}>
         <aside className={styles.sidebar} aria-label="AuthForge documentation">
           <div className={styles.sidebarInner}>
-            <SidebarNav locale={locale} items={DOCS_NAV_ITEMS} />
+            <SidebarNav items={DOCS_NAV_ITEMS} />
           </div>
         </aside>
         <div className={styles.divider} aria-hidden="true" />

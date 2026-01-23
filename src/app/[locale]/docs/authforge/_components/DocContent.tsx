@@ -9,7 +9,7 @@ type DocContentProps = {
 
 export default async function DocContent({ slug }: DocContentProps) {
   const markdown = await getDocMarkdown(slug);
-  const html = renderMarkdown(markdown);
+  const html = await renderMarkdown(markdown);
 
   return <article className={styles.content} dangerouslySetInnerHTML={{ __html: html }} />;
 }

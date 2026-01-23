@@ -6,8 +6,12 @@ import type { DocNavItem } from '../_lib/docs';
 import styles from '../layout.module.css';
 
 type SidebarNavProps = {
-  locale: string;
   items: DocNavItem[];
+};
+
+const resolveLocale = (pathname: string | null) => {
+  const segments = pathname?.split('/').filter(Boolean) ?? [];
+  return segments[0] ?? 'en';
 };
 
 const buildHref = (locale: string, slug?: string) => {
@@ -21,8 +25,9 @@ const buildHref = (locale: string, slug?: string) => {
 const isActivePath = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(`${href}/`);
 
-export default function SidebarNav({ locale, items }: SidebarNavProps) {
+export default function SidebarNav({ items }: SidebarNavProps) {
   const pathname = usePathname();
+  const locale = resolveLocale(pathname);
 
   return (
     <ul className={styles.navList}>

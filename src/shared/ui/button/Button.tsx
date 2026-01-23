@@ -31,9 +31,11 @@ export function Button(props: ButtonProps) {
 
   if (props.as === 'a') {
     const { as, ...rest } = props;
+    void as;
     return <a className={combinedClassName} {...rest} />;
   }
 
   const { as, type, ...rest } = props;
+  void as;
   return <button className={combinedClassName} type={type ?? 'button'} {...rest} />;
 }
