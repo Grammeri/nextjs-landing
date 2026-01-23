@@ -9,6 +9,6 @@
 }
 
 .notice {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-base);
   line-height: var(--line-height-base);
 }

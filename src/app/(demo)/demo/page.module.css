@@ -26,6 +26,11 @@
 }
 
 .bodyText {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.subtitle {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
 }

@@ -7,7 +7,7 @@ export default function AuthForgeDemoPage() {
     <section className={styles.section}>
       <header className={styles.header}>
         <h1>AuthForge Demo</h1>
-        <p className={styles.bodyText}>Production-ready authentication system for SaaS</p>
+        <p className={styles.subtitle}>Production-ready authentication system for SaaS</p>
       </header>
       <p className={styles.bodyText}>
         This demo runs a real instance of AuthForge in a separate environment.
