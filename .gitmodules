@@ -1,0 +1,3 @@
+[submodule "content/authforge"]
+	path = content/authforge
+	url = git@github.com:Grammeri/AuthForge.git
