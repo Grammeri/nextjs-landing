@@ -1,6 +1,6 @@
 .pageShell {
   width: 100%;
-  padding-top: var(--section-padding-top-default);
+  padding-top: var(--spacing-0);
   padding-bottom: var(--section-padding-bottom-default);
 }
 
@@ -28,6 +28,7 @@
 }
 
 .content {
+  margin-top: calc(var(--spacing-xl) * -1);
   padding-left: var(--spacing-3xl);
   padding-right: var(--spacing-3xl);
   color: var(--color-product-text);

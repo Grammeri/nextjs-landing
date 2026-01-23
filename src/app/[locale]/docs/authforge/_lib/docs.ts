@@ -58,6 +58,44 @@ export const getDocMarkdown = async (slug: string): Promise<string> => {
   }
 };
 
+const extractText = (value: unknown): string => {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(extractText).join('');
+  }
+
+  if (typeof value === 'object' && value && 'text' in value) {
+    return String((value as { text: unknown }).text);
+  }
+
+  return '';
+};
+
+const slugifyHeading = (value: string): string =>
+  value
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
 export const renderMarkdown = async (markdown: string): Promise<string> => {
-  return marked.parse(markdown);
+  const renderer = new marked.Renderer();
+
+  type HeadingToken = {
+    depth: number;
+    text?: string;
+    tokens?: unknown;
+  };
+
+  renderer.heading = (token: HeadingToken) => {
+    const headingText = extractText(token.text ?? token.tokens);
+    const id = slugifyHeading(headingText);
+    const idAttr = id ? ` id="${id}"` : '';
+    return `<h${token.depth}${idAttr}>${headingText}</h${token.depth}>`;
+  };
+
+  return marked.parse(markdown, { renderer });
 };
