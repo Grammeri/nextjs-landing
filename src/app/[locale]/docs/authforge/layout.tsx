@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import DocsAnchorScroll from './_components/DocsAnchorScroll';
 import SidebarNav from './_components/SidebarNav';
 import { DOCS_NAV_ITEMS } from './_lib/docs';
 import styles from './layout.module.css';
@@ -10,7 +11,8 @@ type AuthForgeDocsLayoutProps = {
 
 export default function AuthForgeDocsLayout({ children }: AuthForgeDocsLayoutProps) {
   return (
-    <section className={styles.pageShell}>
+    <section className={styles.pageShell} data-docs-anchor-scope="authforge">
+      <DocsAnchorScroll />
       <div className={styles.layout}>
         <aside className={styles.sidebar} aria-label="AuthForge documentation">
           <div className={styles.sidebarInner}>
