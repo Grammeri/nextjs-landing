@@ -15,7 +15,7 @@ export default async function DocContent({ slug, outline }: DocContentProps) {
   const html = await renderMarkdown(markdown);
 
   return (
-    <article className={styles.content}>
+    <article className={`${styles.content} docs`}>
       <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: html }} />
       {outline ? <div className={styles.outline}>{outline}</div> : null}
     </article>
