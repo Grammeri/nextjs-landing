@@ -1,23 +1,24 @@
 import 'server-only';
 
-import { ReactNode } from 'react';
-
-import { getDocMarkdown, renderMarkdown } from '../_lib/docs';
+import { getDocMarkdown } from '../_lib/docs';
+import PageOutline from './PageOutline';
 import styles from './DocContent.module.css';
 
 type DocContentProps = {
   slug: string;
-  outline?: ReactNode;
 };
 
-export default async function DocContent({ slug, outline }: DocContentProps) {
-  const markdown = await getDocMarkdown(slug);
-  const html = await renderMarkdown(markdown);
+export default async function DocContent({ slug }: DocContentProps) {
+  const { html, outline } = await getDocMarkdown(slug);
 
   return (
     <article className={`${styles.content} docs`}>
       <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: html }} />
-      {outline ? <div className={styles.outline}>{outline}</div> : null}
+      {outline.length ? (
+        <div className={styles.outline}>
+          <PageOutline items={outline} />
+        </div>
+      ) : null}
     </article>
   );
 }
