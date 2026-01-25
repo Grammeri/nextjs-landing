@@ -18,12 +18,18 @@ export type OutlineItem = {
   label: string;
 };
 
-const resolveSlug = (slug: string) => {
+const normalizeSlug = (slug: string) => {
   const trimmed = slug.replace(/^\/+|\/+$/g, '');
 
   if (!trimmed || trimmed.includes('..')) {
     notFound();
   }
+
+  return trimmed;
+};
+
+const resolveSlug = (slug: string) => {
+  const trimmed = normalizeSlug(slug);
 
   if (trimmed === 'environment') {
     return 'env';
@@ -32,15 +38,60 @@ const resolveSlug = (slug: string) => {
   return trimmed;
 };
 
+const mapRouteSlugToDocSlug = (slug: string) => (slug === 'environment' ? 'env' : slug);
+
+const resolveInternalHref = (href: string, currentSlug: string): string | null => {
+  const cleaned = href.split('#')[0]?.split('?')[0] ?? '';
+
+  if (!cleaned || cleaned.startsWith('#')) {
+    return null;
+  }
+
+  if (cleaned.startsWith('/docs/')) {
+    const stripped = cleaned
+      .replace(/^\/docs\/authforge\/?/, '')
+      .replace(/^\/docs\/?/, '')
+      .replace(/^\/+/, '');
+    return stripped || null;
+  }
+
+  if (!cleaned.startsWith('./') && !cleaned.startsWith('../')) {
+    return null;
+  }
+
+  const baseParts = currentSlug.split('/').filter(Boolean).slice(0, -1);
+  const stack = [...baseParts];
+
+  for (const part of cleaned.split('/')) {
+    if (!part || part === '.') {
+      continue;
+    }
+
+    if (part === '..') {
+      if (!stack.length) {
+        return null;
+      }
+
+      stack.pop();
+      continue;
+    }
+
+    stack.push(part);
+  }
+
+  return stack.join('/') || null;
+};
+
 export const getDocMarkdown = async (
   slug: string,
 ): Promise<{ html: string; outline: OutlineItem[] }> => {
+  const normalizedSlug = normalizeSlug(slug);
   const resolvedSlug = resolveSlug(slug);
   const docPath = path.join(DOCS_ROOT, `${resolvedSlug}.md`);
 
   try {
     const markdown = await fs.readFile(docPath, 'utf8');
-    return renderMarkdown(markdown);
+    return renderMarkdown(markdown, normalizedSlug);
   } catch (error) {
     const nodeError = error as NodeJS.ErrnoException;
 
@@ -77,9 +128,11 @@ const slugifyHeading = (value: string): string =>
 
 export const renderMarkdown = async (
   markdown: string,
+  currentSlug: string,
 ): Promise<{ html: string; outline: OutlineItem[] }> => {
   const renderer = new marked.Renderer();
   const outline: OutlineItem[] = [];
+  const internalDocLinks = new Set<string>();
 
   type HeadingToken = {
     depth: number;
@@ -115,9 +168,44 @@ export const renderMarkdown = async (
     const internalAttr = !isExternal && isInternalDoc ? ' data-internal="true"' : '';
     const label = token.text ?? '';
 
+    if (isInternalDoc) {
+      internalDocLinks.add(href);
+    }
+
     return `<a href="${href}"${title}${externalAttr}${internalAttr}>${label}</a>`;
   };
 
   const html = marked.parse(markdown, { renderer });
+  const brokenLinks: string[] = [];
+
+  for (const href of internalDocLinks) {
+    const resolvedSlug = resolveInternalHref(href, currentSlug);
+
+    if (!resolvedSlug) {
+      brokenLinks.push(href);
+      continue;
+    }
+
+    const docSlug = mapRouteSlugToDocSlug(resolvedSlug);
+    const docPath = path.join(DOCS_ROOT, `${docSlug}.md`);
+
+    try {
+      await fs.access(docPath);
+    } catch {
+      brokenLinks.push(href);
+    }
+  }
+
+  if (brokenLinks.length) {
+    const message =
+      '[docs] Broken internal link(s):\n' + brokenLinks.map((href) => `- ${href}`).join('\n');
+
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(message);
+    }
+
+    console.warn(message);
+  }
+
   return { html, outline };
 };
