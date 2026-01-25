@@ -87,6 +87,13 @@ export const renderMarkdown = async (
     tokens?: unknown;
   };
 
+  type LinkToken = {
+    href?: string;
+    title?: string | null;
+    text?: string;
+    tokens?: unknown;
+  };
+
   renderer.heading = (token: HeadingToken) => {
     const headingText = extractText(token.text ?? token.tokens);
     const id = slugifyHeading(headingText);
@@ -97,6 +104,16 @@ export const renderMarkdown = async (
     }
 
     return `<h${token.depth}${idAttr}>${headingText}</h${token.depth}>`;
+  };
+
+  renderer.link = (token: LinkToken) => {
+    const href = token.href ?? '';
+    const title = token.title ? ` title="${token.title}"` : '';
+    const isExternal = /^https?:\/\//i.test(href);
+    const externalAttr = isExternal ? ' data-external="true"' : '';
+    const label = token.text ?? '';
+
+    return `<a href="${href}"${title}${externalAttr}>${label}</a>`;
   };
 
   const html = marked.parse(markdown, { renderer });
