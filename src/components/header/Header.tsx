@@ -46,15 +46,15 @@ export default function Header() {
             Software Forge
           </Link>
           <nav className={styles.nav}>
-            <a href="#" className={styles.navLink}>
+            <Link href="/products/authforge" className={styles.navLink}>
               Products
-            </a>
+            </Link>
             <Link href="/docs" className={styles.navLink}>
               Docs
             </Link>
-            <a href="#" className={styles.navLink}>
+            <Link href="/pricing" className={styles.navLink}>
               Pricing
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
