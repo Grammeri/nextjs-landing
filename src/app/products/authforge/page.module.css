@@ -137,9 +137,9 @@
 .trustBlock {
   padding: var(--spacing-2xl);
   border-radius: var(--card-border-radius);
-  border: var(--focus-ring-width) solid var(--card-border-color);
-  background: var(--color-secondary);
-  color: var(--color-on-image-primary);
+  border: var(--focus-ring-width) solid var(--color-texas-blue);
+  background: var(--color-bg);
+  color: var(--color-product-text);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);

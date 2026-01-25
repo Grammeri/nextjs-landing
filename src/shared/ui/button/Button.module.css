@@ -30,6 +30,7 @@
   background: var(--color-on-image-primary);
   color: var(--color-product-text);
   border-color: var(--color-border);
+  font-weight: var(--font-weight-bold);
 }
 
 .inverted:hover {
