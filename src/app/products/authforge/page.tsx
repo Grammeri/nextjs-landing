@@ -17,9 +17,14 @@ export default function AuthForgeProductPage() {
             </Button>
           }
           secondaryAction={
-            <Button as="a" href="#" variant="secondary">
-              Read Docs
-            </Button>
+            <div className={styles.heroActions}>
+              <Button as="a" href="#" variant="secondary">
+                Read Docs
+              </Button>
+              <Button as="a" href="/pricing#authforge" variant="secondary">
+                Buy license
+              </Button>
+            </div>
           }
         />
       </div>
@@ -101,8 +106,8 @@ export default function AuthForgeProductPage() {
           title="Ready to build with AuthForge?"
           description="AuthForge will be available as a one-time purchase with lifetime access."
           actions={
-            <Button as="a" href="#" variant="primary">
-              Coming soon
+            <Button as="a" href="/pricing#authforge" variant="primary">
+              Buy license
             </Button>
           }
         />

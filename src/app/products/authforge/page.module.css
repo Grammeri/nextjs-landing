@@ -4,6 +4,12 @@
   gap: var(--spacing-xl);
 }
 
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
 .audienceList {
   display: grid;
   gap: var(--spacing-md);
