@@ -28,17 +28,29 @@ const normalizeSlug = (slug: string) => {
   return trimmed;
 };
 
-const resolveSlug = (slug: string) => {
-  const trimmed = normalizeSlug(slug);
+const mapRouteSlugToDocSlug = (slug: string) => (slug === 'environment' ? 'env' : slug);
 
-  if (trimmed === 'environment') {
-    return 'env';
+const DOCS_SUBDIR = 'authforge';
+
+const resolveDocPath = async (slug: string): Promise<string | null> => {
+  const normalized = normalizeSlug(slug);
+  const mappedSlug = mapRouteSlugToDocSlug(normalized);
+  const candidates = [
+    path.join(DOCS_ROOT, DOCS_SUBDIR, `${normalized}.md`),
+    path.join(DOCS_ROOT, `${mappedSlug}.md`),
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      await fs.access(candidate);
+      return candidate;
+    } catch {
+      continue;
+    }
   }
 
-  return trimmed;
+  return null;
 };
-
-const mapRouteSlugToDocSlug = (slug: string) => (slug === 'environment' ? 'env' : slug);
 
 const resolveInternalHref = (href: string, currentSlug: string): string | null => {
   const cleaned = href.split('#')[0]?.split('?')[0] ?? '';
@@ -86,8 +98,11 @@ export const getDocMarkdown = async (
   slug: string,
 ): Promise<{ html: string; outline: OutlineItem[] }> => {
   const normalizedSlug = normalizeSlug(slug);
-  const resolvedSlug = resolveSlug(slug);
-  const docPath = path.join(DOCS_ROOT, `${resolvedSlug}.md`);
+  const docPath = await resolveDocPath(slug);
+
+  if (!docPath) {
+    notFound();
+  }
 
   try {
     const markdown = await fs.readFile(docPath, 'utf8');
@@ -175,7 +190,7 @@ export const renderMarkdown = async (
     return `<a href="${href}"${title}${externalAttr}${internalAttr}>${label}</a>`;
   };
 
-  const html = marked.parse(markdown, { renderer });
+  const html = await marked.parse(markdown, { renderer });
   const brokenLinks: string[] = [];
 
   for (const href of internalDocLinks) {
@@ -186,12 +201,9 @@ export const renderMarkdown = async (
       continue;
     }
 
-    const docSlug = mapRouteSlugToDocSlug(resolvedSlug);
-    const docPath = path.join(DOCS_ROOT, `${docSlug}.md`);
+    const docPath = await resolveDocPath(resolvedSlug);
 
-    try {
-      await fs.access(docPath);
-    } catch {
+    if (!docPath) {
       brokenLinks.push(href);
     }
   }
