@@ -26,7 +26,6 @@ export default function AuthForgeDemoPage() {
           Back to Product Overview
         </Button>
       </div>
-      <small>Demo data is temporary and may be reset.</small>
     </section>
   );
 }
