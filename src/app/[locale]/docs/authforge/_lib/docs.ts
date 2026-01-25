@@ -110,10 +110,12 @@ export const renderMarkdown = async (
     const href = token.href ?? '';
     const title = token.title ? ` title="${token.title}"` : '';
     const isExternal = /^https?:\/\//i.test(href);
+    const isInternalDoc = !isExternal && /^(?:\.\/|\.\.\/|\/docs\/)/.test(href);
     const externalAttr = isExternal ? ' data-external="true"' : '';
+    const internalAttr = !isExternal && isInternalDoc ? ' data-internal="true"' : '';
     const label = token.text ?? '';
 
-    return `<a href="${href}"${title}${externalAttr}>${label}</a>`;
+    return `<a href="${href}"${title}${externalAttr}${internalAttr}>${label}</a>`;
   };
 
   const html = marked.parse(markdown, { renderer });

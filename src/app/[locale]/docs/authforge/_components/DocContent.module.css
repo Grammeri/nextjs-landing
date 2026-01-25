@@ -74,6 +74,25 @@
   color: var(--color-secondary);
 }
 
+.markdown a[data-internal="true"] {
+  color: var(--color-product-text);
+  text-decoration: underline;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--color-product-text) 40%,
+    transparent
+  );
+  text-underline-offset: 0.18em;
+}
+
+.markdown a[data-internal="true"]:hover {
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--color-product-text) 70%,
+    transparent
+  );
+}
+
 .markdown a[data-external="true"]::after {
   content: '↗';
   display: inline-flex;
