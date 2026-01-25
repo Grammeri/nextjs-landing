@@ -1,5 +1,6 @@
 import { Button } from '@/shared/ui/button';
-import { ProductCTA, ProductHero, ProductSection } from '@/shared/ui/product';
+import { ProductHero, ProductSection } from '@/shared/ui/product';
+import { PricingCard } from '@/shared/ui/pricing-card';
 import styles from './page.module.css';
 
 export default function AuthForgeProductPage() {
@@ -102,14 +103,22 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div className="container-wide">
-        <ProductCTA
-          title="Ready to build with AuthForge?"
-          description="AuthForge will be available as a one-time purchase with lifetime access."
-          actions={
-            <Button as="a" href="/pricing#authforge" variant="primary">
-              Buy license
-            </Button>
-          }
+        <PricingCard
+          title="AuthForge"
+          description="Production-ready authentication system for modern SaaS products"
+          price="$99 — One-time license"
+          features={[
+            { text: '1 project', included: true },
+            { text: 'Lifetime access', included: true },
+            { text: 'Updates included', included: true },
+            {
+              text: 'Refunds available within 14 days if access was not used',
+              included: false,
+            },
+          ]}
+          ctaLabel="Buy AuthForge"
+          ctaHref="/pricing#authforge"
+          footerNote="Access instructions will be sent by email after purchase"
         />
       </div>
     </main>

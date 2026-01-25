@@ -25,3 +25,13 @@
   color: var(--color-texas-blue);
   border-color: var(--color-texas-blue);
 }
+
+.inverted {
+  background: var(--color-on-image-primary);
+  color: var(--color-product-text);
+  border-color: var(--color-border);
+}
+
+.inverted:hover {
+  background: var(--color-surface-elevated);
+}
