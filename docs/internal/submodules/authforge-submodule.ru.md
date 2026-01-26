@@ -48,7 +48,7 @@
 Переходим в репозиторий AuthForge:
 
 ```bash
-cd auth-forge
+cd content/authforge
 ```
 
 Вносим изменения (docs, код, что угодно).
