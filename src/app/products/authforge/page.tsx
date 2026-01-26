@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import { PricingCard } from '@/shared/ui/pricing-card';
+import CopySupportEmail from './_components/CopySupportEmail';
 import styles from './page.module.css';
 
 export default function AuthForgeProductPage() {
@@ -103,6 +104,13 @@ export default function AuthForgeProductPage() {
               </li>
               <li>
                 <Link href="/docs/authforge/architecture">Architecture overview</Link>
+              </li>
+              <li>
+                Questions before or after purchase? Contact us at{' '}
+                <span className={styles.supportInline}>
+                  <span className={styles.supportEmail}>support@authforge.dev</span>
+                  <CopySupportEmail />
+                </span>
               </li>
             </ul>
           </div>
