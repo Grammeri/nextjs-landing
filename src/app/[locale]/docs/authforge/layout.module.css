@@ -7,9 +7,9 @@
 .layout {
   display: grid;
   grid-template-columns:
-    calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm))
+    minmax(0, calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm)))
     var(--focus-ring-width)
-    calc(var(--spacing-6xl) * 8);
+    minmax(0, 1fr);
   column-gap: var(--spacing-3xl);
   align-items: start;
   padding-left: var(--spacing-3xl);
@@ -40,6 +40,7 @@
   padding-left: var(--spacing-3xl);
   padding-right: var(--spacing-3xl);
   color: var(--color-product-text);
+  min-width: 0;
 }
 
 .divider {
