@@ -26,17 +26,17 @@
 }
 
 .marker {
-  color: var(--color-texas-red);
+  color: var(--color-docs-bullet);
 }
 
 .link {
   text-decoration: none;
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  color: var(--color-accent);
+  color: var(--color-docs-link);
   cursor: pointer;
 }
 
 .link:hover {
-  color: var(--color-texas-red);
+  color: var(--color-docs-link-hover);
 }

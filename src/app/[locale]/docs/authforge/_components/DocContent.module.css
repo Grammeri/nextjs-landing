@@ -66,12 +66,12 @@
 }
 
 .markdown a {
-  color: var(--color-accent);
+  color: var(--color-docs-link);
   text-decoration: none;
 }
 
 .markdown a:hover {
-  color: var(--color-secondary);
+  color: var(--color-docs-link-hover);
 }
 
 .markdown a[data-internal='true'] {
