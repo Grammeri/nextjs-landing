@@ -130,8 +130,8 @@
 @media (hover: hover) and (pointer: fine) {
   .markdown a[data-internal='true']:hover::before,
   .markdown a[data-internal='true']:hover::after {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: var(--opacity-hover-visible, 1);
+    transform: translateY(var(--motion-hover-translate-y, 0));
   }
 }
 
@@ -159,7 +159,7 @@
 }
 
 .markdown a[data-external='true']:hover::after {
-  opacity: 0.9;
+  opacity: var(--opacity-hover-muted, var(--opacity-hover-subtle));
 }
 
 .markdown hr {
