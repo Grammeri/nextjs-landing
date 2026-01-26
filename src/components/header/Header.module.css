@@ -33,7 +33,7 @@
 }
 
 .brand:hover {
-  opacity: 0.9;
+  opacity: var(--opacity-hover-subtle);
 }
 
 .brand:focus-visible {
