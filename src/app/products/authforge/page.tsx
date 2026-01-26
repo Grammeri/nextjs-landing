@@ -19,7 +19,7 @@ export default function AuthForgeProductPage() {
           }
           secondaryAction={
             <div className={styles.heroActions}>
-              <Button as="a" href="#" variant="secondary">
+              <Button as="a" href="/docs/authforge/quick-start" variant="secondary">
                 Read Docs
               </Button>
               <Button as="a" href="/pricing#authforge" variant="secondary">
