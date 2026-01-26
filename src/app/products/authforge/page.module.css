@@ -101,6 +101,29 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.trustList a {
+  color: inherit;
+  text-decoration: none;
+  text-decoration-color: transparent;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.trustList a:hover,
+.trustList a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.trustList a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
 .trustBlock li::before {
   color: var(--color-texas-red-soft);
 }

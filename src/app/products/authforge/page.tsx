@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import { PricingCard } from '@/shared/ui/pricing-card';
@@ -94,9 +95,15 @@ export default function AuthForgeProductPage() {
               other approaches if required.
             </p>
             <ul className={styles.trustList}>
-              <li>Live demo</li>
-              <li>Full documentation</li>
-              <li>Architecture overview</li>
+              <li>
+                <Link href="/demo">Live demo</Link>
+              </li>
+              <li>
+                <Link href="/docs">Full documentation</Link>
+              </li>
+              <li>
+                <Link href="/docs/authforge/architecture">Architecture overview</Link>
+              </li>
             </ul>
           </div>
         </ProductSection>
