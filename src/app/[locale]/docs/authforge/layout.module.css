@@ -27,6 +27,14 @@
   padding-top: var(--spacing-md);
 }
 
+.sidebarTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-base);
+  color: var(--color-product-text);
+  margin-bottom: var(--spacing-md);
+}
+
 .content {
   margin-top: calc(var(--spacing-xl) * -1);
   padding-left: var(--spacing-3xl);

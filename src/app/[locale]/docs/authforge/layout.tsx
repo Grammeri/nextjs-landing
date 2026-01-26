@@ -18,6 +18,7 @@ export default async function AuthForgeDocsLayout({ children }: AuthForgeDocsLay
       <div className={styles.layout}>
         <aside className={styles.sidebar} aria-label="AuthForge documentation">
           <div className={styles.sidebarInner}>
+            <div className={styles.sidebarTitle}>AuthForge Documentation</div>
             <SidebarNav items={nav} />
           </div>
         </aside>
