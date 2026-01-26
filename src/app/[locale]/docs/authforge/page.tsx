@@ -10,5 +10,5 @@ export default async function AuthForgeDocsOverviewPage({
   params,
 }: AuthForgeDocsOverviewPageProps) {
   const { locale } = await Promise.resolve(params);
-  redirect(`/${locale}/docs/authforge/getting-started`);
+  redirect(`/${locale}/docs/authforge/quick-start`);
 }
