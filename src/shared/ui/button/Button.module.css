@@ -12,7 +12,7 @@
 }
 
 .button:hover {
-  transform: scale(var(--motion-scale-hover));
+  transform: scale(var(--interaction-hover-scale));
 }
 
 .primary {

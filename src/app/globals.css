@@ -142,6 +142,15 @@
   --motion-easing-standard: ease;
   --motion-card-hover-translate-y: -2px;
 
+  /* Interaction — Hover */
+  --opacity-hover-muted: var(--opacity-hover-subtle);
+  --opacity-hover-visible: 1;
+  --interaction-hover-opacity-subtle: var(--opacity-hover-muted);
+  --interaction-hover-opacity-strong: var(--opacity-hover-visible);
+  --interaction-hover-translate-y: var(--motion-card-hover-translate-y);
+  --interaction-hover-scale: var(--motion-scale-hover);
+  --interaction-hover-shadow: var(--card-shadow-hover);
+
   /* Focus ring */
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;

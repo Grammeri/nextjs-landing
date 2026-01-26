@@ -30,8 +30,8 @@
 }
 
 .card:hover {
-  box-shadow: var(--card-shadow-hover);
-  transform: translateY(var(--motion-card-hover-translate-y));
+  box-shadow: var(--interaction-hover-shadow);
+  transform: translateY(var(--interaction-hover-translate-y));
 }
 
 .card.placeholder {
