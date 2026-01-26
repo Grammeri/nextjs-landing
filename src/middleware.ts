@@ -6,10 +6,10 @@ const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // /docs → /en/docs/authforge
+  // /docs → /en/docs
   if (pathname === '/docs') {
     const url = request.nextUrl.clone();
-    url.pathname = `/${DEFAULT_LOCALE}/docs/authforge`;
+    url.pathname = `/${DEFAULT_LOCALE}/docs`;
     return NextResponse.redirect(url);
   }
 

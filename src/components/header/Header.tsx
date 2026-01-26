@@ -12,6 +12,7 @@ function getHeaderHeightPx() {
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const docsHref = '/en/docs';
 
   useEffect(() => {
     const headerHeight = getHeaderHeightPx();
@@ -46,7 +47,7 @@ export default function Header() {
             Software Forge
           </Link>
           <nav className={styles.nav}>
-            <Link href="/docs" className={styles.navLink}>
+            <Link href={docsHref} className={styles.navLink}>
               Docs
             </Link>
             <Link href="/pricing" className={styles.navLink}>

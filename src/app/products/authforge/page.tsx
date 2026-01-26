@@ -99,7 +99,7 @@ export default function AuthForgeProductPage() {
                 <Link href="/demo">Live demo</Link>
               </li>
               <li>
-                <Link href="/docs">Full documentation</Link>
+                <Link href="/docs/authforge/quick-start">Full documentation</Link>
               </li>
               <li>
                 <Link href="/docs/authforge/architecture">Architecture overview</Link>
