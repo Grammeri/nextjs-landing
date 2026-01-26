@@ -134,6 +134,12 @@
   --card-border-radius: var(--radius-lg);
 
   /* Motion */
+  --opacity-hover-subtle: 0.9;
+  --motion-scale-hover: 1.03;
+  --motion-hover-raise: -2px;
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 200ms;
+  --motion-easing-standard: ease;
   --motion-card-hover-translate-y: -2px;
 
   /* Focus ring */
