@@ -45,3 +45,14 @@ pnpm build
 
 This repository contains only the public-facing landing.
 Authentication, private dashboards, and backend logic are not included here.
+
+## Internal Documentation
+
+This repository uses internal Git submodules for shared product code.
+
+Developer-oriented documentation about submodule workflows
+(commit flow, updates, synchronization) is located in:
+
+docs/internal/
+
+This documentation is intended for contributors and is not part of the public website.
