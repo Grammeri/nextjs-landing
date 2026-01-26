@@ -127,9 +127,10 @@ export default function AuthForgeProductPage() {
             { text: 'Lifetime access', included: true },
             { text: 'Updates included', included: true },
             {
-              text: 'Refunds available within 14 days if access was not used',
-              included: false,
+              text: '14-day refund if access was not used',
+              included: true,
             },
+            { text: 'Support via email (support@authforge.dev)', included: true },
           ]}
           ctaLabel="Buy AuthForge"
           ctaHref="/pricing#authforge"
