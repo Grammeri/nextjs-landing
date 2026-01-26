@@ -1,16 +1,18 @@
 # 🔗 AuthForge Submodule Workflow
 
-This document describes **how to correctly work with the AuthForge submodule**
+This document explains **how to work with the AuthForge submodule**
 in the `nextjs-landing` project.
 
-The document is intended **only for project developers**  
+It is intended **only for project developers**
 and **must not be published in the browser or marketing docs**.
 
 ---
 
-## 🧠 How the repositories are connected
+## 🧠 Architecture
 
-### There are two separate Git repositories:
+### 🔗 Repository relationship
+
+There are two separate Git repositories:
 
 1. **AuthForge**
    - Repository: `github.com/Grammeri/AuthForge`
@@ -26,9 +28,7 @@ and **must not be published in the browser or marketing docs**.
      content/authforge
      ```
 
----
-
-## 🔗 What git submodule means in this project
+### 🔗 What git submodule means in this project
 
 `content/authforge` is **not a copy of files**, but a **pointer to a specific commit**
 in the AuthForge repository.
@@ -41,23 +41,27 @@ in the AuthForge repository.
 
 ---
 
-## 🔁 Proper workflow (REQUIRED)
+## 🔁 Workflow (REQUIRED)
 
 ### ✅ Step 1. Work in the AuthForge repository
 
+Go to the AuthForge repo:
+
 ```bash
 cd auth-forge
-
+```
 
 Make changes (docs, code, anything).
 
 Check status:
 
+```bash
 git status
+```
 
+Commit changes in AuthForge:
 
-Commit changes IN AUTHFORGE:
-
+```bash
 git add .
 git commit -m "docs(authforge): update development setup"
 git push
@@ -65,7 +69,7 @@ git push
 
 👉 At this stage AuthForge is fully synced with GitHub.
 
-✅ Step 2. Update the submodule in the landing
+### ✅ Step 2. Update the submodule in the landing
 
 Go to the landing project:
 
@@ -81,7 +85,8 @@ git submodule update --remote content/authforge
 
 Git will pull the new AuthForge commit.
 
-🔍 Check
+🧪 Check:
+
 ```bash
 git status
 ```
@@ -94,20 +99,21 @@ modified: content/authforge (new commits)
 
 👉 This is normal and correct.
 
-It means:
+It means the submodule pointer now references the new AuthForge commit.
 
-☝️ the submodule pointer was updated and now references the new AuthForge commit
+### ✅ Step 3. Commit the submodule update
 
-✅ Step 3. Commit the submodule update
 ```bash
 git add content/authforge
 git commit -m "chore(submodule): update authforge documentation"
 git push
 ```
 
-🎉 Done.
+---
 
-🧩 Why the submodule is in HEAD detached state
+## 🧠 Edge cases
+
+### 📌 HEAD detached in the submodule
 
 If you enter the submodule:
 
@@ -122,27 +128,29 @@ You may see:
 HEAD detached at ceb1e36
 ```
 
-❗ This is NOT an error
+📌 This is NOT an error.
 
-This is normal git submodule behavior:
-
-the submodule is not on a branch
-
-it is pinned to a specific commit
-
-branches inside the submodule are not used
+The submodule is not on a branch.
+It is pinned to a specific commit.
+Branches inside the submodule are not used.
 
 👉 Nothing needs to be done.
 
-❌ What you must NOT do
+---
 
-🚫 Commit AuthForge files from the landing repo
-🚫 Run git checkout main inside the submodule
-🚫 Try to edit AuthForge without switching to its repository
-🚫 Commit the landing before committing AuthForge
+## ❌ Anti-patterns
 
-🧪 How to verify everything is synced
+- Commit AuthForge files from the landing repo
+- Run `git checkout main` inside the submodule
+- Edit AuthForge without switching to its repository
+- Commit the landing before committing AuthForge
+
+---
+
+## 🧪 Verification
+
 In AuthForge:
+
 ```bash
 git status
 git log -1 --oneline
@@ -156,6 +164,7 @@ Your branch is up to date with 'origin/main'.
 ```
 
 In the landing:
+
 ```bash
 git status
 ```
@@ -166,26 +175,22 @@ Expected:
 nothing to commit, working tree clean
 ```
 
-🏁 Summary
+---
 
-AuthForge is a separate repository
+## 🏁 Summary
 
-The landing uses a pointer to an AuthForge commit
-
-HEAD detached in the submodule is normal
+AuthForge is a separate repository.
+The landing uses a pointer to an AuthForge commit.
+HEAD detached in the submodule is normal.
 
 Always first:
 
-commit AuthForge
-
-update the submodule
-
+commit AuthForge  
+update the submodule  
 commit the landing
 
 💡 This approach guarantees:
 
-no conflicts
-
-clean git history
-
+no conflicts  
+clean git history  
 predictable CI behavior
