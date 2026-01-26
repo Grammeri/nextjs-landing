@@ -74,39 +74,33 @@
   color: var(--color-secondary);
 }
 
-.markdown a[data-internal="true"] {
+.markdown a[data-internal='true'] {
   color: var(--color-product-text);
   text-decoration: underline;
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-product-text) 40%,
-    transparent
-  );
+  text-decoration-color: color-mix(in srgb, var(--color-product-text) 40%, transparent);
   text-underline-offset: 0.18em;
   position: relative;
 }
 
-.markdown a[data-internal="true"]:hover {
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-product-text) 70%,
-    transparent
-  );
+.markdown a[data-internal='true']:hover {
+  text-decoration-color: color-mix(in srgb, var(--color-product-text) 70%, transparent);
 }
 
-.markdown a[data-internal="true"]::before,
-.markdown a[data-internal="true"]::after {
+.markdown a[data-internal='true']::before,
+.markdown a[data-internal='true']::after {
   opacity: 0;
   pointer-events: none;
   position: absolute;
   left: 0;
   top: 100%;
   transform: translateY(0.35em);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
   z-index: 1;
 }
 
-.markdown a[data-internal="true"]::before {
+.markdown a[data-internal='true']::before {
   content: '';
   width: 0.6em;
   height: 0.6em;
@@ -117,7 +111,7 @@
   transform: translateY(0.45em) rotate(45deg);
 }
 
-.markdown a[data-internal="true"]::after {
+.markdown a[data-internal='true']::after {
   content: '📄 ' attr(href) '\A View documentation section';
   margin-top: 0.6em;
   padding: var(--spacing-md);
@@ -134,20 +128,20 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .markdown a[data-internal="true"]:hover::before,
-  .markdown a[data-internal="true"]:hover::after {
+  .markdown a[data-internal='true']:hover::before,
+  .markdown a[data-internal='true']:hover::after {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.markdown a[data-internal="true"]:focus-visible::before,
-.markdown a[data-internal="true"]:focus-visible::after {
+.markdown a[data-internal='true']:focus-visible::before,
+.markdown a[data-internal='true']:focus-visible::after {
   opacity: 1;
   transform: translateY(0);
 }
 
-.markdown a[data-external="true"]::after {
+.markdown a[data-external='true']::after {
   content: '↗';
   display: inline-flex;
   align-items: center;
@@ -164,7 +158,7 @@
   transition: opacity 0.15s ease;
 }
 
-.markdown a[data-external="true"]:hover::after {
+.markdown a[data-external='true']:hover::after {
   opacity: 0.9;
 }
 
