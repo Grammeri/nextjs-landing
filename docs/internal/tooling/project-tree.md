@@ -77,6 +77,26 @@ Ignored local artifacts:
 
 These rules live in `.gitignore`.
 
+## 📂 Local File Artifacts
+
+The following files may appear in the project root during local work:
+
+- `make-tree.js`
+- `tree.git.txt`
+- `tree.pretty.txt`
+
+These files are **intentionally excluded from the repository** and are listed in `.gitignore`.
+
+They are safe to keep locally and **do not need to be deleted** after generation.
+
+If the project file structure changes and an updated snapshot is required:
+
+- delete `tree.git.txt` and `tree.pretty.txt`
+- regenerate them by following the steps described in this document
+
+The script and generated files are treated as **local tooling artifacts**
+and are never part of version control history.
+
 ---
 
 ## ✅ Best practices
