@@ -19,19 +19,27 @@ This process is **local-only** and **not product-facing**.
 
 ---
 
-## 🧠 Principles
+## 🛠 Prerequisites
 
-- the tree is generated locally
-- temporary files are ignored via `.gitignore`
-- only the final text snapshot is copied into documentation
+To generate the project file tree, you need:
+
+- **Node.js 18+**
+- **Git**
+- A local clone of the repository
+
+No global npm packages or system tools are required.
+
+The formatting script runs locally using Node.js and is not part of CI or build pipelines.
 
 ---
 
 ## ✅ Step-by-step process
 
-1. Open Git Bash or a terminal.
-2. Go to the project root (the directory with `.git`).
-3. Run:
+### Open terminal
+
+Open Git Bash or a terminal, then go to the project root (the directory containing `.git`).
+
+### Generate tracked file list
 
 ```bash
 git ls-files > tree.git.txt
@@ -39,35 +47,35 @@ git ls-files > tree.git.txt
 
 What this command does:
 
-- lists only **tracked** files
+- lists only tracked files
 - excludes ignored and untracked files
-- saves the list into `tree.git.txt` locally
+- produces a stable, git-accurate snapshot
 
----
+### Format tree snapshot
 
-## 🧩 Tree formatting
+```bash
+node make-tree.js
+```
 
-You may format `tree.git.txt` into a readable tree using a local script.
+What this command does:
 
-Important:
+- reads `tree.git.txt`
+- generates a structured, human-readable tree
+- writes the result to `tree.pretty.txt`
 
-- the formatter script is **local-only**
-- it is **not committed**
-- any team-preferred formatter is acceptable
-
-The final output is copied into documentation manually.
+Both files are local-only artifacts and are not committed.
 
 ---
 
 ## 🧾 Git policy
 
-Local-only artifacts are intentionally ignored:
+Ignored local artifacts:
 
 - `make-tree.js`
 - `tree.git.txt`
 - `tree.pretty.txt`
 
-These entries are defined in `.gitignore`.
+These rules live in `.gitignore`.
 
 ---
 
@@ -84,3 +92,6 @@ These entries are defined in `.gitignore`.
 - generate locally
 - keep artifacts uncommitted
 - document only the final tree snapshot
+
+This document is the structural reference
+for internal tooling and workflow documentation.

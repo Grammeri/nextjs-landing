@@ -7,6 +7,16 @@ Design tokens are centralized CSS variables.
 
 ---
 
+## 🎯 Goal
+
+The goal of this system is to ensure:
+- visual consistency
+- predictable UI behavior
+- scalability
+- safe changes without side effects
+
+---
+
 ## 🧠 Architecture
 
 Design tokens define:
@@ -16,55 +26,43 @@ Design tokens define:
 - motion and hover effects
 - interaction behavior
 
-The goal of this system is to ensure:
-- visual consistency
-- predictable UI behavior
-- scalability
-- safe changes without side effects
-
 The token system is divided into logical layers.
 
-### 1. Primitive tokens
+1. **Primitive tokens**  
+   Base atomic values.  
+   Never used directly in components.
 
-Base atomic values.
-Never used directly in components.
+   Examples:
+   ```css
+   --color-red-500
+   --opacity-90
+   --scale-sm
+   ```
 
-Examples:
-```css
---color-red-500
---opacity-90
---scale-sm
-```
+2. **Semantic tokens**  
+   Semantic tokens describe intent,
+   not physical values.  
+   Used directly in components.
 
-### 2. Semantic tokens
+   Examples:
+   - `--color-primary`
+   - `--surface-card`
+   - `--text-secondary`
 
-Semantic tokens describe intent,
-not physical values.
+3. **Interaction tokens**  
+   Tokens describing interactive behavior.  
+   Used for hover, focus, active, motion.
 
-Used directly in components.
+   Examples:
+   - `--interaction-hover-opacity`
+   - `--interaction-hover-scale`
+   - `--interaction-hover-translate-y`
 
-Examples:
-- `--color-primary`
-- `--surface-card`
-- `--text-secondary`
-
-### 3. Interaction tokens
-
-Tokens describing interactive behavior.
-Used for hover, focus, active, motion.
-
-Examples:
-- `--interaction-hover-opacity`
-- `--interaction-hover-scale`
-- `--interaction-hover-translate-y`
-
-### 4. Alias tokens
-
-Alias tokens map semantic and interaction tokens
-to primitive values.
-
-They allow system-wide changes
-without touching components.
+4. **Alias tokens**  
+   Alias tokens map semantic and interaction tokens
+   to primitive values.  
+   They allow system-wide changes
+   without touching components.
 
 ---
 
@@ -92,7 +90,7 @@ instead of raw values.
 
 ## 🧠 Edge cases
 
-### Interaction / Hover tokens
+Interaction / Hover tokens:
 
 Interaction tokens exist to eliminate
 magic numbers from hover styles.
@@ -125,7 +123,7 @@ Benefits:
 
 ---
 
-## 📌 Rules and constraints
+## ❌ Rules and constraints
 
 ❌ Forbidden:
 - raw values in UI components
