@@ -1,14 +1,15 @@
+import { use } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
 
 type DocsIndexPageProps = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
 export default function DocsIndexPage({ params }: DocsIndexPageProps) {
-  const { locale } = params;
+  const { locale } = use(params);
 
   return (
     <main className={styles.page}>

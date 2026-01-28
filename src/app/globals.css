@@ -51,6 +51,7 @@
   --font-size-code: 0.9em;
   --color-code-bg: var(--color-surface-muted);
   --color-code-text: var(--color-secondary);
+  --icon-stroke-width: 1.5;
 
   /* Typography — final marketing scale */
   --font-base:

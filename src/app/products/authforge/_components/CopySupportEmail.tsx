@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { CopyIcon } from '@/shared/ui/icons';
 import styles from '../page.module.css';
 
 const SUPPORT_EMAIL = 'support@authforge.dev';
@@ -55,15 +56,7 @@ export default function CopySupportEmail() {
         onClick={handleCopy}
         aria-label="Copy support email"
       >
-        <svg
-          className={styles.supportCopyIcon}
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <rect x="9" y="9" width="11" height="11" rx="2" />
-          <path d="M5 15V5a2 2 0 0 1 2-2h10" />
-        </svg>
+        <CopyIcon className={styles.supportCopyIcon} />
       </button>
       {copied ? (
         <span className={styles.supportCopied} aria-live="polite">

@@ -1,4 +1,5 @@
 import { Button } from '@/shared/ui/button';
+import { CheckIcon, CloseIcon } from '@/shared/ui/icons';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 import styles from './PricingCard.module.css';
 
@@ -39,7 +40,11 @@ export function PricingCard({
                 className={`${styles.icon} ${!feature.included ? styles.iconExcluded : ''}`}
                 aria-hidden="true"
               >
-                {feature.included ? '✔' : '✖'}
+                {feature.included ? (
+                  <CheckIcon className={styles.iconSvg} />
+                ) : (
+                  <CloseIcon className={styles.iconSvg} />
+                )}
               </span>
               <span>{feature.text}</span>
             </li>

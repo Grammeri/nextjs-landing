@@ -1,6 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
+import {
+  copyIconDefinition,
+  createIconElement,
+  externalLinkIconDefinition,
+} from '@/shared/ui/icons';
 
 const getCssPx = (varName: string, fallback: number) => {
   const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -32,28 +37,6 @@ export default function DocsAnchorScroll() {
       document.body.removeChild(textarea);
     };
 
-    const createCopyIcon = () => {
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('class', 'docs-copy-icon');
-      svg.setAttribute('viewBox', '0 0 24 24');
-      svg.setAttribute('aria-hidden', 'true');
-      svg.setAttribute('focusable', 'false');
-
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', '9');
-      rect.setAttribute('y', '9');
-      rect.setAttribute('width', '11');
-      rect.setAttribute('height', '11');
-      rect.setAttribute('rx', '2');
-
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', 'M5 15V5a2 2 0 0 1 2-2h10');
-
-      svg.appendChild(rect);
-      svg.appendChild(path);
-      return svg;
-    };
-
     const createCopyButton = (value: string, label: string, isInline = false) => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -62,8 +45,24 @@ export default function DocsAnchorScroll() {
         : 'docs-copy-button';
       button.setAttribute('aria-label', label);
       button.setAttribute('data-docs-copy', value);
-      button.appendChild(createCopyIcon());
+      button.appendChild(createIconElement(copyIconDefinition, 'docs-copy-icon'));
       return button;
+    };
+
+    const enhanceExternalLinks = () => {
+      const links = Array.from(scopeEl.querySelectorAll('a[data-external="true"]'));
+      links.forEach((link) => {
+        const existing = link.querySelector<HTMLSpanElement>('.docs-external-icon');
+        const iconWrapper = existing ?? document.createElement('span');
+        iconWrapper.className = 'docs-external-icon';
+        iconWrapper.textContent = '';
+        iconWrapper.appendChild(
+          createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'),
+        );
+        if (!existing) {
+          link.appendChild(iconWrapper);
+        }
+      });
     };
 
     const enhanceQuickStartCopy = () => {
@@ -210,6 +209,7 @@ export default function DocsAnchorScroll() {
     };
 
     enhanceQuickStartCopy();
+    enhanceExternalLinks();
     document.addEventListener('click', onClick);
     document.addEventListener('click', onCopyClick);
 
