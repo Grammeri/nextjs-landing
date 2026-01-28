@@ -15,7 +15,8 @@ const getCssPx = (varName: string, fallback: number) => {
 
 export default function DocsAnchorScroll() {
   useEffect(() => {
-    const scopeEl = document.querySelector('[data-docs-scope="authforge"]');
+    const scopeEl =
+      document.querySelector('[data-docs-scope="authforge"]') ?? document.querySelector('main');
     if (!(scopeEl instanceof HTMLElement)) {
       return;
     }
@@ -51,6 +52,9 @@ export default function DocsAnchorScroll() {
 
     const enhanceExternalLinks = () => {
       const links = Array.from(scopeEl.querySelectorAll('a[data-external="true"]'));
+      if (process.env.NODE_ENV !== 'production') {
+        console.debug('[docs] external links found', links.length);
+      }
       links.forEach((link) => {
         const existing = link.querySelector<HTMLSpanElement>('.docs-external-icon');
         const iconWrapper = existing ?? document.createElement('span');
@@ -61,6 +65,12 @@ export default function DocsAnchorScroll() {
         );
         if (!existing) {
           link.appendChild(iconWrapper);
+        }
+        if (process.env.NODE_ENV !== 'production') {
+          console.debug('[docs] external icon applied', {
+            href: link.getAttribute('href'),
+            hadIcon: Boolean(existing),
+          });
         }
       });
     };
