@@ -87,11 +87,14 @@ export default function DocsAnchorScroll() {
           return;
         }
         const code = pre.querySelector('code');
+        if (!(code instanceof HTMLElement)) {
+          return;
+        }
         const codeClass = code?.className ?? '';
         if (!/(?:language|lang)-(bash|sh|shell)/i.test(codeClass)) {
           return;
         }
-        if (pre.parentElement?.classList.contains('docs-copy-host')) {
+        if (code.parentElement?.classList.contains('docs-copy-inline')) {
           return;
         }
         const rawText = code?.textContent ?? '';
@@ -99,12 +102,13 @@ export default function DocsAnchorScroll() {
         if (!text) {
           return;
         }
-        const host = document.createElement('div');
-        host.className = 'docs-copy-host';
-        pre.parentNode?.insertBefore(host, pre);
-        host.appendChild(pre);
-        const button = createCopyButton(text, 'Copy command');
-        host.appendChild(button);
+        const wrapper = document.createElement('span');
+        wrapper.className = 'docs-copy-inline';
+        wrapper.setAttribute('data-docs-copy-inline', 'true');
+        wrapper.appendChild(code);
+        const button = createCopyButton(text, 'Copy command', true);
+        wrapper.appendChild(button);
+        pre.appendChild(wrapper);
       });
 
       const email = 'support@authforge.dev';
