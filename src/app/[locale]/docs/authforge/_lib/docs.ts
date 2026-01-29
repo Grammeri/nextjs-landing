@@ -167,7 +167,7 @@ export const renderMarkdown = async (
     const id = slugifyHeading(headingText);
     const idAttr = id ? ` id="${id}"` : '';
 
-    if ((token.depth === 2 || token.depth === 3) && headingText && id) {
+    if (token.depth === 2 && headingText && id) {
       outline.push({ id, label: headingText });
     }
 

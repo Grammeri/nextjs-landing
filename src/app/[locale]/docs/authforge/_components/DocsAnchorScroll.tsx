@@ -239,16 +239,16 @@ export default function DocsAnchorScroll() {
       return true;
     };
 
-    if (tryInject()) {
-      return;
-    }
-
     const observer = new MutationObserver(() => {
       if (tryInject()) {
         observer.disconnect();
       }
     });
     observer.observe(scopeEl, { childList: true, subtree: true });
+    if (tryInject()) {
+      observer.disconnect();
+      return;
+    }
     document.addEventListener('click', onClick);
     document.addEventListener('click', onCopyClick);
 
