@@ -298,7 +298,7 @@
   position: relative;
   width: var(--spacing-2xl);
   height: var(--spacing-2xl);
-  margin-left: 0;
+  margin-left: var(--spacing-xs);
   opacity: 1;
 }
 
