@@ -16,6 +16,7 @@ const getCssPx = (varName: string, fallback: number) => {
 
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
+  const COPY_ENABLED_DOCS = ['quick-start', 'getting-started', 'development-setup'];
 
   useEffect(() => {
     const scopeEl =
@@ -110,86 +111,93 @@ export default function DocsAnchorScroll() {
     };
 
     const enhanceQuickStartCopy = () => {
-      const article = scopeEl.querySelector('article[data-docs-slug="quick-start"]');
-      if (!(article instanceof HTMLElement)) {
-        return;
-      }
-
-      const codeBlocks = article.querySelectorAll('pre');
-      codeBlocks.forEach((pre) => {
-        if (!(pre instanceof HTMLElement)) {
+      COPY_ENABLED_DOCS.forEach((slug) => {
+        const article = scopeEl.querySelector(`article[data-docs-slug="${slug}"]`);
+        if (!(article instanceof HTMLElement)) {
           return;
         }
-        const code = pre.querySelector('code');
-        if (!(code instanceof HTMLElement)) {
+
+        const codeBlocks = article.querySelectorAll('pre');
+        codeBlocks.forEach((pre) => {
+          if (!(pre instanceof HTMLElement)) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!(code instanceof HTMLElement)) {
+            return;
+          }
+          const codeClass = code?.className ?? '';
+          // Docs like Architecture and Demo Mode intentionally render no copy icons unless a shell/batch block exists.
+          if (!/(?:language|lang)-(bash|sh|shell)/i.test(codeClass)) {
+            return;
+          }
+          if (code.parentElement?.classList.contains('docs-copy-inline')) {
+            return;
+          }
+          const rawText = code?.textContent ?? '';
+          const text = rawText.trim();
+          if (!text) {
+            return;
+          }
+          const wrapper = document.createElement('span');
+          wrapper.className = 'docs-copy-inline';
+          wrapper.setAttribute('data-docs-copy-inline', 'true');
+          wrapper.appendChild(code);
+          const button = createCopyButton(text, 'Copy command', true);
+          wrapper.appendChild(button);
+          pre.appendChild(wrapper);
+        });
+
+        if (slug !== 'quick-start') {
           return;
         }
-        const codeClass = code?.className ?? '';
-        if (!/(?:language|lang)-(bash|sh|shell)/i.test(codeClass)) {
-          return;
-        }
-        if (code.parentElement?.classList.contains('docs-copy-inline')) {
-          return;
-        }
-        const rawText = code?.textContent ?? '';
-        const text = rawText.trim();
-        if (!text) {
-          return;
-        }
-        const wrapper = document.createElement('span');
-        wrapper.className = 'docs-copy-inline';
-        wrapper.setAttribute('data-docs-copy-inline', 'true');
-        wrapper.appendChild(code);
-        const button = createCopyButton(text, 'Copy command', true);
-        wrapper.appendChild(button);
-        pre.appendChild(wrapper);
-      });
 
-      const email = 'support@authforge.dev';
-      const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
-      const emailNodes: Text[] = [];
+        const email = 'support@authforge.dev';
+        const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
+        const emailNodes: Text[] = [];
 
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        if (node instanceof Text && node.nodeValue?.includes(email)) {
-          emailNodes.push(node);
-        }
-      }
-
-      emailNodes.forEach((node) => {
-        const text = node.nodeValue ?? '';
-        const index = text.indexOf(email);
-        if (index === -1) {
-          return;
-        }
-        const parent = node.parentNode;
-        if (!parent) {
-          return;
-        }
-        const wrapper = document.createElement('span');
-        wrapper.className = 'docs-copy-inline';
-        wrapper.setAttribute('data-docs-copy-inline', 'true');
-
-        const before = text.slice(0, index);
-        const after = text.slice(index + email.length);
-
-        const emailText = document.createElement('span');
-        emailText.textContent = email;
-        wrapper.appendChild(emailText);
-
-        const button = createCopyButton(email, 'Copy email to clipboard', true);
-        wrapper.appendChild(button);
-
-        const fragment = document.createDocumentFragment();
-        if (before) {
-          fragment.appendChild(document.createTextNode(before));
-        }
-        fragment.appendChild(wrapper);
-        if (after) {
-          fragment.appendChild(document.createTextNode(after));
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          if (node instanceof Text && node.nodeValue?.includes(email)) {
+            emailNodes.push(node);
+          }
         }
 
-        parent.replaceChild(fragment, node);
+        emailNodes.forEach((node) => {
+          const text = node.nodeValue ?? '';
+          const index = text.indexOf(email);
+          if (index === -1) {
+            return;
+          }
+          const parent = node.parentNode;
+          if (!parent) {
+            return;
+          }
+          const wrapper = document.createElement('span');
+          wrapper.className = 'docs-copy-inline';
+          wrapper.setAttribute('data-docs-copy-inline', 'true');
+
+          const before = text.slice(0, index);
+          const after = text.slice(index + email.length);
+
+          const emailText = document.createElement('span');
+          emailText.textContent = email;
+          wrapper.appendChild(emailText);
+
+          const button = createCopyButton(email, 'Copy email to clipboard', true);
+          wrapper.appendChild(button);
+
+          const fragment = document.createDocumentFragment();
+          if (before) {
+            fragment.appendChild(document.createTextNode(before));
+          }
+          fragment.appendChild(wrapper);
+          if (after) {
+            fragment.appendChild(document.createTextNode(after));
+          }
+
+          parent.replaceChild(fragment, node);
+        });
       });
     };
 
