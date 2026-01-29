@@ -1,88 +1,53 @@
 # Developer Documentation Standard
 
-This document defines the gold standard for internal developer documentation
-that lives inside the repository and is read in the IDE.
+This standard applies only to system-level internal developer documentation that defines contracts, policies, architecture, and invariant workflows. These documents are read in the IDE.
 
-It is for developers and maintainers working on this codebase.
-
-It is not used for public product documentation or marketing content.
+This standard does not apply to public documentation, marketing content, or onboarding guides.
 
 ---
 
 ## Scope
 
-This standard applies only to internal developer documentation.
+This standard applies only to system-level internal developer documentation.
 
-It does not apply to public docs, landing pages, or marketing content.
+System-level documents define contracts, policies, architecture, and invariant workflows.
 
-Documentation is treated as a system interface and must remain stable.
+This standard is the base reference for all internal documentation standards.
 
-The document itself follows the rules it defines.
+Other internal document types (developer guides, workflows, how-to documents)
+may follow additional or extended standards, but must not contradict this one.
+
+This document follows its own rules.
 
 ## Heading hierarchy
 
-Requirements:
-
-- Exactly one `#` heading per file
-- Use `##` for main sections
-- Use `###` only for actionable steps
-- Do not skip heading levels
+Requirements are mandatory. Use exactly one `#` heading per file. Use `##` for main sections. Use `###` only for actionable steps. Do not skip heading levels.
 
 ## Horizontal rules
 
-Horizontal rules are allowed only as major semantic separators.
-
-Requirements:
-
-- One empty line before `---`
-- One empty line after `---`
-- Do not place `---` directly next to text or headings
-- Do not insert `---` after every section
+Horizontal rules are allowed only as major semantic separators. Use one empty line before and after `---`. Do not place `---` directly next to text or headings. Do not insert `---` after every section.
 
 ## Emoji usage
 
-Emoji are optional and allowed only in headings.
+Emoji are not allowed in system-level developer documentation.
 
-Allowed set:
+Developer guides and workflow documents may allow emoji if explicitly permitted by their own standard.
 
-- 🌳 for structure
-- 🛠 for tooling
-- 🎯 for purpose
-- ✅ for steps or process
-- 🧾 for policy
-- ⚠️ for warning
-- 🏁 for summary
-
-Restrictions:
-
-- Do not use emoji in paragraphs
-- Do not use emoji in code blocks
-- Do not use emoji in tables or API descriptions
+In case of conflict, this standard takes precedence. The absence of `###` headings in a document is valid
+if no actionable steps are defined.
 
 ## Lists
 
-Use lists only for real enumerations.
-
-Do not use lists for prose.
+Use lists only for real enumerations. Do not use lists for prose.
 
 ## Code blocks
 
-Requirements:
-
-- Always use fenced code blocks
-- Always add a language tag when applicable
-- Commands must be copy-safe
+Always use fenced code blocks. Always add a language tag when applicable. Commands must be copy-safe.
 
 ## Tone
 
-The tone must be neutral, technical, and system-oriented.
-
-Avoid marketing language and hype.
-
-Do not use emoji in body text.
+The tone must be neutral, technical, and system-oriented. Marketing language, hype, and rhetorical phrases are not allowed.
 
 ## Separation rule
 
-Sections must be visually separated with spacing and occasional horizontal rules.
-
-Dense blocks without spacing are not allowed.
+Sections must be visually separated with spacing, and dense blocks without spacing are not allowed.

@@ -1,101 +1,63 @@
-# 🔗 Design Tokens System (Internal)
+# Design Tokens System
 
-This project uses a design tokens system to control
-visual styling and interaction behavior across the UI.
+This document defines the system-level standard for design tokens and is part of internal developer documentation that specifies architectural invariants. This document is read in the IDE.
 
-Design tokens are centralized CSS variables.
-
----
-
-## 🎯 Goal
-
-The goal of this system is to ensure:
-- visual consistency
-- predictable UI behavior
-- scalability
-- safe changes without side effects
+It is not used for public documentation, marketing content, or onboarding guides.
 
 ---
 
-## 🧠 Architecture
+## Purpose
 
-Design tokens define:
-- colors
-- surfaces
-- shadows
-- motion and hover effects
-- interaction behavior
+The system ensures visual consistency, predictable UI behavior, scalability, and safe changes.
+
+## Architecture
+
+Design tokens define colors, surfaces, shadows, motion and hover effects, and interaction behavior.
 
 The token system is divided into logical layers.
 
-1. **Primitive tokens**  
-   Base atomic values.  
-   Never used directly in components.
+**Primitive tokens** are base atomic values and are never used directly in components.
 
-   Examples:
-   ```css
-   --color-red-500
-   --opacity-90
-   --scale-sm
-   ```
+Examples:
+```css
+--color-red-500
+--opacity-90
+--scale-sm
+```
 
-2. **Semantic tokens**  
-   Semantic tokens describe intent,
-   not physical values.  
-   Used directly in components.
+**Semantic tokens** describe intent, not physical values, and are used directly in components.
 
-   Examples:
-   - `--color-primary`
-   - `--surface-card`
-   - `--text-secondary`
+Examples:
+- `--color-primary`
+- `--surface-card`
+- `--text-secondary`
 
-3. **Interaction tokens**  
-   Tokens describing interactive behavior.  
-   Used for hover, focus, active, motion.
+**Interaction tokens** describe interactive behavior and are used for hover, focus, active, and motion.
 
-   Examples:
-   - `--interaction-hover-opacity`
-   - `--interaction-hover-scale`
-   - `--interaction-hover-translate-y`
+Examples:
+- `--interaction-hover-opacity`
+- `--interaction-hover-scale`
+- `--interaction-hover-translate-y`
 
-4. **Alias tokens**  
-   Alias tokens map semantic and interaction tokens
-   to primitive values.  
-   They allow system-wide changes
-   without touching components.
+**Alias tokens** map semantic and interaction tokens to primitive values and allow system-wide changes without touching components.
 
----
+## Workflow
 
-## 🔁 Workflow
+### Adding a new token
 
-How to add a new token (Checklist):
+Checklist for adding a new token:
 
-Identify the type:
-- primitive
-- semantic
-- interaction
+- Identify the token type: primitive, semantic, or interaction.
+- Validate whether a similar token already exists.
+- Confirm whether a new layer is required.
+- Add the token in `globals.css` with clear naming.
+- Use the token in components instead of raw values.
 
-Validate:
-- does a similar token exist
-- is a new layer required
+## Edge cases
 
-Add the token:
-- in `globals.css`
-- with clear naming
+Interaction tokens exist to eliminate magic numbers from hover styles.
 
-Use the token in components
-instead of raw values.
-
----
-
-## 🧠 Edge cases
-
-Interaction / Hover tokens:
-
-Interaction tokens exist to eliminate
-magic numbers from hover styles.
-
-❌ Bad example
+Bad example:
 ```css
 .button:hover {
   transform: scale(1.03);
@@ -108,7 +70,7 @@ Problems:
 - hard to change globally
 - no semantic meaning
 
-✅ Good example
+Good example:
 ```css
 .button:hover {
   transform: scale(var(--interaction-hover-scale));
@@ -121,44 +83,18 @@ Benefits:
 - centralized control
 - safe refactoring
 
----
+## Rules and constraints
 
-## ❌ Rules and constraints
+Forbidden: raw values in UI components, random hover numbers, and duplicated interaction logic.
 
-❌ Forbidden:
-- raw values in UI components
-- random hover numbers
-- duplicated interaction logic
+Allowed: semantic and interaction tokens only, extending the system properly, and behavior overrides via aliases.
 
-✅ Allowed:
-- semantic and interaction tokens only
-- extending the system properly
-- behavior overrides via aliases
-
----
-
-## 🧪 Verification
-
-CI and system integrity
+## Verification
 
 The token system is part of the project architecture.
 
-Any change must:
-- preserve existing UI
-- be reversible
-- respect system principles
+Any change must preserve existing UI, be reversible, and respect system principles.
 
----
+## Summary
 
-## 🏁 Summary
-
-Design tokens are the foundation
-of the visual architecture.
-
-They:
-- prevent UI chaos
-- speed up development
-- make changes safe
-
-If you think a token is unnecessary —
-it probably isn’t.
+Design tokens are the foundation of the visual architecture.
