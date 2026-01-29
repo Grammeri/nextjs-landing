@@ -17,13 +17,10 @@ export default function PricingPage() {
           description="Production-ready authentication system for modern SaaS products"
           price="$99 — One-time license"
           features={[
-            { text: '1 project', included: true },
-            { text: 'Lifetime access', included: true },
-            { text: 'Updates included', included: true },
-            {
-              text: 'Refunds available within 14 days if access was not used',
-              included: false,
-            },
+            { text: '1 project' },
+            { text: 'Lifetime access' },
+            { text: 'Updates included' },
+            { text: '14-day refund if access was not used' },
           ]}
           ctaLabel="Buy AuthForge"
           ctaHref="#"

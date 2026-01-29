@@ -41,6 +41,3 @@
   height: var(--spacing-lg);
 }
 
-.iconExcluded {
-  color: var(--color-error);
-}

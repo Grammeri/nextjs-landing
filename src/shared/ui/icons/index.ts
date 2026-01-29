@@ -3,7 +3,6 @@ import { LUCIDE_STROKE } from './lucide';
 
 export { ExternalLinkIcon, externalLinkIconDefinition } from './external-link';
 export { CheckIcon, checkIconDefinition } from './check';
-export { CloseIcon, closeIconDefinition } from './close';
 export type { IconDefinition, IconNode, IconProps } from './types';
 
 export const copyIconDefinition: IconDefinition = {

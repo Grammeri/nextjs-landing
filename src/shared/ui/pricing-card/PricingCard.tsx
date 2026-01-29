@@ -1,11 +1,10 @@
 import { Button } from '@/shared/ui/button';
-import { CheckIcon, CloseIcon } from '@/shared/ui/icons';
+import { CheckIcon } from '@/shared/ui/icons';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 import styles from './PricingCard.module.css';
 
 export type PricingFeature = {
   text: string;
-  included: boolean;
 };
 
 export type PricingCardProps = {
@@ -36,15 +35,8 @@ export function PricingCard({
         <ul className={styles.features}>
           {features.map((feature) => (
             <li key={feature.text} className={styles.feature}>
-              <span
-                className={`${styles.icon} ${!feature.included ? styles.iconExcluded : ''}`}
-                aria-hidden="true"
-              >
-                {feature.included ? (
-                  <CheckIcon className={styles.iconSvg} />
-                ) : (
-                  <CloseIcon className={styles.iconSvg} />
-                )}
+              <span className={styles.icon} aria-hidden="true">
+                <CheckIcon className={styles.iconSvg} />
               </span>
               <span>{feature.text}</span>
             </li>
