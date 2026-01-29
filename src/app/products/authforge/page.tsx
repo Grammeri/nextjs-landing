@@ -13,7 +13,10 @@ export default function AuthForgeProductPage() {
           title="AuthForge"
           subtitle="Production-ready authentication system for modern SaaS products."
           trustTitle="Built for real production use"
-          trustDescription="AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products."
+          trustDescription={
+            'AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products.\n\n' +
+            'AuthForge is database-agnostic by design. PostgreSQL is used as a production-ready reference setup via Prisma, not as a hard dependency. You can adapt AuthForge to other databases without changing core authentication logic.'
+          }
           primaryAction={
             <Button as="a" href="/demo" variant="primary">
               View Demo
@@ -65,9 +68,9 @@ export default function AuthForgeProductPage() {
             <div className={styles.featureCard}>
               <h3 className={styles.featureTitle}>Architecture</h3>
               <ul className={styles.featureList}>
-                <li>Clean and scalable structure</li>
-                <li>Prisma + PostgreSQL</li>
-                <li>Production-ready setup</li>
+                <li>Database-agnostic authentication architecture</li>
+                <li>Prisma-based reference implementation (PostgreSQL)</li>
+                <li>Easily adaptable to other databases</li>
               </ul>
             </div>
           </div>

@@ -30,6 +30,14 @@
   line-height: var(--line-height-base);
 }
 
+.redirectNote {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  color: var(--color-product-text-muted);
+}
+
 .subtitle {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);

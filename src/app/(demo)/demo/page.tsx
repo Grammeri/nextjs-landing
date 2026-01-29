@@ -12,9 +12,13 @@ export default function AuthForgeDemoPage() {
       <p className={styles.bodyText}>
         This demo runs a real instance of AuthForge in a separate environment.
       </p>
+      <p className={styles.demoNote}>
+        This demo uses PostgreSQL as a reference database, but AuthForge is designed to be
+        database-agnostic in real projects.
+      </p>
 
       <div className={styles.grid}>
-        <p className={styles.bodyText}>You will be redirected to the live application.</p>
+        <p className={styles.redirectNote}>You will be redirected to the live application.</p>
       </div>
 
       <div className={styles.actions}>
