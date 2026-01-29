@@ -229,12 +229,31 @@ export default function DocsAnchorScroll() {
       }
     };
 
-    enhanceQuickStartCopy();
-    enhanceExternalLinks();
+    const tryInject = () => {
+      const blocks = scopeEl.querySelectorAll('pre > code');
+      if (blocks.length === 0) {
+        return false;
+      }
+      enhanceQuickStartCopy();
+      enhanceExternalLinks();
+      return true;
+    };
+
+    if (tryInject()) {
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      if (tryInject()) {
+        observer.disconnect();
+      }
+    });
+    observer.observe(scopeEl, { childList: true, subtree: true });
     document.addEventListener('click', onClick);
     document.addEventListener('click', onCopyClick);
 
     return () => {
+      observer.disconnect();
       document.removeEventListener('click', onClick);
       document.removeEventListener('click', onCopyClick);
     };
