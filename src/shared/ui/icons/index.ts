@@ -1,11 +1,18 @@
 import type { IconDefinition, IconNode } from './types';
 import { LUCIDE_STROKE } from './lucide';
 
-export { CopyIcon, copyIconDefinition } from './copy';
 export { ExternalLinkIcon, externalLinkIconDefinition } from './external-link';
 export { CheckIcon, checkIconDefinition } from './check';
 export { CloseIcon, closeIconDefinition } from './close';
 export type { IconDefinition, IconNode, IconProps } from './types';
+
+export const copyIconDefinition: IconDefinition = {
+  viewBox: '0 0 24 24',
+  nodes: [
+    { tag: 'rect', attrs: { x: '9', y: '9', width: '11', height: '11', rx: '2' } },
+    { tag: 'path', attrs: { d: 'M5 15V5a2 2 0 0 1 2-2h10' } },
+  ],
+};
 
 const appendIconNodes = (svg: SVGSVGElement, nodes: IconNode[]) => {
   for (const node of nodes) {

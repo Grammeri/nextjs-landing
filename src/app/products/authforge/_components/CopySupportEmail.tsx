@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { CopyIcon } from '@/shared/ui/icons';
-import styles from '../page.module.css';
+import { useEffect, useRef } from 'react';
+import { copyIconDefinition, createIconElement } from '@/shared/ui/icons';
+import '@/app/[locale]/docs/authforge/_components/DocContent.module.css';
 
 const SUPPORT_EMAIL = 'support@authforge.dev';
 
@@ -24,10 +24,14 @@ async function copyToClipboard(value: string) {
 }
 
 export default function CopySupportEmail() {
-  const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
+    const button = buttonRef.current;
+    if (button && !button.querySelector('.docs-copy-icon')) {
+      button.appendChild(createIconElement(copyIconDefinition, 'docs-copy-icon'));
+    }
     return () => {
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
@@ -38,13 +42,17 @@ export default function CopySupportEmail() {
   const handleCopy = async () => {
     try {
       await copyToClipboard(SUPPORT_EMAIL);
-      setCopied(true);
+      if (buttonRef.current) {
+        buttonRef.current.setAttribute('data-copied', 'true');
+      }
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = window.setTimeout(() => setCopied(false), 1500);
+      timeoutRef.current = window.setTimeout(() => {
+        buttonRef.current?.removeAttribute('data-copied');
+      }, 1500);
     } catch {
-      setCopied(false);
+      buttonRef.current?.removeAttribute('data-copied');
     }
   };
 
@@ -52,17 +60,11 @@ export default function CopySupportEmail() {
     <>
       <button
         type="button"
-        className={styles.supportCopyButton}
+        className="docs-copy-button docs-copy-button--inline"
         onClick={handleCopy}
         aria-label="Copy support email"
-      >
-        <CopyIcon className={styles.supportCopyIcon} />
-      </button>
-      {copied ? (
-        <span className={styles.supportCopied} aria-live="polite">
-          Copied
-        </span>
-      ) : null}
+        ref={buttonRef}
+      ></button>
     </>
   );
 }

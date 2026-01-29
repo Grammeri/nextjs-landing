@@ -135,51 +135,6 @@
   color: inherit;
 }
 
-.supportCopyButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing-lg);
-  height: var(--spacing-lg);
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: var(--color-product-text);
-  cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.supportCopyButton:hover {
-  color: var(--color-accent);
-  background-color: var(--color-surface-muted);
-  border-color: var(--color-border);
-}
-
-.supportCopyButton:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-
-.supportCopyIcon {
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.supportCopied {
-  color: var(--color-product-text-muted);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-base);
-  opacity: 1;
-}
 
 .trustBlock li::before {
   color: var(--color-texas-red-soft);
