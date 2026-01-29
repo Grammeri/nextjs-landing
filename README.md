@@ -1,12 +1,9 @@
 # Next.js Landing
 
-Public marketing landing page for multiple products and services.
+Public-facing landing application for multiple products and services.
 
-This repository contains a shared landing used to present and promote
-different projects, SaaS platforms, and technical solutions.
-
-The landing is fully public and focused on marketing, product overview,
-and high-level communication.
+This repository contains only frontend marketing code for the landing.
+It does not include application logic, authentication, or backend systems.
 
 ## Tech Stack
 
@@ -43,16 +40,16 @@ pnpm build
 
 ## Notes
 
-This repository contains only the public-facing landing.
-Authentication, private dashboards, and backend logic are not included here.
+This repository contains only the public-facing landing. Authentication, private dashboards, and backend logic are not included here.
 
 ## Internal Documentation
 
-This repository uses internal Git submodules for shared product code.
+docs/internal/ contains system-level developer documentation for contributors. It is not part of the public website.
 
-Developer-oriented documentation about submodule workflows
-(commit flow, updates, synchronization) is located in:
+## Product model
 
-docs/internal/
+Each product published on this landing is sold as a one-time purchase
+with a single price per product.
 
-This documentation is intended for contributors and is not part of the public website.
+Different products may have different prices.
+Subscription plans and multi-tier pricing are not used.
