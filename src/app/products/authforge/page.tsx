@@ -106,7 +106,9 @@ export default function AuthForgeProductPage() {
                 <Link href="/docs/authforge/quick-start">Full documentation</Link>
               </li>
               <li>
-                <Link href="/docs/authforge/architecture">Architecture overview</Link>
+                <Link href="/docs/authforge/architecture">
+                  Architecture overview (including token-driven UI design system)
+                </Link>
               </li>
               <li>
                 Questions before or after purchase? Contact us at{' '}
