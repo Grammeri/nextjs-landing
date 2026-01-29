@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import {
   copyIconDefinition,
   createIconElement,
@@ -14,6 +15,8 @@ const getCssPx = (varName: string, fallback: number) => {
 };
 
 export default function DocsAnchorScroll() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const scopeEl =
       document.querySelector('[data-docs-scope="authforge"]') ?? document.querySelector('main');
@@ -257,7 +260,7 @@ export default function DocsAnchorScroll() {
       document.removeEventListener('click', onClick);
       document.removeEventListener('click', onCopyClick);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
