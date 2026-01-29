@@ -54,11 +54,42 @@ export default function DocsAnchorScroll() {
     };
 
     const enhanceExternalLinks = () => {
-      const links = Array.from(scopeEl.querySelectorAll('a[data-external="true"]'));
+      const links = Array.from(scopeEl.querySelectorAll('a'));
       if (process.env.NODE_ENV !== 'production') {
         console.debug('[docs] external links found', links.length);
       }
       links.forEach((link) => {
+        const href = link.getAttribute('href') ?? '';
+        const isLocalhost = href.startsWith('http://localhost');
+        const isExternal = link.dataset.external === 'true' || isLocalhost;
+        if (!isExternal) {
+          return;
+        }
+        if (isLocalhost) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noreferrer noopener');
+          const parent = link.parentElement;
+          const wrapper =
+            parent && parent.classList.contains('docs-external-inline')
+              ? parent
+              : document.createElement('span');
+          if (wrapper !== parent) {
+            wrapper.className = 'docs-external-inline';
+            link.parentNode?.insertBefore(wrapper, link);
+            wrapper.appendChild(link);
+          }
+          const existingHint = wrapper.querySelector<HTMLSpanElement>('.docs-external-icon--hint');
+          if (!existingHint) {
+            const hintIcon = document.createElement('span');
+            hintIcon.className = 'docs-external-icon docs-external-icon--hint';
+            hintIcon.setAttribute('aria-hidden', 'true');
+            hintIcon.appendChild(
+              createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'),
+            );
+            wrapper.appendChild(hintIcon);
+          }
+          return;
+        }
         const existing = link.querySelector<HTMLSpanElement>('.docs-external-icon');
         const iconWrapper = existing ?? document.createElement('span');
         iconWrapper.className = 'docs-external-icon';
