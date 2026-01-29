@@ -70,7 +70,7 @@ export default function AuthForgeProductPage() {
               <ul className={styles.featureList}>
                 <li>Database-agnostic authentication architecture</li>
                 <li>Prisma-based reference implementation (PostgreSQL)</li>
-                <li>Easily adaptable to other databases</li>
+                <li>Token-driven UI (use our tokens or plug in your own styling system)</li>
               </ul>
             </div>
           </div>
