@@ -55,58 +55,72 @@ export default function DocsAnchorScroll() {
     };
 
     const enhanceExternalLinks = () => {
+      const isUrlLike = (value: string) => /^https?:\/\//i.test(value);
+      const isPathLike = (value: string) => value.includes('/') && !/\s/.test(value);
+      const ensureHintIcon = (element: HTMLElement) => {
+        const parent = element.parentElement;
+        const wrapper =
+          parent && parent.classList.contains('docs-external-inline')
+            ? parent
+            : document.createElement('span');
+        if (wrapper !== parent) {
+          wrapper.className = 'docs-external-inline';
+          element.parentNode?.insertBefore(wrapper, element);
+          wrapper.appendChild(element);
+        }
+        if (wrapper.querySelector('.docs-external-icon--hint')) {
+          return;
+        }
+        const hintIcon = document.createElement('span');
+        hintIcon.className = 'docs-external-icon docs-external-icon--hint';
+        hintIcon.setAttribute('aria-hidden', 'true');
+        hintIcon.appendChild(
+          createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'),
+        );
+        wrapper.appendChild(hintIcon);
+      };
+
       const links = Array.from(scopeEl.querySelectorAll('a'));
       if (process.env.NODE_ENV !== 'production') {
         console.debug('[docs] external links found', links.length);
       }
       links.forEach((link) => {
         const href = link.getAttribute('href') ?? '';
-        const isLocalhost = href.startsWith('http://localhost');
-        const isExternal = link.dataset.external === 'true' || isLocalhost;
-        if (!isExternal) {
+        const text = link.textContent?.trim() ?? '';
+        const isExternal = link.dataset.external === 'true' || isUrlLike(href);
+        const isPath = isPathLike(text);
+        if (!isExternal && !isPath) {
           return;
         }
-        if (isLocalhost) {
-          link.setAttribute('target', '_blank');
-          link.setAttribute('rel', 'noreferrer noopener');
-          const parent = link.parentElement;
-          const wrapper =
-            parent && parent.classList.contains('docs-external-inline')
-              ? parent
-              : document.createElement('span');
-          if (wrapper !== parent) {
-            wrapper.className = 'docs-external-inline';
-            link.parentNode?.insertBefore(wrapper, link);
-            wrapper.appendChild(link);
-          }
-          const existingHint = wrapper.querySelector<HTMLSpanElement>('.docs-external-icon--hint');
-          if (!existingHint) {
-            const hintIcon = document.createElement('span');
-            hintIcon.className = 'docs-external-icon docs-external-icon--hint';
-            hintIcon.setAttribute('aria-hidden', 'true');
-            hintIcon.appendChild(
-              createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'),
-            );
-            wrapper.appendChild(hintIcon);
-          }
-          return;
+        const embeddedIcon = link.querySelector<HTMLSpanElement>('.docs-external-icon');
+        if (embeddedIcon) {
+          embeddedIcon.remove();
         }
-        const existing = link.querySelector<HTMLSpanElement>('.docs-external-icon');
-        const iconWrapper = existing ?? document.createElement('span');
-        iconWrapper.className = 'docs-external-icon';
-        iconWrapper.textContent = '';
-        iconWrapper.appendChild(
-          createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'),
-        );
-        if (!existing) {
-          link.appendChild(iconWrapper);
-        }
+        ensureHintIcon(link);
         if (process.env.NODE_ENV !== 'production') {
           console.debug('[docs] external icon applied', {
             href: link.getAttribute('href'),
-            hadIcon: Boolean(existing),
+            hadIcon: Boolean(embeddedIcon),
           });
         }
+      });
+
+      const inlineCodes = Array.from(scopeEl.querySelectorAll('code'));
+      inlineCodes.forEach((code) => {
+        if (!(code instanceof HTMLElement)) {
+          return;
+        }
+        if (code.closest('pre') || code.closest('a')) {
+          return;
+        }
+        const text = code.textContent?.trim() ?? '';
+        if (!text) {
+          return;
+        }
+        if (!isUrlLike(text) && !isPathLike(text)) {
+          return;
+        }
+        ensureHintIcon(code);
       });
     };
 
