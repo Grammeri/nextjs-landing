@@ -16,7 +16,7 @@ const getCssPx = (varName: string, fallback: number) => {
 
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
-  const COPY_ENABLED_DOCS = ['quick-start', 'getting-started', 'development-setup'];
+  const COPY_ENABLED_DOCS = ['quick-start', 'getting-started', 'development-setup', 'environment'];
 
   useEffect(() => {
     const scopeEl =
@@ -127,8 +127,12 @@ export default function DocsAnchorScroll() {
             return;
           }
           const codeClass = code?.className ?? '';
+          const isShellBlock = /(?:language|lang)-(bash|sh|shell)/i.test(codeClass);
+          const isEnvBlock =
+            slug === 'environment' &&
+            (!codeClass || /(?:language|lang)-(env|bash|sh|shell)/i.test(codeClass));
           // Docs like Architecture and Demo Mode intentionally render no copy icons unless a shell/batch block exists.
-          if (!/(?:language|lang)-(bash|sh|shell)/i.test(codeClass)) {
+          if (!isShellBlock && !isEnvBlock) {
             return;
           }
           if (code.parentElement?.classList.contains('docs-copy-inline')) {
