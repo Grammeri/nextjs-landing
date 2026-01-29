@@ -242,6 +242,8 @@ export default function DocsAnchorScroll() {
       return true;
     };
 
+    document.addEventListener('click', onClick);
+    document.addEventListener('click', onCopyClick);
     const observer = new MutationObserver(() => {
       if (tryInject()) {
         observer.disconnect();
@@ -250,10 +252,7 @@ export default function DocsAnchorScroll() {
     observer.observe(scopeEl, { childList: true, subtree: true });
     if (tryInject()) {
       observer.disconnect();
-      return;
     }
-    document.addEventListener('click', onClick);
-    document.addEventListener('click', onCopyClick);
 
     return () => {
       observer.disconnect();
