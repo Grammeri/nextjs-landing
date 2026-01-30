@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
 import {
   appendCopyIcon,
   copyIconDefinition,
@@ -172,23 +171,25 @@ export default function DocsAnchorScroll() {
           return;
         }
 
-        const email = AUTHFORGE_SUPPORT_EMAIL;
+        const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
         const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
         const emailNodes: Text[] = [];
 
         while (walker.nextNode()) {
           const node = walker.currentNode;
-          if (node instanceof Text && node.nodeValue?.includes(email)) {
+          if (node instanceof Text && emailPattern.test(node.nodeValue ?? '')) {
             emailNodes.push(node);
           }
         }
 
         emailNodes.forEach((node) => {
           const text = node.nodeValue ?? '';
-          const index = text.indexOf(email);
-          if (index === -1) {
+          const match = text.match(emailPattern);
+          if (!match || match.index === undefined) {
             return;
           }
+          const email = match[0];
+          const index = match.index;
           const parent = node.parentNode;
           if (!parent) {
             return;
