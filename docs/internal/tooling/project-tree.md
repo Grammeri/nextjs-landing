@@ -21,6 +21,8 @@ Required tools and environment:
 - Node.js 18+
 - Git
 - A local clone of the repository
+- The file `make-tree.js` must exist in the repository root.
+  It is a tracked tooling script and must not be deleted.
 
 No global npm packages or system tools are required.
 
@@ -46,6 +48,7 @@ What this command does: it lists only tracked files, excludes ignored and untrac
 node make-tree.js
 ```
 
+The script reads `tree.git.txt` and generates `tree.pretty.txt`.
 What this command does: it reads `tree.git.txt`, generates a structured, human-readable tree, and writes the result to `tree.pretty.txt`.
 
 Both files are local-only artifacts and are not committed.
@@ -64,9 +67,9 @@ These rules live in `.gitignore`.
 
 The following files may appear in the project root during local work:
 
-- `make-tree.js`
-- `tree.git.txt`
-- `tree.pretty.txt`
+- `make-tree.js` — tracked tooling file (not deleted)
+- `tree.git.txt` — local artifact
+- `tree.pretty.txt` — local artifact
 
 These files are excluded from the repository and are listed in `.gitignore`.
 
