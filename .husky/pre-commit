@@ -1,13 +1,13 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# ========================================
+# Husky pre-commit (new syntax)
+# ========================================
 
 # ----------------------------------------
-# Allow intentional config changes
+# Optional bypass for config protection
 # ----------------------------------------
-
 if [ "$ALLOW_CONFIG_CHANGES" = "true" ]; then
   echo ""
-  echo "⚠️ Config protection bypassed (ALLOW_CONFIG_CHANGES=true)"
+  echo "⚠️  Config protection bypassed via ALLOW_CONFIG_CHANGES=true"
   echo ""
   pnpm lint-staged
   exit 0
@@ -42,6 +42,7 @@ for file in $STAGED_FILES; do
         echo "Protected configuration file modified:"
         echo "  - $file"
         echo ""
+        echo "Configuration files are protected."
         echo "If this change is intentional, run:"
         echo ""
         echo "ALLOW_CONFIG_CHANGES=true git commit ..."
@@ -53,7 +54,7 @@ for file in $STAGED_FILES; do
 done
 
 # ----------------------------------------
-# Run lint-staged normally
+# Run lint-staged for normal files
 # ----------------------------------------
 
 pnpm lint-staged
