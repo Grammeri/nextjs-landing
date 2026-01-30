@@ -1,4 +1,4 @@
-import { PricingCard } from '@/shared/ui/pricing-card';
+import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 
 export default function PricingPage() {
   return (
@@ -12,20 +12,7 @@ export default function PricingPage() {
       }}
     >
       <div id="authforge" style={{ width: '100%', maxWidth: '520px' }}>
-        <PricingCard
-          title="AuthForge"
-          description="Production-ready authentication system for modern SaaS products"
-          price="$99 — One-time license"
-          features={[
-            { text: '1 project' },
-            { text: 'Lifetime access' },
-            { text: 'Updates included' },
-            { text: '14-day refund if access was not used' },
-          ]}
-          ctaLabel="Buy AuthForge"
-          ctaHref="#"
-          footerNote="Access instructions will be sent by email after purchase"
-        />
+        <AuthForgePricingCard />
       </div>
     </main>
   );

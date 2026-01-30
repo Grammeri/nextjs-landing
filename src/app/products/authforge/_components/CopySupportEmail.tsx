@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
 import { copyIconDefinition, createIconElement } from '@/shared/ui/icons';
 import '@/app/[locale]/docs/authforge/_components/DocContent.module.css';
-
-const SUPPORT_EMAIL = 'support@software-forge.dev';
 
 async function copyToClipboard(value: string) {
   if (navigator.clipboard?.writeText) {
@@ -41,7 +40,7 @@ export default function CopySupportEmail() {
 
   const handleCopy = async () => {
     try {
-      await copyToClipboard(SUPPORT_EMAIL);
+      await copyToClipboard(AUTHFORGE_SUPPORT_EMAIL);
       if (buttonRef.current) {
         buttonRef.current.setAttribute('data-copied', 'true');
       }

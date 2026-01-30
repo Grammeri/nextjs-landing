@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
+import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
+import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
-import { PricingCard } from '@/shared/ui/pricing-card';
 import CopySupportEmail from './_components/CopySupportEmail';
 import styles from './page.module.css';
 
@@ -113,7 +114,7 @@ export default function AuthForgeProductPage() {
               <li>
                 Questions before or after purchase? Contact us at{' '}
                 <span className={styles.supportInline}>
-                  <span className={styles.supportEmail}>support@software-forge.dev</span>
+                  <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
                   <CopySupportEmail />
                 </span>
               </li>
@@ -123,23 +124,7 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div className="container-wide">
-        <PricingCard
-          title="AuthForge"
-          description="Production-ready authentication system for modern SaaS products"
-          price="$99 — One-time license"
-          features={[
-            { text: '1 project' },
-            { text: 'Lifetime access' },
-            { text: 'Updates included' },
-            {
-              text: '14-day refund if access was not used',
-            },
-            { text: 'Support via email (support@software-forge.dev)' },
-          ]}
-          ctaLabel="Buy AuthForge"
-          ctaHref="/pricing#authforge"
-          footerNote="Access instructions will be sent by email after purchase"
-        />
+        <AuthForgePricingCard />
       </div>
     </main>
   );

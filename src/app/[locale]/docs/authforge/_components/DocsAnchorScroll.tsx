@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
 import {
   copyIconDefinition,
   createIconElement,
@@ -170,7 +171,7 @@ export default function DocsAnchorScroll() {
           return;
         }
 
-        const email = 'support@software-forge.dev';
+        const email = AUTHFORGE_SUPPORT_EMAIL;
         const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
         const emailNodes: Text[] = [];
 
