@@ -2,6 +2,18 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # ----------------------------------------
+# Allow intentional config changes
+# ----------------------------------------
+
+if [ "$ALLOW_CONFIG_CHANGES" = "true" ]; then
+  echo ""
+  echo "⚠️ Config protection bypassed (ALLOW_CONFIG_CHANGES=true)"
+  echo ""
+  pnpm lint-staged
+  exit 0
+fi
+
+# ----------------------------------------
 # Block commits that modify config files
 # ----------------------------------------
 
@@ -30,10 +42,9 @@ for file in $STAGED_FILES; do
         echo "Protected configuration file modified:"
         echo "  - $file"
         echo ""
-        echo "Configuration files are protected."
         echo "If this change is intentional, run:"
         echo ""
-        echo "  ALLOW_CONFIG_CHANGES=true git commit ..."
+        echo "ALLOW_CONFIG_CHANGES=true git commit ..."
         echo ""
         exit 1
         ;;
