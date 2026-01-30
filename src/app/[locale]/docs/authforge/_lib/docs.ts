@@ -28,7 +28,21 @@ const normalizeSlug = (slug: string) => {
   return trimmed;
 };
 
-const mapRouteSlugToDocSlug = (slug: string) => (slug === 'environment' ? 'env' : slug);
+const mapRouteSlugToDocSlug = (slug: string) => {
+  if (slug === 'environment') {
+    return 'env';
+  }
+
+  if (slug === 'development-setup') {
+    return 'product/development-setup';
+  }
+
+  if (slug.startsWith('adapting/')) {
+    return slug.replace(/^adapting\//, 'product/');
+  }
+
+  return slug;
+};
 
 const resolveDocPath = async (slug: string): Promise<string | null> => {
   const normalized = normalizeSlug(slug);

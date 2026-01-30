@@ -14,12 +14,29 @@ const resolveLocale = (pathname: string | null) => {
   return segments[0] ?? 'en';
 };
 
+const mapNavSlugToRouteSlug = (slug: string) => {
+  if (slug === 'product/development-setup') {
+    return 'development-setup';
+  }
+
+  if (slug === 'product/after-login') {
+    return 'adapting/after-login';
+  }
+
+  if (slug === 'product/email') {
+    return 'adapting/email';
+  }
+
+  return slug;
+};
+
 const buildHref = (locale: string, slug?: string) => {
   if (!slug) {
     return null;
   }
 
-  return `/${locale}/docs/authforge/${slug}`;
+  const routeSlug = mapNavSlugToRouteSlug(slug);
+  return `/${locale}/docs/authforge/${routeSlug}`;
 };
 
 const isActivePath = (pathname: string, href: string) =>
