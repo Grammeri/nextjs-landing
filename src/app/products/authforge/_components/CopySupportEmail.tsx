@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { copyIconDefinition, createIconElement } from '@/shared/ui/icons';
 import '@/app/[locale]/docs/authforge/_components/DocContent.module.css';
 
-const SUPPORT_EMAIL = 'support@authforge.dev';
+const SUPPORT_EMAIL = 'support@software-forge.dev';
 
 async function copyToClipboard(value: string) {
   if (navigator.clipboard?.writeText) {

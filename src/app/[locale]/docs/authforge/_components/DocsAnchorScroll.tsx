@@ -170,7 +170,7 @@ export default function DocsAnchorScroll() {
           return;
         }
 
-        const email = 'support@authforge.dev';
+        const email = 'support@software-forge.dev';
         const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
         const emailNodes: Text[] = [];
 

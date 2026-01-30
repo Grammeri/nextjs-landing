@@ -113,7 +113,7 @@ export default function AuthForgeProductPage() {
               <li>
                 Questions before or after purchase? Contact us at{' '}
                 <span className={styles.supportInline}>
-                  <span className={styles.supportEmail}>support@authforge.dev</span>
+                  <span className={styles.supportEmail}>support@software-forge.dev</span>
                   <CopySupportEmail />
                 </span>
               </li>
@@ -134,7 +134,7 @@ export default function AuthForgeProductPage() {
             {
               text: '14-day refund if access was not used',
             },
-            { text: 'Support via email (support@authforge.dev)' },
+            { text: 'Support via email (support@software-forge.dev)' },
           ]}
           ctaLabel="Buy AuthForge"
           ctaHref="/pricing#authforge"
