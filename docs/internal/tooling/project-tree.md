@@ -70,13 +70,13 @@ The following files may appear in the project root during local work:
 - `tree.git.txt` — local artifact
 - `tree.pretty.txt` — local artifact
 
-These files are excluded from the repository and are listed in `.gitignore`.
+Only snapshot files are excluded from the repository and listed in `.gitignore`.
 
 They are safe to keep locally and do not need to be deleted after generation.
 
 If the project file structure changes and an updated snapshot is required, delete `tree.git.txt` and `tree.pretty.txt`, then regenerate them by following the steps described in this document.
 
-The script and generated files are local tooling artifacts and are never part of version control history.
+The generated snapshot files are local artifacts and are never part of version control history.
 
 ## Best practices
 
