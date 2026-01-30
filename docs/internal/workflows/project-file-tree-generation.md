@@ -1,4 +1,4 @@
-# Project File Tree Generation
+# Project File Tree Generation Workflow
 
 This document defines how to generate a clean file tree for internal documentation, reviews, and discussions.
 
