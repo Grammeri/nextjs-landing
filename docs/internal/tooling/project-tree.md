@@ -57,7 +57,6 @@ Both files are local-only artifacts and are not committed.
 
 Ignored local artifacts:
 
-- `make-tree.js`
 - `tree.git.txt`
 - `tree.pretty.txt`
 
