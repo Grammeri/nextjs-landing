@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
-import { copyIconDefinition, createIconElement } from '@/shared/ui/icons';
+import { appendCopyIcon } from '@/shared/ui/icons';
 import '@/app/[locale]/docs/authforge/_components/DocContent.module.css';
 
 async function copyToClipboard(value: string) {
@@ -28,8 +28,8 @@ export default function CopySupportEmail() {
 
   useEffect(() => {
     const button = buttonRef.current;
-    if (button && !button.querySelector('.docs-copy-icon')) {
-      button.appendChild(createIconElement(copyIconDefinition, 'docs-copy-icon'));
+    if (button) {
+      appendCopyIcon(button);
     }
     return () => {
       if (timeoutRef.current) {

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
 import {
+  appendCopyIcon,
   copyIconDefinition,
   createIconElement,
   externalLinkIconDefinition,
@@ -51,7 +52,7 @@ export default function DocsAnchorScroll() {
         : 'docs-copy-button';
       button.setAttribute('aria-label', label);
       button.setAttribute('data-docs-copy', value);
-      button.appendChild(createIconElement(copyIconDefinition, 'docs-copy-icon'));
+      appendCopyIcon(button);
       return button;
     };
 

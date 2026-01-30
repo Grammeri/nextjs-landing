@@ -39,3 +39,9 @@ export const createIconElement = (definition: IconDefinition, className?: string
   appendIconNodes(svg, definition.nodes);
   return svg;
 };
+
+export const appendCopyIcon = (button: HTMLElement) => {
+  if (!button.querySelector('.docs-copy-icon')) {
+    button.appendChild(createIconElement(copyIconDefinition, 'docs-copy-icon'));
+  }
+};
