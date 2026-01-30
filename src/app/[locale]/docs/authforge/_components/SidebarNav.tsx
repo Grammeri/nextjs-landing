@@ -27,6 +27,10 @@ const mapNavSlugToRouteSlug = (slug: string) => {
     return 'adapting/email';
   }
 
+  if (slug === 'env') {
+    return 'environment';
+  }
+
   return slug;
 };
 
