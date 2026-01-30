@@ -5,7 +5,7 @@ import path from 'node:path';
 import { notFound } from 'next/navigation';
 import { marked } from 'marked';
 
-const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs');
+const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site');
 
 export type DocNavItem = {
   title: string;
@@ -30,13 +30,11 @@ const normalizeSlug = (slug: string) => {
 
 const mapRouteSlugToDocSlug = (slug: string) => (slug === 'environment' ? 'env' : slug);
 
-const DOCS_SUBDIR = 'authforge';
-
 const resolveDocPath = async (slug: string): Promise<string | null> => {
   const normalized = normalizeSlug(slug);
   const mappedSlug = mapRouteSlugToDocSlug(normalized);
   const candidates = [
-    path.join(DOCS_ROOT, DOCS_SUBDIR, `${normalized}.md`),
+    path.join(DOCS_ROOT, `${normalized}.md`),
     path.join(DOCS_ROOT, `${mappedSlug}.md`),
   ];
 
