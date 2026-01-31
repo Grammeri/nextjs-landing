@@ -31,7 +31,7 @@ const normalizeSlug = (slug: string) => {
 const resolveDocPath = async (slug: string): Promise<string | null> => {
   const normalized = normalizeSlug(slug);
 
-  const candidate = path.join(DOCS_ROOT, `${normalized}.md`);
+  const candidate = path.join(DOCS_ROOT, ...normalized.split('/')) + '.md';
 
   try {
     await fs.access(candidate);
