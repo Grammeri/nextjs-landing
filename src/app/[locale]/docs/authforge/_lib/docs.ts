@@ -28,40 +28,17 @@ const normalizeSlug = (slug: string) => {
   return trimmed;
 };
 
-const mapRouteSlugToDocSlug = (slug: string) => {
-  if (slug === 'environment') {
-    return 'env';
-  }
-
-  if (slug === 'development-setup') {
-    return 'product/development-setup';
-  }
-
-  if (slug.startsWith('adapting/')) {
-    return slug.replace(/^adapting\//, 'product/');
-  }
-
-  return slug;
-};
-
 const resolveDocPath = async (slug: string): Promise<string | null> => {
   const normalized = normalizeSlug(slug);
-  const mappedSlug = mapRouteSlugToDocSlug(normalized);
-  const candidates = [
-    path.join(DOCS_ROOT, `${normalized}.md`),
-    path.join(DOCS_ROOT, `${mappedSlug}.md`),
-  ];
 
-  for (const candidate of candidates) {
-    try {
-      await fs.access(candidate);
-      return candidate;
-    } catch {
-      continue;
-    }
+  const candidate = path.join(DOCS_ROOT, `${normalized}.md`);
+
+  try {
+    await fs.access(candidate);
+    return candidate;
+  } catch {
+    return null;
   }
-
-  return null;
 };
 
 const resolveInternalHref = (href: string, currentSlug: string): string | null => {
