@@ -15,14 +15,7 @@ const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site
  * Deterministic order for top-level documents
  * (UX policy, not content configuration)
  */
-const ROOT_ORDER = [
-  'quick-start',
-  'getting-started',
-  'development-setup',
-  'architecture',
-  'demo-mode',
-  'environment',
-];
+const ROOT_ORDER = ['quick-start', 'getting-started', 'architecture', 'demo-mode', 'environment'];
 
 /**
  * Optional friendly titles for section directories
@@ -73,7 +66,7 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
   }
 
   /**
-   * Stable ordering for top-level docs
+   * Stable ordering for top-level docs only
    */
   if (isRoot) {
     items.sort((a, b) => {
