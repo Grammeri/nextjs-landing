@@ -65,8 +65,11 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     }
   }
 
-  if (isRoot && items.every((item) => item.slug)) {
-    items.sort((a, b) => {
+  if (isRoot) {
+    const withSlug = items.filter((item) => item.slug);
+    const withoutSlug = items.filter((item) => !item.slug);
+
+    withSlug.sort((a, b) => {
       const ia = ROOT_ORDER.indexOf(a.slug!);
       const ib = ROOT_ORDER.indexOf(b.slug!);
 
@@ -79,6 +82,9 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
 
       return ia - ib;
     });
+
+    items.length = 0;
+    items.push(...withSlug, ...withoutSlug);
   }
 
   return items;
