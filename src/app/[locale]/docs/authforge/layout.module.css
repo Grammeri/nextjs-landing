@@ -62,7 +62,7 @@
 .navItem {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: 0;
 }
 
 .navGroup {

@@ -18,10 +18,17 @@ const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site
 const ROOT_ORDER = ['quick-start', 'getting-started', 'architecture', 'demo-mode', 'environment'];
 
 /**
- * Optional friendly titles for section directories
+ * Friendly titles for section directories (folders)
  */
 const SECTION_TITLES: Record<string, string> = {
   integration: 'Integration',
+};
+
+/**
+ * Friendly titles for standalone documents (.md files)
+ */
+const DOC_TITLES: Record<string, string> = {
+  'ui-principles': 'UI Principles',
 };
 
 /**
@@ -46,10 +53,17 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     const slug = entry.name.replace(/\.md$/, '');
     const fullSlug = baseSlug ? `${baseSlug}/${slug}` : slug;
 
+    // 📁 Directory = section
     if (entry.isDirectory()) {
       const children = await readDirRecursive(fullPath, fullSlug, false);
 
       if (children.length === 0) continue;
+
+      // 🔥 FLATTEN integration
+      if (entry.name === 'integration') {
+        items.push(...children);
+        continue;
+      }
 
       items.push({
         title: SECTION_TITLES[entry.name] ?? titleFromSlug(entry.name),
@@ -57,14 +71,18 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
       });
     }
 
+    // 📄 Markdown file = document
     if (entry.isFile() && isMarkdown(entry.name)) {
       items.push({
-        title: titleFromSlug(slug),
+        title: DOC_TITLES[slug] ?? titleFromSlug(slug),
         slug: fullSlug,
       });
     }
   }
 
+  /**
+   * Stable ordering for top-level documents only
+   */
   if (isRoot) {
     const withSlug = items.filter((item) => item.slug);
     const withoutSlug = items.filter((item) => !item.slug);
@@ -90,6 +108,9 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
   return items;
 }
 
+/**
+ * Public API
+ */
 export async function getNav(): Promise<DocNavItem[]> {
   return readDirRecursive(DOCS_ROOT, '', true);
 }
