@@ -10,7 +10,7 @@ type AuthForgeDocsLayoutProps = {
 };
 
 export default async function AuthForgeDocsLayout({ children }: AuthForgeDocsLayoutProps) {
-  const nav = await getNav('authforge');
+  const nav = await getNav();
 
   return (
     <section className={styles.pageShell} data-docs-scope="authforge">

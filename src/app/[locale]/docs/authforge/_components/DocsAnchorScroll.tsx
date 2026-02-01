@@ -2,12 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import {
-  appendCopyIcon,
-  copyIconDefinition,
-  createIconElement,
-  externalLinkIconDefinition,
-} from '@/shared/ui/icons';
+import { appendCopyIcon, createIconElement, externalLinkIconDefinition } from '@/shared/ui/icons';
 
 const getCssPx = (varName: string, fallback: number) => {
   const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -15,9 +10,10 @@ const getCssPx = (varName: string, fallback: number) => {
   return Number.isFinite(value) ? value : fallback;
 };
 
+const COPY_ENABLED_DOCS = ['quick-start', 'getting-started', 'development-setup', 'environment'];
+
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
-  const COPY_ENABLED_DOCS = ['quick-start', 'getting-started', 'development-setup', 'environment'];
 
   useEffect(() => {
     const scopeEl =
