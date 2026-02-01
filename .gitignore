@@ -43,6 +43,5 @@ next-env.d.ts
 # ----------------------------------------
 # Local developer utilities (file tree)
 # ----------------------------------------
-make-tree.js
 tree.git.txt
 tree.pretty.txt
