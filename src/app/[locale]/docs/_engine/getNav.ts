@@ -47,7 +47,7 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     const fullSlug = baseSlug ? `${baseSlug}/${slug}` : slug;
 
     if (entry.isDirectory()) {
-      const children = await readDirRecursive(fullPath, fullSlug);
+      const children = await readDirRecursive(fullPath, fullSlug, false);
 
       if (children.length === 0) continue;
 
@@ -65,15 +65,10 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     }
   }
 
-  /**
-   * Stable ordering for top-level docs only
-   */
-  if (isRoot) {
+  if (isRoot && items.every((item) => item.slug)) {
     items.sort((a, b) => {
-      if (!a.slug || !b.slug) return 0;
-
-      const ia = ROOT_ORDER.indexOf(a.slug);
-      const ib = ROOT_ORDER.indexOf(b.slug);
+      const ia = ROOT_ORDER.indexOf(a.slug!);
+      const ib = ROOT_ORDER.indexOf(b.slug!);
 
       if (ia === -1 && ib === -1) {
         return a.title.localeCompare(b.title);
@@ -89,9 +84,6 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
   return items;
 }
 
-/**
- * Public API
- */
 export async function getNav(): Promise<DocNavItem[]> {
   return readDirRecursive(DOCS_ROOT, '', true);
 }
