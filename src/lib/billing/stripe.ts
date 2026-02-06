@@ -24,6 +24,16 @@ export async function createStripeCheckout(
         quantity: 1,
       },
     ],
+
+    // ✅ важно: чтобы в webhook можно было связать покупку с пользователем/заказом
+    client_reference_id: params.clientReferenceId,
+
+    // ✅ Stripe сам положит email в customer_details / receipt
+    customer_email: params.customerEmail,
+
+    // ✅ metadata уйдёт в сессию и дальше можно доставать в webhook
+    metadata: params.metadata,
+
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
   });

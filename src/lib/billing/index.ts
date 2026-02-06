@@ -5,10 +5,14 @@ import { createPaypalCheckout } from './paypal';
 export async function createCheckout(params: CreateCheckoutParams): Promise<CreateCheckoutResult> {
   switch (params.provider) {
     case 'stripe':
+      // params уже включает: metadata/customerEmail/clientReferenceId (если передали)
       return createStripeCheckout(params);
+
     case 'paypal':
       return createPaypalCheckout(params);
+
     default: {
+      // ensures exhaustive switch for BillingProvider
       const _exhaustive: never = params.provider;
       return _exhaustive;
     }

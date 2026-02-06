@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { NextResponse } from 'next/server';
 import { BILLING_CATALOG } from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
@@ -5,7 +7,11 @@ import { createCheckout } from '@/lib/billing';
 type CheckoutRequestBody = {
   productId: string;
   provider: 'stripe' | 'paypal';
+  customerEmail?: string; // опционально (если уже знаешь email)
+  clientReferenceId?: string; // опционально (например userId)
 };
+
+export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {
@@ -49,11 +55,23 @@ export async function POST(request: Request) {
       product: catalogItem.product,
       successUrl,
       cancelUrl,
+
+      // ВАЖНО: это потом читаем в webhook и выдаём доступ
+      metadata: {
+        productId: body.productId,
+        provider: body.provider,
+      },
+
+      // если знаешь email заранее — Stripe сам подставит его в Checkout
+      customerEmail: body.customerEmail,
+
+      // если у тебя есть userId (или что-то стабильное) — пихай сюда
+      clientReferenceId: body.clientReferenceId,
     });
 
     return NextResponse.json({ checkoutUrl: result.checkoutUrl });
   } catch (error) {
-    console.error('Checkout error:', error);
+    console.error('[checkout] error:', error);
     return NextResponse.json({ error: 'Failed to create checkout session' }, { status: 500 });
   }
 }

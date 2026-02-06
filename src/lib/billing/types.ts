@@ -13,6 +13,10 @@ export type CreateCheckoutParams = {
   product: BillingProduct;
   successUrl: string;
   cancelUrl: string;
+
+  metadata?: Record<string, string>;
+  customerEmail?: string;
+  clientReferenceId?: string;
 };
 
 export type CreateCheckoutResult = {

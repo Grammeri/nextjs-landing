@@ -1,0 +1,102 @@
+import 'server-only';
+
+import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
+
+export const runtime = 'nodejs';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2026-01-28.clover',
+});
+
+// Обрабатываем только те события, которые реально нужны для checkout-флоу
+const HANDLED_EVENTS = new Set<string>([
+  'checkout.session.completed',
+  'checkout.session.async_payment_succeeded',
+  'checkout.session.async_payment_failed',
+]);
+
+export async function POST(request: Request) {
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!webhookSecret) {
+    return NextResponse.json({ error: 'STRIPE_WEBHOOK_SECRET is not defined' }, { status: 500 });
+  }
+
+  const signature = request.headers.get('stripe-signature');
+  if (!signature) {
+    return NextResponse.json({ error: 'Missing stripe-signature header' }, { status: 400 });
+  }
+
+  const body = await request.text();
+
+  let event: Stripe.Event;
+
+  try {
+    event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+  } catch (err) {
+    console.error('[webhook] signature verification failed:', err);
+    return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
+  }
+
+  // Если событие не из allowlist — молча подтверждаем (чтобы не засорять логи)
+  if (!HANDLED_EVENTS.has(event.type)) {
+    return NextResponse.json({ received: true });
+  }
+
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+        // TODO: тут будет выдача доступа (license/email/entitlement)
+        console.log('[webhook] checkout.session.completed', {
+          id: session.id,
+          customer_email: session.customer_details?.email ?? null,
+          payment_status: session.payment_status,
+          amount_total: session.amount_total,
+          currency: session.currency,
+        });
+
+        break;
+      }
+
+      case 'checkout.session.async_payment_succeeded': {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+        console.log('[webhook] async_payment_succeeded', {
+          id: session.id,
+          customer_email: session.customer_details?.email ?? null,
+          payment_status: session.payment_status,
+          amount_total: session.amount_total,
+          currency: session.currency,
+        });
+
+        break;
+      }
+
+      case 'checkout.session.async_payment_failed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+        console.warn('[webhook] async_payment_failed', {
+          id: session.id,
+          customer_email: session.customer_details?.email ?? null,
+          payment_status: session.payment_status,
+          amount_total: session.amount_total,
+          currency: session.currency,
+        });
+
+        break;
+      }
+
+      default:
+        // Теоретически сюда не попадём из-за allowlist, но пусть будет безопасно
+        break;
+    }
+
+    return NextResponse.json({ received: true });
+  } catch (err) {
+    console.error('[webhook] handler error:', err);
+    return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 });
+  }
+}
