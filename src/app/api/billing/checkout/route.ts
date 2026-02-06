@@ -1,7 +1,18 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY is not defined');
+}
+
+if (!siteUrl) {
+  throw new Error('NEXT_PUBLIC_SITE_URL is not defined');
+}
+
+const stripe = new Stripe(stripeSecretKey, {
   apiVersion: '2023-10-16',
 });
 
@@ -9,7 +20,6 @@ export async function POST() {
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
-      payment_method_types: ['card'],
 
       line_items: [
         {
@@ -19,14 +29,14 @@ export async function POST() {
               name: 'AuthForge',
               description: 'Production-ready authentication system for modern SaaS products',
             },
-            unit_amount: 9900, // $99.00 в центах
+            unit_amount: 9900, // $99.00
           },
           quantity: 1,
         },
       ],
 
-      success_url: 'http://localhost:3000/pricing?success=1',
-      cancel_url: 'http://localhost:3000/pricing?canceled=1',
+      success_url: `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/pricing`,
     });
 
     return NextResponse.json({ checkoutUrl: session.url });
