@@ -7,9 +7,8 @@ export default function AuthForgePricingCard() {
   const handleBuyAuthForge = async () => {
     const res = await fetch('/api/billing/checkout', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ productId: 'authforge', provider: 'stripe' }),
     });
 
     const data = await res.json();
