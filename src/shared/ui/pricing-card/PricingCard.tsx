@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { Button } from '@/shared/ui/button';
 import { CheckIcon } from '@/shared/ui/icons';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
@@ -14,6 +15,7 @@ export type PricingCardProps = {
   features: PricingFeature[];
   ctaLabel: string;
   ctaHref: string;
+  onCtaClick?: () => void | Promise<void>;
   footerNote?: string;
 };
 
@@ -24,8 +26,16 @@ export function PricingCard({
   features,
   ctaLabel,
   ctaHref,
+  onCtaClick,
   footerNote,
 }: PricingCardProps) {
+  const handleCtaClick = onCtaClick
+    ? (event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        void onCtaClick();
+      }
+    : undefined;
+
   return (
     <ProductCard interactive={false}>
       <div className={styles.card}>
@@ -42,7 +52,7 @@ export function PricingCard({
             </li>
           ))}
         </ul>
-        <Button as="a" href={ctaHref} variant="inverted">
+        <Button as="a" href={ctaHref} variant="inverted" onClick={handleCtaClick}>
           {ctaLabel}
         </Button>
         {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
