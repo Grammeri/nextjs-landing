@@ -1,19 +1,17 @@
-import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
+import { PRICING_CARDS } from '@/shared/config/products/pricing';
+import { PricingCard } from '@/shared/ui/pricing-card';
+import styles from './page.module.css';
 
 export default function PricingPage() {
   return (
-    <main
-      className="container"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        paddingTop: 'var(--section-padding-top-compact)',
-        paddingBottom: 'var(--section-padding-bottom-default)',
-      }}
-    >
-      <div id="authforge" style={{ width: '100%', maxWidth: '520px' }}>
-        <AuthForgePricingCard />
+    <section className={styles.page}>
+      <div className={styles.grid}>
+        {PRICING_CARDS.map((card) => (
+          <div key={card.title} className={styles.card}>
+            <PricingCard {...card} />
+          </div>
+        ))}
       </div>
-    </main>
+    </section>
   );
 }
