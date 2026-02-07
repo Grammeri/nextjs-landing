@@ -42,16 +42,13 @@
 }
 
 .paymentTitle {
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-image-secondary);
-  text-align: center;
-}
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 
-.paymentButtons {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+  font-size: var(--select-section-font-size);
+  font-weight: var(--select-section-font-weight);
+  letter-spacing: var(--select-section-letter-spacing);
+  text-transform: var(--select-section-text-transform);
+  color: var(--select-section-color);
+  text-align: var(--select-section-text-align);
 }

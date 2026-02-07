@@ -1,0 +1,93 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--select-gap);
+
+  padding: var(--select-padding-y) var(--select-padding-x);
+  border-radius: var(--select-border-radius);
+
+  background: var(--select-bg);
+  border: var(--select-border-width) solid var(--select-border-color);
+
+  font-size: var(--select-font-size);
+  font-weight: var(--select-font-weight);
+
+  /* ✅ ВСЕГДА КОНТРАСТНЫЙ КОНТЕНТ */
+  color: var(--select-text-color);
+
+  cursor: pointer;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-standard),
+    border-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.item:hover {
+  background: var(--select-hover-bg);
+  border-color: var(--brand-accent);
+}
+
+/* ===== Radio ===== */
+
+.radio {
+  width: var(--select-radio-size);
+  height: var(--select-radio-size);
+  border-radius: 50%;
+
+  border: 2px solid currentColor;
+
+  display: grid;
+  place-items: center;
+}
+
+.radio::after {
+  content: '';
+  width: var(--select-radio-dot-size);
+  height: var(--select-radio-dot-size);
+  border-radius: 50%;
+
+  background: currentColor;
+
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.selected .radio::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== Selected ===== */
+
+.selected {
+  border-width: var(--select-selected-border-width);
+  border-color: var(--brand-accent);
+}
+
+/* ===== Stripe ===== */
+
+.stripe {
+  --brand-accent: var(--select-stripe-color);
+}
+
+.stripe.selected {
+  background: var(--select-stripe-bg);
+}
+
+/* ===== PayPal ===== */
+
+.paypal {
+  --brand-accent: var(--select-paypal-color);
+}
+
+.paypal.selected {
+  background: var(--select-paypal-bg);
+}

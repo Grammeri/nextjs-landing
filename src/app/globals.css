@@ -12,6 +12,7 @@
   --color-text: #111111;
   --color-muted: #666666;
   --color-border: #e5e5e5;
+  --color-border-subtle: var(--color-border);
   --color-accent: #0066cc;
 
   /* Colors - Texas faded palette */
@@ -170,6 +171,57 @@
   --focus-ring-offset: 2px;
   --focus-ring-color: var(--color-accent);
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+
+  /* selection base */
+  --select-border-radius: var(--radius-md);
+  --select-border-width: 1px;
+
+  --select-font-size: var(--font-size-sm);
+  --select-font-weight: var(--font-weight-medium);
+
+  --select-padding-y: var(--spacing-sm);
+  --select-padding-x: var(--spacing-md);
+  --select-gap: var(--spacing-sm);
+
+  --select-bg: transparent;
+  --select-border-color: var(--color-border-subtle);
+  --select-text-color: var(--color-on-image-primary);
+
+  --select-hover-bg: rgba(255, 255, 255, 0.06);
+
+  --select-selected-border-width: 2px;
+  --select-section-text-align: center;
+
+  /* Selection — radio */
+  --select-radio-size: 16px;
+  --select-radio-dot-size: 8px;
+
+   /* =========================
+     Selection — payment variants
+     ========================= */
+
+  /* Stripe */
+  --select-stripe-color: #635bff;
+  --select-stripe-bg: rgba(99, 91, 255, 0.14);
+
+  /* PayPal */
+  --select-paypal-color: #003087;
+  --select-paypal-bg: rgba(0, 48, 135, 0.14);
+
+  /* =========================
+     Payment branding
+     ========================= */
+
+  --payment-logo-height-stripe: 50px;
+  --payment-logo-height-paypal: 48px;
+
+  /* Selection — section title */
+--select-section-font-size: var(--font-size-sm);
+--select-section-font-weight: var(--font-weight-semibold);
+--select-section-letter-spacing: 0.04em;
+--select-section-text-transform: uppercase;
+--select-section-color: var(--color-on-image-secondary);
+
 }
 
 html,

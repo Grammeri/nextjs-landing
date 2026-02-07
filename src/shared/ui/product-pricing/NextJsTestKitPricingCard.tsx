@@ -8,5 +8,32 @@ export default function NextJsTestKitPricingCard() {
 
   if (!card) return null;
 
-  return <PricingCard {...card} />;
+  const handleBuyNextJsTestKit = async (provider: 'stripe' | 'paypal') => {
+    const res = await fetch('/api/billing/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        productId: 'nextjs-test-kit',
+        provider,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+    } else {
+      alert('Failed to start checkout. Please try again.');
+    }
+  };
+
+  return (
+    <PricingCard
+      {...card}
+      paymentTitle="Select payment method"
+      onPayWithStripe={() => handleBuyNextJsTestKit('stripe')}
+      onPayWithPaypal={() => handleBuyNextJsTestKit('paypal')}
+      footerNote="Access instructions will be sent by email after purchase"
+    />
+  );
 }

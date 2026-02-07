@@ -1,13 +1,19 @@
-import { Button } from '@/shared/ui/button';
+import { SelectableItem } from '@/shared/ui/selection';
+import styles from './PaymentButton.module.css';
 
 type Props = {
-  onClick?: () => void | Promise<void>;
+  selected: boolean;
+  onSelect: () => void;
 };
 
-export function PaypalButton({ onClick }: Props) {
+export function PaypalButton({ selected, onSelect }: Props) {
   return (
-    <Button variant="secondary" onClick={onClick}>
-      Pay with PayPal
-    </Button>
+    <SelectableItem selected={selected} onSelect={onSelect} variant="paypal">
+      <img
+        src="/images/brands/paypal-logo.svg"
+        alt="PayPal"
+        className={styles['logo-paypal'] as string}
+      />
+    </SelectableItem>
   );
 }

@@ -1,13 +1,19 @@
-import { Button } from '@/shared/ui/button';
+import { SelectableItem } from '@/shared/ui/selection';
+import styles from './PaymentButton.module.css';
 
 type Props = {
-  onClick?: () => void | Promise<void>;
+  selected: boolean;
+  onSelect: () => void;
 };
 
-export function StripeButton({ onClick }: Props) {
+export function StripeButton({ selected, onSelect }: Props) {
   return (
-    <Button variant="primary" onClick={onClick}>
-      Pay with Stripe
-    </Button>
+    <SelectableItem selected={selected} onSelect={onSelect} variant="stripe">
+      <img
+        src="/images/brands/stripe-logo.svg"
+        alt="Stripe"
+        className={styles['logo-stripe'] as string}
+      />
+    </SelectableItem>
   );
 }

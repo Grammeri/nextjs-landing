@@ -1,12 +1,17 @@
+'use client';
+
+import { useState } from 'react';
 import { CheckIcon } from '@/shared/ui/icons';
+import { StripeButton, PaypalButton } from '@/shared/ui/payment-buttons';
+import { SelectableGroup } from '@/shared/ui/selection';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
-import { PaypalButton } from '@/shared/ui/payment-buttons/PaypalButton';
-import { StripeButton } from '@/shared/ui/payment-buttons/StripeButton';
 import styles from './PricingCard.module.css';
 
 export type PricingFeature = {
   text: string;
 };
+
+type PaymentProvider = 'stripe' | 'paypal';
 
 export type PricingCardProps = {
   title: string;
@@ -29,12 +34,16 @@ export function PricingCard({
   onPayWithPaypal,
   footerNote,
 }: PricingCardProps) {
+  const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
+
   return (
     <ProductCard interactive={false}>
       <div className={styles.card}>
         <h3>{title}</h3>
+
         <p className={styles.description}>{description}</p>
         <p className={styles.price}>{price}</p>
+
         <ul className={styles.features}>
           {features.map((feature) => (
             <li key={feature.text} className={styles.feature}>
@@ -45,11 +54,31 @@ export function PricingCard({
             </li>
           ))}
         </ul>
+
         {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
-        <div className={styles.paymentButtons}>
-          {onPayWithStripe && <StripeButton onClick={onPayWithStripe} />}
-          {onPayWithPaypal && <PaypalButton onClick={onPayWithPaypal} />}
-        </div>
+
+        <SelectableGroup>
+          {onPayWithStripe && (
+            <StripeButton
+              selected={selectedProvider === 'stripe'}
+              onSelect={() => {
+                setSelectedProvider('stripe');
+                void onPayWithStripe();
+              }}
+            />
+          )}
+
+          {onPayWithPaypal && (
+            <PaypalButton
+              selected={selectedProvider === 'paypal'}
+              onSelect={() => {
+                setSelectedProvider('paypal');
+                void onPayWithPaypal();
+              }}
+            />
+          )}
+        </SelectableGroup>
+
         {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
       </div>
     </ProductCard>
