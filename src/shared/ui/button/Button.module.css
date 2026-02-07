@@ -1,5 +1,5 @@
 .button {
-  all: unset; /* 🔑 ВАЖНО: убираем browser default у button */
+  all: unset;
   box-sizing: border-box;
 
   display: inline-flex;
@@ -11,7 +11,8 @@
   font-weight: var(--font-weight-semibold);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition:
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .button:hover {
