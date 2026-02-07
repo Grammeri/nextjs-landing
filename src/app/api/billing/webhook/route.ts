@@ -1,4 +1,4 @@
-import 'server-only';
+/** import 'server-only';
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
@@ -100,3 +100,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 });
   }
 }
+**/
