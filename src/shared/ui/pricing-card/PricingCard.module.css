@@ -41,3 +41,17 @@
   height: var(--spacing-lg);
 }
 
+.paymentTitle {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-image-secondary);
+  text-align: center;
+}
+
+.paymentButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}

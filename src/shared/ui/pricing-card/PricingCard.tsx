@@ -1,7 +1,7 @@
-import type { MouseEvent } from 'react';
-import { Button } from '@/shared/ui/button';
 import { CheckIcon } from '@/shared/ui/icons';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
+import { PaypalButton } from '@/shared/ui/payment-buttons/PaypalButton';
+import { StripeButton } from '@/shared/ui/payment-buttons/StripeButton';
 import styles from './PricingCard.module.css';
 
 export type PricingFeature = {
@@ -13,9 +13,9 @@ export type PricingCardProps = {
   description: string;
   price: string;
   features: PricingFeature[];
-  ctaLabel: string;
-  ctaHref: string;
-  onCtaClick?: () => void | Promise<void>;
+  paymentTitle?: string;
+  onPayWithStripe?: () => void | Promise<void>;
+  onPayWithPaypal?: () => void | Promise<void>;
   footerNote?: string;
 };
 
@@ -24,18 +24,11 @@ export function PricingCard({
   description,
   price,
   features,
-  ctaLabel,
-  ctaHref,
-  onCtaClick,
+  paymentTitle,
+  onPayWithStripe,
+  onPayWithPaypal,
   footerNote,
 }: PricingCardProps) {
-  const handleCtaClick = onCtaClick
-    ? (event: MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
-        void onCtaClick();
-      }
-    : undefined;
-
   return (
     <ProductCard interactive={false}>
       <div className={styles.card}>
@@ -52,9 +45,11 @@ export function PricingCard({
             </li>
           ))}
         </ul>
-        <Button as="a" href={ctaHref} variant="inverted" onClick={handleCtaClick}>
-          {ctaLabel}
-        </Button>
+        {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
+        <div className={styles.paymentButtons}>
+          {onPayWithStripe && <StripeButton onClick={onPayWithStripe} />}
+          {onPayWithPaypal && <PaypalButton onClick={onPayWithPaypal} />}
+        </div>
         {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
       </div>
     </ProductCard>

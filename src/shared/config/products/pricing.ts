@@ -12,7 +12,5 @@ export const PRICING_CARDS: PricingCardProps[] = [
       { text: 'Clean tooling & setup' },
       { text: 'Hiring-focused structure' },
     ],
-    ctaLabel: 'View product',
-    ctaHref: '/products/nextjs-test-kit',
   },
 ];

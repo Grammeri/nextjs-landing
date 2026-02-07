@@ -4,11 +4,11 @@ import { AUTHFORGE_PRICING_CARD } from '@/shared/config/products/authforge';
 import { PricingCard } from '@/shared/ui/pricing-card';
 
 export default function AuthForgePricingCard() {
-  const handleBuyAuthForge = async () => {
+  const handleBuyAuthForge = async (provider: 'stripe' | 'paypal') => {
     const res = await fetch('/api/billing/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId: 'authforge', provider: 'stripe' }),
+      body: JSON.stringify({ productId: 'authforge', provider }),
     });
 
     const data = await res.json();
@@ -23,8 +23,9 @@ export default function AuthForgePricingCard() {
   return (
     <PricingCard
       {...AUTHFORGE_PRICING_CARD}
-      ctaHref={AUTHFORGE_PRICING_CARD.ctaHref}
-      onCtaClick={handleBuyAuthForge}
+      paymentTitle="Select payment method"
+      onPayWithStripe={() => handleBuyAuthForge('stripe')}
+      onPayWithPaypal={() => handleBuyAuthForge('paypal')}
     />
   );
 }
