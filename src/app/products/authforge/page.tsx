@@ -1,3 +1,6 @@
+'use client';
+
+import { useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
 import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
@@ -7,6 +10,12 @@ import CopySupportEmail from './_components/CopySupportEmail';
 import styles from './page.module.css';
 
 export default function AuthForgeProductPage() {
+  const pricingRef = useRef<HTMLDivElement>(null);
+
+  const scrollToPricing = () => {
+    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <main className={styles.page}>
       <div className="container-wide">
@@ -28,7 +37,7 @@ export default function AuthForgeProductPage() {
               <Button as="a" href="/docs/authforge/quick-start" variant="secondary">
                 Read Docs
               </Button>
-              <Button as="a" href="/pricing#authforge" variant="secondary">
+              <Button onClick={scrollToPricing} variant="secondary">
                 Buy license
               </Button>
             </div>
@@ -123,7 +132,7 @@ export default function AuthForgeProductPage() {
         </ProductSection>
       </div>
 
-      <div className="container-wide">
+      <div ref={pricingRef} className="container-wide">
         <AuthForgePricingCard />
       </div>
     </main>

@@ -1,4 +1,7 @@
 .button {
+  all: unset; /* 🔑 ВАЖНО: убираем browser default у button */
+  box-sizing: border-box;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;

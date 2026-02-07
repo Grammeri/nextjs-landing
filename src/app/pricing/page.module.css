@@ -1,16 +1,15 @@
 .page {
-    padding: 4rem 1.5rem;
-  }
-  
-  .grid {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    width: 100%;
-    max-width: 420px;
-  }
-  
+  padding: 4rem 1.5rem;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+}

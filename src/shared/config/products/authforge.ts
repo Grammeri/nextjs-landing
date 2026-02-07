@@ -13,7 +13,7 @@ export const AUTHFORGE_PRICING_CARD: PricingCardProps = {
     { text: '14-day refund if access was not used' },
     { text: `Support via email (${AUTHFORGE_SUPPORT_EMAIL})` },
   ],
-  ctaLabel: 'Buy AuthForge',
-  ctaHref: '/pricing#authforge',
+  ctaLabel: 'Buy license',
+  ctaHref: '/pricing?product=authforge',
   footerNote: 'Access instructions will be sent by email after purchase',
 };
