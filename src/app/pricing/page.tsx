@@ -1,6 +1,4 @@
-import { PRICING_CARDS } from '@/shared/config/products/pricing';
-import { PricingCard } from '@/shared/ui/pricing-card';
-import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
+import { AuthForgePricingCard, NextJsTestKitPricingCard } from '@/shared/ui/product-pricing';
 import styles from './page.module.css';
 
 type PricingPageProps = {
@@ -11,9 +9,6 @@ type PricingPageProps = {
 
 export default function PricingPage({ searchParams }: PricingPageProps) {
   const product = searchParams?.product;
-  const nextJsTestKitCard = PRICING_CARDS.find(
-    (card) => card.ctaHref === '/products/nextjs-test-kit',
-  );
 
   return (
     <section className={styles.page}>
@@ -24,9 +19,9 @@ export default function PricingPage({ searchParams }: PricingPageProps) {
           </div>
         )}
 
-        {(!product || product === 'nextjs-test-kit') && nextJsTestKitCard && (
+        {(!product || product === 'nextjs-test-kit') && (
           <div className={styles.card}>
-            <PricingCard {...nextJsTestKitCard} />
+            <NextJsTestKitPricingCard />
           </div>
         )}
       </div>
