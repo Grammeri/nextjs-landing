@@ -43,7 +43,7 @@
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--spacing-xl);
+  gap: var(--spacing-sm);
 }
 
 @media (max-width: 1200px) {

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import styles from './Selectable.module.css';
+import { RadioIndicator } from './RadioIndicator';
 
 type Variant = 'default' | 'stripe' | 'paypal';
 
@@ -23,7 +24,7 @@ export function SelectableItem({
       aria-pressed={selected}
       onClick={onSelect}
     >
-      <span className={styles.radio} aria-hidden />
+      <RadioIndicator checked={selected} />
       <span className={styles.label}>{children}</span>
     </button>
   );

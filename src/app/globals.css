@@ -192,10 +192,6 @@
   --select-selected-border-width: 2px;
   --select-section-text-align: center;
 
-  /* Selection — radio */
-  --select-radio-size: 16px;
-  --select-radio-dot-size: 8px;
-
    /* =========================
      Selection — payment variants
      ========================= */
