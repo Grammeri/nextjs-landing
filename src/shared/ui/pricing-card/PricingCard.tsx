@@ -22,6 +22,7 @@ export type PricingCardProps = {
   onPayWithStripe?: () => void | Promise<void>;
   onPayWithPaypal?: () => void | Promise<void>;
   footerNote?: string;
+  paymentLayout?: 'full' | 'centered';
 };
 
 export function PricingCard({
@@ -33,6 +34,7 @@ export function PricingCard({
   onPayWithStripe,
   onPayWithPaypal,
   footerNote,
+  paymentLayout = 'full',
 }: PricingCardProps) {
   const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
 
@@ -57,28 +59,29 @@ export function PricingCard({
 
         {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
 
-        <SelectableGroup>
-          {onPayWithStripe && (
-            <StripeButton
-              selected={selectedProvider === 'stripe'}
-              onSelect={() => {
-                setSelectedProvider('stripe');
-                void onPayWithStripe();
-              }}
-            />
-          )}
+        <div className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}>
+          <SelectableGroup>
+            {onPayWithStripe && (
+              <StripeButton
+                selected={selectedProvider === 'stripe'}
+                onSelect={() => {
+                  setSelectedProvider('stripe');
+                  void onPayWithStripe();
+                }}
+              />
+            )}
 
-          {onPayWithPaypal && (
-            <PaypalButton
-              selected={selectedProvider === 'paypal'}
-              onSelect={() => {
-                setSelectedProvider('paypal');
-                void onPayWithPaypal();
-              }}
-            />
-          )}
-        </SelectableGroup>
-
+            {onPayWithPaypal && (
+              <PaypalButton
+                selected={selectedProvider === 'paypal'}
+                onSelect={() => {
+                  setSelectedProvider('paypal');
+                  void onPayWithPaypal();
+                }}
+              />
+            )}
+          </SelectableGroup>
+        </div>
         {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
       </div>
     </ProductCard>

@@ -22,6 +22,7 @@ export default function AuthForgePricingCard() {
 
   return (
     <PricingCard
+      paymentLayout="centered"
       {...AUTHFORGE_PRICING_CARD}
       paymentTitle="Select payment method"
       onPayWithStripe={() => handleBuyAuthForge('stripe')}
