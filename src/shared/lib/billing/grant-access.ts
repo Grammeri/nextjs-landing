@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { hasEntitlementBySession, saveEntitlement } from './entitlement.store';
 import { Entitlement } from './entitlement.types';
+import { sendPurchaseEmail } from '@/shared/lib/email/send-purchase-email';
 
 export async function grantAccessFromCheckoutSession(session: Stripe.Checkout.Session) {
   if (!session.id) {
@@ -29,4 +30,8 @@ export async function grantAccessFromCheckoutSession(session: Stripe.Checkout.Se
   saveEntitlement(entitlement);
 
   console.log('[entitlement] granted', entitlement);
+  await sendPurchaseEmail({
+    to: email,
+    product: 'authforge',
+  });
 }
