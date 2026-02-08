@@ -188,6 +188,6 @@
 .pricingWrapper {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  max-width: calc(var(--container-width) / 2);
+  max-width: var(--pricing-card-max-width);
   margin: 0 auto;
 }

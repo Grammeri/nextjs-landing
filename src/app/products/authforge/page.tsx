@@ -133,7 +133,7 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div ref={pricingRef} className="container-wide">
-        <div className={styles.pricingCard}>
+        <div className={styles.pricingWrapper}>
           <AuthForgePricingCard />
         </div>
       </div>

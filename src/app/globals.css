@@ -172,6 +172,9 @@
   --focus-ring-color: var(--color-accent);
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 
+  /* Pricing */
+  --pricing-card-max-width: 420px;
+
   /* selection base */
   --select-border-radius: var(--radius-md);
   --select-border-width: 1px;
