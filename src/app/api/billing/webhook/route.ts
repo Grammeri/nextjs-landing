@@ -2,6 +2,7 @@ import 'server-only';
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { grantAccessFromCheckoutSession } from '@/lib/billing/grant-access';
 
 export const runtime = 'nodejs';
 
@@ -9,7 +10,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-01-28.clover',
 });
 
-// Обрабатываем только те события, которые реально нужны для checkout-флоу
 const HANDLED_EVENTS = new Set<string>([
   'checkout.session.completed',
   'checkout.session.async_payment_succeeded',
@@ -49,13 +49,12 @@ export async function POST(request: Request) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        // TODO: тут будет выдача доступа (license/email/entitlement)
+        await grantAccessFromCheckoutSession(session);
+
         console.log('[webhook] checkout.session.completed', {
           id: session.id,
           customer_email: session.customer_details?.email ?? null,
           payment_status: session.payment_status,
-          amount_total: session.amount_total,
-          currency: session.currency,
         });
 
         break;
@@ -64,12 +63,12 @@ export async function POST(request: Request) {
       case 'checkout.session.async_payment_succeeded': {
         const session = event.data.object as Stripe.Checkout.Session;
 
+        await grantAccessFromCheckoutSession(session);
+
         console.log('[webhook] async_payment_succeeded', {
           id: session.id,
           customer_email: session.customer_details?.email ?? null,
           payment_status: session.payment_status,
-          amount_total: session.amount_total,
-          currency: session.currency,
         });
 
         break;
@@ -90,8 +89,7 @@ export async function POST(request: Request) {
       }
 
       default:
-        // Теоретически сюда не попадём из-за allowlist, но пусть будет безопасно
-        break;
+        return NextResponse.json({ received: true });
     }
 
     return NextResponse.json({ received: true });
