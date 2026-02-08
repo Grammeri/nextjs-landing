@@ -2,7 +2,7 @@ import 'server-only';
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { grantAccessFromCheckoutSession } from '@/lib/billing/grant-access';
+import { grantAccessFromCheckoutSession } from '@/shared/lib/billing/grant-access';
 
 export const runtime = 'nodejs';
 
