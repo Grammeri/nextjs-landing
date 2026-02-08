@@ -4,18 +4,21 @@ import { Entitlement } from './entitlement.types';
 import { sendPurchaseEmail } from '@/shared/lib/email/send-purchase-email';
 
 export async function grantAccessFromCheckoutSession(session: Stripe.Checkout.Session) {
-  if (!session.id) {
+  const sessionId = session.id;
+
+  if (!sessionId) {
     throw new Error('Checkout session has no id');
   }
 
-  if (hasEntitlementBySession(session.id)) {
-    console.log('[entitlement] already granted', session.id);
+  // 🔒 Idempotency — самое важное правило
+  if (hasEntitlementBySession(sessionId)) {
+    console.log('[entitlement] already granted', sessionId);
     return;
   }
 
   const email = session.customer_details?.email;
   if (!email) {
-    throw new Error('No customer email in checkout session');
+    throw new Error(`No customer email in checkout session ${sessionId}`);
   }
 
   const entitlement: Entitlement = {
@@ -23,15 +26,31 @@ export async function grantAccessFromCheckoutSession(session: Stripe.Checkout.Se
     product: 'authforge',
     access: 'lifetime',
     source: 'stripe',
-    checkoutSessionId: session.id,
+    checkoutSessionId: sessionId,
     createdAt: new Date(),
   };
 
+  // 1️⃣ СНАЧАЛА сохраняем доступ (критично)
   saveEntitlement(entitlement);
 
   console.log('[entitlement] granted', entitlement);
-  await sendPurchaseEmail({
-    to: email,
-    product: 'authforge',
-  });
+
+  // 2️⃣ Email — best-effort, НЕ ломает оплату
+  try {
+    await sendPurchaseEmail({
+      to: email,
+      product: 'authforge',
+    });
+
+    console.log('[email] purchase email sent', {
+      to: email,
+      sessionId,
+    });
+  } catch (err) {
+    console.error('[email] failed to send purchase email', {
+      to: email,
+      sessionId,
+      error: err,
+    });
+  }
 }
