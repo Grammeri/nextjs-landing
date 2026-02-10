@@ -1,8 +1,2 @@
 packages:
-  - .
-ignoredBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - prisma
-  - sharp
-  - unrs-resolver
+  - 'packages/*'
