@@ -49,12 +49,12 @@ export async function POST(request: Request) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        await grantAccessFromCheckoutSession(session);
+        const result = await grantAccessFromCheckoutSession(session);
 
         console.log('[webhook] checkout.session.completed', {
-          id: session.id,
-          customer_email: session.customer_details?.email ?? null,
+          sessionId: session.id,
           payment_status: session.payment_status,
+          result,
         });
 
         break;
@@ -63,12 +63,12 @@ export async function POST(request: Request) {
       case 'checkout.session.async_payment_succeeded': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        await grantAccessFromCheckoutSession(session);
+        const result = await grantAccessFromCheckoutSession(session);
 
         console.log('[webhook] async_payment_succeeded', {
-          id: session.id,
-          customer_email: session.customer_details?.email ?? null,
+          sessionId: session.id,
           payment_status: session.payment_status,
+          result,
         });
 
         break;
@@ -78,8 +78,7 @@ export async function POST(request: Request) {
         const session = event.data.object as Stripe.Checkout.Session;
 
         console.warn('[webhook] async_payment_failed', {
-          id: session.id,
-          customer_email: session.customer_details?.email ?? null,
+          sessionId: session.id,
           payment_status: session.payment_status,
           amount_total: session.amount_total,
           currency: session.currency,
