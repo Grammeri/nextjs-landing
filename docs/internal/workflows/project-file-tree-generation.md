@@ -39,7 +39,7 @@ Open Git Bash or a terminal, then go to the project root (the directory containi
 ### Generate tracked file list
 
 ```bash
-pnpm tree
+pnpm docs:tree
 ```
 
 This command is the canonical way to generate a project file tree.
@@ -83,7 +83,7 @@ These rules live in `.gitignore`.
 
 The following files may appear in the project root during local work:
 
-- `make-tree.js` — tracked internal tooling file, executed via `pnpm tree`
+- `make-tree.js` — tracked internal tooling file, executed via `pnpm docs:tree`
 - `tree.git.txt` — local artifact
 - `tree.pretty.txt` — local artifact
 
@@ -97,12 +97,12 @@ The generated snapshot files are local artifacts and are never part of version c
 
 ## Best practices
 
-Always regenerate the tree using `pnpm tree` before updating docs.
+Always regenerate the tree using `pnpm docs:tree` before updating docs.
 
 Do not rely on outdated snapshots, and treat the tree as context rather than a source of truth.
 
 ## Summary
 
-Generate locally using `pnpm tree`, keep artifacts uncommitted, and document only the final tree snapshot.
+Generate locally using `pnpm docs:tree`, keep artifacts uncommitted, and document only the final tree snapshot.
 
 This document is the structural reference for internal tooling and workflow documentation.
