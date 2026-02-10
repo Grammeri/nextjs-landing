@@ -195,7 +195,7 @@
   --select-selected-border-width: 2px;
   --select-section-text-align: center;
 
-   /* =========================
+  /* =========================
      Selection — payment variants
      ========================= */
 
@@ -215,12 +215,11 @@
   --payment-logo-height-paypal: 48px;
 
   /* Selection — section title */
---select-section-font-size: var(--font-size-sm);
---select-section-font-weight: var(--font-weight-semibold);
---select-section-letter-spacing: 0.04em;
---select-section-text-transform: uppercase;
---select-section-color: var(--color-on-image-secondary);
-
+  --select-section-font-size: var(--font-size-sm);
+  --select-section-font-weight: var(--font-weight-semibold);
+  --select-section-letter-spacing: 0.04em;
+  --select-section-text-transform: uppercase;
+  --select-section-color: var(--color-on-image-secondary);
 }
 
 html,

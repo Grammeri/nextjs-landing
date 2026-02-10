@@ -1,11 +1,10 @@
 .logo-stripe {
-    height: var(--payment-logo-height-stripe);
-    width: auto;
-    display: block;
-  }
-  .logo-paypal {
-    height: var(--payment-logo-height-paypal);
-    width: auto;
-    display: block;
-  }
-  
+  height: var(--payment-logo-height-stripe);
+  width: auto;
+  display: block;
+}
+.logo-paypal {
+  height: var(--payment-logo-height-paypal);
+  width: auto;
+  display: block;
+}

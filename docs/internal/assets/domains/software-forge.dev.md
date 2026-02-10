@@ -1,9 +1,11 @@
 # software-forge.dev — Domain Ownership
 
 ## Domain
+
 software-forge.dev
 
 ## Registrar
+
 Porkbun (https://porkbun.com)
 
 ## Account Information
@@ -32,6 +34,7 @@ Primary public contact email:
 support@software-forge.dev
 
 This address is used for:
+
 - customer support
 - pre-sale questions
 - post-purchase communication
@@ -50,5 +53,6 @@ Emails received from:
 Porkbun Support Dept. <support@porkbun.com>
 
 Including:
+
 - Order confirmation email
 - Account welcome email

@@ -1,13 +1,23 @@
 import Stripe from 'stripe';
 import type { CreateCheckoutParams, CreateCheckoutResult } from './types';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+function getStripe(): Stripe {
+  const key = process.env.STRIPE_SECRET_KEY;
+
+  if (!key) {
+    throw new Error('STRIPE_SECRET_KEY is not defined');
+  }
+
+  return new Stripe(key, {
+    apiVersion: '2026-01-28.clover',
+  });
+}
 
 export async function createStripeCheckout(
   params: CreateCheckoutParams,
 ): Promise<CreateCheckoutResult> {
+  const stripe = getStripe();
+
   const session = await stripe.checkout.sessions.create({
     mode: 'payment',
     payment_method_types: ['card'],
@@ -25,13 +35,13 @@ export async function createStripeCheckout(
       },
     ],
 
-    // ✅ важно: чтобы в webhook можно было связать покупку с пользователем/заказом
+    // 🔗 связь с пользователем / заказом
     client_reference_id: params.clientReferenceId,
 
-    // ✅ Stripe сам положит email в customer_details / receipt
+    // 📧 email попадёт в customer_details + receipt
     customer_email: params.customerEmail,
 
-    // ✅ metadata уйдёт в сессию и дальше можно доставать в webhook
+    // 🧠 metadata читаем в webhook
     metadata: params.metadata,
 
     success_url: params.successUrl,

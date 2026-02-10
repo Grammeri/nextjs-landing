@@ -41,6 +41,7 @@ Open Git Bash or a terminal, then go to the project root (the directory containi
 ```bash
 pnpm tree
 ```
+
 This command is the canonical way to generate a project file tree.
 
 It internally:

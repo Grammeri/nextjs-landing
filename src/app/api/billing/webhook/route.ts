@@ -3,12 +3,21 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { grantAccessFromCheckoutSession } from '@/shared/lib/billing/grant-access';
+import { fail } from 'assert';
 
 export const runtime = 'nodejs';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
-});
+function getStripe(): Stripe {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!secretKey) {
+    throw new Error('STRIPE_SECRET_KEY is not defined');
+  }
+
+  return new Stripe(secretKey, {
+    apiVersion: '2026-01-28.clover',
+  });
+}
 
 const HANDLED_EVENTS = new Set<string>([
   'checkout.session.completed',
@@ -33,6 +42,7 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
 
   try {
+    const stripe = getStripe();
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
   } catch (err) {
     console.error('[webhook] signature verification failed:', err);

@@ -18,12 +18,14 @@ Stripe Checkout is used as the primary payment provider.
 Payments are asynchronous by nature and rely on webhook-based confirmation.
 
 At the same time, the system must support:
+
 - reliable access delivery
 - idempotent payment handling
 - post-purchase email notifications
 - future scalability (admin tools, refunds, resends, upgrades)
 
 A decision is required regarding whether purchase and entitlement data should:
+
 - rely solely on Stripe as the source of truth, or
 - be persisted in a first-party database owned by the landing application.
 
@@ -35,10 +37,12 @@ The landing application **stores purchase entitlements in its own database**
 using **Prisma** as the ORM.
 
 Stripe is treated as:
+
 - the payment processor
 - an external event source
 
 The landing database is treated as:
+
 - the authoritative source of entitlements
 - the system of record for access control
 
@@ -76,16 +80,19 @@ operational complexity.
 ## Consequences
 
 The landing application:
+
 - includes a database connection
 - defines an `entitlement` (or `purchase`) table
 - handles Stripe webhook idempotency internally
 
 Stripe remains responsible only for:
+
 - payment processing
 - compliance
 - payment event delivery
 
 The following capabilities become possible:
+
 - access resend
 - entitlement revocation
 - audit logging
@@ -100,6 +107,7 @@ control, reliability, and long-term scalability.
 ## Deferred Concerns
 
 The following are explicitly out of scope at this stage:
+
 - subscriptions
 - recurring billing
 - usage-based pricing
@@ -116,6 +124,7 @@ architectural changes.
 Accepted.
 
 This decision remains valid until the system introduces:
+
 - subscription-based billing
 - multi-tenant license management
 - cross-product entitlement inheritance

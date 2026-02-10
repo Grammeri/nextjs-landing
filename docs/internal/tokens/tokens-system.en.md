@@ -19,6 +19,7 @@ The token system is divided into logical layers.
 **Primitive tokens** are base atomic values and are never used directly in components.
 
 Examples:
+
 ```css
 --color-red-500
 --opacity-90
@@ -28,6 +29,7 @@ Examples:
 **Semantic tokens** describe intent, not physical values, and are used directly in components.
 
 Examples:
+
 - `--color-primary`
 - `--surface-card`
 - `--text-secondary`
@@ -35,6 +37,7 @@ Examples:
 **Interaction tokens** describe interactive behavior and are used for hover, focus, active, and motion.
 
 Examples:
+
 - `--interaction-hover-opacity`
 - `--interaction-hover-scale`
 - `--interaction-hover-translate-y`
@@ -58,6 +61,7 @@ Checklist for adding a new token:
 Interaction tokens exist to eliminate magic numbers from hover styles.
 
 Bad example:
+
 ```css
 .button:hover {
   transform: scale(1.03);
@@ -66,11 +70,13 @@ Bad example:
 ```
 
 Problems:
+
 - not reusable
 - hard to change globally
 - no semantic meaning
 
 Good example:
+
 ```css
 .button:hover {
   transform: scale(var(--interaction-hover-scale));
@@ -79,6 +85,7 @@ Good example:
 ```
 
 Benefits:
+
 - consistent behavior
 - centralized control
 - safe refactoring

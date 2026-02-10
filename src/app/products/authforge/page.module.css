@@ -135,7 +135,6 @@
   color: inherit;
 }
 
-
 .trustBlock li::before {
   color: var(--color-texas-red-soft);
 }

@@ -11,8 +11,7 @@
   font-weight: var(--font-weight-semibold);
   border: 1px solid transparent;
   cursor: pointer;
-  transition:
-    transform var(--motion-duration-fast) var(--motion-easing-standard);
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .button:hover {
