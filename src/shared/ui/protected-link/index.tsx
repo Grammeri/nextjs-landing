@@ -1,1 +1,0 @@
-export { ProtectedLink } from './ProtectedLink';
