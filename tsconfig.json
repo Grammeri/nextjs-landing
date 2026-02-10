@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@authforge/db": ["./packages/db/src"]
     }
   },
  "include": [

@@ -2,8 +2,8 @@ import 'server-only';
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { grantAccessFromCheckoutSession } from '@/shared/lib/billing/grant-access';
-import { fail } from 'assert';
+import { sendPurchaseEmail } from '@/shared/lib/email/send-purchase-email';
+import { createIfNotExists } from '@/shared/lib/billing/entitlement.store';
 
 export const runtime = 'nodejs';
 
@@ -59,12 +59,36 @@ export async function POST(request: Request) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        const result = await grantAccessFromCheckoutSession(session);
+        const sessionId = session.id;
+        const email = session.customer_details?.email;
+
+        if (!sessionId || !email) {
+          console.warn('[webhook] checkout.session.completed skipped', {
+            sessionId,
+            email,
+          });
+          break;
+        }
+
+        const product = session.metadata?.productId ?? 'authforge';
+        const provider = session.metadata?.provider ?? 'stripe';
+
+        const result = await createIfNotExists({
+          email,
+          product,
+          provider,
+          checkoutSessionId: sessionId,
+          access: true,
+        });
+
+        if (result.created) {
+          await sendPurchaseEmail({ to: email, product });
+        }
 
         console.log('[webhook] checkout.session.completed', {
-          sessionId: session.id,
+          sessionId,
           payment_status: session.payment_status,
-          result,
+          created: result.created,
         });
 
         break;
@@ -73,12 +97,36 @@ export async function POST(request: Request) {
       case 'checkout.session.async_payment_succeeded': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        const result = await grantAccessFromCheckoutSession(session);
+        const sessionId = session.id;
+        const email = session.customer_details?.email;
+
+        if (!sessionId || !email) {
+          console.warn('[webhook] async_payment_succeeded skipped', {
+            sessionId,
+            email,
+          });
+          break;
+        }
+
+        const product = session.metadata?.productId ?? 'authforge';
+        const provider = session.metadata?.provider ?? 'stripe';
+
+        const result = await createIfNotExists({
+          email,
+          product,
+          provider,
+          checkoutSessionId: sessionId,
+          access: true,
+        });
+
+        if (result.created) {
+          await sendPurchaseEmail({ to: email, product });
+        }
 
         console.log('[webhook] async_payment_succeeded', {
-          sessionId: session.id,
+          sessionId,
           payment_status: session.payment_status,
-          result,
+          created: result.created,
         });
 
         break;
