@@ -15,6 +15,16 @@
   --color-border-subtle: var(--color-border);
   --color-accent: #0066cc;
 
+  /* ===============================
+     Text — Semantic
+     =============================== */
+     --color-text-primary: var(--color-text);
+     --color-text-secondary: var(--color-muted);
+     --color-text-accent: var(--color-accent);
+     --color-text-success: var(--color-success);
+     --color-text-warning: var(--color-warning);
+     --color-text-error: var(--color-error);
+
   /* Colors - Texas faded palette */
   --color-primary: #bf5700;
   --color-primary-faded: rgba(191, 87, 0, 0.1);
@@ -22,6 +32,15 @@
   --color-secondary-faded: rgba(51, 63, 72, 0.1);
   --color-tertiary: #9d2235;
   --color-tertiary-faded: rgba(157, 34, 53, 0.1);
+
+   /* ===============================
+     Surface — Semantic
+     =============================== */
+     --color-surface-base: var(--color-bg);
+     --color-surface-raised: var(--color-bg);
+     --color-surface-overlay: var(--color-bg);
+     --color-surface-inverse: var(--color-surface-system);
+
   /* Texas flag inspired */
   --color-texas-blue: var(--color-product-text);
   --color-texas-red: #c0392b;
@@ -95,6 +114,21 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
+   /* ===============================
+     Shape / Radius — Semantic
+     =============================== */
+     --radius-control: var(--radius-md);
+     --radius-surface: var(--radius-lg);
+     --radius-overlay: var(--radius-lg);
+     --radius-pill: var(--radius-full);
+
+  /* ===============================
+     Overlay / Scrim
+     =============================== */
+     --overlay-scrim-subtle: rgba(0, 0, 0, 0.32);
+     --overlay-scrim-default: rgba(0, 0, 0, 0.55);
+     --overlay-scrim-strong: rgba(0, 0, 0, 0.72);
+
   /* Container */
   --container-width: 1200px;
   --container-padding: 24px;
@@ -147,6 +181,15 @@
   --card-shadow-hover: 0 28px 60px rgba(0, 0, 0, 0.35);
   --card-border-color: rgba(255, 255, 255, 0.08);
   --card-border-radius: var(--radius-lg);
+
+  /* ===============================
+     Elevation / Shadow
+     =============================== */
+     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+     --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+     --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.12);
+     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.18);
+     --shadow-overlay: 0 24px 48px rgba(0, 0, 0, 0.24);
 
   /* Motion */
   --opacity-hover-subtle: 0.9;

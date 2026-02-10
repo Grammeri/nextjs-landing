@@ -38,7 +38,6 @@ export async function POST(request: Request) {
   }
 
   const body = await request.text();
-
   let event: Stripe.Event;
 
   try {
@@ -49,7 +48,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
-  // Если событие не из allowlist — молча подтверждаем
+  // ignore unrelated events
   if (!HANDLED_EVENTS.has(event.type)) {
     return NextResponse.json({ received: true });
   }
@@ -72,26 +71,38 @@ export async function POST(request: Request) {
 
         const product = session.metadata?.productId ?? 'authforge';
         const emailProduct = 'authforge' as const;
-
         const provider = session.metadata?.provider ?? 'stripe';
 
-        const result = await createIfNotExists({
-          email,
-          product,
-          provider,
-          checkoutSessionId: sessionId,
-          access: true,
-        });
+        const isDemoMode = process.env.AUTH_DEMO_MODE === 'true';
 
-        if (result.created) {
+        if (isDemoMode) {
+          // DEMO MODE — no DB, email only
           await sendPurchaseEmail({ to: email, product: emailProduct });
-        }
 
-        console.log('[webhook] checkout.session.completed', {
-          sessionId,
-          payment_status: session.payment_status,
-          created: result.created,
-        });
+          console.log('[webhook] checkout.session.completed (DEMO MODE)', {
+            sessionId,
+            payment_status: session.payment_status,
+            email_sent: true,
+          });
+        } else {
+          const result = await createIfNotExists({
+            email,
+            product,
+            provider,
+            checkoutSessionId: sessionId,
+            access: true,
+          });
+
+          if (result.created) {
+            await sendPurchaseEmail({ to: email, product: emailProduct });
+          }
+
+          console.log('[webhook] checkout.session.completed', {
+            sessionId,
+            payment_status: session.payment_status,
+            created: result.created,
+          });
+        }
 
         break;
       }
@@ -112,7 +123,6 @@ export async function POST(request: Request) {
 
         const product = session.metadata?.productId ?? 'authforge';
         const emailProduct = 'authforge' as const;
-
         const provider = session.metadata?.provider ?? 'stripe';
 
         const result = await createIfNotExists({
