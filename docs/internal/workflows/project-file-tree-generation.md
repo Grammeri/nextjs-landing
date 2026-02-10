@@ -1,113 +1,108 @@
 # Project File Tree Generation Workflow
 
-This document defines how to generate a clean and accurate project file tree
-for internal documentation, reviews, and technical discussions.
+This document defines how to generate a clean file tree for internal documentation, reviews, and discussions.
 
-It is intended for developers and maintainers working with this repository.
+It is intended for developers and maintainers who produce internal artifacts in this repository.
 
-It is not used for:
-- public documentation
-- marketing materials
-- onboarding guides
-- CI or build pipelines
+It is not used for public documentation, marketing content, or onboarding guides.
 
 ---
 
 ## Purpose
 
-The project file tree is generated to:
-- document the current repository structure during reviews
-- align on architectural changes in discussions
-- keep internal documentation accurate and consistent
+The file tree is generated to document the current structure during reviews, align on changes in discussions, and keep internal documentation accurate.
 
-The process is local-only and intentionally not automated.
-
-## Important note about `pnpm tree`
-
-Do not use `pnpm tree` for this workflow.
-
-`pnpm tree` is a built-in pnpm command that outputs the dependency graph
-(`node_modules`). It is not suitable for generating a repository file tree and
-will produce large, unreadable output.
-
-This workflow relies on Git, not on pnpm internals.
+The process is local-only and is not part of build or CI.
 
 ## Prerequisites
 
 Required tools and environment:
+
 - Node.js 18+
 - Git
 - A local clone of the repository
+- The `pnpm` package manager
 
-The following file must exist in the repository root:
-- `make-tree.js` — tracked internal tooling script
+The file `make-tree.js` must exist in the repository root.
+It is a tracked internal tooling script and must not be deleted.
 
-This file must not be deleted or moved.
+No global npm packages or additional system tools are required.
 
-## How to generate the file tree
+The file tree generation runs locally using Node.js and is not part of build or CI pipelines.
 
-Open a terminal (Git Bash, PowerShell, or similar) and navigate to the project
-root — the directory containing the `.git` folder.
+## Step-by-step process
 
-### Generate the tree
+### Open terminal
+
+Open Git Bash or a terminal, then go to the project root (the directory containing `.git`).
+
+### Generate tracked file list
+
+```bash
+pnpm tree
+```
+
+This command is the canonical way to generate a project file tree.
+
+It internally:
+
+- collects tracked files using Git
+- formats them into a readable tree
+- produces `tree.git.txt` and `tree.pretty.txt` as local artifacts
+
+The result is a stable, git-accurate snapshot of the current repository structure.
+
+### Manual execution (advanced or debugging)
+
+If needed for debugging or inspection, the process may be executed manually:
 
 ```bash
 git ls-files > tree.git.txt
+```
+
+### Format tree snapshot
+
+```bash
 node make-tree.js
 ```
 
-This does the following:
-- collects only Git-tracked files
-- excludes node_modules, build output, and ignored files
-- produces a stable, Git-accurate snapshot
-- generates a readable tree representation
+The script reads `tree.git.txt` and generates a structured, human-readable tree in `tree.pretty.txt`.
 
-## Generated files
-
-During local work, the following files may appear in the project root:
-- `make-tree.js` — tracked internal tooling script
-- `tree.git.txt` — local artifact (input)
-- `tree.pretty.txt` — local artifact (output)
-
-Only `make-tree.js` is tracked in Git.
+Both files are local-only artifacts and are not committed.
 
 ## Git policy
 
-The following files are explicitly ignored and must never be committed:
+Ignored local artifacts:
+
 - `tree.git.txt`
 - `tree.pretty.txt`
 
-These rules are defined in `.gitignore`.
+These rules live in `.gitignore`.
 
-The snapshot files are safe to keep locally and may be deleted at any time.
+## Local file artifacts
 
-## Regenerating the tree
+The following files may appear in the project root during local work:
 
-If the project structure changes and an updated snapshot is required:
+- `make-tree.js` — tracked internal tooling file, executed via `pnpm tree`
+- `tree.git.txt` — local artifact
+- `tree.pretty.txt` — local artifact
 
-### Remove old artifacts
+Only snapshot files are excluded from the repository and listed in `.gitignore`.
 
-```bash
-rm tree.git.txt tree.pretty.txt
-```
+They are safe to keep locally and do not need to be deleted after generation.
 
-### Generate a new snapshot
+If the project file structure changes and an updated snapshot is required, delete `tree.git.txt` and `tree.pretty.txt`, then regenerate them by following the steps described in this document.
 
-```bash
-git ls-files > tree.git.txt
-node make-tree.js
-```
+The generated snapshot files are local artifacts and are never part of version control history.
 
 ## Best practices
 
-- Always regenerate the tree immediately before updating documentation.
-- Treat the tree as context, not as a source of truth.
-- Never include dependency trees or node_modules.
-- Do not automate this workflow in CI.
+Always regenerate the tree using `pnpm tree` before updating docs.
+
+Do not rely on outdated snapshots, and treat the tree as context rather than a source of truth.
 
 ## Summary
 
-- The file tree is generated locally.
-- Git is the source of truth.
-- Snapshot files are never committed.
-- This document defines the canonical workflow for this repository.
+Generate locally using `pnpm tree`, keep artifacts uncommitted, and document only the final tree snapshot.
+
+This document is the structural reference for internal tooling and workflow documentation.
