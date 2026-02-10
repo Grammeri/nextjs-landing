@@ -45,3 +45,10 @@ next-env.d.ts
 # ----------------------------------------
 tree.git.txt
 tree.pretty.txt
+
+# ===============================
+# Workspace dependencies
+# ===============================
+node_modules/
+packages/**/node_modules/
+.pnpm-store/

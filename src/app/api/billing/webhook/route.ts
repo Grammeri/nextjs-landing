@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
-  // Если событие не из allowlist — молча подтверждаем (чтобы не засорять логи)
+  // Если событие не из allowlist — молча подтверждаем
   if (!HANDLED_EVENTS.has(event.type)) {
     return NextResponse.json({ received: true });
   }
@@ -71,6 +71,8 @@ export async function POST(request: Request) {
         }
 
         const product = session.metadata?.productId ?? 'authforge';
+        const emailProduct = 'authforge' as const;
+
         const provider = session.metadata?.provider ?? 'stripe';
 
         const result = await createIfNotExists({
@@ -82,7 +84,7 @@ export async function POST(request: Request) {
         });
 
         if (result.created) {
-          await sendPurchaseEmail({ to: email, product });
+          await sendPurchaseEmail({ to: email, product: emailProduct });
         }
 
         console.log('[webhook] checkout.session.completed', {
@@ -109,6 +111,8 @@ export async function POST(request: Request) {
         }
 
         const product = session.metadata?.productId ?? 'authforge';
+        const emailProduct = 'authforge' as const;
+
         const provider = session.metadata?.provider ?? 'stripe';
 
         const result = await createIfNotExists({
@@ -120,7 +124,7 @@ export async function POST(request: Request) {
         });
 
         if (result.created) {
-          await sendPurchaseEmail({ to: email, product });
+          await sendPurchaseEmail({ to: email, product: emailProduct });
         }
 
         console.log('[webhook] async_payment_succeeded', {
