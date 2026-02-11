@@ -167,8 +167,9 @@ export const renderMarkdown = async (
     const href = token.href ?? '';
     const title = token.title ? ` title="${token.title}"` : '';
     const isExternal = /^https?:\/\//i.test(href);
+    const isGitHub = href.includes('github.com');
     const isInternalDoc = !isExternal && /^(?:\.\/|\.\.\/|\/docs\/)/.test(href);
-    const externalAttr = isExternal ? ' data-external="true"' : '';
+    const externalAttr = isExternal && !isGitHub ? ' data-external="true"' : '';
     const internalAttr = !isExternal && isInternalDoc ? ' data-internal="true"' : '';
     const label = token.text ?? '';
 
