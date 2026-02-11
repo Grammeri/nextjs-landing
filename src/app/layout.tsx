@@ -6,7 +6,6 @@ import Footer from '@/components/footer/Footer';
 import CookieNotice from '@/components/cookie-notice/CookieNotice';
 
 import { PaywallModal } from '@/shared/ui/paywall-modal';
-import { DocsLinkInterceptor } from '@/shared/ui/protected-link';
 
 export const metadata: Metadata = {
   title: 'Next.js Landing',
@@ -30,9 +29,6 @@ export default function RootLayout({
 
         {/* Global UI overlays */}
         <PaywallModal />
-
-        {/* Docs client-side enhancers */}
-        <DocsLinkInterceptor />
       </body>
     </html>
   );
