@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 
 const inputFile = 'tree.git.txt';
 const outputFile = 'tree.pretty.txt';
@@ -37,7 +38,9 @@ function walk(node, prefix = '') {
   });
 }
 
-output.push('auth-forge/');
+const rootName = path.basename(process.cwd());
+output.push(rootName + '/');
+
 walk(tree);
 
 fs.writeFileSync(outputFile, output.join('\n'), 'utf8');
