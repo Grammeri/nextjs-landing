@@ -2,26 +2,18 @@
   "name": "nextjs-landing",
   "private": true,
   "packageManager": "pnpm@10.6.2",
-  "prisma": {
-    "schema": "packages/db/prisma/schema.prisma"
-  },
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "build": "pnpm prisma:generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "tsc": "tsc --noEmit",
-    "prisma:generate": "prisma generate --schema=packages/db/prisma/schema.prisma",
-    "prisma:migrate": "prisma migrate deploy --schema=packages/db/prisma/schema.prisma",
-    "dev:setup": "pnpm prisma:generate && pnpm prisma:migrate",
     "docs:tree": "git ls-files > tree.git.txt && node make-tree.js"
   },
   "dependencies": {
-    "@authforge/db": "workspace:*",
-    "@prisma/client": "6.19.2",
     "marked": "^17.0.1",
     "next": "16.1.1",
     "react": "^19",
@@ -40,7 +32,6 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
-    "prisma": "^6.1.0",
     "typescript": "^5"
   },
   "lint-staged": {
