@@ -27,7 +27,7 @@ next.config.ts
 tsconfig.json
 pnpm-workspace.yaml
 .github/workflows/
-.husky/pre-commit
+.husky/
 "
 
 STAGED_FILES=$(git diff --cached --name-only)
@@ -45,7 +45,7 @@ for file in $STAGED_FILES; do
         echo "Configuration files are protected."
         echo "If this change is intentional, run:"
         echo ""
-        echo "ALLOW_CONFIG_CHANGES=true git commit ..."
+        echo "ALLOW_CONFIG_CHANGES=true git commit -m \"chore(config): intentional change\""
         echo ""
         exit 1
         ;;
