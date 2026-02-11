@@ -3,9 +3,12 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { sendPurchaseEmail } from '@/shared/lib/email/send-purchase-email';
-import { createIfNotExists } from '@/shared/lib/billing/entitlement.store';
 
 export const runtime = 'nodejs';
+
+// ----------------------------
+// Stripe instance
+// ----------------------------
 
 function getStripe(): Stripe {
   const secretKey = process.env.STRIPE_SECRET_KEY;
@@ -19,11 +22,25 @@ function getStripe(): Stripe {
   });
 }
 
+// ----------------------------
+// Supported products
+// ----------------------------
+
+const ALLOWED_PRODUCTS = ['authforge', 'nextjs-test-kit'] as const;
+type AllowedProduct = (typeof ALLOWED_PRODUCTS)[number];
+
+// ----------------------------
+// Supported events
+// ----------------------------
+
 const HANDLED_EVENTS = new Set<string>([
   'checkout.session.completed',
   'checkout.session.async_payment_succeeded',
-  'checkout.session.async_payment_failed',
 ]);
+
+// ----------------------------
+// Webhook handler
+// ----------------------------
 
 export async function POST(request: Request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -33,6 +50,7 @@ export async function POST(request: Request) {
   }
 
   const signature = request.headers.get('stripe-signature');
+
   if (!signature) {
     return NextResponse.json({ error: 'Missing stripe-signature header' }, { status: 400 });
   }
@@ -48,120 +66,48 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
 
-  // ignore unrelated events
   if (!HANDLED_EVENTS.has(event.type)) {
     return NextResponse.json({ received: true });
   }
 
   try {
-    switch (event.type) {
-      case 'checkout.session.completed': {
-        const session = event.data.object as Stripe.Checkout.Session;
+    const session = event.data.object as Stripe.Checkout.Session;
 
-        const sessionId = session.id;
-        const email = session.customer_details?.email;
+    const sessionId = session.id;
+    const email = session.customer_details?.email;
 
-        if (!sessionId || !email) {
-          console.warn('[webhook] checkout.session.completed skipped', {
-            sessionId,
-            email,
-          });
-          break;
-        }
-
-        const product = session.metadata?.productId ?? 'authforge';
-        const emailProduct = 'authforge' as const;
-        const provider = session.metadata?.provider ?? 'stripe';
-
-        const isDemoMode = process.env.AUTH_DEMO_MODE === 'true';
-
-        if (isDemoMode) {
-          // DEMO MODE — no DB, email only
-          await sendPurchaseEmail({ to: email, product: emailProduct });
-
-          console.log('[webhook] checkout.session.completed (DEMO MODE)', {
-            sessionId,
-            payment_status: session.payment_status,
-            email_sent: true,
-          });
-        } else {
-          const result = await createIfNotExists({
-            email,
-            product,
-            provider,
-            checkoutSessionId: sessionId,
-            access: true,
-          });
-
-          if (result.created) {
-            await sendPurchaseEmail({ to: email, product: emailProduct });
-          }
-
-          console.log('[webhook] checkout.session.completed', {
-            sessionId,
-            payment_status: session.payment_status,
-            created: result.created,
-          });
-        }
-
-        break;
-      }
-
-      case 'checkout.session.async_payment_succeeded': {
-        const session = event.data.object as Stripe.Checkout.Session;
-
-        const sessionId = session.id;
-        const email = session.customer_details?.email;
-
-        if (!sessionId || !email) {
-          console.warn('[webhook] async_payment_succeeded skipped', {
-            sessionId,
-            email,
-          });
-          break;
-        }
-
-        const product = session.metadata?.productId ?? 'authforge';
-        const emailProduct = 'authforge' as const;
-        const provider = session.metadata?.provider ?? 'stripe';
-
-        const result = await createIfNotExists({
-          email,
-          product,
-          provider,
-          checkoutSessionId: sessionId,
-          access: true,
-        });
-
-        if (result.created) {
-          await sendPurchaseEmail({ to: email, product: emailProduct });
-        }
-
-        console.log('[webhook] async_payment_succeeded', {
-          sessionId,
-          payment_status: session.payment_status,
-          created: result.created,
-        });
-
-        break;
-      }
-
-      case 'checkout.session.async_payment_failed': {
-        const session = event.data.object as Stripe.Checkout.Session;
-
-        console.warn('[webhook] async_payment_failed', {
-          sessionId: session.id,
-          payment_status: session.payment_status,
-          amount_total: session.amount_total,
-          currency: session.currency,
-        });
-
-        break;
-      }
-
-      default:
-        return NextResponse.json({ received: true });
+    if (!sessionId || !email) {
+      console.warn('[webhook] skipped — missing sessionId or email', {
+        sessionId,
+        email,
+      });
+      return NextResponse.json({ received: true });
     }
+
+    const rawProductId = session.metadata?.productId;
+
+    if (!rawProductId || !ALLOWED_PRODUCTS.includes(rawProductId as AllowedProduct)) {
+      console.warn('[webhook] unknown or missing productId', {
+        sessionId,
+        rawProductId,
+      });
+      return NextResponse.json({ received: true });
+    }
+
+    const productId = rawProductId as AllowedProduct;
+
+    // 🔹 Send email with ZIP link
+    await sendPurchaseEmail({
+      to: email,
+      product: productId,
+    });
+
+    console.log('[webhook] purchase processed', {
+      sessionId,
+      product: productId,
+      payment_status: session.payment_status,
+      email_sent: true,
+    });
 
     return NextResponse.json({ received: true });
   } catch (err) {
