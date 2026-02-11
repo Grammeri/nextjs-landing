@@ -25,13 +25,29 @@ export default function DocsAnchorScroll() {
       button.type = 'button';
       button.className = 'docs-copy-button docs-copy-button--inline';
       button.setAttribute('aria-label', 'Copy command');
-      button.setAttribute('data-docs-copy', value);
+
       appendCopyIcon(button);
+
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(value);
+
+          // 🔹 ВАЖНО: это то, что ждёт CSS
+          button.setAttribute('data-copied', 'true');
+
+          setTimeout(() => {
+            button.removeAttribute('data-copied');
+          }, 1500);
+        } catch (err) {
+          console.error('Copy failed', err);
+        }
+      });
+
       return button;
     };
 
     // ---------------------------------------
-    // Copy Injection (universal)
+    // Copy Injection
     // ---------------------------------------
 
     const enhanceCopySupport = () => {
@@ -40,7 +56,7 @@ export default function DocsAnchorScroll() {
       articles.forEach((article) => {
         if (!(article instanceof HTMLElement)) return;
 
-        // === 1️⃣ pre > code blocks ===
+        // === pre > code blocks ===
         const codeBlocks = article.querySelectorAll('pre > code');
 
         codeBlocks.forEach((code) => {
@@ -48,12 +64,9 @@ export default function DocsAnchorScroll() {
 
           const text = code.textContent?.trim() ?? '';
           if (!text) return;
-
           if (!isShellLike(text)) return;
 
-          if (code.parentElement?.classList.contains('docs-copy-inline')) {
-            return;
-          }
+          if (code.parentElement?.classList.contains('docs-copy-inline')) return;
 
           const pre = code.parentElement;
           if (!pre) return;
@@ -68,7 +81,7 @@ export default function DocsAnchorScroll() {
           pre.appendChild(wrapper);
         });
 
-        // === 2️⃣ Inline code (outside pre) ===
+        // === Inline code (outside pre) ===
         const inlineCodes = Array.from(article.querySelectorAll('code')).filter(
           (code) => !code.closest('pre'),
         );
@@ -78,12 +91,9 @@ export default function DocsAnchorScroll() {
 
           const text = code.textContent?.trim() ?? '';
           if (!text) return;
-
           if (!isShellLike(text)) return;
 
-          if (code.parentElement?.classList.contains('docs-copy-inline')) {
-            return;
-          }
+          if (code.parentElement?.classList.contains('docs-copy-inline')) return;
 
           const wrapper = document.createElement('span');
           wrapper.className = 'docs-copy-inline';
@@ -106,7 +116,7 @@ export default function DocsAnchorScroll() {
       links.forEach((link) => {
         const href = link.getAttribute('href') ?? '';
 
-        // Skip GitHub links
+        // Skip GitHub
         if (href.includes('github.com')) {
           const wrapper = link.closest('.docs-external-inline');
           if (wrapper) wrapper.replaceWith(link);
@@ -114,7 +124,6 @@ export default function DocsAnchorScroll() {
         }
 
         if (link.dataset.external !== 'true') return;
-
         if (link.closest('.docs-external-inline')) return;
 
         const wrapper = document.createElement('span');
@@ -133,28 +142,11 @@ export default function DocsAnchorScroll() {
     };
 
     // ---------------------------------------
-    // Injection trigger
+    // Run once per route
     // ---------------------------------------
 
-    const inject = () => {
-      const hasCode = scopeEl.querySelectorAll('code').length > 0;
-      if (!hasCode) return false;
-
-      enhanceCopySupport();
-      enhanceExternalLinks();
-
-      return true;
-    };
-
-    const observer = new MutationObserver(() => {
-      if (inject()) observer.disconnect();
-    });
-
-    observer.observe(scopeEl, { childList: true, subtree: true });
-
-    if (inject()) observer.disconnect();
-
-    return () => observer.disconnect();
+    enhanceCopySupport();
+    enhanceExternalLinks();
   }, [pathname]);
 
   return null;
