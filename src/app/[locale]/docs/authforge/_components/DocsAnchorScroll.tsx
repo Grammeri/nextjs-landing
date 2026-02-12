@@ -14,17 +14,14 @@ export default function DocsAnchorScroll() {
     if (!(scopeEl instanceof HTMLElement)) return;
 
     // ---------------------------------------
-    // Utils
+    // Copy Button Factory
     // ---------------------------------------
-
-    const isShellLike = (text: string) =>
-      /^(pnpm|npm|yarn|npx|git|curl|wget|docker|docker-compose|cd)\b/i.test(text);
 
     const createCopyButton = (value: string) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'docs-copy-button docs-copy-button--inline';
-      button.setAttribute('aria-label', 'Copy command');
+      button.setAttribute('aria-label', 'Copy code');
 
       appendCopyIcon(button);
 
@@ -32,7 +29,6 @@ export default function DocsAnchorScroll() {
         try {
           await navigator.clipboard.writeText(value);
 
-          // 🔹 ВАЖНО: это то, что ждёт CSS
           button.setAttribute('data-copied', 'true');
 
           setTimeout(() => {
@@ -47,7 +43,7 @@ export default function DocsAnchorScroll() {
     };
 
     // ---------------------------------------
-    // Copy Injection
+    // Copy Injection (All code blocks)
     // ---------------------------------------
 
     const enhanceCopySupport = () => {
@@ -56,7 +52,6 @@ export default function DocsAnchorScroll() {
       articles.forEach((article) => {
         if (!(article instanceof HTMLElement)) return;
 
-        // === pre > code blocks ===
         const codeBlocks = article.querySelectorAll('pre > code');
 
         codeBlocks.forEach((code) => {
@@ -64,13 +59,14 @@ export default function DocsAnchorScroll() {
 
           const text = code.textContent?.trim() ?? '';
           if (!text) return;
-          if (!isShellLike(text)) return;
 
-          if (code.parentElement?.classList.contains('docs-copy-inline')) return;
+          // Prevent double injection
+          if (code.parentElement?.querySelector('.docs-copy-button')) return;
 
           const pre = code.parentElement;
           if (!pre) return;
 
+          // Wrapper keeps button aligned
           const wrapper = document.createElement('span');
           wrapper.className = 'docs-copy-inline';
           wrapper.setAttribute('data-docs-copy-inline', 'true');
@@ -84,7 +80,7 @@ export default function DocsAnchorScroll() {
     };
 
     // ---------------------------------------
-    // External Links
+    // External Links Icon
     // ---------------------------------------
 
     const enhanceExternalLinks = () => {
@@ -93,7 +89,7 @@ export default function DocsAnchorScroll() {
       links.forEach((link) => {
         const href = link.getAttribute('href') ?? '';
 
-        // Skip GitHub
+        // Skip GitHub links
         if (href.includes('github.com')) {
           const wrapper = link.closest('.docs-external-inline');
           if (wrapper) wrapper.replaceWith(link);
@@ -112,6 +108,7 @@ export default function DocsAnchorScroll() {
         const icon = document.createElement('span');
         icon.className = 'docs-external-icon docs-external-icon--hint';
         icon.setAttribute('aria-hidden', 'true');
+
         icon.appendChild(createIconElement(externalLinkIconDefinition, 'docs-external-icon-svg'));
 
         wrapper.appendChild(icon);
