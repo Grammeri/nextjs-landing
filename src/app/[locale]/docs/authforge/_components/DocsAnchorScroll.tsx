@@ -18,7 +18,7 @@ export default function DocsAnchorScroll() {
     // ---------------------------------------
 
     const isShellLike = (text: string) =>
-      /^(pnpm|npm|yarn|npx|git|curl|wget|docker|docker-compose)\b/i.test(text);
+      /^(pnpm|npm|yarn|npx|git|curl|wget|docker|docker-compose|cd)\b/i.test(text);
 
     const createCopyButton = (value: string) => {
       const button = document.createElement('button');
