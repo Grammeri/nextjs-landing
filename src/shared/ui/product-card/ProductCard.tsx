@@ -6,7 +6,7 @@ type ProductCardProps = {
   interactive?: boolean;
   variant?: 'default' | 'placeholder';
 };
-
+// test
 export function ProductCard({
   children,
   interactive = true,

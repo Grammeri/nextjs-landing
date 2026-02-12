@@ -169,8 +169,10 @@ export const renderMarkdown = async (
     const isExternal = /^https?:\/\//i.test(href);
     const isGitHub = href.includes('github.com');
     const isInternalDoc = !isExternal && /^(?:\.\/|\.\.\/|\/docs\/)/.test(href);
+
     const externalAttr = isExternal && !isGitHub ? ' data-external="true"' : '';
     const internalAttr = !isExternal && isInternalDoc ? ' data-internal="true"' : '';
+
     const label = token.text ?? '';
 
     if (isInternalDoc) {
@@ -180,7 +182,23 @@ export const renderMarkdown = async (
     return `<a href="${href}"${title}${externalAttr}${internalAttr}>${label}</a>`;
   };
 
+  // -----------------------------
+  // Render markdown → HTML
+  // -----------------------------
   const html = await marked.parse(markdown, { renderer });
+
+  // ✅ Clean up ugly href="./demo-mode" → href="demo-mode"
+  // Only visual cleanup, internal logic stays intact.
+  const cleanedHtml = html
+    // href="./demo-mode" → href="demo-mode"
+    .replaceAll('href="./', 'href="')
+
+    // href="../environment" → href="environment"
+    .replaceAll('href="../', 'href="');
+
+  // -----------------------------
+  // Broken internal link check
+  // -----------------------------
   const brokenLinks: string[] = [];
 
   for (const href of internalDocLinks) {
@@ -209,5 +227,5 @@ export const renderMarkdown = async (
     console.warn(message);
   }
 
-  return { html, outline };
+  return { html: cleanedHtml, outline };
 };
