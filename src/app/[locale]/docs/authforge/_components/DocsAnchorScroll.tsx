@@ -80,29 +80,6 @@ export default function DocsAnchorScroll() {
 
           pre.appendChild(wrapper);
         });
-
-        // === Inline code (outside pre) ===
-        const inlineCodes = Array.from(article.querySelectorAll('code')).filter(
-          (code) => !code.closest('pre'),
-        );
-
-        inlineCodes.forEach((code) => {
-          if (!(code instanceof HTMLElement)) return;
-
-          const text = code.textContent?.trim() ?? '';
-          if (!text) return;
-          if (!isShellLike(text)) return;
-
-          if (code.parentElement?.classList.contains('docs-copy-inline')) return;
-
-          const wrapper = document.createElement('span');
-          wrapper.className = 'docs-copy-inline';
-          wrapper.setAttribute('data-docs-copy-inline', 'true');
-
-          code.parentNode?.insertBefore(wrapper, code);
-          wrapper.appendChild(code);
-          wrapper.appendChild(createCopyButton(text));
-        });
       });
     };
 
