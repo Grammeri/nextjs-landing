@@ -1,5 +1,6 @@
 'use client';
 
+import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { AUTHFORGE_PRICING_CARD } from '@/shared/config/products/authforge';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { PricingCard } from '@/shared/ui/pricing-card';
@@ -12,7 +13,7 @@ export default function AuthForgePricingCard() {
       {...AUTHFORGE_PRICING_CARD}
       paymentTitle="Select payment method"
       onPayWithStripe={checkoutWithStripe}
-      onPayWithPaypal={checkoutWithPaypal}
+      onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
     />
   );
 }
