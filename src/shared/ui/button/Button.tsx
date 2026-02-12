@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 type ButtonVariant = 'primary' | 'secondary' | 'inverted';
 
 type ButtonBaseProps = {
-  variant: ButtonVariant;
+  variant?: ButtonVariant;
   children: ReactNode;
   className?: string;
 };
@@ -27,7 +27,11 @@ const joinClassNames = (...classes: Array<string | undefined>) => classes.filter
 
 export function Button(props: ButtonProps) {
   const { variant, className } = props;
-  const combinedClassName = joinClassNames(styles.button, styles[variant], className);
+  const combinedClassName = joinClassNames(
+    styles.button,
+    variant ? styles[variant] : undefined,
+    className,
+  );
 
   if (props.as === 'a') {
     const { as, ...rest } = props;

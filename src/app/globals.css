@@ -33,27 +33,42 @@
   --color-tertiary: #9d2235;
   --color-tertiary-faded: rgba(157, 34, 53, 0.1);
 
-   /* ===============================
-     Surface — Semantic
-     =============================== */
-     --color-surface-base: var(--color-bg);
-     --color-surface-raised: var(--color-bg);
-     --color-surface-overlay: var(--color-bg);
-     --color-surface-inverse: var(--color-surface-system);
+ /* ===============================
+   Surface — Semantic
+   =============================== */
+--color-surface-base: var(--color-bg);
+--color-surface-raised: var(--color-bg);
+--color-surface-overlay: var(--color-bg);
+--color-surface-inverse: var(--color-surface-system);
 
-  /* Texas flag inspired */
-  --color-texas-blue: var(--color-product-text);
-  --color-texas-red: #c0392b;
-  /* softer version for dark backgrounds */
-  --color-texas-red-soft: color-mix(in srgb, var(--color-texas-red) 70%, white 30%);
-  /* List markers (checkmarks, bullets) */
-  --color-list-marker: var(--color-tertiary); /* Texas red */
-  --color-success: #009639;
-  --color-success-faded: rgba(0, 150, 57, 0.1);
-  --color-warning: #ffc72c;
-  --color-warning-faded: rgba(255, 199, 44, 0.1);
-  --color-error: #d32f2f;
-  --color-error-faded: rgba(211, 47, 47, 0.1);
+/* Texas flag inspired */
+--color-texas-blue: var(--color-product-text);
+--color-texas-red: #c0392b;
+
+/* softer version for dark backgrounds */
+--color-texas-red-soft: color-mix(in srgb, var(--color-texas-red) 70%, white 30%);
+
+/* Cookie Notice — Semantic Surface */
+--color-surface-cookie: var(--color-texas-red);
+--color-surface-cookie-text: var(--color-text-inverse);
+
+/* Button */
+--color-surface-cookie-button-bg: transparent;
+--color-surface-cookie-button-text: var(--color-text-inverse);
+--color-surface-cookie-button-border: var(--color-text-inverse);
+--color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
+
+/* List markers (checkmarks, bullets) */
+--color-list-marker: var(--color-tertiary); /* Texas red */
+
+--color-success: #009639;
+--color-success-faded: rgba(0, 150, 57, 0.1);
+
+--color-warning: #ffc72c;
+--color-warning-faded: rgba(255, 199, 44, 0.1);
+
+--color-error: #d32f2f;
+--color-error-faded: rgba(211, 47, 47, 0.1);
 
   /* On-image text colors */
   --color-on-image-primary: rgba(255, 255, 255, 0.95);

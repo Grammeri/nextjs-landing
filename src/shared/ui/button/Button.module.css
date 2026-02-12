@@ -19,8 +19,8 @@
 }
 
 .primary {
-  background: var(--color-texas-blue);
-  color: var(--color-on-image-primary);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
 }
 
 .secondary {

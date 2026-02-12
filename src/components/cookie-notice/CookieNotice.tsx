@@ -16,8 +16,6 @@ export default function CookieNotice() {
     try {
       const accepted = window.localStorage.getItem(STORAGE_KEY) === 'true';
       setHasAccepted(accepted);
-    } catch {
-      // ignore storage errors
     } finally {
       setIsReady(true);
     }
@@ -27,9 +25,7 @@ export default function CookieNotice() {
     setHasAccepted(true);
     try {
       window.localStorage.setItem(STORAGE_KEY, 'true');
-    } catch {
-      // Ignore storage errors; state already hides the notice.
-    }
+    } catch {}
   };
 
   if (!isReady || pathname?.startsWith('/demo') || hasAccepted) {
@@ -40,7 +36,12 @@ export default function CookieNotice() {
     <div className={styles.notice} role="region" aria-live="polite">
       <div className={styles.inner}>
         <p className={styles.text}>We use essential cookies to ensure this site works properly.</p>
-        <Button variant="primary" onClick={handleAccept}>
+
+        <Button
+          className={styles.cookieButton}
+          onClick={handleAccept}
+          aria-label="Accept cookie notice"
+        >
           Got it
         </Button>
       </div>
