@@ -14,6 +14,7 @@
     "docs:tree": "git ls-files > tree.git.txt && node make-tree.js"
   },
   "dependencies": {
+    "@prisma/client": "^7.4.0",
     "marked": "^17.0.1",
     "next": "16.1.1",
     "react": "^19",
@@ -32,6 +33,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
+    "prisma": "^7.4.0",
     "typescript": "^5"
   },
   "lint-staged": {

@@ -52,3 +52,5 @@ tree.pretty.txt
 node_modules/
 packages/**/node_modules/
 .pnpm-store/
+
+/src/generated/prisma
