@@ -1,14 +1,38 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model Order {
+  id                String   @id @default(cuid())
+
+  productId         String
+  buyerEmail        String
+
+  provider          PaymentProvider
+  providerSessionId String   @unique
+  providerEventId   String   @unique
+
+  amount            Int
+  currency          String
+
+  status            OrderStatus @default(PAID)
+
+  emailSent         Boolean  @default(false)
+  emailSentAt       DateTime?
+
+  createdAt         DateTime @default(now())
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+}
+
+enum OrderStatus {
+  PAID
+  REFUNDED
 }
