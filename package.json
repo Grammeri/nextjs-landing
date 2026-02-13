@@ -14,6 +14,7 @@
     "docs:tree": "git ls-files > tree.git.txt && node make-tree.js"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "marked": "^17.0.1",
     "next": "16.1.1",
