@@ -175,12 +175,22 @@
   --color-product-text-muted: #415a77;
 
   /* Header surface */
-  --header-bg-transparent: transparent;
-  --header-bg-scrolled: rgba(10, 20, 35, 0.85);
-  --header-backdrop-blur: blur(6px);
-  --header-transition-duration: 0.2s;
-  --header-transition-easing: ease;
-  --header-z-index: 10;
+--header-bg-transparent: transparent;
+--header-bg-scrolled: rgba(10, 20, 35, 0.85);
+--header-backdrop-blur: blur(6px);
+--header-transition-duration: 0.2s;
+--header-transition-easing: ease;
+--header-z-index: 10;
+
+/* Footer surface */
+--footer-bg: rgba(10, 20, 35, 0.85);
+
+/* Footer layout tokens */
+--footer-padding-y: var(--spacing-4xl);
+--footer-padding-x: var(--container-padding);
+--footer-column-gap: var(--spacing-4xl);
+--footer-row-gap: var(--spacing-md);
+--footer-legal-link-gap: var(--spacing-xs);
 
   /* Surface / Card */
   --surface-card-bg: rgba(12, 28, 48, 0.85);
