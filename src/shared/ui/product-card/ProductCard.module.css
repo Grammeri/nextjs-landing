@@ -2,17 +2,15 @@
   position: relative;
   padding: var(--spacing-xl);
   background: var(--surface-card-bg);
-  -webkit-backdrop-filter: var(--surface-card-backdrop);
-  backdrop-filter: var(--surface-card-backdrop);
   border: 1px solid var(--card-border-color);
   border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow-soft);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   height: 100%;
   transition:
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+  box-shadow var(--motion-duration-base) var(--motion-easing-standard),
+  transform var(--motion-duration-base) var(--motion-easing-standard);
 }
 
 .content {

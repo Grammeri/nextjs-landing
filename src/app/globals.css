@@ -242,8 +242,9 @@
 --footer-legal-link-gap: var(--spacing-xs);
 
   /* Surface / Card */
-  --surface-card-bg: rgba(12, 28, 48, 0.85);
-  --surface-card-backdrop: blur(12px);
+  --surface-card-bg: var(--color-surface-system);
+  --surface-card-backdrop: none;
+  
   --surface-card-border: rgba(255, 255, 255, 0.08);
   --surface-card-radius: var(--radius-lg);
 
