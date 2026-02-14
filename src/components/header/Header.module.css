@@ -3,8 +3,12 @@
   top: 0;
   z-index: var(--header-z-index);
   background: var(--header-bg-transparent);
+
+  /* state tokens */
   --header-link-color: var(--color-product-text-muted);
+  --header-link-hover-color: var(--color-product-text);
   --header-brand-color: var(--color-product-text);
+
   transition:
     background-color var(--header-transition-duration) var(--header-transition-easing),
     backdrop-filter var(--header-transition-duration) var(--header-transition-easing);
@@ -13,8 +17,11 @@
 .scrolled {
   background-color: var(--header-bg-scrolled);
   backdrop-filter: var(--header-backdrop-blur);
-  --header-link-color: var(--color-on-image-secondary);
-  --header-brand-color: var(--color-on-image-primary);
+
+  --header-link-color: var(--color-on-image-footer);          /* softer */
+  --header-link-hover-color: var(--color-on-image-primary);   /* pure white */
+  --header-brand-color: var(--color-on-image-footer);
+  --header-brand-hover-color: var(--color-on-image-primary);  
 }
 
 .inner {
@@ -27,13 +34,15 @@
 .brand {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--header-brand-color);
+  color: var(--header-link-color);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .brand:hover {
-  opacity: var(--opacity-hover-subtle);
+  color: var(--header-link-hover-color);
 }
 
 .brand:focus-visible {
@@ -53,19 +62,18 @@
   font-weight: var(--font-weight-medium);
   color: var(--header-link-color);
   text-decoration: none;
+
   transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    opacity var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .navLink:hover {
-  color: var(--header-link-color);
-  opacity: 1;
+  color: var(--header-link-hover-color);
 }
 
 .navLink:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-sm);
-  color: var(--header-link-color);
 }

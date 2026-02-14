@@ -51,7 +51,6 @@
 
 .legalLink:hover {
   color: var(--color-on-image-primary);
-  transform: translateY(-1px);
 }
 
 .copyright {
