@@ -23,17 +23,13 @@
       "@authforge/db": ["./packages/db/src"]
     }
   },
- "include": [
-  "next-env.d.ts",
-  "src/**/*.ts",
-  "src/**/*.tsx",
-  "src/**/*.mts",
-  ".next/types/**/*.ts",
-  ".next/dev/types/**/*.ts"
-],
-"exclude": [
-  "node_modules",
-  "content/**"
-],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.mts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "content/**"],
 }
