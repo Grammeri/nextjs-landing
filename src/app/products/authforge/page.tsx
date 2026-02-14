@@ -27,17 +27,15 @@ export default function AuthForgeProductPage() {
             'AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products.\n\n' +
             'AuthForge is database-agnostic by design. PostgreSQL is used as a production-ready reference setup via Prisma, not as a hard dependency. You can adapt AuthForge to other databases without changing core authentication logic.'
           }
-          primaryAction={
-            <Button as="a" href="/demo" variant="primary">
-              View Demo
-            </Button>
-          }
           secondaryAction={
             <div className={styles.heroActions}>
+              <Button as="a" href="/demo" variant="secondary">
+                View Demo
+              </Button>
               <Button as="a" href="/docs/authforge/quick-start" variant="secondary">
                 Read Docs
               </Button>
-              <Button onClick={scrollToPricing} variant="secondary">
+              <Button onClick={scrollToPricing} variant="primary">
                 Buy license
               </Button>
             </div>
