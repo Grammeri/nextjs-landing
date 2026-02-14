@@ -183,15 +183,28 @@
   --header-transition-easing: ease;
   --header-z-index: 10;
 
-  /* Footer surface */
-  --footer-bg: rgba(10, 20, 35);
+/* Footer surface */
+--footer-bg: rgba(10, 20, 35);
 
-  /* Footer layout tokens */
-  --footer-padding-y: var(--spacing-4xl);
-  --footer-padding-x: var(--container-padding);
-  --footer-column-gap: var(--spacing-4xl);
-  --footer-row-gap: var(--spacing-xxs);
-  --footer-legal-link-gap: var(--spacing-xs);
+/* Footer decorative */
+--footer-divider-color: rgba(255, 255, 255, 0.12);
+--footer-divider-gradient: linear-gradient(
+  to bottom,
+  transparent,
+  var(--footer-divider-color),
+  transparent
+);
+
+/* Footer divider metrics */
+--footer-divider-thickness: 1px;
+--footer-divider-offset: calc(var(--footer-column-gap) / 2);
+
+/* Footer layout tokens */
+--footer-padding-y: var(--spacing-4xl);
+--footer-padding-x: var(--container-padding);
+--footer-column-gap: var(--spacing-4xl);
+--footer-row-gap: var(--spacing-xxs);
+--footer-legal-link-gap: var(--spacing-xs);
 
   /* Surface / Card */
   --surface-card-bg: rgba(12, 28, 48, 0.85);
