@@ -37,6 +37,8 @@ export function PricingCard({
   paymentLayout = 'full',
 }: PricingCardProps) {
   const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
+  const [isAccepted, setIsAccepted] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   return (
     <ProductCard interactive={false}>
@@ -66,6 +68,12 @@ export function PricingCard({
                 selected={selectedProvider === 'stripe'}
                 onSelect={() => {
                   setSelectedProvider('stripe');
+                  if (!isAccepted) {
+                    setShowError(true);
+                    return;
+                  }
+
+                  setShowError(false);
                   void onPayWithStripe();
                 }}
               />
@@ -76,11 +84,47 @@ export function PricingCard({
                 selected={selectedProvider === 'paypal'}
                 onSelect={() => {
                   setSelectedProvider('paypal');
+                  if (!isAccepted) {
+                    setShowError(true);
+                    return;
+                  }
+
+                  setShowError(false);
                   void onPayWithPaypal();
                 }}
               />
             )}
           </SelectableGroup>
+
+          <div className={styles.consentWrapper}>
+            <label className={styles.consentLabel}>
+              <input
+                type="checkbox"
+                checked={isAccepted}
+                aria-invalid={showError}
+                onChange={(e) => {
+                  setIsAccepted(e.target.checked);
+                  if (e.target.checked) {
+                    setShowError(false);
+                  }
+                }}
+                className={showError ? styles.checkboxError : undefined}
+              />
+              <span>
+                I agree to the{' '}
+                <a href="/legal" className={styles.termsLink}>
+                  Terms & Conditions
+                </a>
+              </span>
+            </label>
+
+            {showError && (
+              <p className={styles.errorText}>
+                <span aria-hidden="true">⚠</span>
+                <span>You must accept the Terms before proceeding.</span>
+              </p>
+            )}
+          </div>
         </div>
         {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
       </div>

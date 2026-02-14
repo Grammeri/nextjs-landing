@@ -24,6 +24,19 @@
   --color-text-success: var(--color-success);
   --color-text-warning: var(--color-warning);
   --color-text-error: var(--color-error);
+/* ===============================
+   Validation / Warning
+   =============================== */
+
+   --color-text-validation: var(--color-text-error);
+   --font-size-validation: var(--font-size-sm);
+
+   --color-surface-validation: var(--color-error-faded);
+--color-text-validation: var(--color-error);
+--radius-validation: var(--radius-sm);
+--spacing-validation-y: var(--spacing-xs);
+--spacing-validation-x: var(--spacing-sm);
+   
 
   /* Colors - Texas faded palette */
   --color-primary: #bf5700;
@@ -137,6 +150,28 @@
   --radius-surface: var(--radius-lg);
   --radius-overlay: var(--radius-lg);
   --radius-pill: var(--radius-full);
+
+/* ===============================
+   Form Controls — Base
+   =============================== */
+
+   --control-size-sm: 16px;
+   --control-size-md: 20px;
+   --control-size-lg: 24px;
+   
+   /* ===============================
+      Form Controls — Checkbox
+      =============================== */
+   
+   --control-checkbox-size: var(--control-size-md);
+   --control-checkbox-radius: var(--radius-sm);
+   --control-checkbox-border: var(--color-border-subtle);
+   --control-checkbox-bg: #ffffff;
+   --control-checkbox-check: var(--color-texas-red);
+   --control-checkbox-error-border: var(--color-error);
+   
+   /* Checkmark */
+   --control-checkbox-check-size: calc(var(--control-checkbox-size) * 0.6);   
 
   /* ===============================
      Overlay / Scrim

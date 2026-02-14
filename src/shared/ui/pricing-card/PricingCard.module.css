@@ -52,3 +52,106 @@
   color: var(--select-section-color);
   text-align: var(--select-section-text-align);
 }
+
+.consentWrapper {
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.consentLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-on-image-primary);
+}
+
+.consentLabel input {
+  appearance: none;
+  -webkit-appearance: none;
+
+  margin-top: 3px;
+
+  width: var(--control-checkbox-size);
+  height: var(--control-checkbox-size);
+
+  border-radius: var(--control-checkbox-radius);
+  border: 2px solid var(--control-checkbox-border);
+  background: var(--control-checkbox-bg);
+
+  display: grid;
+  place-content: center;
+
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition:
+    border-color var(--motion-duration-fast) var(--motion-easing-standard),
+    background-color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.consentLabel input::after {
+  content: "";
+  width: var(--control-checkbox-check-size);
+  height: var(--control-checkbox-check-size);
+  transform: scale(0);
+  transition: transform var(--motion-duration-fast) var(--motion-easing-standard);
+
+  background: var(--control-checkbox-check);
+
+  clip-path: polygon(
+    14% 44%,
+    0 65%,
+    50% 100%,
+    100% 16%,
+    80% 0,
+    43% 62%
+  );
+}
+
+
+.consentLabel input:checked::after {
+  transform: scale(1);
+}
+
+.consentLabel input:hover {
+  border-color: var(--color-texas-red-soft);
+}
+
+
+.checkboxError {
+  border-color: var(--control-checkbox-error-border) !important;
+}
+
+
+.errorText {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+
+  font-size: var(--font-size-validation);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-base);
+
+  color: var(--color-error);
+  background: var(--color-error-faded);
+
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+
+  border-left: 3px solid var(--color-error);
+}
+
+
+.termsLink {
+  color: var(--color-texas-red);
+  text-decoration: underline;
+  transition: opacity var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.termsLink:hover {
+  opacity: var(--opacity-hover-subtle);
+}
+
