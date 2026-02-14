@@ -111,6 +111,7 @@
 
   /* Spacing scale */
   --spacing-0: 0;
+  --spacing-xxs: 2px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -183,13 +184,13 @@
 --header-z-index: 10;
 
 /* Footer surface */
---footer-bg: rgba(10, 20, 35, 0.85);
+--footer-bg: rgba(10, 20, 35);
 
 /* Footer layout tokens */
 --footer-padding-y: var(--spacing-4xl);
 --footer-padding-x: var(--container-padding);
 --footer-column-gap: var(--spacing-4xl);
---footer-row-gap: var(--spacing-md);
+--footer-row-gap: var(--spacing-xxs);
 --footer-legal-link-gap: var(--spacing-xs);
 
   /* Surface / Card */
