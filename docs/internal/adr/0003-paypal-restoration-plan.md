@@ -57,13 +57,13 @@ File: `src/shared/config/billing.ts`
 Change:
 
 ```ts
-paypal: false
+paypal: false;
 ```
 
 To:
 
 ```ts
-paypal: true
+paypal: true;
 ```
 
 ### Step 2 — Re-enable PayPal button in pricing cards
@@ -87,7 +87,7 @@ File: `src/app/api/billing/checkout/route.ts`
 Provider must allow:
 
 ```ts
-provider: 'stripe' | 'paypal'
+provider: 'stripe' | 'paypal';
 ```
 
 And PayPal catalog entries must be valid.
@@ -126,4 +126,3 @@ Notes:
 Outcome:
 
 The project ships with Stripe-only billing today, while keeping PayPal integration safely deferred for a future release.
-

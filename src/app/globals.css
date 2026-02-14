@@ -18,12 +18,12 @@
   /* ===============================
      Text — Semantic
      =============================== */
-     --color-text-primary: var(--color-text);
-     --color-text-secondary: var(--color-muted);
-     --color-text-accent: var(--color-accent);
-     --color-text-success: var(--color-success);
-     --color-text-warning: var(--color-warning);
-     --color-text-error: var(--color-error);
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-muted);
+  --color-text-accent: var(--color-accent);
+  --color-text-success: var(--color-success);
+  --color-text-warning: var(--color-warning);
+  --color-text-error: var(--color-error);
 
   /* Colors - Texas faded palette */
   --color-primary: #bf5700;
@@ -33,42 +33,42 @@
   --color-tertiary: #9d2235;
   --color-tertiary-faded: rgba(157, 34, 53, 0.1);
 
- /* ===============================
+  /* ===============================
    Surface — Semantic
    =============================== */
---color-surface-base: var(--color-bg);
---color-surface-raised: var(--color-bg);
---color-surface-overlay: var(--color-bg);
---color-surface-inverse: var(--color-surface-system);
+  --color-surface-base: var(--color-bg);
+  --color-surface-raised: var(--color-bg);
+  --color-surface-overlay: var(--color-bg);
+  --color-surface-inverse: var(--color-surface-system);
 
-/* Texas flag inspired */
---color-texas-blue: var(--color-product-text);
---color-texas-red: #c0392b;
+  /* Texas flag inspired */
+  --color-texas-blue: var(--color-product-text);
+  --color-texas-red: #c0392b;
 
-/* softer version for dark backgrounds */
---color-texas-red-soft: color-mix(in srgb, var(--color-texas-red) 70%, white 30%);
+  /* softer version for dark backgrounds */
+  --color-texas-red-soft: color-mix(in srgb, var(--color-texas-red) 70%, white 30%);
 
-/* Cookie Notice — Semantic Surface */
---color-surface-cookie: var(--color-texas-red);
---color-surface-cookie-text: var(--color-text-inverse);
+  /* Cookie Notice — Semantic Surface */
+  --color-surface-cookie: var(--color-texas-red);
+  --color-surface-cookie-text: var(--color-text-inverse);
 
-/* Button */
---color-surface-cookie-button-bg: transparent;
---color-surface-cookie-button-text: var(--color-text-inverse);
---color-surface-cookie-button-border: var(--color-text-inverse);
---color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
+  /* Button */
+  --color-surface-cookie-button-bg: transparent;
+  --color-surface-cookie-button-text: var(--color-text-inverse);
+  --color-surface-cookie-button-border: var(--color-text-inverse);
+  --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
-/* List markers (checkmarks, bullets) */
---color-list-marker: var(--color-tertiary); /* Texas red */
+  /* List markers (checkmarks, bullets) */
+  --color-list-marker: var(--color-tertiary); /* Texas red */
 
---color-success: #009639;
---color-success-faded: rgba(0, 150, 57, 0.1);
+  --color-success: #009639;
+  --color-success-faded: rgba(0, 150, 57, 0.1);
 
---color-warning: #ffc72c;
---color-warning-faded: rgba(255, 199, 44, 0.1);
+  --color-warning: #ffc72c;
+  --color-warning-faded: rgba(255, 199, 44, 0.1);
 
---color-error: #d32f2f;
---color-error-faded: rgba(211, 47, 47, 0.1);
+  --color-error: #d32f2f;
+  --color-error-faded: rgba(211, 47, 47, 0.1);
 
   /* On-image text colors */
   --color-on-image-primary: rgba(255, 255, 255, 0.95);
@@ -130,20 +130,20 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
-   /* ===============================
+  /* ===============================
      Shape / Radius — Semantic
      =============================== */
-     --radius-control: var(--radius-md);
-     --radius-surface: var(--radius-lg);
-     --radius-overlay: var(--radius-lg);
-     --radius-pill: var(--radius-full);
+  --radius-control: var(--radius-md);
+  --radius-surface: var(--radius-lg);
+  --radius-overlay: var(--radius-lg);
+  --radius-pill: var(--radius-full);
 
   /* ===============================
      Overlay / Scrim
      =============================== */
-     --overlay-scrim-subtle: rgba(0, 0, 0, 0.32);
-     --overlay-scrim-default: rgba(0, 0, 0, 0.55);
-     --overlay-scrim-strong: rgba(0, 0, 0, 0.72);
+  --overlay-scrim-subtle: rgba(0, 0, 0, 0.32);
+  --overlay-scrim-default: rgba(0, 0, 0, 0.55);
+  --overlay-scrim-strong: rgba(0, 0, 0, 0.72);
 
   /* Container */
   --container-width: 1200px;
@@ -176,22 +176,22 @@
   --color-product-text-muted: #415a77;
 
   /* Header surface */
---header-bg-transparent: transparent;
---header-bg-scrolled: rgba(10, 20, 35, 0.85);
---header-backdrop-blur: blur(6px);
---header-transition-duration: 0.2s;
---header-transition-easing: ease;
---header-z-index: 10;
+  --header-bg-transparent: transparent;
+  --header-bg-scrolled: rgba(10, 20, 35, 0.85);
+  --header-backdrop-blur: blur(6px);
+  --header-transition-duration: 0.2s;
+  --header-transition-easing: ease;
+  --header-z-index: 10;
 
-/* Footer surface */
---footer-bg: rgba(10, 20, 35);
+  /* Footer surface */
+  --footer-bg: rgba(10, 20, 35);
 
-/* Footer layout tokens */
---footer-padding-y: var(--spacing-4xl);
---footer-padding-x: var(--container-padding);
---footer-column-gap: var(--spacing-4xl);
---footer-row-gap: var(--spacing-xxs);
---footer-legal-link-gap: var(--spacing-xs);
+  /* Footer layout tokens */
+  --footer-padding-y: var(--spacing-4xl);
+  --footer-padding-x: var(--container-padding);
+  --footer-column-gap: var(--spacing-4xl);
+  --footer-row-gap: var(--spacing-xxs);
+  --footer-legal-link-gap: var(--spacing-xs);
 
   /* Surface / Card */
   --surface-card-bg: rgba(12, 28, 48, 0.85);
@@ -211,11 +211,11 @@
   /* ===============================
      Elevation / Shadow
      =============================== */
-     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
-     --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
-     --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.12);
-     --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.18);
-     --shadow-overlay: 0 24px 48px rgba(0, 0, 0, 0.24);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.18);
+  --shadow-overlay: 0 24px 48px rgba(0, 0, 0, 0.24);
 
   /* Motion */
   --opacity-hover-subtle: 0.9;
@@ -289,6 +289,57 @@
   --select-section-letter-spacing: 0.04em;
   --select-section-text-transform: uppercase;
   --select-section-color: var(--color-on-image-secondary);
+
+ /* ===============================
+   Legal — Typography
+   =============================== */
+
+/* Main page title */
+--legal-title-size: var(--font-size-h3);
+--legal-title-weight: var(--font-weight-bold);
+--legal-title-line-height: var(--line-height-heading);
+--legal-title-transform: uppercase;
+--legal-title-letter-spacing: 0.04em;
+
+/* Section headings */
+--legal-heading-size: var(--font-size-base);
+--legal-heading-weight: var(--font-weight-semibold);
+--legal-heading-line-height: var(--line-height-heading);
+
+/* Body text */
+--legal-body-size: var(--font-size-sm);
+--legal-body-line-height: var(--line-height-base);
+
+
+/* ===============================
+   Legal — Layout
+   =============================== */
+
+--legal-container-gap: var(--spacing-2xl);
+--legal-section-gap: var(--spacing-sm);
+--legal-title-nav-gap: var(--spacing-md);
+
+
+/* ===============================
+   Legal — Colors
+   =============================== */
+
+--legal-title-color: var(--color-text-primary);
+--legal-heading-color: var(--color-text-primary);
+--legal-body-color: var(--color-text-secondary);
+
+
+/* ===============================
+   Legal — Anchor Navigation
+   =============================== */
+
+--legal-nav-font-size: var(--font-size-sm);
+--legal-nav-font-weight: var(--font-weight-medium);
+--legal-nav-gap: var(--spacing-xl);
+--legal-nav-color: var(--color-text-primary);
+--legal-nav-hover-color: var(--color-text-secondary);
+--legal-nav-divider-color: var(--color-border);
+
 }
 
 html,

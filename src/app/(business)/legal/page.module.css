@@ -1,44 +1,74 @@
 .wrapper {
-    background-color: var(--color-surface-base);
-    padding-top: var(--section-padding-top-default);
-    padding-bottom: var(--section-padding-bottom-default);
-  }
-  
-  .container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
-  
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-3xl);
-  }
-  
-  .title {
-    font-size: var(--font-size-h2);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-heading);
-    color: var(--color-text-primary);
-  }
-  
-  .section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-  
-  .section h2 {
-    font-size: var(--font-size-h3);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-heading);
-    color: var(--color-text-primary);
-  }
-  
-  .section p {
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
-    color: var(--color-text-secondary);
-    max-width: 800px;
-  }
-  
+  background-color: var(--color-surface-base);
+  padding-top: var(--section-padding-top-default);
+  padding-bottom: var(--section-padding-bottom-default);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--legal-container-gap);
+}
+
+/* Main page title */
+.title {
+  font-size: var(--legal-title-size);
+  font-weight: var(--legal-title-weight);
+  line-height: var(--legal-title-line-height);
+  text-transform: var(--legal-title-transform);
+  letter-spacing: var(--legal-title-letter-spacing);
+  color: var(--legal-title-color);
+}
+
+/* Each section */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Section headings */
+.heading {
+  font-size: var(--legal-heading-size);
+  font-weight: var(--legal-heading-weight);
+  line-height: var(--legal-heading-line-height);
+  color: var(--legal-heading-color);
+}
+
+/* Body text */
+.section p {
+  font-size: var(--legal-body-size);
+  line-height: var(--legal-body-line-height);
+  color: var(--legal-body-color);
+}
+
+/* Legal anchor navigation */
+.legalNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--legal-nav-gap);
+
+  font-size: var(--legal-nav-font-size);
+  font-weight: var(--legal-nav-font-weight);
+  color: var(--legal-nav-color);
+}
+
+.legalNav a {
+  color: var(--legal-nav-color);
+  text-decoration: none;
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+}
+
+.legalNav a:hover {
+  color: var(--legal-nav-hover-color);
+}
+
+.divider {
+  color: var(--legal-nav-divider-color);
+}
