@@ -88,7 +88,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
-    // 🔹 Idempotency check (важно!)
+    // 🔹 Idempotency check
     const existingOrder = await prisma.order.findUnique({
       where: {
         providerSessionId: sessionId,
@@ -112,9 +112,13 @@ export async function POST(request: Request) {
 
     const productId = rawProductId as AllowedProduct;
 
+    // 🔹 Получаем реальный IP и User-Agent из metadata
+    const ip = session.metadata?.clientIp ?? null;
+    const userAgent = session.metadata?.clientUserAgent ?? null;
+
     const termsVersion = session.metadata?.termsVersion ?? TERMS_VERSION;
 
-    // 🔹 Создаём Order (юридический факт)
+    // 🔹 Создаём Order
     await prisma.order.create({
       data: {
         productId,
@@ -130,9 +134,12 @@ export async function POST(request: Request) {
 
         status: 'PAID',
 
+        // Legal
         termsAccepted: true,
         termsAcceptedAt: new Date(),
         termsVersion,
+        termsAcceptedIp: ip,
+        termsAcceptedUserAgent: userAgent,
       },
     });
 

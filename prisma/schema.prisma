@@ -27,6 +27,8 @@ model Order {
   termsAccepted     Boolean  @default(true)
   termsAcceptedAt   DateTime @default(now())
   termsVersion      String   @default("1.0")
+  termsAcceptedIp        String?
+  termsAcceptedUserAgent String?
 
   emailSent         Boolean  @default(false)
   emailSentAt       DateTime?

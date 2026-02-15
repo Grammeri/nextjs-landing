@@ -46,7 +46,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Feature flag guard (Stripe-only launch)
+    // 🔹 Получаем реальный IP и User-Agent клиента
+    const forwarded = request.headers.get('x-forwarded-for');
+    const ip = forwarded?.split(',')[0]?.trim() ?? null;
+    const userAgent = request.headers.get('user-agent') ?? null;
+
+    // ✅ Feature flag guard
     if (!BILLING_PROVIDERS[body.provider]) {
       return NextResponse.json(
         { error: `${body.provider} checkout is not enabled yet` },
@@ -81,6 +86,8 @@ export async function POST(request: Request) {
         productId: body.productId,
         provider: body.provider,
         termsVersion: TERMS_VERSION,
+        clientIp: ip ?? '',
+        clientUserAgent: userAgent ?? '',
       },
 
       customerEmail: body.customerEmail,
