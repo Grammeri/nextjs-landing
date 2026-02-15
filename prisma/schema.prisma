@@ -7,33 +7,54 @@ datasource db {
 }
 
 model Order {
-  id                String   @id @default(cuid())
+  id                      String   @id @default(cuid())
 
-  productId         String
-  buyerEmail        String
+  productId               String
+  buyerEmail              String
 
-  provider          PaymentProvider
-  providerSessionId String   @unique
-  providerEventId   String   @unique
+  provider                PaymentProvider
+  providerSessionId       String   @unique
+  providerEventId         String   @unique
 
   providerPaymentIntentId String?
 
-  amount            Int
-  currency          String
+  amount                  Int
+  currency                String
 
-  status            OrderStatus @default(PAID)
+  status                  OrderStatus @default(PAID)
+  refundedAmount          Int         @default(0)
 
   // 🔹 Legal consent
-  termsAccepted     Boolean  @default(true)
-  termsAcceptedAt   DateTime @default(now())
-  termsVersion      String   @default("1.0")
-  termsAcceptedIp        String?
-  termsAcceptedUserAgent String?
+  termsAccepted           Boolean  @default(true)
+  termsAcceptedAt         DateTime @default(now())
+  termsVersion            String   @default("1.0")
+  termsAcceptedIp         String?
+  termsAcceptedUserAgent  String?
 
-  emailSent         Boolean  @default(false)
-  emailSentAt       DateTime?
+  emailSent               Boolean  @default(false)
+  emailSentAt             DateTime?
 
-  createdAt         DateTime @default(now())
+  createdAt               DateTime @default(now())
+
+  billingEvents           BillingEvent[]
+}
+
+model BillingEvent {
+  id              String             @id @default(cuid())
+
+  provider        PaymentProvider
+  providerEventId String             @unique
+  eventType       String
+  status          BillingEventStatus @default(RECEIVED)
+
+  orderId         String?
+  order           Order?             @relation(fields: [orderId], references: [id], onDelete: SetNull)
+
+  payload         Json
+
+  errorMessage    String?
+  processedAt     DateTime?
+  createdAt       DateTime           @default(now())
 }
 
 enum PaymentProvider {
@@ -43,5 +64,12 @@ enum PaymentProvider {
 
 enum OrderStatus {
   PAID
+  PARTIALLY_REFUNDED
   REFUNDED
+}
+
+enum BillingEventStatus {
+  RECEIVED
+  PROCESSED
+  FAILED
 }

@@ -76,21 +76,13 @@ export async function POST(request: Request) {
 
   try {
     // ======================================================
-    // 🔁 REFUND HANDLING
+    // 🔁 REFUND HANDLING (SAFE PARTIAL SUPPORT)
     // ======================================================
 
-    if (event.type === 'charge.refunded' || event.type === 'payment_intent.canceled') {
-      let paymentIntentId: string | null = null;
+    if (event.type === 'charge.refunded') {
+      const charge = event.data.object as Stripe.Charge;
 
-      if (event.type === 'charge.refunded') {
-        const charge = event.data.object as Stripe.Charge;
-        paymentIntentId = charge.payment_intent?.toString() ?? null;
-      }
-
-      if (event.type === 'payment_intent.canceled') {
-        const pi = event.data.object as Stripe.PaymentIntent;
-        paymentIntentId = pi.id;
-      }
+      const paymentIntentId = charge.payment_intent?.toString() ?? null;
 
       if (!paymentIntentId) {
         return NextResponse.json({ received: true });
@@ -109,21 +101,70 @@ export async function POST(request: Request) {
         return NextResponse.json({ received: true });
       }
 
-      if (order.status === 'REFUNDED') {
+      /**
+       * IMPORTANT:
+       * Stripe charge.amount_refunded is cumulative.
+       * We do NOT add it again.
+       * We clamp to order.amount to prevent overflow.
+       */
+      const cumulativeRefunded = charge.amount_refunded ?? 0;
+
+      const newRefundedAmount = Math.min(cumulativeRefunded, order.amount);
+
+      let newStatus: 'PAID' | 'PARTIALLY_REFUNDED' | 'REFUNDED';
+
+      if (newRefundedAmount === 0) {
+        newStatus = 'PAID';
+      } else if (newRefundedAmount < order.amount) {
+        newStatus = 'PARTIALLY_REFUNDED';
+      } else {
+        newStatus = 'REFUNDED';
+      }
+
+      await prisma.order.update({
+        where: { id: order.id },
+        data: {
+          refundedAmount: newRefundedAmount,
+          status: newStatus,
+        },
+      });
+
+      console.log('[webhook] refund processed', {
+        orderId: order.id,
+        paymentIntentId,
+        refundedAmount: newRefundedAmount,
+        status: newStatus,
+      });
+
+      return NextResponse.json({ received: true });
+    }
+
+    // ======================================================
+    // ❌ CANCELED PAYMENT INTENT
+    // ======================================================
+
+    if (event.type === 'payment_intent.canceled') {
+      const pi = event.data.object as Stripe.PaymentIntent;
+
+      const order = await prisma.order.findFirst({
+        where: {
+          providerPaymentIntentId: pi.id,
+        },
+      });
+
+      if (!order) {
         return NextResponse.json({ received: true });
       }
 
       await prisma.order.update({
         where: { id: order.id },
         data: {
+          refundedAmount: order.amount,
           status: 'REFUNDED',
         },
       });
 
-      console.log('[webhook] order marked as REFUNDED', {
-        orderId: order.id,
-        paymentIntentId,
-      });
+      console.log('[webhook] payment_intent.canceled → order marked REFUNDED');
 
       return NextResponse.json({ received: true });
     }
@@ -147,7 +188,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
-    // 🔹 Idempotency check
     const existingOrder = await prisma.order.findUnique({
       where: {
         providerSessionId: sessionId,
@@ -171,10 +211,8 @@ export async function POST(request: Request) {
 
     const productId = rawProductId as AllowedProduct;
 
-    // Получаем IP и UA из metadata
     const ip = session.metadata?.clientIp ?? null;
     const userAgent = session.metadata?.clientUserAgent ?? null;
-
     const termsVersion = session.metadata?.termsVersion ?? TERMS_VERSION;
 
     await prisma.order.create({
@@ -191,8 +229,8 @@ export async function POST(request: Request) {
         currency: session.currency ?? 'usd',
 
         status: 'PAID',
+        refundedAmount: 0,
 
-        // Legal data
         termsAccepted: true,
         termsAcceptedAt: new Date(),
         termsVersion,
