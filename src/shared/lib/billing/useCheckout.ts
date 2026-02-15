@@ -13,7 +13,7 @@ type CheckoutResponse = {
 
 export function useCheckout(productId: string) {
   const checkout = useCallback(
-    async (provider: CheckoutProvider) => {
+    async (provider: CheckoutProvider, termsAccepted: boolean) => {
       // ✅ Feature flag guard
       if (!ENABLED_PROVIDERS[provider]) {
         alert(`${provider} checkout is not available yet.`);
@@ -23,7 +23,7 @@ export function useCheckout(productId: string) {
       const res = await fetch('/api/billing/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId, provider }),
+        body: JSON.stringify({ productId, provider, termsAccepted }),
       });
 
       const data = (await res.json()) as CheckoutResponse;
@@ -38,7 +38,7 @@ export function useCheckout(productId: string) {
   );
 
   return {
-    checkoutWithStripe: () => checkout('stripe'),
-    checkoutWithPaypal: () => checkout('paypal'),
+    checkoutWithStripe: (termsAccepted: boolean) => checkout('stripe', termsAccepted),
+    checkoutWithPaypal: (termsAccepted: boolean) => checkout('paypal', termsAccepted),
   };
 }

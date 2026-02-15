@@ -4,6 +4,7 @@ import styles from './PaymentButton.module.css';
 type Props = {
   selected: boolean;
   onSelect: () => void;
+  disabled?: boolean;
 };
 
 /**
@@ -12,9 +13,9 @@ type Props = {
  * via the BILLING_PROVIDERS feature flag.
  */
 
-export function PaypalButton({ selected, onSelect }: Props) {
+export function PaypalButton({ selected, onSelect, disabled = false }: Props) {
   return (
-    <SelectableItem selected={selected} onSelect={onSelect} variant="paypal">
+    <SelectableItem selected={selected} onSelect={onSelect} variant="paypal" disabled={disabled}>
       <img
         src="/images/brands/paypal-logo.svg"
         alt="PayPal"

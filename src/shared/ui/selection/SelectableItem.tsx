@@ -9,6 +9,7 @@ type SelectableItemProps = {
   onSelect: () => void;
   children: ReactNode;
   variant?: Variant;
+  disabled?: boolean;
 };
 
 export function SelectableItem({
@@ -16,12 +17,14 @@ export function SelectableItem({
   onSelect,
   children,
   variant = 'default',
+  disabled = false,
 }: SelectableItemProps) {
   return (
     <button
       type="button"
       className={[styles.item, styles[variant], selected && styles.selected].join(' ')}
       aria-pressed={selected}
+      disabled={disabled}
       onClick={onSelect}
     >
       <RadioIndicator checked={selected} />

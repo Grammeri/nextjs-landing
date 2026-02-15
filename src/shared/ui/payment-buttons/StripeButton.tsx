@@ -4,11 +4,12 @@ import styles from './PaymentButton.module.css';
 type Props = {
   selected: boolean;
   onSelect: () => void;
+  disabled?: boolean;
 };
 
-export function StripeButton({ selected, onSelect }: Props) {
+export function StripeButton({ selected, onSelect, disabled = false }: Props) {
   return (
-    <SelectableItem selected={selected} onSelect={onSelect} variant="stripe">
+    <SelectableItem selected={selected} onSelect={onSelect} variant="stripe" disabled={disabled}>
       <img
         src="/images/brands/stripe-logo.svg"
         alt="Stripe"

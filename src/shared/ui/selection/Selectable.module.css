@@ -31,6 +31,16 @@
   border-color: var(--brand-accent);
 }
 
+.item:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.item:disabled:hover {
+  background: var(--select-bg);
+  border-color: var(--select-border-color);
+}
+
 /* ===== Selected ===== */
 
 .selected {

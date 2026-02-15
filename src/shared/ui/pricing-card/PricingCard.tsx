@@ -19,8 +19,8 @@ export type PricingCardProps = {
   price: string;
   features: PricingFeature[];
   paymentTitle?: string;
-  onPayWithStripe?: () => void | Promise<void>;
-  onPayWithPaypal?: () => void | Promise<void>;
+  onPayWithStripe?: (termsAccepted: boolean) => void | Promise<void>;
+  onPayWithPaypal?: (termsAccepted: boolean) => void | Promise<void>;
   footerNote?: string;
   paymentLayout?: 'full' | 'centered';
 };
@@ -37,7 +37,7 @@ export function PricingCard({
   paymentLayout = 'full',
 }: PricingCardProps) {
   const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
-  const [isAccepted, setIsAccepted] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [showError, setShowError] = useState(false);
 
   return (
@@ -66,15 +66,16 @@ export function PricingCard({
             {onPayWithStripe && (
               <StripeButton
                 selected={selectedProvider === 'stripe'}
+                disabled={!termsAccepted}
                 onSelect={() => {
                   setSelectedProvider('stripe');
-                  if (!isAccepted) {
+                  if (!termsAccepted) {
                     setShowError(true);
                     return;
                   }
 
                   setShowError(false);
-                  void onPayWithStripe();
+                  void onPayWithStripe(termsAccepted);
                 }}
               />
             )}
@@ -82,15 +83,16 @@ export function PricingCard({
             {onPayWithPaypal && (
               <PaypalButton
                 selected={selectedProvider === 'paypal'}
+                disabled={!termsAccepted}
                 onSelect={() => {
                   setSelectedProvider('paypal');
-                  if (!isAccepted) {
+                  if (!termsAccepted) {
                     setShowError(true);
                     return;
                   }
 
                   setShowError(false);
-                  void onPayWithPaypal();
+                  void onPayWithPaypal(termsAccepted);
                 }}
               />
             )}
@@ -100,10 +102,10 @@ export function PricingCard({
             <label className={styles.consentLabel}>
               <input
                 type="checkbox"
-                checked={isAccepted}
+                checked={termsAccepted}
                 aria-invalid={showError}
                 onChange={(e) => {
-                  setIsAccepted(e.target.checked);
+                  setTermsAccepted(e.target.checked);
                   if (e.target.checked) {
                     setShowError(false);
                   }
