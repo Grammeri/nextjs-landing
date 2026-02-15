@@ -38,6 +38,8 @@ type AllowedProduct = (typeof ALLOWED_PRODUCTS)[number];
 const HANDLED_EVENTS = new Set<string>([
   'checkout.session.completed',
   'checkout.session.async_payment_succeeded',
+  'charge.refunded',
+  'payment_intent.canceled',
 ]);
 
 // ----------------------------
@@ -73,6 +75,63 @@ export async function POST(request: Request) {
   }
 
   try {
+    // ======================================================
+    // 🔁 REFUND HANDLING
+    // ======================================================
+
+    if (event.type === 'charge.refunded' || event.type === 'payment_intent.canceled') {
+      let paymentIntentId: string | null = null;
+
+      if (event.type === 'charge.refunded') {
+        const charge = event.data.object as Stripe.Charge;
+        paymentIntentId = charge.payment_intent?.toString() ?? null;
+      }
+
+      if (event.type === 'payment_intent.canceled') {
+        const pi = event.data.object as Stripe.PaymentIntent;
+        paymentIntentId = pi.id;
+      }
+
+      if (!paymentIntentId) {
+        return NextResponse.json({ received: true });
+      }
+
+      const order = await prisma.order.findFirst({
+        where: {
+          providerPaymentIntentId: paymentIntentId,
+        },
+      });
+
+      if (!order) {
+        console.warn('[webhook] refund received but order not found', {
+          paymentIntentId,
+        });
+        return NextResponse.json({ received: true });
+      }
+
+      if (order.status === 'REFUNDED') {
+        return NextResponse.json({ received: true });
+      }
+
+      await prisma.order.update({
+        where: { id: order.id },
+        data: {
+          status: 'REFUNDED',
+        },
+      });
+
+      console.log('[webhook] order marked as REFUNDED', {
+        orderId: order.id,
+        paymentIntentId,
+      });
+
+      return NextResponse.json({ received: true });
+    }
+
+    // ======================================================
+    // 💳 CHECKOUT HANDLING
+    // ======================================================
+
     const session = event.data.object as Stripe.Checkout.Session;
 
     const sessionId = session.id;
@@ -112,13 +171,12 @@ export async function POST(request: Request) {
 
     const productId = rawProductId as AllowedProduct;
 
-    // 🔹 Получаем реальный IP и User-Agent из metadata
+    // Получаем IP и UA из metadata
     const ip = session.metadata?.clientIp ?? null;
     const userAgent = session.metadata?.clientUserAgent ?? null;
 
     const termsVersion = session.metadata?.termsVersion ?? TERMS_VERSION;
 
-    // 🔹 Создаём Order
     await prisma.order.create({
       data: {
         productId,
@@ -134,7 +192,7 @@ export async function POST(request: Request) {
 
         status: 'PAID',
 
-        // Legal
+        // Legal data
         termsAccepted: true,
         termsAcceptedAt: new Date(),
         termsVersion,
@@ -143,7 +201,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // 🔹 Send email with ZIP link
     await sendPurchaseEmail({
       to: email,
       product: productId,
