@@ -16,10 +16,17 @@ model Order {
   providerSessionId String   @unique
   providerEventId   String   @unique
 
+  providerPaymentIntentId String?
+
   amount            Int
   currency          String
 
   status            OrderStatus @default(PAID)
+
+  // 🔹 Legal consent
+  termsAccepted     Boolean  @default(true)
+  termsAcceptedAt   DateTime @default(now())
+  termsVersion      String   @default("1.0")
 
   emailSent         Boolean  @default(false)
   emailSentAt       DateTime?

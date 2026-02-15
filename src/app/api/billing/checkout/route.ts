@@ -4,12 +4,14 @@ import { NextResponse } from 'next/server';
 import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { BILLING_CATALOG } from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
+import { TERMS_VERSION } from '@/shared/config/legal';
 
 type CheckoutRequestBody = {
   productId: string;
   provider: 'stripe' | 'paypal';
   customerEmail?: string;
   clientReferenceId?: string;
+  termsAccepted: boolean;
 };
 
 export const runtime = 'nodejs';
@@ -34,6 +36,14 @@ export async function POST(request: Request) {
 
     if (!body?.provider) {
       return NextResponse.json({ error: 'provider is required' }, { status: 400 });
+    }
+
+    // 🔹 Серверная проверка согласия
+    if (!body?.termsAccepted) {
+      return NextResponse.json(
+        { error: 'You must accept Terms of Service before checkout' },
+        { status: 400 },
+      );
     }
 
     // ✅ Feature flag guard (Stripe-only launch)
@@ -70,6 +80,7 @@ export async function POST(request: Request) {
       metadata: {
         productId: body.productId,
         provider: body.provider,
+        termsVersion: TERMS_VERSION,
       },
 
       customerEmail: body.customerEmail,

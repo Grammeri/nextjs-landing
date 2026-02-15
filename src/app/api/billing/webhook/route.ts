@@ -2,7 +2,9 @@ import 'server-only';
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { prisma } from '@/lib/prisma';
 import { sendPurchaseEmail } from '@/shared/lib/email/send-purchase-email';
+import { TERMS_VERSION } from '@/shared/config/legal';
 
 export const runtime = 'nodejs';
 
@@ -75,12 +77,26 @@ export async function POST(request: Request) {
 
     const sessionId = session.id;
     const email = session.customer_details?.email;
+    const paymentIntentId = session.payment_intent?.toString();
+    const eventId = event.id;
 
     if (!sessionId || !email) {
       console.warn('[webhook] skipped — missing sessionId or email', {
         sessionId,
         email,
       });
+      return NextResponse.json({ received: true });
+    }
+
+    // 🔹 Idempotency check (важно!)
+    const existingOrder = await prisma.order.findUnique({
+      where: {
+        providerSessionId: sessionId,
+      },
+    });
+
+    if (existingOrder) {
+      console.log('[webhook] duplicate event ignored', { sessionId });
       return NextResponse.json({ received: true });
     }
 
@@ -95,6 +111,30 @@ export async function POST(request: Request) {
     }
 
     const productId = rawProductId as AllowedProduct;
+
+    const termsVersion = session.metadata?.termsVersion ?? TERMS_VERSION;
+
+    // 🔹 Создаём Order (юридический факт)
+    await prisma.order.create({
+      data: {
+        productId,
+        buyerEmail: email,
+
+        provider: 'STRIPE',
+        providerSessionId: sessionId,
+        providerEventId: eventId,
+        providerPaymentIntentId: paymentIntentId,
+
+        amount: session.amount_total ?? 0,
+        currency: session.currency ?? 'usd',
+
+        status: 'PAID',
+
+        termsAccepted: true,
+        termsAcceptedAt: new Date(),
+        termsVersion,
+      },
+    });
 
     // 🔹 Send email with ZIP link
     await sendPurchaseEmail({
