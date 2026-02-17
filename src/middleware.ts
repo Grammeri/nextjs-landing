@@ -6,36 +6,42 @@ const DEFAULT_LOCALE = 'en';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // =========================================
-  // 🔐 Internal Admin Guard
-  // =========================================
-  // if (pathname.startsWith('/internal-admin')) {
-  //   const authHeader = request.headers.get('authorization');
-  //   const expectedSecret = process.env.ADMIN_SECRET;
+  // Internal Admin Guard (HTTP Basic Auth)
+  if (pathname.startsWith('/internal-admin')) {
+    const authHeader = request.headers.get('authorization');
 
-  //   if (!expectedSecret) {
-  //     return new NextResponse('Admin secret not configured', { status: 500 });
-  //   }
+    if (!authHeader) {
+      return new NextResponse('Unauthorized', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="Internal Admin"',
+        },
+      });
+    }
 
-  //   if (authHeader !== `Bearer ${expectedSecret}`) {
-  //     return new NextResponse('Unauthorized', { status: 401 });
-  //   }
+    const [type, value] = authHeader.split(' ');
 
-  //   return NextResponse.next();
-  // }
+    if (type !== 'Basic' || !value) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
 
-  // =========================================
-  // 🌍 Docs locale redirects
-  // =========================================
+    const decoded = Buffer.from(value, 'base64').toString();
+    const [username, password] = decoded.split(':');
 
-  // /docs → /en/docs
+    if (username !== process.env.ADMIN_USER || password !== process.env.ADMIN_PASSWORD) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
+
+    return NextResponse.next();
+  }
+
+  // Docs locale redirects
   if (pathname === '/docs') {
     const url = request.nextUrl.clone();
     url.pathname = `/${DEFAULT_LOCALE}/docs`;
     return NextResponse.redirect(url);
   }
 
-  // /docs/authforge/** → /en/docs/authforge/**
   if (pathname.startsWith('/docs/authforge')) {
     const url = request.nextUrl.clone();
     url.pathname = `/${DEFAULT_LOCALE}${pathname}`;
@@ -46,5 +52,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/docs', '/docs/authforge/:path*'],
+  matcher: ['/docs', '/docs/authforge/:path*', '/internal-admin', '/internal-admin/:path*'],
 };

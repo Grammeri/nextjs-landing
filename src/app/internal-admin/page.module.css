@@ -4,8 +4,8 @@
 
 .wrapper {
   min-height: 100vh;
-  padding: 80px 0;
-  background: #243441; /* Texas dark blue background */
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-surface-system);
 }
 
 .inner {
@@ -19,10 +19,10 @@
 /* ============================= */
 
 .title {
-  font-size: 42px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  color: #ffffff; /* белый заголовок */
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2xl);
+  color: var(--color-text-inverse);
 }
 
 /* ============================= */
@@ -31,37 +31,42 @@
 
 .form {
   display: flex;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
 }
 
 .input {
   flex: 1;
-  padding: 14px 18px;
-  font-size: 16px;
-  border-radius: 8px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-control);
   border: none;
   outline: none;
 }
 
 .input:focus {
-  box-shadow: 0 0 0 2px #bf5700; /* Texas orange */
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-texas-blue);
 }
 
+/* ===== SEARCH BUTTON (NEW STYLE) ===== */
+
 .button {
-  padding: 14px 26px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-texas-blue);
   cursor: pointer;
-  background: #bf5700;
-  color: #fff;
-  transition: 0.2s ease;
+
+  background: var(--color-surface-base);
+  color: var(--color-texas-blue);
+
+  transition: var(--motion-duration-base) var(--motion-easing-standard);
 }
 
 .button:hover {
-  background: #9f4700;
+  background: var(--color-texas-blue);
+  color: var(--color-text-inverse);
 }
 
 /* ============================= */
@@ -69,41 +74,41 @@
 /* ============================= */
 
 .tableWrapper {
-  background: #ffffff;
-  border-radius: 12px;
+  background: var(--color-surface-base);
+  border-radius: var(--radius-surface);
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 15px;
+  font-size: var(--font-size-sm);
 }
 
 /* Header */
 
 .table thead {
-  background: #0f2e4d; /* Texas deep blue */
-  color: #ffffff;
+  background: var(--color-texas-blue);
+  color: var(--color-text-inverse);
 }
 
 .table th {
-  padding: 16px 18px;
+  padding: var(--spacing-md) var(--spacing-lg);
   text-align: left;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Body */
 
 .table td {
-  padding: 16px 18px;
-  border-bottom: 1px solid #e6e6e6;
-  color: #1a1a1a;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
 }
 
-.table tr:hover {
-  background: #f7f9fb;
+.table tbody tr:hover {
+  background: var(--color-surface-muted);
 }
 
 /* ============================= */
@@ -111,23 +116,23 @@
 /* ============================= */
 
 .statusPaid {
-  color: #0f2e4d; /* Texas blue */
-  font-weight: 600;
+  color: var(--color-texas-blue);
+  font-weight: var(--font-weight-semibold);
 }
 
 .statusRefunded {
-  color: #c0392b; /* red */
-  font-weight: 600;
+  color: var(--color-texas-red);
+  font-weight: var(--font-weight-semibold);
 }
 
 .licenseActive {
-  color: #0f2e4d;
-  font-weight: 600;
+  color: var(--color-texas-blue);
+  font-weight: var(--font-weight-semibold);
 }
 
 .licenseRevoked {
-  color: #c0392b;
-  font-weight: 600;
+  color: var(--color-texas-red);
+  font-weight: var(--font-weight-semibold);
 }
 
 /* ============================= */
@@ -135,31 +140,33 @@
 /* ============================= */
 
 .revokeBtn {
-  background: #c0392b;
-  color: #fff;
+  background: var(--color-texas-red);
+  color: var(--color-text-inverse);
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-control);
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .revokeBtn:hover {
-  background: #a93226;
+  background: var(--color-texas-red-soft);
 }
 
 .reactivateBtn {
-  background: #0f2e4d;
-  color: #fff;
+  background: var(--color-texas-blue);
+  color: var(--color-text-inverse);
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-control);
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .reactivateBtn:hover {
-  background: #0a2136;
+  opacity: var(--interaction-hover-opacity-subtle);
 }
