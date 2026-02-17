@@ -1,0 +1,165 @@
+/* ============================= */
+/* Layout */
+/* ============================= */
+
+.wrapper {
+  min-height: 100vh;
+  padding: 80px 0;
+  background: #243441; /* Texas dark blue background */
+}
+
+.inner {
+  width: 95%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ============================= */
+/* Title */
+/* ============================= */
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff; /* белый заголовок */
+}
+
+/* ============================= */
+/* Search form */
+/* ============================= */
+
+.form {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.input {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px #bf5700; /* Texas orange */
+}
+
+.button {
+  padding: 14px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #bf5700;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.button:hover {
+  background: #9f4700;
+}
+
+/* ============================= */
+/* Table */
+/* ============================= */
+
+.tableWrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+/* Header */
+
+.table thead {
+  background: #0f2e4d; /* Texas deep blue */
+  color: #ffffff;
+}
+
+.table th {
+  padding: 16px 18px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Body */
+
+.table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e6e6e6;
+  color: #1a1a1a;
+}
+
+.table tr:hover {
+  background: #f7f9fb;
+}
+
+/* ============================= */
+/* Status colors */
+/* ============================= */
+
+.statusPaid {
+  color: #0f2e4d; /* Texas blue */
+  font-weight: 600;
+}
+
+.statusRefunded {
+  color: #c0392b; /* red */
+  font-weight: 600;
+}
+
+.licenseActive {
+  color: #0f2e4d;
+  font-weight: 600;
+}
+
+.licenseRevoked {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+/* ============================= */
+/* Action buttons */
+/* ============================= */
+
+.revokeBtn {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.revokeBtn:hover {
+  background: #a93226;
+}
+
+.reactivateBtn {
+  background: #0f2e4d;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reactivateBtn:hover {
+  background: #0a2136;
+}
