@@ -1,4 +1,4 @@
-# ADR-0004: Stripe Order Lifecycle and Refund Model
+Stripe Order Lifecycle, Refund, and License Entitlement Model
 
 This document records an architectural decision regarding Stripe order lifecycle,
 refund handling, and billing state management in the Next.js Landing repository.
@@ -111,6 +111,37 @@ The billing webhook handles:
 
 Webhook handling is idempotent and safe for duplicate delivery.
 
+### License layer implementation
+
+A dedicated `License` model is introduced to represent product entitlement.
+
+Each `Order` may have exactly one associated `License`.
+
+License characteristics:
+
+- one-to-one relation with Order (`orderId` unique)
+- productId reference
+- customer email reference
+- status-based lifecycle (`ACTIVE`, `REVOKED`)
+- revocation timestamp
+- optional `validUntil` support for future extensions
+
+License issuance is performed during successful checkout processing.
+
+The system uses an idempotent `upsert` operation to ensure:
+
+- duplicate webhook delivery does not create duplicate licenses
+- license status can be safely reactivated if needed
+
+On refund or payment cancellation:
+
+- all licenses linked to the order are marked `REVOKED`
+- `revokedAt` timestamp is stored
+- access revocation is deterministic and automatic
+
+This formalizes entitlement as a first-class domain concept rather than
+deriving access from order status alone.
+
 ## Rationale
 
 Stripe is not used as the application state engine.
@@ -123,6 +154,8 @@ Persisting lifecycle state internally provides:
 - future entitlement revocation support
 - operational control for support tooling
 - extension path for additional providers
+- - separation of financial state from entitlement state
+- deterministic product access enforcement
 
 This follows event-driven architecture principles while preserving the database
 as the source of truth for billing state.
@@ -134,6 +167,8 @@ The billing layer now:
 - maintains lifecycle state internally
 - supports partial and full refunds
 - enforces refund consistency at the database level
+- introduces a dedicated License (entitlement) layer
+- automatically revokes access on refund
 - separates external payment events from internal domain logic
 
 This introduces moderate complexity and improves reliability and scalability.
@@ -142,7 +177,6 @@ This introduces moderate complexity and improves reliability and scalability.
 
 The following capabilities are planned and not yet implemented:
 
-- License / Entitlement layer (link order to license, revoke on refund, enforce access)
 - BillingEvent audit log (store raw events, processing status, replay/debug support)
 - Dispute handling (`charge.dispute.created`, `charge.dispute.closed`)
 - Admin billing interface (orders, refunds, access revocation, resend emails)

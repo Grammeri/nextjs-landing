@@ -33,8 +33,10 @@ A decision is required regarding whether purchase and entitlement data should:
 
 ## Decision
 
-The landing application **stores purchase entitlements in its own database**
+The landing application **stores purchase and license (entitlement) data in its own database**
 using **Prisma** as the ORM.
+
+A dedicated License model represents product access and is linked one-to-one with an Order.
 
 Stripe is treated as:
 
@@ -54,26 +56,47 @@ replace internal state.
 ## Rationale
 
 While Stripe provides reliable payment records, it is not designed to act as an
-application database.
+application database or entitlement engine.
 
-Persisting entitlements internally provides:
+Persisting billing and license data internally provides:
 
 - **Idempotency guarantees**
-  - webhook retries do not create duplicate access
+  - webhook retries do not create duplicate orders or duplicate licenses
+
+- **Clear separation of concerns**
+  - `Order` represents financial lifecycle
+  - `License` represents access lifecycle
+
+- **Deterministic access control**
+  - licenses are automatically revoked when an order is refunded
+  - partial and full refunds are reflected in internal state
+
 - **Operational control**
   - resend access emails
-  - revoke or reissue access
+  - revoke or reissue licenses
+  - manually adjust access if needed
+
 - **Support tooling**
   - ability to answer customer support requests
+  - inspect order status, refund state, and license state independently
+
+- **Financial consistency**
+  - cumulative refund tracking
+  - lifecycle state enforcement (`PAID`, `PARTIALLY_REFUNDED`, `REFUNDED`)
+  - database-level constraints prevent inconsistent billing states
+
 - **Scalability**
   - future admin UI
-  - bundles, upgrades, refunds
+  - bundles and cross-product licenses
+  - upgrade paths
+  - additional payment providers
+
 - **Vendor independence**
-  - ability to change or add payment providers without data loss
+  - ability to change or add payment providers without losing entitlement data
 
 The AuthForge product already uses Prisma and a database-backed architecture.
 Aligning the landing with the same persistence model reduces conceptual and
-operational complexity.
+operational complexity while enabling long-term scalability.
 
 ---
 
@@ -82,7 +105,9 @@ operational complexity.
 The landing application:
 
 - includes a database connection
-- defines an `entitlement` (or `purchase`) table
+- defines an `Order` table for financial state
+- defines a `License` table for entitlement state
+
 - handles Stripe webhook idempotency internally
 
 Stripe remains responsible only for:
@@ -113,6 +138,8 @@ The following are explicitly out of scope at this stage:
 - usage-based pricing
 - complex license hierarchies
 - customer self-service portals
+- - advanced license policies (expiration windows, seat limits)
+- license transfer mechanisms
 
 These features can be layered on top of the entitlement model without
 architectural changes.
