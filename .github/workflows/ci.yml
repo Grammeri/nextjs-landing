@@ -20,31 +20,28 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version: 20
 
-      # Enable pnpm
-      - name: Enable pnpm via corepack
-        run: corepack enable
+      # pnpm (официальный способ)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-      # Install deps
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 🔹 Generate Prisma Client (ВАЖНО)
       - name: Generate Prisma Client
-        run: pnpm prisma generate
+        run: pnpm prisma:generate
 
-      # Lint
-      - name: Run linter
+      - name: Lint
         run: pnpm lint
 
-      # Type check (отдельно, чтобы ловить ошибки раньше билда)
-      - name: Run TypeScript
-        run: pnpm tsc --noEmit
+      - name: TypeScript
+        run: pnpm tsc
 
-      # Build
-      - name: Build project
+      - name: Build
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
+          AUTH_DEMO_MODE: 'true'
         run: pnpm build
