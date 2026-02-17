@@ -146,6 +146,77 @@ architectural changes.
 
 ---
 
+---
+
+## Refund Handling and License Revocation Strategy (Amendment – 2026-02)
+
+### Context
+
+Stripe supports partial and full refunds.
+
+Refund events are cumulative by nature (`charge.amount_refunded` represents
+the total refunded amount, not the delta).
+
+The system must:
+
+- correctly track cumulative refunds
+- avoid double counting
+- preserve access during partial refunds
+- automatically revoke access on full refund
+- remain idempotent under webhook retries
+
+---
+
+### Decision
+
+Refund state is derived from cumulative refunded amount:
+
+- If `refundedAmount === 0` → status = `PAID`
+- If `refundedAmount < order.amount` → status = `PARTIALLY_REFUNDED`
+- If `refundedAmount === order.amount` → status = `REFUNDED`
+
+License behavior:
+
+- `PARTIALLY_REFUNDED` → license remains `ACTIVE`
+- `REFUNDED` → license is automatically set to `REVOKED`
+- `payment_intent.canceled` → treated as full refund → `REVOKED`
+
+License revocation occurs only when the order reaches the `REFUNDED` state.
+
+---
+
+### Rationale
+
+This strategy ensures:
+
+- Correct handling of cumulative Stripe refunds
+- Protection against duplicate webhook delivery
+- Controlled entitlement lifecycle
+- No premature license revocation during partial refunds
+- Automatic prevention of access after full refund
+- Consistent financial and entitlement state transitions
+
+This enforces a deterministic order-to-license state machine.
+
+---
+
+### Tested Scenarios
+
+The following cases were verified in development:
+
+- Partial refund (10 USD of 99 USD)
+  - Order → `PARTIALLY_REFUNDED`
+  - License → `ACTIVE`
+
+- Full refund (99 USD of 99 USD)
+  - Order → `REFUNDED`
+  - License → `REVOKED`
+
+- Multiple webhook deliveries
+  - No duplicate orders
+  - No duplicate license issuance
+  - No inconsistent refund accumulation
+
 ## Status
 
 Accepted.

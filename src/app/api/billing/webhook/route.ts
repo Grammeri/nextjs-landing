@@ -129,13 +129,16 @@ export async function POST(request: Request) {
         },
       });
 
-      await prisma.license.updateMany({
-        where: { orderId: order.id },
-        data: {
-          status: 'REVOKED',
-          revokedAt: new Date(),
-        },
-      });
+      // 🔒 Auto-revoke ONLY if fully refunded
+      if (newStatus === 'REFUNDED') {
+        await prisma.license.updateMany({
+          where: { orderId: order.id },
+          data: {
+            status: 'REVOKED',
+            revokedAt: new Date(),
+          },
+        });
+      }
 
       console.log('[webhook] refund processed', {
         orderId: order.id,
