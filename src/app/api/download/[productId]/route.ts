@@ -5,40 +5,50 @@ import fs from 'node:fs';
 
 export const runtime = 'nodejs';
 
-export async function GET(request: Request, { params }: { params: { productId: string } }) {
-  const { productId } = params;
+export async function GET(request: Request, context: { params: Promise<{ productId: string }> }) {
+  try {
+    // 🔥 В Next 16 params — это Promise
+    const { productId } = await context.params;
 
-  const url = new URL(request.url);
-  const email = url.searchParams.get('email');
+    const url = new URL(request.url);
+    const email = url.searchParams.get('email');
 
-  if (!email) {
-    return NextResponse.json({ error: 'Missing email' }, { status: 400 });
+    if (!email) {
+      return NextResponse.json({ error: 'Missing email' }, { status: 400 });
+    }
+
+    const license = await prisma.license.findFirst({
+      where: {
+        productId,
+        email,
+        status: 'ACTIVE',
+      },
+    });
+
+    if (!license) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    const filePath = path.resolve(process.cwd(), 'private', `${productId}.zip`);
+
+    console.log('Download path:', filePath);
+
+    if (!fs.existsSync(filePath)) {
+      console.error('File not found at:', filePath);
+      return NextResponse.json({ error: 'File not found' }, { status: 404 });
+    }
+
+    const fileBuffer = fs.readFileSync(filePath);
+
+    return new NextResponse(fileBuffer, {
+      headers: {
+        'Content-Type': 'application/zip',
+        'Content-Disposition': `attachment; filename="${productId}.zip"`,
+        'Cache-Control': 'no-store',
+      },
+    });
+  } catch (error) {
+    console.error('Download error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
-
-  const license = await prisma.license.findFirst({
-    where: {
-      productId,
-      email,
-      status: 'ACTIVE',
-    },
-  });
-
-  if (!license) {
-    return NextResponse.json({ error: 'Access denied' }, { status: 403 });
-  }
-
-  const filePath = path.join(process.cwd(), 'private', `${productId}.zip`);
-
-  if (!fs.existsSync(filePath)) {
-    return NextResponse.json({ error: 'File not found' }, { status: 404 });
-  }
-
-  const fileBuffer = fs.readFileSync(filePath);
-
-  return new NextResponse(fileBuffer, {
-    headers: {
-      'Content-Type': 'application/zip',
-      'Content-Disposition': `attachment; filename="${productId}.zip"`,
-    },
-  });
 }
