@@ -54,3 +54,14 @@ packages/**/node_modules/
 .pnpm-store/
 
 /src/generated/prisma
+
+# ===============================
+# Private downloadable assets
+# ===============================
+/private
+/private/**
+
+# ===============================
+# Prisma generated client (safety)
+# ===============================
+/src/generated/prisma
