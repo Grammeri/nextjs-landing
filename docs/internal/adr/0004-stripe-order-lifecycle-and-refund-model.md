@@ -173,6 +173,111 @@ The billing layer now:
 
 This introduces moderate complexity and improves reliability and scalability.
 
+## Product Artifact Delivery Model (ZIP Distribution Strategy)
+
+### Context
+
+The application distributes standalone digital products as downloadable ZIP
+archives.
+
+At the current stage:
+
+- product artifacts are small (source-based templates)
+- archive size is minimal (sub-megabyte range)
+- download traffic is expected to be low during early launch
+- the primary business goal is validating payment and entitlement flow
+
+The question addressed was whether to immediately externalize product storage
+(Object Storage + Signed URL) or temporarily keep artifacts within the
+application repository.
+
+### Decision
+
+At the current phase, product ZIP artifacts remain stored within the
+application repository and are delivered through the Next.js API layer.
+
+Delivery flow:
+
+User → Next.js → License validation → File response
+
+The API:
+
+- validates license status
+- confirms `License.status = ACTIVE`
+- returns the archive as a file response
+- does not expose raw filesystem paths
+
+External object storage (R2/S3) is deferred to a later optimization phase.
+
+### Rationale
+
+The decision is driven by stage-appropriate optimization:
+
+- artifact size is extremely small
+- early download volume is low
+- infrastructure complexity should remain minimal
+- business validation (payments, licenses, refunds) is prioritized over infra optimization
+
+Introducing object storage at this stage would:
+
+- add operational overhead
+- require billing configuration
+- introduce external dependency
+- not materially improve performance or cost
+
+Therefore, storage optimization is postponed until:
+
+- download traffic increases significantly
+- artifacts grow large (>50MB+)
+- multiple product versions require storage abstraction
+- infrastructure scaling becomes necessary
+
+### Architectural Boundaries
+
+Even while storing artifacts locally:
+
+- Access control is enforced exclusively through the License layer.
+- Order status does not directly grant file access.
+- License revocation immediately blocks downloads.
+- The delivery mechanism remains abstracted behind the download API route.
+
+This preserves future migration flexibility.
+
+### Migration Path (Future)
+
+When scaling requires external storage:
+
+1. Introduce storage abstraction layer (`storage.generateSignedUrl`)
+2. Replace file streaming with signed URL redirect
+3. Move artifacts to object storage (R2/S3)
+4. Keep license validation logic unchanged
+
+No changes to:
+
+- Order lifecycle
+- Refund logic
+- License entitlement model
+- Billing webhook logic
+
+Only the physical delivery mechanism changes.
+
+### Consequences
+
+The system currently:
+
+- maintains deterministic entitlement control
+- uses minimal infrastructure
+- avoids premature optimization
+- remains ready for object storage migration
+
+This balances architectural cleanliness with early-stage pragmatism.
+
+### Status
+
+Accepted (Phase 1 Delivery Model).
+
+Object storage migration deferred until scaling triggers justify the change.
+
 ## Planned Extensions
 
 The following capabilities are planned and not yet implemented:
