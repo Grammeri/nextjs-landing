@@ -129,6 +129,14 @@ export async function POST(request: Request) {
         },
       });
 
+      await prisma.license.updateMany({
+        where: { orderId: order.id },
+        data: {
+          status: 'REVOKED',
+          revokedAt: new Date(),
+        },
+      });
+
       console.log('[webhook] refund processed', {
         orderId: order.id,
         paymentIntentId,
@@ -161,6 +169,14 @@ export async function POST(request: Request) {
         data: {
           refundedAmount: order.amount,
           status: 'REFUNDED',
+        },
+      });
+
+      await prisma.license.updateMany({
+        where: { orderId: order.id },
+        data: {
+          status: 'REVOKED',
+          revokedAt: new Date(),
         },
       });
 
@@ -215,27 +231,40 @@ export async function POST(request: Request) {
     const userAgent = session.metadata?.clientUserAgent ?? null;
     const termsVersion = session.metadata?.termsVersion ?? TERMS_VERSION;
 
-    await prisma.order.create({
+    const createdOrder = await prisma.order.create({
       data: {
         productId,
         buyerEmail: email,
-
         provider: 'STRIPE',
         providerSessionId: sessionId,
         providerEventId: eventId,
         providerPaymentIntentId: paymentIntentId,
-
         amount: session.amount_total ?? 0,
         currency: session.currency ?? 'usd',
-
         status: 'PAID',
         refundedAmount: 0,
-
         termsAccepted: true,
         termsAcceptedAt: new Date(),
         termsVersion,
         termsAcceptedIp: ip,
         termsAcceptedUserAgent: userAgent,
+      },
+    });
+
+    // ✅ issue license (idempotent)
+    await prisma.license.upsert({
+      where: { orderId: createdOrder.id },
+      create: {
+        orderId: createdOrder.id,
+        productId,
+        email,
+        status: 'ACTIVE',
+      },
+      update: {
+        status: 'ACTIVE',
+        revokedAt: null,
+        productId,
+        email,
       },
     });
 

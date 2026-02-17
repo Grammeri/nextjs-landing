@@ -36,7 +36,33 @@ model Order {
 
   createdAt               DateTime @default(now())
 
+  // 🔹 Relations
   billingEvents           BillingEvent[]
+  license                 License?
+
+  @@index([buyerEmail])
+  @@index([productId])
+}
+
+model License {
+  id         String        @id @default(cuid())
+
+  orderId    String        @unique
+  order      Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId  String
+  email      String
+
+  status     LicenseStatus @default(ACTIVE)
+
+  revokedAt  DateTime?
+  validUntil DateTime?
+
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@index([email, productId])
+  @@index([status])
 }
 
 model BillingEvent {
@@ -66,6 +92,11 @@ enum OrderStatus {
   PAID
   PARTIALLY_REFUNDED
   REFUNDED
+}
+
+enum LicenseStatus {
+  ACTIVE
+  REVOKED
 }
 
 enum BillingEventStatus {
