@@ -15,7 +15,16 @@ const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site
  * Deterministic order for top-level documents
  * (UX policy, not content configuration)
  */
-const ROOT_ORDER = ['quick-start', 'getting-started', 'architecture', 'demo-mode', 'environment'];
+const ROOT_ORDER = [
+  'quick-start',
+  'getting-started',
+  'architecture',
+  'demo-mode',
+  'environment',
+  'project-tree',
+  'security',
+  'ui-principles',
+];
 
 /**
  * Friendly titles for section directories (folders)
@@ -29,6 +38,8 @@ const SECTION_TITLES: Record<string, string> = {
  */
 const DOC_TITLES: Record<string, string> = {
   'ui-principles': 'UI Principles',
+  'project-tree': 'Project Tree',
+  security: 'Security Model',
 };
 
 /**
