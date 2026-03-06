@@ -2,18 +2,18 @@
   "name": "nextjs-landing",
   "private": true,
   "packageManager": "pnpm@10.6.2",
-"scripts": {
-  "prepare": "husky",
-  "dev": "next dev",
-  "prisma:generate": "prisma generate --schema=prisma/schema.prisma",
-  "build": "pnpm prisma:generate && next build",
-  "start": "next start",
-  "lint": "eslint . --ext .ts,.tsx",
-  "format": "prettier --write .",
-  "format:check": "prettier --check .",
-  "tsc": "tsc --noEmit",
-  "docs:tree": "git ls-files > tree.git.txt && node make-tree.js"
-},
+  "scripts": {
+    "prepare": "husky",
+    "dev": "next dev",
+    "prisma:generate": "prisma generate --schema=prisma/schema.prisma",
+    "build": "pnpm prisma:generate && next build",
+    "start": "next start",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "tsc": "tsc --noEmit",
+    "docs:tree": "git ls-files > tree.git.txt && node scripts/make-tree.mjs"
+  },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",

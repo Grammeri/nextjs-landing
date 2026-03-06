@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const inputFile = 'tree.git.txt';
-const outputFile = 'tree.pretty.txt';
+const ROOT = process.cwd();
+
+const inputFile = path.join(ROOT, 'tree.git.txt');
+const outputFile = path.join(ROOT, 'dev', 'tree.pretty.txt');
 
 if (!fs.existsSync(inputFile)) {
-  console.error('❌ tree.git.txt not found in project root');
+  console.error('tree.git.txt not found in project root');
   process.exit(1);
 }
 
@@ -38,11 +40,17 @@ function walk(node, prefix = '') {
   });
 }
 
-const rootName = path.basename(process.cwd());
+const rootName = path.basename(ROOT);
 output.push(rootName + '/');
 
 walk(tree);
 
+const devDir = path.join(ROOT, 'dev');
+
+if (!fs.existsSync(devDir)) {
+  fs.mkdirSync(devDir);
+}
+
 fs.writeFileSync(outputFile, output.join('\n'), 'utf8');
 
-console.log(`✅ Tree generated: ${outputFile}`);
+console.log(`✅ Tree generated: ${path.relative(ROOT, outputFile)}`);
