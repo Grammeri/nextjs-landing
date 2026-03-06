@@ -10,6 +10,7 @@ type Props = {
 export function StripeButton({ selected, onSelect, disabled = false }: Props) {
   return (
     <SelectableItem selected={selected} onSelect={onSelect} variant="stripe" disabled={disabled}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/brands/stripe-logo.svg"
         alt="Stripe"

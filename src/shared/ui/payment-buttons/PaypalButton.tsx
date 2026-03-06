@@ -16,11 +16,8 @@ type Props = {
 export function PaypalButton({ selected, onSelect, disabled = false }: Props) {
   return (
     <SelectableItem selected={selected} onSelect={onSelect} variant="paypal" disabled={disabled}>
-      <img
-        src="/images/brands/paypal-logo.svg"
-        alt="PayPal"
-        className={styles['logo-paypal'] as string}
-      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/images/brands/paypal-logo.svg" alt="PayPal" className={styles['logo-paypal']} />
     </SelectableItem>
   );
 }

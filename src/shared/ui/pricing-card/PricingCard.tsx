@@ -6,6 +6,7 @@ import { StripeButton, PaypalButton } from '@/shared/ui/payment-buttons';
 import { SelectableGroup } from '@/shared/ui/selection';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 import styles from './PricingCard.module.css';
+import Link from 'next/link';
 
 export type PricingFeature = {
   text: string;
@@ -114,9 +115,9 @@ export function PricingCard({
               />
               <span>
                 I agree to the{' '}
-                <a href="/legal" className={styles.termsLink}>
+                <Link href="/legal" className={styles.termsLink}>
                   Terms & Conditions
-                </a>
+                </Link>
               </span>
             </label>
 

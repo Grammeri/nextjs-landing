@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -10,9 +11,9 @@ export default function Footer() {
           <span className={styles.contact}>Contact us: support@software-forge.dev</span>
         </div>
         <div className={styles.right}>
-          <a href="/legal" className={styles.legalLink}>
+          <Link href="/legal" className={styles.legalLink}>
             Legal
-          </a>
+          </Link>
         </div>
       </div>
     </footer>
