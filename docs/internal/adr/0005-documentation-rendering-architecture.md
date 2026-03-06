@@ -1,4 +1,4 @@
-Documentation Rendering Architecture (Docs Engine for AuthForge)
+# Documentation Rendering Architecture (Docs Engine for AuthForge)
 
 This document records an architectural decision regarding the documentation
 rendering architecture used in the AuthForge landing application.
@@ -15,7 +15,7 @@ The AuthForge landing application includes a developer documentation section.
 
 Documentation content is stored as Markdown files within the repository:
 
-docs/site/
+content/authforge/docs/site/
 
 Current documents include:
 
@@ -30,9 +30,9 @@ Current documents include:
 Historically, documentation pages were implemented as individual Next.js pages,
 for example:
 
-/docs/security/page.tsx  
-/docs/architecture/page.tsx  
-/docs/environment/page.tsx  
+/[locale]/docs/authforge/security/page.tsx  
+/[locale]/docs/authforge/architecture/page.tsx  
+/[locale]/docs/authforge/environment/page.tsx  
 
 Each page manually imported and rendered the corresponding Markdown document.
 
@@ -50,23 +50,25 @@ Modern developer documentation systems (Stripe, Vercel, Supabase, Prisma)
 typically implement a centralized documentation rendering system where content
 files are treated as data and rendered through a shared engine.
 
+---
+
 ## Decision
 
 The documentation system adopts a dynamic documentation rendering architecture.
 
 Instead of creating individual page files for each document, the application
-uses a single dynamic route:
+uses a single dynamic catch-all documentation route:
 
-/docs/[slug]
+/[locale]/docs/authforge/[...slug]
 
 Documentation pages are rendered dynamically based on Markdown files stored
 in the repository.
 
 Example mapping:
 
-/docs/security -> docs/site/security.md  
-/docs/architecture -> docs/site/architecture.md  
-/docs/quick-start -> docs/site/quick-start.md  
+/en/docs/authforge/security -> content/authforge/docs/site/security.md  
+/en/docs/authforge/architecture -> content/authforge/docs/site/architecture.md  
+/en/docs/authforge/quick-start -> content/authforge/docs/site/quick-start.md  
 
 The documentation system includes:
 
@@ -74,11 +76,15 @@ The documentation system includes:
 - dynamic documentation router
 - navigation configuration
 - shared documentation layout
+- internal documentation link validation
+- automatic page outline generation
 
 Documentation content remains stored as Markdown files.
 
 The rendering engine is responsible for converting Markdown content into
 application pages.
+
+---
 
 ## Implemented Capabilities
 
@@ -86,15 +92,17 @@ application pages.
 
 The application introduces a dynamic documentation route:
 
-src/app/docs/[slug]/page.tsx
+src/app/[locale]/docs/authforge/[...slug]/page.tsx
 
 The route resolves documentation files by slug:
 
-slug -> docs/site/${slug}.md
+slug -> content/authforge/docs/site/${slug}.md
 
 If the file exists, the document is rendered.
 
 If the file does not exist, the route returns a 404.
+
+---
 
 ### Markdown content rendering
 
@@ -108,6 +116,8 @@ Responsibilities include:
 - preserving formatting defined by documentation standards
 
 Markdown files remain the source of truth for documentation content.
+
+---
 
 ### Documentation layout
 
@@ -123,13 +133,15 @@ The layout provides:
 
 This guarantees consistent presentation across all documentation pages.
 
+---
+
 ### Navigation configuration
 
-Documentation navigation is defined through a centralized configuration file.
+Documentation navigation is defined through a centralized navigation engine.
 
-Example structure:
+Navigation is resolved through:
 
-docs/navigation.ts
+src/app/[locale]/docs/_engine/getNav.ts
 
 Navigation defines:
 
@@ -145,11 +157,60 @@ This allows:
 - grouping related documents
 - controlling document ordering
 
-### Repository content model
+---
+
+### Internal documentation link validation
+
+The documentation engine validates internal documentation links during rendering.
+
+Relative Markdown links such as:
+
+./environment  
+../security  
+
+are resolved against the current documentation slug.
+
+If a referenced documentation file does not exist, the engine reports a
+broken documentation link.
+
+In development mode:
+
+- broken links produce warnings in the console
+
+In production mode:
+
+- broken links throw an error during rendering
+
+This mechanism prevents broken documentation navigation and ensures
+documentation integrity.
+
+---
+
+### Automatic page outline generation
+
+The documentation engine extracts level-2 headings (##) during Markdown parsing
+and generates a page outline.
+
+This outline is used to render the right-side page navigation.
+
+Example headings:
+
+## Installation  
+## Configuration  
+## Security  
+
+These headings automatically appear in the page outline navigation.
+
+This mechanism guarantees that page navigation always reflects
+the actual document structure.
+
+---
+
+## Repository Content Model
 
 Documentation remains stored inside the repository:
 
-docs/site/
+content/authforge/docs/site/
 
 Content files remain Markdown (.md).
 
@@ -160,18 +221,22 @@ This ensures:
 - diff visibility
 - documentation consistency with the codebase
 
+This structure also allows documentation to be versioned together with
+product content and supports multi-product documentation within the
+Software-Forge ecosystem.
+
+---
+
 ## Rationale
 
 Treating documentation files as data rather than pages provides significant
 architectural advantages.
 
-Benefits include:
-
 ### Scalability
 
 New documentation can be added simply by creating a Markdown file:
 
-docs/site/new-feature.md
+content/authforge/docs/site/new-feature.md
 
 No routing changes are required.
 
@@ -203,6 +268,8 @@ The documentation engine itself becomes a reusable component.
 
 Future products within the Software-Forge ecosystem may reuse the same system.
 
+---
+
 ## Consequences
 
 The documentation layer becomes an application subsystem rather than a
@@ -215,9 +282,13 @@ Changes introduced:
 - layout is unified
 - navigation becomes configurable
 - documentation files become the canonical content source
+- documentation links are automatically validated
+- page outlines are generated automatically
 
 This introduces moderate architectural complexity and significantly improves
 scalability and maintainability.
+
+---
 
 ## Migration Strategy
 
@@ -225,21 +296,24 @@ Migration can be performed incrementally.
 
 Steps:
 
-1. Introduce dynamic route /docs/[slug].
+1. Introduce dynamic route `/[locale]/docs/authforge/[...slug]`.
 2. Implement Markdown loader.
-3. Move existing documentation pages to Markdown files if not already present.
+3. Move existing documentation pages to Markdown files.
 4. Remove per-document page files.
 5. Introduce navigation configuration.
+6. Enable internal documentation link validation.
 
 Existing URLs remain unchanged.
 
 For example:
 
-/docs/security  
-/docs/architecture  
-/docs/quick-start  
+/en/docs/authforge/security  
+/en/docs/authforge/architecture  
+/en/docs/authforge/quick-start  
 
 continue to resolve correctly.
+
+---
 
 ## Future Extensions
 
@@ -250,9 +324,12 @@ The documentation system may be extended with:
 - search integration
 - documentation versioning
 - API reference rendering
+- documentation analytics
 
 These capabilities can be introduced without replacing the core documentation
 engine.
+
+---
 
 ## Status
 
