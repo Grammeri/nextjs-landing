@@ -1,0 +1,7 @@
+{
+  "ignore": [
+    "content/**",
+    "docs/**",
+    "scripts/**"
+  ]
+}
