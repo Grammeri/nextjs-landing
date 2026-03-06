@@ -93,7 +93,7 @@
 }
 
 .consentLabel input::after {
-  content: "";
+  content: '';
   width: var(--control-checkbox-check-size);
   height: var(--control-checkbox-check-size);
   transform: scale(0);
@@ -101,16 +101,8 @@
 
   background: var(--control-checkbox-check);
 
-  clip-path: polygon(
-    14% 44%,
-    0 65%,
-    50% 100%,
-    100% 16%,
-    80% 0,
-    43% 62%
-  );
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
 }
-
 
 .consentLabel input:checked::after {
   transform: scale(1);
@@ -120,11 +112,9 @@
   border-color: var(--color-texas-red-soft);
 }
 
-
 .checkboxError {
   border-color: var(--control-checkbox-error-border) !important;
 }
-
 
 .errorText {
   display: flex;
@@ -144,7 +134,6 @@
   border-left: 3px solid var(--color-error);
 }
 
-
 .termsLink {
   color: var(--color-texas-red);
   text-decoration: underline;
@@ -154,4 +143,3 @@
 .termsLink:hover {
   opacity: var(--opacity-hover-subtle);
 }
-

@@ -1,4 +1,5 @@
 # ADR-0001: Product and Pricing Scope
+
 This document records an architectural decision regarding product structure, pricing model, and scalability boundaries in the Next.js Landing repository.
 
 It defines the current scope and explicitly documents which scalability concerns are intentionally deferred.
@@ -6,6 +7,7 @@ It defines the current scope and explicitly documents which scalability concerns
 ---
 
 ## Context
+
 The landing page currently serves a small number of standalone products.
 
 Each product:
@@ -21,6 +23,7 @@ At the same time, the system is expected to grow to support additional products 
 This decision clarifies which scalability concerns are addressed now and which are intentionally postponed.
 
 ## Decision
+
 The system adopts a single-tier pricing model per product.
 
 Each product:
@@ -34,6 +37,7 @@ Each product:
 More complex pricing structures (multiple tiers, comparisons, tables) are explicitly out of scope at this stage.
 
 ## Rationale
+
 The current approach avoids premature abstraction.
 
 Introducing pricing grids, product configuration layers, or plan comparison logic is unnecessary while:
@@ -45,6 +49,7 @@ Introducing pricing grids, product configuration layers, or plan comparison logi
 The chosen structure keeps the codebase simple while preserving the ability to evolve without breaking changes.
 
 ## Consequences
+
 The following constraints are accepted:
 
 - product data may be duplicated across pages
@@ -61,6 +66,7 @@ The following future changes are expected but deferred:
 These changes can be introduced incrementally without refactoring existing components.
 
 ## Status
+
 Accepted.
 
 This decision remains valid until a product requires:

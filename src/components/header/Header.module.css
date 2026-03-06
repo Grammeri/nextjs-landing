@@ -18,10 +18,10 @@
   background-color: var(--header-bg-scrolled);
   backdrop-filter: var(--header-backdrop-blur);
 
-  --header-link-color: var(--color-on-image-footer);          /* softer */
-  --header-link-hover-color: var(--color-on-image-primary);   /* pure white */
+  --header-link-color: var(--color-on-image-footer); /* softer */
+  --header-link-hover-color: var(--color-on-image-primary); /* pure white */
   --header-brand-color: var(--color-on-image-footer);
-  --header-brand-hover-color: var(--color-on-image-primary);  
+  --header-brand-hover-color: var(--color-on-image-primary);
 }
 
 .inner {
@@ -37,8 +37,7 @@
   color: var(--header-link-color);
   text-decoration: none;
 
-  transition:
-    color var(--motion-duration-fast) var(--motion-easing-standard);
+  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .brand:hover {

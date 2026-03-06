@@ -33,7 +33,7 @@
 }
 
 .right::before {
-  content: "";
+  content: '';
   position: absolute;
   left: calc(var(--footer-divider-offset) * -1);
   top: var(--spacing-xs);
@@ -45,8 +45,9 @@
 .legalLink {
   font-size: var(--font-size-sm);
   color: var(--color-on-image-footer-muted);
-  transition: color var(--motion-duration-fast) var(--motion-easing-standard),
-              transform var(--motion-duration-fast) var(--motion-easing-standard);
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    transform var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .legalLink:hover {

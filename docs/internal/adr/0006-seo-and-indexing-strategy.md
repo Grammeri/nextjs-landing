@@ -46,14 +46,14 @@ SEO infrastructure is implemented as part of the application architecture rather
 
 The system includes:
 
-* automatic sitemap generation
-* robots.txt generation
-* documentation-driven URL discovery
-* centralized metadata configuration
-* OpenGraph metadata
-* Twitter card metadata
-* a shared OpenGraph preview image
-* production domain configuration via environment variables
+- automatic sitemap generation
+- robots.txt generation
+- documentation-driven URL discovery
+- centralized metadata configuration
+- OpenGraph metadata
+- Twitter card metadata
+- a shared OpenGraph preview image
+- production domain configuration via environment variables
 
 This architecture ensures that documentation growth automatically increases the number of indexable pages.
 
@@ -163,11 +163,11 @@ src/app/layout.tsx
 
 Metadata includes:
 
-* page title
-* page description
-* OpenGraph metadata
-* Twitter card metadata
-* preview image configuration
+- page title
+- page description
+- OpenGraph metadata
+- Twitter card metadata
+- preview image configuration
 
 Example metadata configuration includes:
 
@@ -200,12 +200,12 @@ Image specification:
 
 The image is used by:
 
-* Facebook
-* Twitter / X
-* LinkedIn
-* Slack
-* Telegram
-* Discord
+- Facebook
+- Twitter / X
+- LinkedIn
+- Slack
+- Telegram
+- Discord
 
 When a link from the website is shared, these platforms generate a preview card using the OpenGraph metadata.
 
@@ -247,11 +247,11 @@ Each page in the marketing website and documentation system defines metadata usi
 
 Metadata includes:
 
-* page title
-* page description
-* OpenGraph metadata
-* Twitter card metadata
-* canonical URL (planned)
+- page title
+- page description
+- OpenGraph metadata
+- Twitter card metadata
+- canonical URL (planned)
 
 Documentation metadata may later be generated dynamically from Markdown content.
 
@@ -279,12 +279,12 @@ The marketing website and documentation system gain a structured indexing infras
 
 The system introduces:
 
-* dynamic sitemap generation
-* automatic robots configuration
-* documentation-driven indexing
-* centralized metadata management
-* OpenGraph link previews
-* Twitter card support
+- dynamic sitemap generation
+- automatic robots configuration
+- documentation-driven indexing
+- centralized metadata management
+- OpenGraph link previews
+- Twitter card support
 
 This architecture reduces manual SEO maintenance and allows the documentation system to scale naturally.
 
@@ -296,13 +296,13 @@ The SEO architecture may later be extended with additional capabilities.
 
 Possible extensions include:
 
-* canonical URL enforcement
-* last-modified values derived from Git history
-* dynamic OpenGraph images for documentation pages
-* structured data for product pages (JSON-LD)
-* search engine verification (Google Search Console, Bing)
-* multilingual hreflang support
-* documentation-specific preview images
+- canonical URL enforcement
+- last-modified values derived from Git history
+- dynamic OpenGraph images for documentation pages
+- structured data for product pages (JSON-LD)
+- search engine verification (Google Search Console, Bing)
+- multilingual hreflang support
+- documentation-specific preview images
 
 These extensions can be implemented without replacing the existing SEO architecture.
 
@@ -316,10 +316,10 @@ The dynamic SEO infrastructure becomes the standard indexing mechanism for the S
 
 Implemented components include:
 
-* dynamic sitemap generation
-* robots.txt generation
-* OpenGraph metadata
-* Twitter card metadata
-* shared preview image
+- dynamic sitemap generation
+- robots.txt generation
+- OpenGraph metadata
+- Twitter card metadata
+- shared preview image
 
 Additional SEO capabilities may be implemented incrementally as the platform grows.

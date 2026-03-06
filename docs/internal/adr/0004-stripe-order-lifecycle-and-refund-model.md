@@ -1,4 +1,5 @@
 # Stripe Order Lifecycle, Refund, and License Entitlement Model
+
 This document records an architectural decision regarding Stripe order lifecycle, refund handling, and billing state management in the Next.js Landing repository.
 
 It formalizes implemented behavior and documents the planned extension path.
@@ -6,6 +7,7 @@ It formalizes implemented behavior and documents the planned extension path.
 ---
 
 ## Context
+
 The landing application sells standalone digital products through one-time Stripe Checkout payments.
 
 The initial billing flow supported:
@@ -25,6 +27,7 @@ As refund logic evolved, the system required:
 The key decision was how Stripe refund events should update internal order state without introducing double counting or inconsistent lifecycle transitions.
 
 ## Decision
+
 The system adopts a state-driven `Order` lifecycle with cumulative refund tracking.
 
 Stripe is treated as:
@@ -44,6 +47,7 @@ Refund totals are derived from Stripe cumulative values and clamped to avoid ove
 ## Implemented Capabilities
 
 ### Checkout processing
+
 Stripe Checkout creates an `Order` record and stores:
 
 - `productId`
@@ -57,6 +61,7 @@ Stripe Checkout creates an `Order` record and stores:
 Idempotency is enforced by `providerSessionId`.
 
 ### Order lifecycle states
+
 `Order.status` supports:
 
 - `PAID`
@@ -72,6 +77,7 @@ refundedAmount >= amount → REFUNDED
 ```
 
 ### Partial refund support
+
 The system supports:
 
 - single partial refunds
@@ -86,6 +92,7 @@ refundedAmount = min(charge.amount_refunded, order.amount)
 ```
 
 ### Refund safety guards
+
 Two protection layers are applied:
 
 - application guard: clamp refund totals to original order amount
@@ -94,6 +101,7 @@ Two protection layers are applied:
 This guarantees financial integrity even if application logic changes.
 
 ### Supported webhook events
+
 The billing webhook handles:
 
 - `checkout.session.completed`
@@ -104,6 +112,7 @@ The billing webhook handles:
 Webhook handling is idempotent and safe for duplicate delivery.
 
 ### License layer implementation
+
 A dedicated `License` model is introduced to represent product entitlement.
 
 Each `Order` may have exactly one associated `License`.
@@ -133,6 +142,7 @@ On refund or payment cancellation:
 This formalizes entitlement as a first-class domain concept rather than deriving access from order status alone.
 
 ## Rationale
+
 Stripe is not used as the application state engine.
 
 Persisting lifecycle state internally provides:
@@ -149,6 +159,7 @@ Persisting lifecycle state internally provides:
 This follows event-driven architecture principles while preserving the database as the source of truth for billing state.
 
 ## Consequences
+
 The billing layer now:
 
 - maintains lifecycle state internally
@@ -163,6 +174,7 @@ This introduces moderate complexity and improves reliability and scalability.
 ## Product Artifact Delivery Model (ZIP Distribution Strategy)
 
 ### Context
+
 The application distributes standalone digital products as downloadable ZIP archives.
 
 At the current stage:
@@ -175,6 +187,7 @@ At the current stage:
 The question addressed was whether to immediately externalize product storage or temporarily keep artifacts within the application repository.
 
 ### Decision
+
 At the current phase, product ZIP artifacts remain stored within the application repository and are delivered through the Next.js API layer.
 
 Delivery flow:
@@ -193,6 +206,7 @@ The API:
 External object storage is deferred to a later optimization phase.
 
 ### Rationale
+
 The decision is driven by stage-appropriate optimization:
 
 - artifact size is extremely small
@@ -215,6 +229,7 @@ Storage optimization is postponed until:
 - infrastructure scaling becomes necessary
 
 ### Architectural Boundaries
+
 Even while storing artifacts locally:
 
 - access control is enforced exclusively through the License layer
@@ -225,6 +240,7 @@ Even while storing artifacts locally:
 This preserves future migration flexibility.
 
 ### Migration Path (Future)
+
 When scaling requires external storage:
 
 1. Introduce storage abstraction layer (`storage.generateSignedUrl`)
@@ -242,6 +258,7 @@ No changes are required to:
 Only the physical delivery mechanism changes.
 
 ### Consequences
+
 The system currently:
 
 - maintains deterministic entitlement control
@@ -252,6 +269,7 @@ The system currently:
 This balances architectural cleanliness with early-stage pragmatism.
 
 ## Planned Extensions
+
 The following capabilities are planned and not yet implemented:
 
 - BillingEvent audit log
@@ -260,6 +278,7 @@ The following capabilities are planned and not yet implemented:
 - invoice and VAT support
 
 ## Status
+
 Accepted.
 
 This decision formalizes Stripe lifecycle and partial refund support as a foundation of the billing core.

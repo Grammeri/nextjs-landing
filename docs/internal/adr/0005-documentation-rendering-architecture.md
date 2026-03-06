@@ -1,4 +1,5 @@
 # Documentation Rendering Architecture (Docs Engine for AuthForge)
+
 This document records an architectural decision regarding the documentation rendering architecture used in the AuthForge landing application.
 
 It formalizes the transition from page-per-document rendering to a unified documentation engine capable of rendering Markdown-based documentation dynamically.
@@ -6,6 +7,7 @@ It formalizes the transition from page-per-document rendering to a unified docum
 ---
 
 ## Context
+
 The AuthForge landing application includes a developer documentation section.
 
 Documentation content is stored as Markdown files within the repository:
@@ -47,6 +49,7 @@ As the documentation grows, this model becomes difficult to maintain.
 Modern developer documentation systems such as Stripe, Vercel, Supabase, and Prisma typically implement a centralized documentation rendering system where content files are treated as data and rendered through a shared engine.
 
 ## Decision
+
 The documentation system adopts a dynamic documentation rendering architecture.
 
 Instead of creating individual page files for each document, the application uses a single dynamic catch-all documentation route:
@@ -81,6 +84,7 @@ The rendering engine is responsible for converting Markdown content into applica
 ## Implemented Capabilities
 
 ### Dynamic documentation routing
+
 The application introduces a dynamic documentation route:
 
 ```text
@@ -98,6 +102,7 @@ If the file exists, the document is rendered.
 If the file does not exist, the route returns a 404.
 
 ### Markdown content rendering
+
 Documentation files are rendered through a centralized Markdown renderer.
 
 Responsibilities include:
@@ -110,6 +115,7 @@ Responsibilities include:
 Markdown files remain the source of truth for documentation content.
 
 ### Documentation layout
+
 All documentation pages share a unified layout.
 
 The layout provides:
@@ -123,6 +129,7 @@ The layout provides:
 This guarantees consistent presentation across all documentation pages.
 
 ### Navigation configuration
+
 Documentation navigation is defined through a centralized navigation engine.
 
 Navigation is resolved through:
@@ -146,6 +153,7 @@ This allows:
 - controlling document ordering
 
 ### Internal documentation link validation
+
 The documentation engine validates internal documentation links during rendering.
 
 Relative Markdown links such as:
@@ -170,6 +178,7 @@ In production mode:
 This mechanism prevents broken documentation navigation and ensures documentation integrity.
 
 ### Automatic page outline generation
+
 The documentation engine extracts level-2 headings during Markdown parsing and generates a page outline.
 
 This outline is used to render the right-side page navigation.
@@ -187,6 +196,7 @@ These headings automatically appear in the page outline navigation.
 This mechanism guarantees that page navigation always reflects the actual document structure.
 
 ## Repository Content Model
+
 Documentation remains stored inside the repository:
 
 ```text
@@ -205,9 +215,11 @@ This ensures:
 This structure also allows documentation to be versioned together with product content and supports multi-product documentation within the Software-Forge ecosystem.
 
 ## Rationale
+
 Treating documentation files as data rather than pages provides significant architectural advantages.
 
 ### Scalability
+
 New documentation can be added simply by creating a Markdown file:
 
 ```text
@@ -217,27 +229,33 @@ content/authforge/docs/site/new-feature.md
 No routing changes are required.
 
 ### Maintainability
+
 A single rendering engine eliminates duplicated page logic and reduces maintenance overhead.
 
 ### Consistency
+
 All documentation pages share identical layout and rendering behavior.
 
 ### Developer experience
+
 Documentation updates require only editing Markdown files.
 
 No framework-specific knowledge is required.
 
 ### Product positioning
+
 Professional documentation systems are a strong signal of product maturity.
 
 Adopting a documentation engine aligns the AuthForge documentation experience with industry standards used by major developer platforms.
 
 ### Reusability
+
 The documentation engine itself becomes a reusable component.
 
 Future products within the Software-Forge ecosystem may reuse the same system.
 
 ## Consequences
+
 The documentation layer becomes an application subsystem rather than a collection of pages.
 
 Changes introduced:
@@ -253,6 +271,7 @@ Changes introduced:
 This introduces moderate architectural complexity and significantly improves scalability and maintainability.
 
 ## Migration Strategy
+
 Migration can be performed incrementally.
 
 Steps:
@@ -277,6 +296,7 @@ For example:
 continue to resolve correctly.
 
 ## Future Extensions
+
 The documentation system may be extended with:
 
 - MDX component support (callouts, warnings, embedded UI examples)
@@ -289,6 +309,7 @@ The documentation system may be extended with:
 These capabilities can be introduced without replacing the core documentation engine.
 
 ## Status
+
 Accepted.
 
 The dynamic documentation rendering architecture becomes the foundation of the AuthForge documentation system and replaces page-per-document rendering.
