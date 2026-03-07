@@ -45,16 +45,28 @@
   color: var(--color-product-text-muted);
 }
 
-.markdown ul,
+.markdown ul {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-xl);
+  color: var(--color-product-text-muted);
+  list-style: disc;
+}
+
 .markdown ol {
   margin-bottom: var(--spacing-md);
   padding-left: var(--spacing-xl);
   color: var(--color-product-text-muted);
+  list-style: decimal;
 }
 
 .markdown li {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
   font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.markdown li::marker {
+  color: var(--color-product-text-muted);
 }
 
 .markdown a {
