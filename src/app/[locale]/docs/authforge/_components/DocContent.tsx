@@ -9,17 +9,19 @@ type DocContentProps = {
 };
 
 export default async function DocContent({ slug }: DocContentProps) {
-  const { html, outline } = await getDocMarkdown(slug);
+  const { title, html, outline } = await getDocMarkdown(slug);
 
   return (
     <article className={`${styles.content} docs`} data-docs-slug={slug}>
-      <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: html }} />
+      {title && <h1 className={styles.title}>{title}</h1>}
 
       {outline.length ? (
         <div className={styles.outline}>
           <PageOutline items={outline} />
         </div>
       ) : null}
+
+      <div className={styles.markdown} dangerouslySetInnerHTML={{ __html: html }} />
     </article>
   );
 }

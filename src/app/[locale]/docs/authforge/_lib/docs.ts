@@ -85,7 +85,7 @@ const resolveInternalHref = (href: string, currentSlug: string): string | null =
 
 export const getDocMarkdown = async (
   slug: string,
-): Promise<{ html: string; outline: OutlineItem[] }> => {
+): Promise<{ title: string | null; html: string; outline: OutlineItem[] }> => {
   const normalizedSlug = normalizeSlug(slug);
   const docPath = await resolveDocPath(slug);
 
@@ -95,7 +95,27 @@ export const getDocMarkdown = async (
 
   try {
     const markdown = await fs.readFile(docPath, 'utf8');
-    return renderMarkdown(markdown, normalizedSlug);
+
+    const { html, outline } = await renderMarkdown(markdown, normalizedSlug);
+
+    // -----------------------------
+    // Extract first H1
+    // -----------------------------
+    const match = html.match(/<h1.*?>(.*?)<\/h1>/i);
+
+    let title: string | null = null;
+    let htmlWithoutTitle = html;
+
+    if (match) {
+      title = match[1];
+      htmlWithoutTitle = html.replace(match[0], '');
+    }
+
+    return {
+      title,
+      html: htmlWithoutTitle,
+      outline,
+    };
   } catch (error) {
     const nodeError = error as NodeJS.ErrnoException;
 
