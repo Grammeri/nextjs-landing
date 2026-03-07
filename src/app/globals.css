@@ -155,6 +155,10 @@
   --radius-xl: 16px;
   --radius-full: 9999px;
 
+  /* Border width */
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+
   /* ===============================
      Shape / Radius — Semantic
      =============================== */
@@ -280,6 +284,10 @@
   --opacity-hover-subtle: 0.9;
   --motion-scale-hover: 1.03;
   --motion-hover-raise: -2px;
+
+  /* Hover translate token */
+  --motion-translate-hover: var(--motion-hover-raise);
+
   --motion-duration-fast: 150ms;
   --motion-duration-base: 200ms;
   --motion-easing-standard: ease;

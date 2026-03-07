@@ -153,7 +153,7 @@
 
 .markdown hr {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: var(--border-width-sm) solid var(--color-border);
   margin: var(--spacing-lg) 0;
   opacity: 0.6;
 }
@@ -214,7 +214,7 @@
 :global(.docs-copy-button:hover) {
   color: var(--color-product-text);
   border-color: var(--color-product-text);
-  transform: translateY(var(--motion-hover-translate-y, -1px));
+  transform: translateY(var(--motion-translate-hover));
 }
 
 :global(.docs-copy-button:focus-visible) {
