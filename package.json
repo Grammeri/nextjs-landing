@@ -13,6 +13,7 @@
     "format:check": "prettier --check .",
     "tsc": "tsc --noEmit",
     "audit:code": "knip",
+    "audit:cycles": "madge --circular src",
     "docs:tree": "git ls-files > tree.git.txt && node scripts/make-tree.mjs"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "husky": "^9.1.7",
     "knip": "^5.85.0",
     "lint-staged": "^16.2.7",
+    "madge": "^8.0.0",
     "prettier": "^3.7.4",
     "prisma": "^7.4.0",
     "typescript": "^5"
