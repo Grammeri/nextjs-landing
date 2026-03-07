@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { appendCopyIcon, createIconElement, externalLinkIconDefinition } from '@/shared/ui/icons';
 
-const COPY_LANGUAGES = new Set(['bash', 'sh', 'shell', 'powershell', 'ps1', 'ts', 'js', 'json']);
+const COPY_LANGUAGES = ['bash', 'sh', 'shell', 'powershell', 'ps1', 'ts', 'js', 'json'];
 
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
@@ -60,7 +60,6 @@ export default function DocsAnchorScroll() {
           if (!(code instanceof HTMLElement)) return;
 
           const className = code.className || '';
-
           const isCliBlock = COPY_LANGUAGES.some((lang) => className.includes(`language-${lang}`));
 
           const hasExplicitCopy = className.includes('copy');
