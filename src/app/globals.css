@@ -71,7 +71,8 @@
   --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
   /* List markers (checkmarks, bullets) */
-  --color-list-marker: var(--color-tertiary); /* Texas red */
+  --color-list-marker: var(--color-tertiary);
+  /* Texas red */
 
   --color-success: #009639;
   --color-success-faded: rgba(0, 150, 57, 0.1);
@@ -99,6 +100,18 @@
   --color-code-bg: var(--color-surface-muted);
   --color-code-text: var(--color-secondary);
   --icon-stroke-width: 1.5;
+
+  /* ===============================
+   Docs Layout Spacing
+   =============================== */
+
+  --docs-space-paragraph: var(--spacing-md);
+  --docs-space-list: var(--spacing-sm);
+  --docs-space-section: var(--spacing-xl);
+  --docs-space-subsection: var(--spacing-lg);
+  --docs-space-code: var(--spacing-lg);
+  --docs-space-table: var(--spacing-lg);
+  --docs-space-hr: var(--spacing-lg);
 
   /* Typography — final marketing scale */
   --font-base:
@@ -222,12 +235,10 @@
 
   /* Footer decorative */
   --footer-divider-color: rgba(255, 255, 255, 0.12);
-  --footer-divider-gradient: linear-gradient(
-    to bottom,
-    transparent,
-    var(--footer-divider-color),
-    transparent
-  );
+  --footer-divider-gradient: linear-gradient(to bottom,
+      transparent,
+      var(--footer-divider-color),
+      transparent);
 
   /* Footer divider metrics */
   --footer-divider-thickness: 1px;
@@ -533,6 +544,7 @@ ol {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
