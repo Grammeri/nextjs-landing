@@ -57,6 +57,20 @@ export default function DocsAnchorScroll() {
         codeBlocks.forEach((code) => {
           if (!(code instanceof HTMLElement)) return;
 
+          const className = code.className || '';
+
+          const isCliBlock =
+            className.includes('language-bash') ||
+            className.includes('language-shell') ||
+            className.includes('language-sh') ||
+            className.includes('language-terminal') ||
+            className.includes('language-curl');
+
+          const hasExplicitCopy = className.includes('copy');
+
+          // allow copy for CLI blocks OR explicitly marked blocks
+          if (!isCliBlock && !hasExplicitCopy) return;
+
           const text = code.textContent?.trim() ?? '';
           if (!text) return;
 
