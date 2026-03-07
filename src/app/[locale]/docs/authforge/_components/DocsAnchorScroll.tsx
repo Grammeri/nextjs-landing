@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { appendCopyIcon, createIconElement, externalLinkIconDefinition } from '@/shared/ui/icons';
 
-const COPY_LANGUAGES = ['bash', 'shell', 'sh', 'terminal', 'curl', 'env', 'sql'];
+const COPY_LANGUAGES = new Set(['bash', 'sh', 'shell', 'powershell', 'ps1', 'ts', 'js', 'json']);
 
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
