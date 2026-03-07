@@ -5,7 +5,7 @@
 }
 
 .markdown {
-  display: block;
+  display: contents;
 }
 
 .markdown>* {
@@ -38,8 +38,8 @@
 }
 
 .markdown h3 {
-  margin-top: var(--spacing-2xl);
-  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-sm);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
@@ -47,7 +47,7 @@
 }
 
 .markdown p {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-product-text-muted);
@@ -55,7 +55,7 @@
 
 .markdown ul,
 .markdown ol {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   padding-left: var(--spacing-xl);
   color: var(--color-product-text-muted);
 }
@@ -147,16 +147,9 @@
 }
 
 .markdown pre {
-  position: relative;
   margin: 0 0 var(--spacing-lg);
-
-  /* base padding */
   padding: var(--spacing-md);
 
-  /* extra space for copy button */
-  padding-right: calc(var(--spacing-2xl) + var(--spacing-md));
-
-  display: inline-block;
   max-width: 100%;
 
   background: transparent;
@@ -183,14 +176,12 @@
 }
 
 :global(.docs-copy-button) {
-  position: absolute;
-  top: var(--spacing-xs);
-  right: var(--spacing-xs);
-  transform: translateX(6px);
+  position: static;
   isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
   width: var(--spacing-2xl);
   height: var(--spacing-2xl);
   padding: 0;
@@ -276,7 +267,8 @@
 }
 
 :global(.docs-code-block) {
-  position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
   max-width: 100%;
 }
