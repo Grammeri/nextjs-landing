@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { appendCopyIcon, createIconElement, externalLinkIconDefinition } from '@/shared/ui/icons';
 
+const COPY_LANGUAGES = ['bash', 'shell', 'sh', 'terminal', 'curl', 'env', 'sql'];
+
 export default function DocsAnchorScroll() {
   const pathname = usePathname();
 
@@ -20,7 +22,7 @@ export default function DocsAnchorScroll() {
     const createCopyButton = (value: string) => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'docs-copy-button docs-copy-button--inline';
+      button.className = 'docs-copy-button';
       button.setAttribute('aria-label', 'Copy code');
 
       appendCopyIcon(button);
@@ -59,12 +61,7 @@ export default function DocsAnchorScroll() {
 
           const className = code.className || '';
 
-          const isCliBlock =
-            className.includes('language-bash') ||
-            className.includes('language-shell') ||
-            className.includes('language-sh') ||
-            className.includes('language-terminal') ||
-            className.includes('language-curl');
+          const isCliBlock = COPY_LANGUAGES.some((lang) => className.includes(`language-${lang}`));
 
           const hasExplicitCopy = className.includes('copy');
 
@@ -80,15 +77,13 @@ export default function DocsAnchorScroll() {
           const pre = code.parentElement;
           if (!pre) return;
 
-          // Wrapper keeps button aligned
-          const wrapper = document.createElement('span');
-          wrapper.className = 'docs-copy-inline';
-          wrapper.setAttribute('data-docs-copy-inline', 'true');
+          pre.classList.add('docs-copy-host');
+          const wrapper = document.createElement('div');
+          wrapper.className = 'docs-code-block';
 
-          wrapper.appendChild(code);
+          pre.parentNode?.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
           wrapper.appendChild(createCopyButton(text));
-
-          pre.appendChild(wrapper);
         });
       });
     };

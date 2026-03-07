@@ -5,14 +5,14 @@
 }
 
 .markdown {
-  display: contents;
+  display: block;
 }
 
-.markdown > * {
+.markdown>* {
   order: 2;
 }
 
-.markdown > h1 {
+.markdown>h1 {
   order: 0;
 }
 
@@ -77,21 +77,17 @@
 .markdown a[data-internal='true'] {
   color: var(--color-product-text);
   text-decoration: underline;
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-product-text) var(--docs-link-underline-opacity-default),
-    transparent
-  );
+  text-decoration-color: color-mix(in srgb,
+      var(--color-product-text) var(--docs-link-underline-opacity-default),
+      transparent);
   text-underline-offset: 0.18em;
   position: relative;
 }
 
 .markdown a[data-internal='true']:hover {
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-product-text) var(--docs-link-underline-opacity-hover),
-    transparent
-  );
+  text-decoration-color: color-mix(in srgb,
+      var(--color-product-text) var(--docs-link-underline-opacity-hover),
+      transparent);
 }
 
 .markdown a[data-external='true'] {
@@ -139,7 +135,7 @@
   height: var(--spacing-md);
 }
 
-.markdown :global(.docs-external-inline) a:hover + :global(.docs-external-icon--hint) {
+.markdown :global(.docs-external-inline) a:hover+ :global(.docs-external-icon--hint) {
   opacity: var(--opacity-hover-muted, var(--opacity-hover-subtle));
 }
 
@@ -151,8 +147,18 @@
 }
 
 .markdown pre {
+  position: relative;
   margin: 0 0 var(--spacing-lg);
+
+  /* base padding */
   padding: var(--spacing-md);
+
+  /* extra space for copy button */
+  padding-right: calc(var(--spacing-2xl) + var(--spacing-md));
+
+  display: inline-block;
+  max-width: 100%;
+
   background: transparent;
   color: var(--color-code-text);
   border: none;
@@ -169,7 +175,7 @@
   color: var(--color-code-text);
 }
 
-.markdown :not(pre) > code {
+.markdown :not(pre)>code {
   padding: 0 var(--spacing-xs);
   background: transparent;
   border-radius: var(--radius-sm);
@@ -180,6 +186,7 @@
   position: absolute;
   top: var(--spacing-xs);
   right: var(--spacing-xs);
+  transform: translateX(6px);
   isolation: isolate;
   display: inline-flex;
   align-items: center;
@@ -266,4 +273,10 @@
   fill: none;
   stroke: currentColor;
   stroke-width: var(--icon-stroke-width);
+}
+
+:global(.docs-code-block) {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
 }
