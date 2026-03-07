@@ -8,6 +8,10 @@
   order: 2;
 }
 
+.markdown>*+* {
+  margin-top: var(--spacing-md);
+}
+
 .outline {
   margin-bottom: var(--spacing-lg);
 }
@@ -21,7 +25,7 @@
 }
 
 .markdown h2 {
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
   margin-bottom: var(--spacing-sm);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
@@ -30,7 +34,7 @@
 }
 
 .markdown h3 {
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
   margin-bottom: var(--spacing-sm);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
@@ -45,8 +49,12 @@
   color: var(--color-product-text-muted);
 }
 
+.markdown p:has(+ pre) {
+  margin-bottom: var(--spacing-xs);
+}
+
 .markdown ul {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   padding-left: var(--spacing-xl);
   color: var(--color-product-text-muted);
   list-style: disc;
@@ -220,8 +228,9 @@
 :global(.docs-copy-button[data-copied='true'])::after {
   content: 'Copied';
   position: absolute;
-  top: calc(100% + var(--spacing-sm));
-  right: 0;
+  top: 50%;
+  left: calc(100% + var(--spacing-sm));
+  transform: translateY(-50%);
   padding: var(--spacing-sm) var(--spacing-md);
   background: var(--color-surface-elevated);
   border: var(--focus-ring-width) solid var(--color-border);
@@ -233,46 +242,10 @@
   z-index: 1;
 }
 
-:global(.docs-copy-host) {
-  position: relative;
-}
-
-:global(.docs-copy-host:hover) :global(.docs-copy-button) {
-  opacity: 1;
-}
-
-:global(.docs-copy-button--inline) {
-  position: relative;
-  width: var(--spacing-2xl);
-  height: var(--spacing-2xl);
-  margin-left: var(--spacing-xs);
-  opacity: 1;
-}
-
-:global(.docs-copy-button--inline[data-copied='true'])::after {
-  top: 50%;
-  left: calc(100% + var(--spacing-sm));
-  right: auto;
-  transform: translateY(-50%);
-}
-
-:global(.docs-copy-inline) {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-md);
-}
-
 :global(.docs-copy-icon) {
   width: var(--spacing-lg);
   height: var(--spacing-lg);
   fill: none;
   stroke: currentColor;
   stroke-width: var(--icon-stroke-width);
-}
-
-:global(.docs-code-block) {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: var(--spacing-xs);
-  max-width: 100%;
 }
