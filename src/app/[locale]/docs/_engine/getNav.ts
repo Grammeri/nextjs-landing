@@ -132,5 +132,36 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
  * Public API
  */
 export async function getNav(): Promise<DocNavItem[]> {
-  return readDirRecursive(DOCS_ROOT, '', true);
+  const items = await readDirRecursive(DOCS_ROOT, '', true);
+
+  const groups: DocNavItem[] = [
+    {
+      title: 'Getting Started',
+      children: items.filter((item) =>
+        ['quick-start', 'getting-started'].includes(item.slug?.split('/').pop() ?? ''),
+      ),
+    },
+    {
+      title: 'Architecture',
+      children: items.filter((item) =>
+        ['architecture', 'project-tree', 'security', 'ui-principles'].includes(
+          item.slug?.split('/').pop() ?? '',
+        ),
+      ),
+    },
+    {
+      title: 'Development',
+      children: items.filter((item) =>
+        ['environment', 'demo-mode', 'development-setup', 'commands', 'email'].includes(
+          item.slug?.split('/').pop() ?? '',
+        ),
+      ),
+    },
+    {
+      title: 'Integration',
+      children: items.filter((item) => ['after-login'].includes(item.slug?.split('/').pop() ?? '')),
+    },
+  ];
+
+  return groups.filter((group) => group.children && group.children.length > 0);
 }
