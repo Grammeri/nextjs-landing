@@ -7,9 +7,7 @@
 .layout {
   display: grid;
   grid-template-columns:
-    minmax(0, calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm)))
-    var(--focus-ring-width)
-    minmax(0, 1fr);
+    minmax(0, calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm))) var(--focus-ring-width) minmax(0, 1fr);
   column-gap: var(--spacing-3xl);
   align-items: start;
   padding-left: var(--spacing-3xl);
@@ -21,18 +19,20 @@
   align-self: stretch;
 }
 
-.sidebarInner {
-  position: sticky;
-  top: var(--header-height);
-  padding-top: var(--spacing-md);
-}
-
 .sidebarTitle {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-base);
   color: var(--color-product-text);
+  margin-bottom: 0;
+}
+
+.sidebarTitleDivider {
+  width: 100%;
+  height: var(--border-width-sm);
+  margin-top: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
+  background-color: var(--color-border);
 }
 
 .content {
