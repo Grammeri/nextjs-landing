@@ -18,12 +18,19 @@ const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site
 const ROOT_ORDER = [
   'quick-start',
   'getting-started',
+
   'architecture',
-  'demo-mode',
-  'environment',
   'project-tree',
   'security',
   'ui-principles',
+
+  'environment',
+  'demo-mode',
+
+  'development-setup',
+  'commands',
+  'email',
+  'after-login',
 ];
 
 /**
@@ -99,9 +106,11 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     const withoutSlug = items.filter((item) => !item.slug);
 
     withSlug.sort((a, b) => {
-      const ia = ROOT_ORDER.indexOf(a.slug!);
-      const ib = ROOT_ORDER.indexOf(b.slug!);
+      const slugA = a.slug!.split('/').pop()!;
+      const slugB = b.slug!.split('/').pop()!;
 
+      const ia = ROOT_ORDER.indexOf(slugA);
+      const ib = ROOT_ORDER.indexOf(slugB);
       if (ia === -1 && ib === -1) {
         return a.title.localeCompare(b.title);
       }
