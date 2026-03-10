@@ -6,5 +6,9 @@ type DemoLayoutProps = {
 };
 
 export default function DemoLayout({ children }: DemoLayoutProps) {
-  return <main className={`${styles.main} container`}>{children}</main>;
+  return (
+    <main className={styles.layout}>
+      <div className={styles.surface}>{children}</div>
+    </main>
+  );
 }

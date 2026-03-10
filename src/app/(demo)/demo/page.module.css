@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--demo-points-to-actions-gap);
   width: 100%;
 }
 
@@ -10,9 +11,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--demo-header-gap);
   width: 100%;
   max-width: var(--demo-content-max-width);
+  gap: var(--demo-header-gap);
 }
 
 .subtitle {
@@ -30,7 +31,7 @@
 .points {
   width: 100%;
   max-width: var(--demo-content-max-width);
-  margin: var(--demo-subtitle-to-points-gap) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -65,5 +66,4 @@
   gap: var(--demo-actions-gap);
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: var(--demo-points-to-actions-gap);
 }

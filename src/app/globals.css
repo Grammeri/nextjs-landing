@@ -240,6 +240,13 @@
   --notice-body-size: var(--font-size-sm);
   --notice-shadow: var(--shadow-xs);
 
+  /* Shared content surface */
+  --content-surface-bg: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  --content-surface-border: 1px solid var(--color-border);
+  --content-surface-radius: var(--radius-lg);
+  --content-surface-shadow: var(--card-shadow-soft);
+  --content-surface-padding: var(--spacing-2xl);
+
   /* Demo page */
   --demo-content-max-width: var(--container-width);
   --demo-subtitle-size: var(--font-size-lg);
@@ -253,6 +260,19 @@
   --demo-point-marker-size: 8px;
   --demo-point-marker-color: var(--color-texas-blue);
   --demo-point-marker-offset-y: 0.8em;
+
+  /* Shared page shell / content surface */
+  --page-shell-padding-x: var(--spacing-xl);
+  --page-shell-padding-y: var(--spacing-3xl);
+
+  --content-surface-max-width: var(--container-width);
+  --content-surface-padding-x: var(--spacing-2xl);
+  --content-surface-padding-y: var(--spacing-2xl);
+
+  --content-surface-bg: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  --content-surface-border: 1px solid var(--color-border);
+  --content-surface-radius: var(--radius-lg);
+  --content-surface-shadow: var(--card-shadow-soft);
 
   /* Header surface */
   --header-bg-transparent: transparent;

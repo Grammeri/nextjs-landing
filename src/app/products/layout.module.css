@@ -1,6 +1,6 @@
 .productLayout {
   min-height: 100vh;
-  padding: var(--spacing-3xl) var(--spacing-xl);
+  padding: var(--page-shell-padding-y) var(--page-shell-padding-x);
   background-color: var(--color-bg);
   background-image: url('/images/products/products-page-bg-wood.webp');
   background-repeat: repeat;
@@ -11,11 +11,11 @@
 }
 
 .productSurface {
-  max-width: var(--container-width);
+  max-width: var(--content-surface-max-width);
   margin: 0 auto;
-  padding: var(--spacing-2xl);
-  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--card-shadow-soft);
+  padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
+  background: var(--content-surface-bg);
+  border-radius: var(--content-surface-radius);
+  border: var(--content-surface-border);
+  box-shadow: var(--content-surface-shadow);
 }
