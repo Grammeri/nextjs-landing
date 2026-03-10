@@ -69,6 +69,18 @@ export const AUTHFORGE_PRODUCT_COPY = {
     },
     contactPrefix: 'Questions before or after purchase? Contact us at',
   },
+
+  pricing: {
+    price: '$99 — One-time license',
+    features: [
+      '1 project',
+      'Lifetime access',
+      'Updates included',
+      '14-day refund if access was not used',
+      'Support via email',
+    ],
+    footerNote: 'Access instructions will be sent by email after purchase',
+  },
 } as const;
 
 export const AUTHFORGE_SUPPORT_EMAIL = AUTHFORGE_PRODUCT_COPY.supportEmail;
@@ -76,13 +88,13 @@ export const AUTHFORGE_SUPPORT_EMAIL = AUTHFORGE_PRODUCT_COPY.supportEmail;
 export const AUTHFORGE_PRICING_CARD: PricingCardProps = {
   title: AUTHFORGE_PRODUCT_COPY.name,
   description: AUTHFORGE_PRODUCT_COPY.shortDescription,
-  price: '$99 — One-time license',
+  price: AUTHFORGE_PRODUCT_COPY.pricing.price,
   features: [
-    { text: '1 project' },
-    { text: 'Lifetime access' },
-    { text: 'Updates included' },
-    { text: '14-day refund if access was not used' },
-    { text: `Support via email (${AUTHFORGE_SUPPORT_EMAIL})` },
+    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[0] },
+    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[1] },
+    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[2] },
+    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[3] },
+    { text: `${AUTHFORGE_PRODUCT_COPY.pricing.features[4]} (${AUTHFORGE_SUPPORT_EMAIL})` },
   ],
-  footerNote: 'Access instructions will be sent by email after purchase',
+  footerNote: AUTHFORGE_PRODUCT_COPY.pricing.footerNote,
 };
