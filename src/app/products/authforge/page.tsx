@@ -25,11 +25,8 @@ export default function AuthForgeProductPage() {
         <ProductHero
           title={AUTHFORGE_PRODUCT_COPY.name}
           subtitle={`${AUTHFORGE_PRODUCT_COPY.shortDescription}.`}
-          trustTitle="Built for real production use"
-          trustDescription={
-            'AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products.\n\n' +
-            'AuthForge is database-agnostic by design. PostgreSQL is used as a production-ready reference setup via Prisma, not as a hard dependency. You can adapt AuthForge to other databases without changing core authentication logic.'
-          }
+          trustTitle={AUTHFORGE_PRODUCT_COPY.hero.trustTitle}
+          trustDescription={AUTHFORGE_PRODUCT_COPY.hero.trustDescription}
           secondaryAction={
             <div className={styles.heroActions}>
               <Button as="a" href="/demo" variant="secondary">
@@ -49,10 +46,9 @@ export default function AuthForgeProductPage() {
       <div className="container">
         <ProductSection title="Who is AuthForge for">
           <ul className={styles.audienceList}>
-            <li>SaaS founders who don’t want to build authentication from scratch</li>
-            <li>Developers shipping MVPs and production apps</li>
-            <li>Teams that need a real-world auth reference</li>
-            <li>Engineers learning modern authentication architecture</li>
+            {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </ProductSection>
       </div>
