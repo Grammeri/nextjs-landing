@@ -1,13 +1,14 @@
 import { Button } from '@/shared/ui/button';
 import { DEMO_URL } from '@/shared/config/demo';
+import { AUTHFORGE_PRODUCT_COPY } from '@/shared/config/products/authforge';
 import styles from './page.module.css';
 
 export default function AuthForgeDemoPage() {
   return (
     <section className={styles.section}>
       <header className={styles.header}>
-        <h1>AuthForge Demo</h1>
-        <p className={styles.subtitle}>Production-ready authentication system for SaaS</p>
+        <h1>{AUTHFORGE_PRODUCT_COPY.name} Demo</h1>
+        <p className={styles.subtitle}>{AUTHFORGE_PRODUCT_COPY.shortDescription}</p>
       </header>
       <p className={styles.bodyText}>
         This demo runs a real instance of AuthForge in a separate environment.

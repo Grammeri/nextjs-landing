@@ -3,7 +3,10 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
-import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
+import {
+  AUTHFORGE_PRODUCT_COPY,
+  AUTHFORGE_SUPPORT_EMAIL,
+} from '@/shared/config/products/authforge';
 import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import CopySupportEmail from './_components/CopySupportEmail';
@@ -20,8 +23,8 @@ export default function AuthForgeProductPage() {
     <main className={styles.page}>
       <div className="container-wide">
         <ProductHero
-          title="AuthForge"
-          subtitle="Production-ready authentication system for modern SaaS products."
+          title={AUTHFORGE_PRODUCT_COPY.name}
+          subtitle={`${AUTHFORGE_PRODUCT_COPY.shortDescription}.`}
           trustTitle="Built for real production use"
           trustDescription={
             'AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products.\n\n' +
