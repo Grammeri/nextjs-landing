@@ -610,3 +610,25 @@ ol {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===============================
+   Page Layout System
+   =============================== */
+
+.pageShell {
+  min-height: 100vh;
+  padding: var(--page-shell-padding-y) var(--page-shell-padding-x);
+  background-color: var(--color-surface-base);
+}
+
+.pageSurface {
+  max-width: var(--content-surface-max-width);
+  margin: 0 auto;
+
+  padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
+
+  background: var(--content-surface-bg);
+  border: var(--content-surface-border);
+  border-radius: var(--content-surface-radius);
+  box-shadow: var(--content-surface-shadow);
+}
