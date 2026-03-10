@@ -30,8 +30,7 @@ export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
   {
     href: '/products/authforge',
     title: AUTHFORGE_PRODUCT_COPY.name,
-    description:
-      'Production-ready authentication boilerplate with sessions, roles, security best practices and clean architecture.',
+    description: AUTHFORGE_PRODUCT_COPY.cardDescription,
   },
   {
     href: '/products/nextjs-test-kit',

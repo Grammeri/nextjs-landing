@@ -3,6 +3,8 @@ import type { PricingCardProps } from '@/shared/ui/pricing-card';
 export const AUTHFORGE_PRODUCT_COPY = {
   name: 'AuthForge',
   shortDescription: 'Production-ready authentication system for modern SaaS products',
+  cardDescription:
+    'Production-ready authentication boilerplate with sessions, roles, security best practices and clean architecture.',
   supportEmail: 'support@software-forge.dev',
 
   actions: {
