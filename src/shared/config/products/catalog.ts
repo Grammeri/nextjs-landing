@@ -19,3 +19,34 @@ export const BILLING_CATALOG: Record<string, BillingCatalogItem> = {
   },
   // future products go here
 };
+
+export type ProductGridItem = {
+  href: string;
+  title: string;
+  description: string;
+};
+
+export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
+  {
+    href: '/products/authforge',
+    title: AUTHFORGE_PRODUCT_COPY.name,
+    description:
+      'Production-ready authentication boilerplate with sessions, roles, security best practices and clean architecture.',
+  },
+  {
+    href: '/products/nextjs-test-kit',
+    title: 'Next.js Test Assignment Kit',
+    description:
+      'Ready-to-use Next.js project for technical interviews and test assignments — with clean architecture, tooling, and real-world setup.',
+  },
+  {
+    href: '/products/coming-soon',
+    title: 'Coming soon',
+    description: 'This product is currently under development. Stay tuned.',
+  },
+  {
+    href: '/products/coming-soon',
+    title: 'Coming soon',
+    description: 'This product is currently under development. Stay tuned.',
+  },
+];

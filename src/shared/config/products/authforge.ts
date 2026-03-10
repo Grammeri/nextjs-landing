@@ -5,6 +5,19 @@ export const AUTHFORGE_PRODUCT_COPY = {
   shortDescription: 'Production-ready authentication system for modern SaaS products',
   supportEmail: 'support@software-forge.dev',
 
+  actions: {
+    viewDemo: 'View Demo',
+    readDocs: 'Read Docs',
+    buyLicense: 'Buy license',
+  },
+
+  sectionTitles: {
+    audience: 'Who is AuthForge for',
+    included: 'What’s included',
+    howItWorks: 'How it works',
+    tryBeforeYouBuy: 'Try before you buy',
+  },
+
   hero: {
     trustTitle: 'Built for real production use',
     trustDescription:
@@ -20,21 +33,22 @@ export const AUTHFORGE_PRODUCT_COPY = {
   ],
 
   features: {
-    authentication: [
-      'Email & password authentication',
-      'Email verification',
-      'Password reset flows',
-    ],
-    sessionsAndSecurity: [
-      'Access and refresh sessions',
-      'HttpOnly cookies',
-      'Secure session handling',
-    ],
-    architecture: [
-      'Database-agnostic authentication architecture',
-      'Prisma-based reference implementation (PostgreSQL)',
-      'Token-driven UI (use our tokens or plug in your own styling system)',
-    ],
+    authentication: {
+      title: 'Authentication',
+      items: ['Email & password authentication', 'Email verification', 'Password reset flows'],
+    },
+    sessionsAndSecurity: {
+      title: 'Sessions & Security',
+      items: ['Access and refresh sessions', 'HttpOnly cookies', 'Secure session handling'],
+    },
+    architecture: {
+      title: 'Architecture',
+      items: [
+        'Database-agnostic authentication architecture',
+        'Prisma-based reference implementation (PostgreSQL)',
+        'Token-driven UI (use our tokens or plug in your own styling system)',
+      ],
+    },
   },
 
   howItWorks: [

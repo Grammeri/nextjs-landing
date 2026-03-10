@@ -30,13 +30,13 @@ export default function AuthForgeProductPage() {
           secondaryAction={
             <div className={styles.heroActions}>
               <Button as="a" href="/demo" variant="secondary">
-                View Demo
+                {AUTHFORGE_PRODUCT_COPY.actions.viewDemo}
               </Button>
               <Button as="a" href="/docs/authforge/quick-start" variant="secondary">
-                Read Docs
+                {AUTHFORGE_PRODUCT_COPY.actions.readDocs}
               </Button>
               <Button onClick={scrollToPricing} variant="primary">
-                Buy license
+                {AUTHFORGE_PRODUCT_COPY.actions.buyLicense}
               </Button>
             </div>
           }
@@ -44,7 +44,7 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div className="container">
-        <ProductSection title="Who is AuthForge for">
+        <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience}>
           <ul className={styles.audienceList}>
             {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
               <li key={item}>{item}</li>
@@ -54,30 +54,38 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div className="container-wide">
-        <ProductSection title="What’s included">
+        <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.included}>
           <div className={styles.featureGrid}>
             <div className={styles.featureCard}>
-              <h3 className={styles.featureTitle}>Authentication</h3>
+              <h3 className={styles.featureTitle}>
+                {AUTHFORGE_PRODUCT_COPY.features.authentication.title}
+              </h3>
               <ul className={styles.featureList}>
-                <li>Email &amp; password authentication</li>
-                <li>Email verification</li>
-                <li>Password reset flows</li>
+                {AUTHFORGE_PRODUCT_COPY.features.authentication.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
+
             <div className={styles.featureCard}>
-              <h3 className={styles.featureTitle}>Sessions &amp; Security</h3>
+              <h3 className={styles.featureTitle}>
+                {AUTHFORGE_PRODUCT_COPY.features.sessionsAndSecurity.title}
+              </h3>
               <ul className={styles.featureList}>
-                <li>Access and refresh sessions</li>
-                <li>HttpOnly cookies</li>
-                <li>Secure session handling</li>
+                {AUTHFORGE_PRODUCT_COPY.features.sessionsAndSecurity.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
+
             <div className={styles.featureCard}>
-              <h3 className={styles.featureTitle}>Architecture</h3>
+              <h3 className={styles.featureTitle}>
+                {AUTHFORGE_PRODUCT_COPY.features.architecture.title}
+              </h3>
               <ul className={styles.featureList}>
-                <li>Database-agnostic authentication architecture</li>
-                <li>Prisma-based reference implementation (PostgreSQL)</li>
-                <li>Token-driven UI (use our tokens or plug in your own styling system)</li>
+                {AUTHFORGE_PRODUCT_COPY.features.architecture.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -85,40 +93,35 @@ export default function AuthForgeProductPage() {
       </div>
 
       <div className="container">
-        <ProductSection title="How it works">
+        <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.howItWorks}>
           <ol className={styles.steps}>
-            <li>Clone the repository</li>
-            <li>Configure environment variables</li>
-            <li>Connect your database</li>
-            <li>Run migrations</li>
-            <li>Start building your product</li>
+            {AUTHFORGE_PRODUCT_COPY.howItWorks.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ol>
         </ProductSection>
       </div>
 
       <div className="container">
-        <ProductSection title="Try before you buy">
+        <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.tryBeforeYouBuy}>
           <div className={styles.trustBlock}>
-            <p className={styles.trustText}>
-              Before purchasing, you can explore the code, review the documentation, and see the
-              authentication flows in action. AuthForge uses secure HttpOnly cookie-based sessions
-              with server-side session storage by default, and the architecture can be adapted to
-              other approaches if required.
-            </p>
+            <p className={styles.trustText}>{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.description}</p>
             <ul className={styles.trustList}>
               <li>
-                <Link href="/demo">Live demo</Link>
+                <Link href="/demo">{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}</Link>
               </li>
               <li>
-                <Link href="/docs/authforge/quick-start">Full documentation</Link>
-              </li>
-              <li>
-                <Link href="/docs/authforge/architecture">
-                  Architecture overview (including token-driven UI design system)
+                <Link href="/docs/authforge/quick-start">
+                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
                 </Link>
               </li>
               <li>
-                Questions before or after purchase? Contact us at{' '}
+                <Link href="/docs/authforge/architecture">
+                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
+                </Link>
+              </li>
+              <li>
+                {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
                 <span className={styles.supportInline}>
                   <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
                   <CopySupportEmail />
