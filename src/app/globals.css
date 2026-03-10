@@ -226,6 +226,34 @@
   --color-product-text: #223a5e;
   --color-product-text-muted: #415a77;
 
+  /* Notice / Banner */
+  --notice-surface-bg: var(--color-surface-muted);
+  --notice-border-color: var(--color-border);
+  --notice-icon-color: var(--color-texas-red);
+  --notice-icon-size: var(--control-size-lg);
+  --notice-icon-stroke-width: 1.75px;
+  --notice-radius: var(--radius-lg);
+  --notice-padding-x: var(--spacing-lg);
+  --notice-padding-y: var(--spacing-md);
+  --notice-gap: var(--spacing-md);
+  --notice-title-size: var(--font-size-sm);
+  --notice-body-size: var(--font-size-sm);
+  --notice-shadow: var(--shadow-xs);
+
+  /* Demo page */
+  --demo-content-max-width: var(--container-width);
+  --demo-subtitle-size: var(--font-size-lg);
+  --demo-subtitle-weight: var(--font-weight-medium);
+  --demo-header-gap: calc(var(--spacing-md) + var(--spacing-xs));
+  --demo-subtitle-to-points-gap: var(--spacing-xl);
+  --demo-points-gap: var(--spacing-md);
+  --demo-points-to-actions-gap: var(--spacing-xl);
+  --demo-actions-gap: var(--spacing-md);
+  --demo-point-padding-left: var(--spacing-xl);
+  --demo-point-marker-size: 8px;
+  --demo-point-marker-color: var(--color-texas-blue);
+  --demo-point-marker-offset-y: 0.8em;
+
   /* Header surface */
   --header-bg-transparent: transparent;
   --header-bg-scrolled: rgb(5, 25, 62);

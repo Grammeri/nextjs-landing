@@ -1,44 +1,69 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
   align-items: center;
+  width: 100%;
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  align-items: center;
+  text-align: center;
+  gap: var(--demo-header-gap);
+  width: 100%;
+  max-width: var(--demo-content-max-width);
 }
 
-.grid {
-  display: grid;
-  gap: var(--spacing-sm);
-  text-align: left;
+.subtitle {
   width: 100%;
-  max-width: var(--container-width);
+  max-width: var(--demo-content-max-width);
+  margin: 0;
+  text-align: center;
+  font-size: var(--demo-subtitle-size);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--demo-subtitle-weight);
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+.points {
+  width: 100%;
+  max-width: var(--demo-content-max-width);
+  margin: var(--demo-subtitle-to-points-gap) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--demo-points-gap);
+}
+
+.point {
+  position: relative;
+  margin: 0;
+  padding-left: var(--demo-point-padding-left);
+  text-align: left;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+}
+
+.point::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: var(--demo-point-marker-offset-y);
+  width: var(--demo-point-marker-size);
+  height: var(--demo-point-marker-size);
+  border-radius: 50%;
+  background: var(--demo-point-marker-color);
+  transform: translateY(-50%);
 }
 
 .actions {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--demo-actions-gap);
   flex-wrap: wrap;
-}
-
-.bodyText {
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-}
-
-.redirectNote {
-  margin-top: var(--spacing-lg);
-  text-align: center;
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-base);
-  color: var(--color-product-text-muted);
-}
-
-.subtitle {
-  font-size: var(--font-size-xl);
-  line-height: var(--line-height-base);
+  justify-content: center;
+  margin-top: var(--demo-points-to-actions-gap);
 }
