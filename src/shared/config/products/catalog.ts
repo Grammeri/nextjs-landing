@@ -1,5 +1,6 @@
 import type { BillingProduct, BillingProvider } from '@/lib/billing';
 import { AUTHFORGE_PRODUCT_COPY } from '@/shared/config/products/authforge';
+import { NEXTJS_TEST_KIT_PRODUCT_COPY } from '@/shared/config/products/nextjs-test-kit';
 
 export type BillingCatalogItem = {
   provider: BillingProvider;
@@ -34,9 +35,8 @@ export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
   },
   {
     href: '/products/nextjs-test-kit',
-    title: 'Next.js Test Assignment Kit',
-    description:
-      'Ready-to-use Next.js project for technical interviews and test assignments — with clean architecture, tooling, and real-world setup.',
+    title: NEXTJS_TEST_KIT_PRODUCT_COPY.name,
+    description: NEXTJS_TEST_KIT_PRODUCT_COPY.cardDescription,
   },
   {
     href: '/products/coming-soon',
