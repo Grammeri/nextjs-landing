@@ -1,4 +1,5 @@
-import { AuthForgePricingCard, NextJsTestKitPricingCard } from '@/shared/ui/product-pricing';
+import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
+import PricingCardContainer from './_components/PricingCardContainer';
 import styles from './page.module.css';
 
 type PricingPageProps = {
@@ -11,20 +12,16 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
   const params = await searchParams;
   const product = params?.product;
 
+  const visibleItems = PRICING_PAGE_ITEMS.filter((item) => !product || item.productId === product);
+
   return (
     <section className={styles.page}>
       <div className={styles.grid}>
-        {(!product || product === 'authforge') && (
-          <div className={styles.card}>
-            <AuthForgePricingCard />
+        {visibleItems.map((item) => (
+          <div key={item.productId} className={styles.card}>
+            <PricingCardContainer productId={item.productId} card={item.card} />
           </div>
-        )}
-
-        {(!product || product === 'nextjs-test-kit') && (
-          <div className={styles.card}>
-            <NextJsTestKitPricingCard />
-          </div>
-        )}
+        ))}
       </div>
     </section>
   );
