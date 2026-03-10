@@ -1,16 +1,26 @@
 import styles from './ArticleLayout.module.css';
-import { PageShell, ContentSurface } from '@/shared/ui/layout';
 
 type Props = {
   children: React.ReactNode;
 };
 
 export function ArticleLayout({ children }: Props) {
+  return <article className={styles.article}>{children}</article>;
+}
+
+export function ArticleTitle({ children }: Props) {
+  return <h1 className={styles.title}>{children}</h1>;
+}
+
+export function ArticleSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <PageShell>
-      <ContentSurface>
-        <div className={styles.article}>{children}</div>
-      </ContentSurface>
-    </PageShell>
+    <section className={styles.section}>
+      <h2 className={styles.heading}>{title}</h2>
+      {children}
+    </section>
   );
+}
+
+export function ArticleText({ children }: Props) {
+  return <p className={styles.text}>{children}</p>;
 }

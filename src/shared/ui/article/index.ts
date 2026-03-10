@@ -1,1 +1,1 @@
-export { ArticleLayout } from './ArticleLayout';
+export { ArticleLayout, ArticleTitle, ArticleSection, ArticleText } from './ArticleLayout';

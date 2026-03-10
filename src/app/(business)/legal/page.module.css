@@ -1,10 +1,3 @@
-.title {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
-  letter-spacing: -0.01em;
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -36,35 +29,4 @@
 .legalNav a:hover,
 .legalNav a:focus-visible {
   color: var(--legal-nav-hover-color);
-}
-
-/* Sections */
-
-.section {
-  display: grid;
-  gap: var(--legal-section-gap);
-}
-
-/* divider between sections */
-
-.section+.section {
-  padding-top: var(--legal-container-gap);
-  border-top: 1px solid var(--legal-nav-divider-color);
-}
-
-/* Section headings */
-
-.heading {
-  font-size: var(--legal-heading-size);
-  font-weight: var(--legal-heading-weight);
-  line-height: var(--legal-heading-line-height);
-  color: var(--legal-heading-color);
-}
-
-/* Body text */
-
-.body {
-  font-size: var(--legal-body-size);
-  line-height: var(--legal-body-line-height);
-  color: var(--legal-body-color);
 }

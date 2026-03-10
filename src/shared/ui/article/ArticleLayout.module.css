@@ -1,5 +1,46 @@
 .article {
     display: flex;
     flex-direction: column;
-    gap: var(--legal-container-gap);
+    gap: var(--spacing-2xl);
+}
+
+/* Page title */
+
+.title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+}
+
+/* Sections */
+
+.section {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+/* Divider between sections */
+
+.section+.section {
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+/* Section heading */
+
+.heading {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+}
+
+/* Body text */
+
+.text {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
 }
