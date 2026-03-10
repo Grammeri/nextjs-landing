@@ -2,9 +2,10 @@ import type { PricingCardProps } from '@/shared/ui/pricing-card';
 
 export const AUTHFORGE_PRODUCT_COPY = {
   name: 'AuthForge',
-  shortDescription: 'Production-ready authentication system for modern SaaS products',
+  shortDescription:
+    'Production-ready authentication foundation with verified setup, secure sessions, and clean architecture',
   cardDescription:
-    'Production-ready authentication boilerplate with sessions, roles, security best practices and clean architecture.',
+    'Production-ready authentication foundation with secure sessions, baseline abuse protection, and verified setup for modern SaaS.',
   supportEmail: 'support@software-forge.dev',
 
   actions: {
@@ -23,14 +24,14 @@ export const AUTHFORGE_PRODUCT_COPY = {
   hero: {
     trustTitle: 'Built for real production use',
     trustDescription:
-      'AuthForge is not a toy example. It is built using the same patterns and constraints found in real-world SaaS products.\n\n' +
-      'AuthForge is database-agnostic by design. PostgreSQL is used as a production-ready reference setup via Prisma, not as a hard dependency. You can adapt AuthForge to other databases without changing core authentication logic.',
+      'AuthForge is a production-ready authentication foundation for modern SaaS products. It is packaged as a buyer-facing source package with a verified setup and onboarding flow.\n\n' +
+      'It includes a production-safe baseline with server-side sessions, HttpOnly cookies, route-level rate limiting, and breached password checks. AuthForge is database-agnostic by design. PostgreSQL is included as a production-ready reference setup via Prisma, not as a hard dependency.',
   },
 
   audience: [
-    'SaaS founders who don’t want to build authentication from scratch',
+    'SaaS founders who do not want to build authentication from scratch',
     'Developers shipping MVPs and production apps',
-    'Teams that need a real-world auth reference',
+    'Teams that need a real-world authentication foundation',
     'Engineers learning modern authentication architecture',
   ],
 
@@ -41,7 +42,12 @@ export const AUTHFORGE_PRODUCT_COPY = {
     },
     sessionsAndSecurity: {
       title: 'Sessions & Security',
-      items: ['Access and refresh sessions', 'HttpOnly cookies', 'Secure session handling'],
+      items: [
+        'Server-side sessions',
+        'HttpOnly cookies',
+        'Rate limiting on auth routes',
+        'Breached password checks',
+      ],
     },
     architecture: {
       title: 'Architecture',
@@ -54,16 +60,16 @@ export const AUTHFORGE_PRODUCT_COPY = {
   },
 
   howItWorks: [
-    'Clone the repository',
+    'Download the source package',
     'Configure environment variables',
-    'Connect your database',
-    'Run migrations',
-    'Start building your product',
+    'Start PostgreSQL and connect your database',
+    'Run Prisma migrations',
+    'Launch the app and build your product',
   ],
 
   tryBeforeYouBuy: {
     description:
-      'Before purchasing, you can explore the code, review the documentation, and see the authentication flows in action. AuthForge uses secure HttpOnly cookie-based sessions with server-side session storage by default, and the architecture can be adapted to other approaches if required.',
+      'Before purchasing, you can explore the documentation, review the architecture, and test a working demo environment. The setup flow and core authentication journey have been verified through a clean-room onboarding check, including register, login, logout, password reset, secure cookie-based session handling, and demo-mode evaluation flows.',
     links: {
       demoLabel: 'Live demo',
       docsLabel: 'Full documentation',

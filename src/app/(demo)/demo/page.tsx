@@ -8,18 +8,21 @@ export default function AuthForgeDemoPage() {
     <section className={styles.section}>
       <header className={styles.header}>
         <h1>{AUTHFORGE_PRODUCT_COPY.name} Demo</h1>
-        <p className={styles.subtitle}>{AUTHFORGE_PRODUCT_COPY.shortDescription}</p>
+        <p className={styles.subtitle}>
+          Explore a working demo environment of AuthForge in a separate deployment.
+        </p>
       </header>
       <p className={styles.bodyText}>
-        This demo runs a real instance of AuthForge in a separate environment.
+        This demo lets you review the core authentication journey, including registration, login,
+        logout, password reset, and session-based authentication flow.
       </p>
       <p className={styles.demoNote}>
-        This demo uses PostgreSQL as a reference database, but AuthForge is designed to be
+        The demo uses PostgreSQL as a reference database, while AuthForge itself is designed to stay
         database-agnostic in real projects.
       </p>
 
       <div className={styles.grid}>
-        <p className={styles.redirectNote}>You will be redirected to the live application.</p>
+        <p className={styles.redirectNote}>You will be redirected to the live demo application.</p>
       </div>
 
       <div className={styles.actions}>
