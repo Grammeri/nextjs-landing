@@ -265,6 +265,9 @@
   --page-shell-padding-x: var(--spacing-xl);
   --page-shell-padding-y: var(--spacing-3xl);
 
+  /* offset between sticky header and page content */
+  --page-shell-header-offset: var(--spacing-2xl);
+
   --content-surface-max-width: var(--container-width);
   --content-surface-padding-x: var(--spacing-2xl);
   --content-surface-padding-y: var(--spacing-2xl);
@@ -281,6 +284,7 @@
   --header-transition-duration: 0.2s;
   --header-transition-easing: ease;
   --header-z-index: 10;
+  --header-border-color: rgba(0, 0, 0, 0.06);
 
   /* Footer surface */
   --footer-bg: rgba(10, 20, 35);
@@ -617,7 +621,12 @@ ol {
 
 .pageShell {
   min-height: 100vh;
-  padding: var(--page-shell-padding-y) var(--page-shell-padding-x);
+
+  padding-top: calc(var(--page-shell-padding-y) + var(--page-shell-header-offset));
+  padding-bottom: var(--page-shell-padding-y);
+  padding-left: var(--page-shell-padding-x);
+  padding-right: var(--page-shell-padding-x);
+
   background-color: var(--color-surface-base);
 }
 

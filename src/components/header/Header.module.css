@@ -2,24 +2,31 @@
   position: sticky;
   top: 0;
   z-index: var(--header-z-index);
+
   background: var(--header-bg-transparent);
+  backdrop-filter: var(--header-backdrop-blur);
+
+  border-bottom: 1px solid var(--header-border-color);
 
   /* state tokens */
   --header-link-color: var(--color-product-text-muted);
   --header-link-hover-color: var(--color-product-text);
   --header-brand-color: var(--color-product-text);
+  --header-brand-hover-color: var(--color-product-text);
 
   transition:
     background-color var(--header-transition-duration) var(--header-transition-easing),
-    backdrop-filter var(--header-transition-duration) var(--header-transition-easing);
+    backdrop-filter var(--header-transition-duration) var(--header-transition-easing),
+    border-color var(--header-transition-duration) var(--header-transition-easing);
 }
 
 .scrolled {
   background-color: var(--header-bg-scrolled);
   backdrop-filter: var(--header-backdrop-blur);
 
-  --header-link-color: var(--color-on-image-footer); /* softer */
-  --header-link-hover-color: var(--color-on-image-primary); /* pure white */
+  --header-link-color: var(--color-on-image-footer);
+  --header-link-hover-color: var(--color-on-image-primary);
+
   --header-brand-color: var(--color-on-image-footer);
   --header-brand-hover-color: var(--color-on-image-primary);
 }
@@ -28,20 +35,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   height: var(--spacing-3xl);
 }
 
 .brand {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--header-link-color);
+
+  color: var(--header-brand-color);
+
   text-decoration: none;
 
   transition: color var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .brand:hover {
-  color: var(--header-link-hover-color);
+  color: var(--header-brand-hover-color);
 }
 
 .brand:focus-visible {
@@ -59,7 +69,9 @@
 .navLink {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
+
   color: var(--header-link-color);
+
   text-decoration: none;
 
   transition:
