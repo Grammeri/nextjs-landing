@@ -1,14 +1,15 @@
 'use client';
 
 import { BILLING_PROVIDERS } from '@/shared/config/billing';
-import { PRICING_CARDS } from '@/shared/config/products/pricing';
+import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { PricingCard } from '@/shared/ui/pricing-card';
 
 export default function NextJsTestKitPricingCard() {
   const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('nextjs-test-kit');
 
-  const card = PRICING_CARDS.find((c) => c.title === 'Next.js Test Assignment Kit');
+  const item = PRICING_PAGE_ITEMS.find((p) => p.productId === 'nextjs-test-kit');
+  const card = item?.card;
 
   if (!card) return null;
 
