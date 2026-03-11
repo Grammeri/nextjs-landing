@@ -24,7 +24,7 @@ export default function LegalPage() {
             <a href="#liability">Liability</a>
           </nav>
 
-          <ArticleSection title="Terms of Service">
+          <ArticleSection id="terms" title="Terms of Service">
             <ArticleText>
               By purchasing, downloading, or using any product provided by Software Forge
               (&quot;Product&quot;), you agree to these Terms of Service.
@@ -41,7 +41,7 @@ export default function LegalPage() {
             </ArticleText>
           </ArticleSection>
 
-          <ArticleSection title="Privacy Policy">
+          <ArticleSection id="privacy" title="Privacy Policy">
             <ArticleText>
               We respect your privacy and do not sell personal data. We collect only the information
               necessary to process purchases and manage licenses.
@@ -57,14 +57,14 @@ export default function LegalPage() {
             </ArticleText>
           </ArticleSection>
 
-          <ArticleSection title="Refund Policy">
+          <ArticleSection id="refund" title="Refund Policy">
             <ArticleText>
               Due to the nature of digital products, all sales are generally final. However, we may
               review refund requests on a case-by-case basis at our sole discretion.
             </ArticleText>
           </ArticleSection>
 
-          <ArticleSection title="License Agreement">
+          <ArticleSection id="license" title="License Agreement">
             <ArticleText>
               Each purchase grants a non-exclusive, non-transferable, revocable license to use the
               Product in one project unless otherwise specified.
@@ -81,7 +81,7 @@ export default function LegalPage() {
             </ArticleText>
           </ArticleSection>
 
-          <ArticleSection title="Disclaimer & Limitation of Liability">
+          <ArticleSection id="liability" title="Disclaimer & Limitation of Liability">
             <ArticleText>
               The Product is provided &quot;as is&quot; without warranties of any kind. Software
               Forge shall not be liable for any direct, indirect, incidental, or consequential
@@ -89,7 +89,7 @@ export default function LegalPage() {
             </ArticleText>
           </ArticleSection>
 
-          <ArticleSection title="Contact">
+          <ArticleSection id="contact" title="Contact">
             <ArticleText>
               For legal inquiries, contact us at <strong>support@software-forge.dev</strong>
             </ArticleText>

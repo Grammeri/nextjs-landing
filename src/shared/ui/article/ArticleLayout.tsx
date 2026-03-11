@@ -12,9 +12,15 @@ export function ArticleTitle({ children }: Props) {
   return <h1 className={styles.title}>{children}</h1>;
 }
 
-export function ArticleSection({ title, children }: { title: string; children: React.ReactNode }) {
+type ArticleSectionProps = {
+  id?: string;
+  title: string;
+  children: React.ReactNode;
+};
+
+export function ArticleSection({ id, title, children }: ArticleSectionProps) {
   return (
-    <section className={styles.section}>
+    <section id={id} className={styles.section}>
       <h2 className={styles.heading}>{title}</h2>
       {children}
     </section>
