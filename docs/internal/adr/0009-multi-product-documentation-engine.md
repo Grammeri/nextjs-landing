@@ -109,6 +109,60 @@ Markdown files remain the canonical content source.
 
 ---
 
+## Product-Scoped Navigation
+
+Each product may define its own documentation navigation configuration.
+
+Navigation configuration is stored alongside the documentation content:
+
+content/{product}/docs/nav.ts
+
+The navigation configuration defines:
+
+- sidebar structure
+- document ordering
+- section grouping
+- display titles
+
+Example:
+
+content/authforge/docs/nav.ts
+content/starter/docs/nav.ts
+
+The documentation engine resolves navigation dynamically based on the product parameter.
+
+Example resolution:
+
+product = authforge
+→ load content/authforge/docs/nav.ts
+
+product = starter
+→ load content/starter/docs/nav.ts
+
+This mechanism ensures that each product may define an independent documentation structure without modifying the documentation engine.
+
+## Product Isolation
+
+Documentation for each product is fully isolated.
+
+The documentation engine never mixes content between products.
+
+Resolution is always scoped by the product parameter.
+
+Example:
+
+/docs/authforge/security
+→ content/authforge/docs/site/security.md
+
+/docs/starter/installation
+→ content/starter/docs/site/installation.md
+
+This isolation guarantees:
+
+- independent documentation structures
+- independent navigation configuration
+- safe multi-product documentation expansion
+
 ## Documentation Engine Responsibilities
 
 The documentation engine remains responsible for:
@@ -129,19 +183,20 @@ Product-specific behavior is determined through the product parameter.
 
 ## Navigation Strategy
 
-Navigation remains filesystem-driven.
+Navigation is defined through a product-scoped navigation configuration.
 
-The navigation engine reads documentation files from:
+Each product provides its own navigation configuration:
 
-content/{product}/docs/site/
+content/{product}/docs/nav.ts
 
-Navigation ordering and grouping remain controlled by the navigation engine.
+The navigation configuration defines the sidebar structure,
+document ordering, and section grouping.
 
-This ensures:
+The documentation engine loads navigation dynamically based on
+the product parameter.
 
-- consistent sidebar behavior
-- deterministic ordering
-- separation between navigation structure and content files
+This design decouples navigation structure from the filesystem
+while preserving deterministic documentation ordering.
 
 ---
 
@@ -149,7 +204,7 @@ This ensures:
 
 Documentation URLs follow a consistent multi-product structure:
 
-/docs/{product}/{document}
+/{locale}/docs/{product}/{document}
 
 Examples:
 
@@ -219,7 +274,7 @@ Steps:
 
 1. introduce route `/[locale]/docs/[product]/[...slug]`
 2. make documentation engine product-aware
-3. migrate AuthForge documentation to the new route
+3. migrate AuthForge documentation routing to the new route
 4. introduce documentation for additional products
 5. ensure existing AuthForge URLs remain stable
 
