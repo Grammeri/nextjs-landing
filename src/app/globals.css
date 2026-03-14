@@ -455,6 +455,7 @@
   --legal-nav-color: var(--color-text-primary);
   --legal-nav-hover-color: var(--color-text-secondary);
   --legal-nav-divider-color: var(--color-border);
+  --legal-nav-height: 48px;
 }
 
 html,

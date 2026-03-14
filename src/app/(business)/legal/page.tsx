@@ -1,4 +1,4 @@
-import styles from './page.module.css';
+import LegalNav from './LegalNav';
 import { PageShell, ContentSurface } from '@/shared/ui/layout';
 import { ArticleLayout, ArticleTitle, ArticleSection, ArticleText } from '@/shared/ui/article';
 
@@ -15,13 +15,7 @@ export default function LegalPage() {
         <ArticleLayout>
           <ArticleTitle>Legal</ArticleTitle>
 
-          <nav className={styles.legalNav} aria-label="Legal sections">
-            <a href="#terms">Terms</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#refund">Refund</a>
-            <a href="#license">License</a>
-            <a href="#liability">Liability</a>
-          </nav>
+          <LegalNav />
 
           <ArticleSection id="terms" title="Terms of Service">
             <ArticleText>

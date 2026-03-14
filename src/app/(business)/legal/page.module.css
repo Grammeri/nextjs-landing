@@ -1,9 +1,3 @@
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--legal-container-gap);
-}
-
 /* Anchor navigation */
 
 .legalNav {
@@ -11,6 +5,12 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--legal-nav-gap);
+
+  position: sticky;
+  top: var(--header-height);
+
+  background: var(--color-surface-base);
+  z-index: 5;
 
   padding-bottom: var(--legal-title-nav-gap);
   border-bottom: 1px solid var(--legal-nav-divider-color);
@@ -23,10 +23,28 @@
 .legalNav a {
   color: var(--legal-nav-color);
   text-decoration: none;
-  transition: color var(--motion-duration-fast) var(--motion-easing-standard);
+
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    opacity var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .legalNav a:hover,
 .legalNav a:focus-visible {
-  color: var(--legal-nav-hover-color);
+  color: var(--color-texas-blue);
+}
+
+/* Offset for anchor scrolling */
+
+.legalNav~section[id] {
+  scroll-margin-top: var(--legal-nav-height);
+}
+
+.legalNav a.active {
+  color: var(--color-texas-blue);
+}
+
+.legalNav~section {
+  padding-top: 0 !important;
+  border-top: none !important;
 }

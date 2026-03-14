@@ -1,0 +1,42 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import styles from './page.module.css';
+
+const SECTIONS = [
+  { id: 'terms', label: 'Terms' },
+  { id: 'privacy', label: 'Privacy' },
+  { id: 'refund', label: 'Refund' },
+  { id: 'license', label: 'License' },
+  { id: 'liability', label: 'Liability' },
+] as const;
+
+export default function LegalNav() {
+  const [active, setActive] = useState<string>('terms');
+
+  useEffect(() => {
+    const setFromHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      setActive(hash || 'terms');
+    };
+
+    setFromHash();
+
+    window.addEventListener('hashchange', setFromHash);
+    return () => window.removeEventListener('hashchange', setFromHash);
+  }, []);
+
+  return (
+    <nav className={styles.legalNav} aria-label="Legal sections">
+      {SECTIONS.map((section) => (
+        <a
+          key={section.id}
+          href={`#${section.id}`}
+          className={active === section.id ? styles.active : ''}
+        >
+          {section.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
