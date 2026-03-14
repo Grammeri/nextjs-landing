@@ -16,8 +16,10 @@
 
 .sidebar {
     width: calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm));
-    align-self: stretch;
+    align-self: start;
     padding-top: var(--spacing-sm);
+    position: sticky;
+    top: var(--header-height)
 }
 
 .sidebarTitle {
