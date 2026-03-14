@@ -3,64 +3,71 @@ import 'server-only';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { DocNavItem } from '../authforge/_lib/docs';
+import {
+  DOC_TITLES as AUTHFORGE_DOC_TITLES,
+  FLATTEN_SECTIONS as AUTHFORGE_FLATTEN_SECTIONS,
+  NAV_GROUPS as AUTHFORGE_NAV_GROUPS,
+  ROOT_ORDER as AUTHFORGE_ROOT_ORDER,
+  SECTION_TITLES as AUTHFORGE_SECTION_TITLES,
+} from '../../../../../content/authforge/docs/nav';
+import {
+  DOC_TITLES as STARTER_DOC_TITLES,
+  FLATTEN_SECTIONS as STARTER_FLATTEN_SECTIONS,
+  NAV_GROUPS as STARTER_NAV_GROUPS,
+  ROOT_ORDER as STARTER_ROOT_ORDER,
+  SECTION_TITLES as STARTER_SECTION_TITLES,
+} from '../../../../../content/starter/docs/nav';
+import { getDocsProductConfig } from '../_lib/products';
+import type { DocNavItem, DocsProduct } from '../_lib/types';
 
-/**
- * Source of truth:
- * AuthForge documentation file structure
- */
-const DOCS_ROOT = path.join(process.cwd(), 'content', 'authforge', 'docs', 'site');
-
-/**
- * Deterministic order for top-level documents
- * (UX policy, not content configuration)
- */
-const ROOT_ORDER = [
-  'quick-start',
-  'getting-started',
-
-  'architecture',
-  'project-tree',
-  'security',
-  'ui-principles',
-
-  'environment',
-  'demo-mode',
-
-  'development-setup',
-  'commands',
-  'email',
-  'after-login',
-];
-
-/**
- * Friendly titles for section directories (folders)
- */
-const SECTION_TITLES: Record<string, string> = {
-  integration: 'Integration',
+type NavGroupConfig = {
+  title: string;
+  slugs: string[];
 };
 
-/**
- * Friendly titles for standalone documents (.md files)
- */
-const DOC_TITLES: Record<string, string> = {
-  'ui-principles': 'UI Principles',
-  'project-tree': 'Project Tree',
-  security: 'Security Model',
+type ProductNavConfig = {
+  rootOrder: string[];
+  sectionTitles: Record<string, string>;
+  docTitles: Record<string, string>;
+  flattenSections: string[];
+  navGroups: NavGroupConfig[];
 };
 
-/**
- * Utilities
- */
+const PRODUCT_NAV_CONFIGS: Record<DocsProduct, ProductNavConfig> = {
+  authforge: {
+    rootOrder: AUTHFORGE_ROOT_ORDER,
+    sectionTitles: AUTHFORGE_SECTION_TITLES,
+    docTitles: AUTHFORGE_DOC_TITLES,
+    flattenSections: AUTHFORGE_FLATTEN_SECTIONS,
+    navGroups: AUTHFORGE_NAV_GROUPS,
+  },
+
+  starter: {
+    rootOrder: STARTER_ROOT_ORDER,
+    sectionTitles: STARTER_SECTION_TITLES,
+    docTitles: STARTER_DOC_TITLES,
+    flattenSections: STARTER_FLATTEN_SECTIONS,
+    navGroups: STARTER_NAV_GROUPS,
+  },
+};
+
 const isMarkdown = (file: string) => file.endsWith('.md');
 
 const titleFromSlug = (slug: string) =>
-  slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  slug.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 
-/**
- * Recursive filesystem-based navigation builder
- */
-async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Promise<DocNavItem[]> {
+const getDocsRoot = (product: DocsProduct) => {
+  const { contentDir } = getDocsProductConfig(product);
+
+  return path.join(process.cwd(), 'content', contentDir, 'docs', 'site');
+};
+
+async function readDirRecursive(
+  dir: string,
+  config: ProductNavConfig,
+  baseSlug = '',
+  isRoot = false,
+): Promise<DocNavItem[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   const items: DocNavItem[] = [];
 
@@ -71,36 +78,32 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
     const slug = entry.name.replace(/\.md$/, '');
     const fullSlug = baseSlug ? `${baseSlug}/${slug}` : slug;
 
-    // 📁 Directory = section
     if (entry.isDirectory()) {
-      const children = await readDirRecursive(fullPath, fullSlug, false);
+      const children = await readDirRecursive(fullPath, config, fullSlug, false);
 
-      if (children.length === 0) continue;
+      if (!children.length) continue;
 
-      // 🔥 FLATTEN integration
-      if (entry.name === 'integration') {
+      if (config.flattenSections.includes(entry.name)) {
         items.push(...children);
         continue;
       }
 
       items.push({
-        title: SECTION_TITLES[entry.name] ?? titleFromSlug(entry.name),
+        title: config.sectionTitles[entry.name] ?? titleFromSlug(entry.name),
         children,
       });
+
+      continue;
     }
 
-    // 📄 Markdown file = document
     if (entry.isFile() && isMarkdown(entry.name)) {
       items.push({
-        title: DOC_TITLES[slug] ?? titleFromSlug(slug),
+        title: config.docTitles[slug] ?? titleFromSlug(slug),
         slug: fullSlug,
       });
     }
   }
 
-  /**
-   * Stable ordering for top-level documents only
-   */
   if (isRoot) {
     const withSlug = items.filter((item) => item.slug);
     const withoutSlug = items.filter((item) => !item.slug);
@@ -109,8 +112,9 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
       const slugA = a.slug!.split('/').pop()!;
       const slugB = b.slug!.split('/').pop()!;
 
-      const ia = ROOT_ORDER.indexOf(slugA);
-      const ib = ROOT_ORDER.indexOf(slugB);
+      const ia = config.rootOrder.indexOf(slugA);
+      const ib = config.rootOrder.indexOf(slugB);
+
       if (ia === -1 && ib === -1) {
         return a.title.localeCompare(b.title);
       }
@@ -128,40 +132,25 @@ async function readDirRecursive(dir: string, baseSlug = '', isRoot = false): Pro
   return items;
 }
 
-/**
- * Public API
- */
-export async function getNav(): Promise<DocNavItem[]> {
-  const items = await readDirRecursive(DOCS_ROOT, '', true);
+export async function getNav(product: DocsProduct = 'authforge'): Promise<DocNavItem[]> {
+  const config = PRODUCT_NAV_CONFIGS[product];
+  const docsRoot = getDocsRoot(product);
+  const items = await readDirRecursive(docsRoot, config, '', true);
 
-  const groups: DocNavItem[] = [
-    {
-      title: 'Getting Started',
-      children: items.filter((item) =>
-        ['quick-start', 'getting-started'].includes(item.slug?.split('/').pop() ?? ''),
-      ),
-    },
-    {
-      title: 'Architecture',
-      children: items.filter((item) =>
-        ['architecture', 'project-tree', 'security', 'ui-principles'].includes(
-          item.slug?.split('/').pop() ?? '',
-        ),
-      ),
-    },
-    {
-      title: 'Development',
-      children: items.filter((item) =>
-        ['environment', 'demo-mode', 'development-setup', 'commands', 'email'].includes(
-          item.slug?.split('/').pop() ?? '',
-        ),
-      ),
-    },
-    {
-      title: 'Integration',
-      children: items.filter((item) => ['after-login'].includes(item.slug?.split('/').pop() ?? '')),
-    },
-  ];
+  if (!config.navGroups.length) {
+    return items;
+  }
 
-  return groups.filter((group) => group.children && group.children.length > 0);
+  const groups: DocNavItem[] = config.navGroups
+    .map((group) => ({
+      title: group.title,
+      children: items.filter((item) => {
+        const lastSlugPart = item.slug?.split('/').pop();
+
+        return lastSlugPart ? group.slugs.includes(lastSlugPart) : false;
+      }),
+    }))
+    .filter((group) => group.children && group.children.length > 0);
+
+  return groups;
 }

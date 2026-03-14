@@ -38,7 +38,7 @@
 }
 
 .content {
-  margin-top: calc(var(--spacing-xl) * -1);
+  margin-top: 0;
   padding-left: var(--spacing-3xl);
   padding-right: var(--spacing-3xl);
   color: var(--color-product-text);

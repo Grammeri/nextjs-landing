@@ -10,8 +10,7 @@ export default function DocsAnchorScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const scopeEl =
-      document.querySelector('[data-docs-scope="authforge"]') ?? document.querySelector('main');
+    const scopeEl = document.querySelector('[data-docs-scope]') ?? document.querySelector('main');
 
     if (!(scopeEl instanceof HTMLElement)) return;
 
