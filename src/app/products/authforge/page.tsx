@@ -11,7 +11,7 @@ import {
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 import CopySupportEmail from './_components/CopySupportEmail';
-import styles from './page.module.css';
+import styles from '@/shared/ui/product-page/ProductPage.module.css';
 
 export default function AuthForgeProductPage() {
   const pricingRef = useRef<HTMLDivElement>(null);
