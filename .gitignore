@@ -65,3 +65,9 @@ packages/**/node_modules/
 # Prisma generated client (safety)
 # ===============================
 /src/generated/prisma
+
+# ===============================
+# Internal documentation (private)
+# ===============================
+docs/internal
+docs/internal/**
