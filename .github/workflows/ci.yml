@@ -14,22 +14,22 @@ jobs:
 
     steps:
       - name: Checkout repository (with private submodules)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 0
           token: ${{ secrets.SUBMODULES_READ_TOKEN }}
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: pnpm
-
-      - name: Enable pnpm via corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@10 --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -41,7 +41,7 @@ jobs:
         run: pnpm lint
 
       - name: Run TypeScript
-        run: pnpm tsc
+        run: pnpm tsc --noEmit
 
       - name: Build project
         run: pnpm build
