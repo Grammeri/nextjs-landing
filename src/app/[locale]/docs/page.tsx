@@ -27,7 +27,7 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
             </li>
 
             <li className={styles.item}>
-              <Link className={styles.link} href={`/${locale}/docs/starter/quick-start`}>
+              <Link className={styles.link} href={`/${locale}/docs/starter`}>
                 Starter
               </Link>
             </li>
