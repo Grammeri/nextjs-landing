@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import DocPage from '../_components/DocPage';
-import { getDocMetadata } from '../_lib/getDocMetadata';
+
+import DocPage from '../../_components/DocPage';
+import { getDocMetadata } from '../../_lib/getDocMetadata';
+import { getDocsProductConfig, getDocsRoute } from '../../_lib/products';
 
 type PageProps = {
   params: Promise<{
@@ -11,26 +13,29 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const { title, description } = await getDocMetadata(slug);
+  const product = 'authforge';
+  const { title, description } = await getDocMetadata(product, slug);
+  const { titleSuffix } = getDocsProductConfig(product);
+  const route = getDocsRoute(product, slug);
 
   return {
-    title: `${title} | AuthForge`,
+    title: `${title} | ${titleSuffix}`,
     description,
 
     alternates: {
-      canonical: `/docs/authforge/${slug.join('/')}`,
+      canonical: route,
     },
 
     openGraph: {
-      title: `${title} | AuthForge`,
+      title: `${title} | ${titleSuffix}`,
       description,
       type: 'article',
-      url: `/docs/authforge/${slug.join('/')}`,
+      url: route,
     },
 
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | AuthForge`,
+      title: `${title} | ${titleSuffix}`,
       description,
     },
   };
@@ -39,5 +44,5 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
 
-  return <DocPage slug={slug} />;
+  return <DocPage product="authforge" slug={slug} />;
 }
