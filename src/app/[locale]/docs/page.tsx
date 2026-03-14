@@ -18,10 +18,17 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
           <h1 id="docs-index-title" className={styles.title}>
             Documentation
           </h1>
+
           <ol className={styles.list}>
             <li className={styles.item}>
               <Link className={styles.link} href={`/${locale}/docs/authforge`}>
                 AuthForge
+              </Link>
+            </li>
+
+            <li className={styles.item}>
+              <Link className={styles.link} href={`/${locale}/docs/starter/quick-start`}>
+                Starter
               </Link>
             </li>
           </ol>
