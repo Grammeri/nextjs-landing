@@ -1,0 +1,94 @@
+.pageShell {
+    width: 100%;
+    padding-top: var(--spacing-0);
+    padding-bottom: var(--section-padding-bottom-default);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns:
+        minmax(0, calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm))) var(--focus-ring-width) minmax(0, 1fr);
+    column-gap: var(--spacing-3xl);
+    align-items: start;
+    padding-left: var(--spacing-3xl);
+    padding-right: var(--container-padding);
+}
+
+.sidebar {
+    width: calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm));
+    align-self: stretch;
+    padding-top: var(--spacing-sm);
+}
+
+.sidebarTitle {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-base);
+    color: var(--color-product-text);
+    margin-bottom: 0;
+}
+
+.sidebarTitleDivider {
+    width: 100%;
+    height: var(--border-width-sm);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    background-color: var(--color-border);
+}
+
+.content {
+    margin-top: 0;
+    padding-left: var(--spacing-3xl);
+    padding-right: var(--spacing-3xl);
+    color: var(--color-product-text);
+    min-width: 0;
+}
+
+.divider {
+    width: var(--focus-ring-width);
+    background-color: var(--color-border);
+    height: 100%;
+}
+
+.navList,
+.navSubList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.navGroup {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-product-text);
+}
+
+.navLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-product-text-muted);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+}
+
+.navLink:hover {
+    color: var(--color-accent);
+}
+
+.navLinkActive {
+    color: var(--color-accent);
+    background-color: var(--color-secondary-faded);
+}
+
+.navSubList {
+    padding-left: var(--spacing-md);
+}

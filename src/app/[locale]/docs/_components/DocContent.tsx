@@ -2,8 +2,8 @@ import 'server-only';
 
 import { getDocMarkdown } from '../_lib/docs';
 import type { DocsProduct } from '../_lib/types';
-import PageOutline from '../authforge/_components/PageOutline';
-import styles from '../authforge/_components/DocContent.module.css';
+import PageOutline from './PageOutline';
+import styles from './DocContent.module.css';
 
 type DocContentProps = {
   product: DocsProduct;

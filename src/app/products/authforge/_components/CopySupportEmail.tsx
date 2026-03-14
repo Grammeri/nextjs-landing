@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { AUTHFORGE_SUPPORT_EMAIL } from '@/shared/config/products/authforge';
 import { appendCopyIcon } from '@/shared/ui/icons';
-import '@/app/[locale]/docs/authforge/_components/DocContent.module.css';
+import '@/app/[locale]/docs/_components/DocContent.module.css';
 
 async function copyToClipboard(value: string) {
   if (navigator.clipboard?.writeText) {
@@ -31,6 +31,7 @@ export default function CopySupportEmail() {
     if (button) {
       appendCopyIcon(button);
     }
+
     return () => {
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
@@ -41,12 +42,15 @@ export default function CopySupportEmail() {
   const handleCopy = async () => {
     try {
       await copyToClipboard(AUTHFORGE_SUPPORT_EMAIL);
+
       if (buttonRef.current) {
         buttonRef.current.setAttribute('data-copied', 'true');
       }
+
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
+
       timeoutRef.current = window.setTimeout(() => {
         buttonRef.current?.removeAttribute('data-copied');
       }, 1500);
@@ -56,14 +60,12 @@ export default function CopySupportEmail() {
   };
 
   return (
-    <>
-      <button
-        type="button"
-        className="docs-copy-button docs-copy-button--inline"
-        onClick={handleCopy}
-        aria-label="Copy support email"
-        ref={buttonRef}
-      ></button>
-    </>
+    <button
+      type="button"
+      className="docs-copy-button docs-copy-button--inline"
+      onClick={handleCopy}
+      aria-label="Copy support email"
+      ref={buttonRef}
+    ></button>
   );
 }

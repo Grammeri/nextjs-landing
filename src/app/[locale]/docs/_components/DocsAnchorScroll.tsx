@@ -14,10 +14,6 @@ export default function DocsAnchorScroll() {
 
     if (!(scopeEl instanceof HTMLElement)) return;
 
-    // ---------------------------------------
-    // Copy Button Factory
-    // ---------------------------------------
-
     const createCopyButton = (value: string) => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -43,10 +39,6 @@ export default function DocsAnchorScroll() {
       return button;
     };
 
-    // ---------------------------------------
-    // Copy Injection (All code blocks)
-    // ---------------------------------------
-
     const enhanceCopySupport = () => {
       const articles = scopeEl.querySelectorAll('article[data-docs-slug]');
 
@@ -60,16 +52,13 @@ export default function DocsAnchorScroll() {
 
           const className = code.className || '';
           const isCliBlock = COPY_LANGUAGES.some((lang) => className.includes(`language-${lang}`));
-
           const hasExplicitCopy = className.includes('copy');
 
-          // allow copy for CLI blocks OR explicitly marked blocks
           if (!isCliBlock && !hasExplicitCopy) return;
 
           const text = code.textContent?.trim() ?? '';
           if (!text) return;
 
-          // Prevent double injection
           if (code.parentElement?.querySelector('.docs-copy-button')) return;
 
           const pre = code.parentElement;
@@ -86,17 +75,12 @@ export default function DocsAnchorScroll() {
       });
     };
 
-    // ---------------------------------------
-    // External Links Icon
-    // ---------------------------------------
-
     const enhanceExternalLinks = () => {
       const links = Array.from(scopeEl.querySelectorAll('a'));
 
       links.forEach((link) => {
         const href = link.getAttribute('href') ?? '';
 
-        // Skip GitHub links
         if (href.includes('github.com')) {
           const wrapper = link.closest('.docs-external-inline');
           if (wrapper) wrapper.replaceWith(link);
@@ -121,10 +105,6 @@ export default function DocsAnchorScroll() {
         wrapper.appendChild(icon);
       });
     };
-
-    // ---------------------------------------
-    // Run once per route
-    // ---------------------------------------
 
     enhanceCopySupport();
     enhanceExternalLinks();

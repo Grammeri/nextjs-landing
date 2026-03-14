@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 
+import DocsAnchorScroll from '../_components/DocsAnchorScroll';
 import SidebarNav from '../_components/SidebarNav';
 import { getNav } from '../_engine/getNav';
 import { getDocsProductConfig, isDocsProduct } from '../_lib/products';
-import DocsAnchorScroll from '../authforge/_components/DocsAnchorScroll';
-import styles from '../authforge/layout.module.css';
+import styles from '../_styles/layout.module.css';
 
 type DocsProductLayoutProps = {
   children: ReactNode;

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { getDocsRoute } from '../_lib/products';
 import type { DocNavItem, DocsProduct } from '../_lib/types';
-import styles from '../authforge/layout.module.css';
+import styles from '../_styles/layout.module.css';
 
 type SidebarNavProps = {
   items: DocNavItem[];
