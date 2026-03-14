@@ -42,7 +42,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (pathname.startsWith('/docs/authforge')) {
+  if (pathname.startsWith('/docs/')) {
     const url = request.nextUrl.clone();
     url.pathname = `/${DEFAULT_LOCALE}${pathname}`;
     return NextResponse.redirect(url);
@@ -52,5 +52,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/docs', '/docs/authforge/:path*', '/internal-admin', '/internal-admin/:path*'],
+  matcher: ['/docs', '/docs/:path*', '/internal-admin', '/internal-admin/:path*'],
 };

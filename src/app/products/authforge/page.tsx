@@ -2,13 +2,14 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
 import { Button } from '@/shared/ui/button';
 import {
   AUTHFORGE_PRODUCT_COPY,
   AUTHFORGE_SUPPORT_EMAIL,
 } from '@/shared/config/products/authforge';
-import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
+import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
 import CopySupportEmail from './_components/CopySupportEmail';
 import styles from './page.module.css';
 
@@ -18,6 +19,9 @@ export default function AuthForgeProductPage() {
   const scrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const docsEntryHref = getDefaultDocRoute('authforge');
+  const architectureHref = getDocsRoute('authforge', 'architecture');
 
   return (
     <main className={styles.page}>
@@ -32,7 +36,7 @@ export default function AuthForgeProductPage() {
               <Button as="a" href="/demo" variant="secondary">
                 {AUTHFORGE_PRODUCT_COPY.actions.viewDemo}
               </Button>
-              <Button as="a" href="/docs/authforge/quick-start" variant="secondary">
+              <Button as="a" href={docsEntryHref} variant="secondary">
                 {AUTHFORGE_PRODUCT_COPY.actions.readDocs}
               </Button>
               <Button onClick={scrollToPricing} variant="primary">
@@ -111,12 +115,12 @@ export default function AuthForgeProductPage() {
                 <Link href="/demo">{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}</Link>
               </li>
               <li>
-                <Link href="/docs/authforge/quick-start">
+                <Link href={docsEntryHref}>
                   {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
                 </Link>
               </li>
               <li>
-                <Link href="/docs/authforge/architecture">
+                <Link href={architectureHref}>
                   {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
                 </Link>
               </li>

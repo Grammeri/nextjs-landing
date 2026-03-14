@@ -10,6 +10,7 @@ export const DOCS_PRODUCTS: Record<DocsProduct, DocsProductConfig> = {
     sidebarTitle: 'AuthForge Documentation',
     sidebarAriaLabel: 'AuthForge documentation',
     contentDir: 'authforge',
+    defaultDocSlug: 'quick-start',
   },
 
   starter: {
@@ -21,6 +22,7 @@ export const DOCS_PRODUCTS: Record<DocsProduct, DocsProductConfig> = {
     sidebarTitle: 'Starter Documentation',
     sidebarAriaLabel: 'Starter documentation',
     contentDir: 'starter',
+    defaultDocSlug: 'quick-start',
   },
 };
 
@@ -40,4 +42,12 @@ export const getDocsRoute = (product: DocsProduct, slug?: string | string[]) => 
   const slugPath = Array.isArray(slug) ? slug.join('/') : slug;
 
   return `/docs/${product}/${slugPath}`;
+};
+
+export const getDocsEntryRoute = (product: DocsProduct) => {
+  return getDocsRoute(product);
+};
+
+export const getDefaultDocRoute = (product: DocsProduct) => {
+  return getDocsRoute(product, getDocsProductConfig(product).defaultDocSlug);
 };

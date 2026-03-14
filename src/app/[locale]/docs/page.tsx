@@ -1,5 +1,6 @@
 import { use } from 'react';
 import Link from 'next/link';
+import { getDocsEntryRoute } from './_lib/products';
 import styles from './page.module.css';
 
 type DocsIndexPageProps = {
@@ -11,6 +12,9 @@ type DocsIndexPageProps = {
 export default function DocsIndexPage({ params }: DocsIndexPageProps) {
   const { locale } = use(params);
 
+  const authforgeDocsHref = `/${locale}${getDocsEntryRoute('authforge')}`;
+  const starterDocsHref = `/${locale}${getDocsEntryRoute('starter')}`;
+
   return (
     <main className={styles.page}>
       <div className="container">
@@ -21,13 +25,13 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
 
           <ol className={styles.list}>
             <li className={styles.item}>
-              <Link className={styles.link} href={`/${locale}/docs/authforge`}>
+              <Link className={styles.link} href={authforgeDocsHref}>
                 AuthForge
               </Link>
             </li>
 
             <li className={styles.item}>
-              <Link className={styles.link} href={`/${locale}/docs/starter`}>
+              <Link className={styles.link} href={starterDocsHref}>
                 Starter
               </Link>
             </li>

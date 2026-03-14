@@ -25,4 +25,5 @@ export type DocsProductConfig = {
   sidebarTitle: string;
   sidebarAriaLabel: string;
   contentDir: string;
+  defaultDocSlug: string;
 };

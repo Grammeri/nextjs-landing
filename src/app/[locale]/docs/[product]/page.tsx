@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 
-import { isDocsProduct } from '../_lib/products';
+import { getDocsProductConfig, isDocsProduct } from '../_lib/products';
 
 type DocsProductIndexPageProps = {
   params: Promise<{
@@ -16,5 +16,7 @@ export default async function DocsProductIndexPage({ params }: DocsProductIndexP
     notFound();
   }
 
-  redirect(`/${locale}/docs/${product}/quick-start`);
+  const config = getDocsProductConfig(product);
+
+  redirect(`/${locale}/docs/${product}/${config.defaultDocSlug}`);
 }
