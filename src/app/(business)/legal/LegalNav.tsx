@@ -5,10 +5,11 @@ import styles from './page.module.css';
 
 const SECTIONS = [
   { id: 'terms', label: 'Terms' },
-  { id: 'privacy', label: 'Privacy' },
-  { id: 'refund', label: 'Refund' },
   { id: 'license', label: 'License' },
+  { id: 'refund', label: 'Refund' },
+  { id: 'privacy', label: 'Privacy' },
   { id: 'liability', label: 'Liability' },
+  { id: 'contact', label: 'Contact' },
 ] as const;
 
 export default function LegalNav() {
