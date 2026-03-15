@@ -23,7 +23,7 @@ export const LEGAL_PAGE_DESCRIPTION =
   'Terms, privacy, refund, license, and liability information for Software Forge products.';
 
 export const LEGAL_PAGE_INTRO = [
-  'These legal terms apply to software products, source code packages, templates, documentation, and related digital materials provided under the Software Forge brand.',
+  'These legal terms apply to software products, source code packages, templates, documentation, and related digital materials provided under the Software Forge brand, including but not limited to AuthForge, Next.js Professional Starter, and other developer tools distributed by Software Forge.',
 ];
 
 export const LEGAL_SECTIONS: LegalSection[] = [
@@ -32,7 +32,7 @@ export const LEGAL_SECTIONS: LegalSection[] = [
     navLabel: 'Terms',
     title: 'Terms of Service',
     paragraphs: [
-      'These Terms of Service govern the purchase, download, access to, and use of any software product, source code package, template, documentation, or related digital materials provided under the Software Forge brand ("Product").',
+      'These Terms of Service govern the purchase, download, access to, and use of any software product, source code package, template, documentation, or related digital materials provided under the Software Forge brand, including but not limited to AuthForge and Next.js Professional Starter ("Product").',
       'By purchasing, downloading, accessing, or using the Product, you agree to these Terms. The Product is licensed, not sold.',
       'The Product is a developer tool and digital software asset intended to be integrated, configured, customized, tested, secured, and deployed by you. You are solely responsible for how the Product is implemented in your own project, service, business workflow, or production environment.',
       'You are responsible for ensuring that your use of the Product, your application logic, your user notices, your privacy and cookie practices, your security settings, your infrastructure choices, and your compliance with applicable laws and regulations are lawful in the jurisdictions where you operate.',
