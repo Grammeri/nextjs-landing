@@ -87,12 +87,16 @@ export default function AuthForgeProductPage() {
           </div>
         </div>
       </ProductSection>
-      <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.howItWorks}>
-        <ol className={styles.steps}>
-          {AUTHFORGE_PRODUCT_COPY.howItWorks.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
+      <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.howItWorks} align="center">
+        <div className={styles.content}>
+          <div className={styles.contentNarrow}>
+            <ol className={styles.steps}>
+              {AUTHFORGE_PRODUCT_COPY.howItWorks.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </ProductSection>
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.tryBeforeYouBuy}>
         <div className={styles.trustBlock}>

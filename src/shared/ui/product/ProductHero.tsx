@@ -18,27 +18,33 @@ export function ProductHero({
   primaryAction,
   secondaryAction,
 }: ProductHeroProps) {
-  const hasActions = Boolean(primaryAction || secondaryAction);
-  const hasTrust = Boolean(trustTitle || trustDescription);
+  const hasActions = primaryAction || secondaryAction;
+  const hasTrust = trustTitle || trustDescription;
 
   return (
-    <div className={styles.hero}>
-      <div className={styles.text}>
-        <h1 className={styles.title}>{title}</h1>
-        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-        {hasTrust && (
-          <div className={styles.trust}>
-            {trustTitle && <h2 className={styles.trustTitle}>{trustTitle}</h2>}
-            {trustDescription && <p className={styles.trustDescription}>{trustDescription}</p>}
+    <section className={styles.hero}>
+      <div className={styles.container}>
+        <div className={styles.text}>
+          <h1 className={styles.title}>{title}</h1>
+
+          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+
+          {hasTrust && (
+            <div className={styles.trust}>
+              {trustTitle && <h2 className={styles.trustTitle}>{trustTitle}</h2>}
+
+              {trustDescription && <p className={styles.trustDescription}>{trustDescription}</p>}
+            </div>
+          )}
+        </div>
+
+        {hasActions && (
+          <div className={styles.actions}>
+            {primaryAction}
+            {secondaryAction}
           </div>
         )}
       </div>
-      {hasActions && (
-        <div className={styles.actions}>
-          {primaryAction && <div className={styles.action}>{primaryAction}</div>}
-          {secondaryAction && <div className={styles.action}>{secondaryAction}</div>}
-        </div>
-      )}
-    </div>
+    </section>
   );
 }

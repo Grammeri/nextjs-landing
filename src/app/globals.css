@@ -129,7 +129,7 @@
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
   --line-height-subheading: 1.3;
-  --list-line-height-compact: 1.25;
+  --list-line-height-compact: 1.1;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -200,6 +200,9 @@
   /* Container */
   --container-width: 1200px;
   --container-padding: 24px;
+
+  /* Narrow content blocks (instructions, steps, text-heavy sections) */
+  --content-narrow-width: 720px;
 
   /* ===============================
    Product Feature Grid

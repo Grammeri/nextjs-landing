@@ -1,6 +1,4 @@
-import type { ProductId } from '@/shared/config/products/types';
-
-export type EmailProduct = ProductId;
+export type EmailProduct = 'authforge' | 'starter';
 
 export type PurchaseEmailPayload = {
   to: string;

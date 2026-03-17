@@ -1,7 +1,6 @@
 .page {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl);
 }
 
 .heroActions {
@@ -148,6 +147,15 @@
     display: grid;
     gap: var(--spacing-md);
     counter-reset: steps;
+
+    outline: 2px solid red;
+}
+
+.contentNarrow {
+    max-width: var(--content-narrow-width);
+    margin: 0 auto;
+    width: 100%;
+
     outline: 2px solid red;
 }
 
@@ -155,10 +163,10 @@
     display: grid;
     grid-template-columns: var(--spacing-2xl) 1fr;
     gap: var(--spacing-md);
-    align-items: center;
+    align-items: start;
     counter-increment: steps;
     font-size: var(--font-size-xl);
-    line-height: var(--line-height-base);
+    line-height: var(--list-line-height-compact);
 }
 
 .steps li::before {
@@ -195,7 +203,7 @@
 .trustText {
     margin: 0;
     font-size: var(--font-size-xl);
-    line-height: var(--line-height-base);
+    line-height: var(--line-height-tight);
 }
 
 .pricingWrapper {

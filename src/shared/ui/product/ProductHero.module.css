@@ -1,9 +1,16 @@
 .hero {
+  padding-top: var(--section-padding-top-product);
+  padding-bottom: var(--section-padding-bottom-product);
+}
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
-  padding-top: var(--section-padding-top-compact);
-  padding-bottom: var(--section-padding-bottom-product);
+
   outline: 2px solid red;
 }
 
