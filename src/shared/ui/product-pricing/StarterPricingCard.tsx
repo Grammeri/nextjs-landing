@@ -5,10 +5,10 @@ import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { PricingCard } from '@/shared/ui/pricing-card';
 
-export default function NextJsTestKitPricingCard() {
+export default function StarterPricingCard() {
   const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('nextjs-test-kit');
 
-  const item = PRICING_PAGE_ITEMS.find((p) => p.productId === 'nextjs-test-kit');
+  const item = PRICING_PAGE_ITEMS.find((p) => p.productId === 'starter');
   const card = item?.card;
 
   if (!card) return null;

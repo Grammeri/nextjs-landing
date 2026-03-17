@@ -5,6 +5,7 @@ import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { BILLING_CATALOG } from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
 import { TERMS_VERSION } from '@/shared/config/legal';
+import type { ProductId } from '@/shared/config/products/types';
 
 type CheckoutRequestBody = {
   productId: string;
@@ -67,7 +68,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const catalogItem = BILLING_CATALOG[body.productId];
+    const catalogItem = BILLING_CATALOG[body.productId as ProductId];
 
     if (!catalogItem) {
       return NextResponse.json({ error: 'Unknown productId' }, { status: 400 });

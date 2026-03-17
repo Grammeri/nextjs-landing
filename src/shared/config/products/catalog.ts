@@ -1,4 +1,6 @@
 import type { BillingProduct, BillingProvider } from '@/lib/billing';
+import type { ProductId } from '@/shared/config/products/types';
+
 import { AUTHFORGE_PRODUCT_COPY } from '@/shared/config/products/authforge';
 import { STARTER_PRODUCT_COPY } from './starter';
 
@@ -7,7 +9,7 @@ export type BillingCatalogItem = {
   product: BillingProduct;
 };
 
-export const BILLING_CATALOG: Record<string, BillingCatalogItem> = {
+export const BILLING_CATALOG: Record<ProductId, BillingCatalogItem> = {
   authforge: {
     provider: 'stripe',
     product: {
@@ -30,6 +32,7 @@ export const BILLING_CATALOG: Record<string, BillingCatalogItem> = {
     },
   },
 };
+
 export type ProductGridItem = {
   href: string;
   title: string;
@@ -50,11 +53,6 @@ export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
   {
     href: '/products/coming-soon',
     title: 'Coming soon',
-    description: 'This product is currently under development. Stay tuned.',
-  },
-  {
-    href: '/products/coming-soon',
-    title: 'Coming soon',
-    description: 'This product is currently under development. Stay tuned.',
+    description: 'New products are currently under development. Stay tuned.',
   },
 ];
