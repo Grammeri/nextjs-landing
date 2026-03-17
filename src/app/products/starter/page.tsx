@@ -87,15 +87,13 @@ export default function StarterPage() {
       </ProductSection>
 
       <ProductSection title="How it works" align="center">
-        <div className={styles.content}>
-          <div className={styles.contentNarrow}>
-            <ol className={styles.steps}>
-              <li>Download the source package</li>
-              <li>Install dependencies with pnpm</li>
-              <li>Review the project structure and developer tooling</li>
-              <li>Start building your own product or complete your assignment</li>
-            </ol>
-          </div>
+        <div className={styles.contentNarrow}>
+          <ol className={styles.steps}>
+            <li>Download the source package</li>
+            <li>Install dependencies with pnpm</li>
+            <li>Review the project structure and developer tooling</li>
+            <li>Start building your own product or complete your assignment</li>
+          </ol>
         </div>
       </ProductSection>
 
