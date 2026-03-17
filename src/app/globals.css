@@ -207,6 +207,7 @@
 
   /* Hero typography layout */
   --hero-headline-max-width: 72rem;
+  --hero-text-max-width: 54rem;
 
   --section-min-height-next: 40vh;
 
