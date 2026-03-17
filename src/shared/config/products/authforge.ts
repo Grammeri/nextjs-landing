@@ -3,7 +3,7 @@ import type { PricingCardProps } from '@/shared/ui/pricing-card';
 export const AUTHFORGE_PRODUCT_COPY = {
   name: 'AuthForge',
   shortDescription:
-    'Production-ready authentication foundation with verified setup, secure sessions, and clean architecture',
+    'Production-ready authentication foundation with verified setup,\nsecure sessions, and clean architecture',
   cardDescription:
     'Production-ready authentication foundation with secure sessions, baseline abuse protection, and verified setup for modern SaaS.',
   supportEmail: 'support@software-forge.dev',
@@ -24,8 +24,10 @@ export const AUTHFORGE_PRODUCT_COPY = {
   hero: {
     trustTitle: 'Built for real production use',
     trustDescription:
-      'AuthForge is a production-ready authentication foundation for modern SaaS products. It is packaged as a buyer-facing source package with a verified setup and onboarding flow.\n\n' +
-      'It includes a production-safe baseline with server-side sessions, HttpOnly cookies, route-level rate limiting, and breached password checks. AuthForge is database-agnostic by design. PostgreSQL is included as a production-ready reference setup via Prisma, not as a hard dependency.',
+      'AuthForge is a production-ready authentication foundation for modern SaaS products.\n\n' +
+      'The package includes a verified setup and onboarding flow designed for real production environments.\n\n' +
+      'The baseline provides server-side sessions, HttpOnly cookies, route-level rate limiting, and breached password checks.\n\n' +
+      'The architecture is database-agnostic by design. PostgreSQL is included as a production-ready reference setup via Prisma, not as a hard dependency.',
   },
 
   audience: [

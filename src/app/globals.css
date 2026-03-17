@@ -243,6 +243,15 @@
 
   --spacing-icon-text: 12px;
 
+  /* ===============================
+     Product lists
+     =============================== */
+  
+  --product-list-icon-offset: 10px;
+  --product-list-icon-offset-large: 12px;
+  --product-list-text-max-width: 40ch;
+  --product-list-line-height: 1.35;
+
   /* Product page text */
   --color-product-text: #223a5e;
   --color-product-text-muted: #415a77;
@@ -292,11 +301,6 @@
   --content-surface-max-width: var(--container-width);
   --content-surface-padding-x: var(--spacing-2xl);
   --content-surface-padding-y: var(--spacing-2xl);
-
-  --content-surface-bg: color-mix(in srgb, var(--color-bg) 92%, transparent);
-  --content-surface-border: 1px solid var(--color-border);
-  --content-surface-radius: var(--radius-lg);
-  --content-surface-shadow: var(--card-shadow-soft);
 
   /* Header surface */
   --header-bg-transparent: transparent;

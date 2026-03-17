@@ -17,9 +17,10 @@
 
 .audienceList li {
     position: relative;
-    padding-left: calc(var(--spacing-2xl) + var(--spacing-icon-text));
+    padding-left: calc(var(--product-list-icon-offset-large) + var(--spacing-md));
     font-size: var(--font-size-xl);
     line-height: var(--line-height-base);
+    text-wrap: balance;
 }
 
 .audienceList li::before {
@@ -44,7 +45,7 @@
 }
 
 .featureCard {
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     border-radius: var(--card-border-radius);
     border: var(--focus-ring-width) solid var(--color-tertiary-faded);
     background: var(--color-secondary-faded);
@@ -72,10 +73,8 @@
 
 .featureList li {
     position: relative;
-    padding-left: calc(var(--spacing-lg) + var(--spacing-icon-text));
-    line-height: 1.05;
-    max-width: 32ch;
-    text-wrap: balance;
+    padding-left: calc(var(--product-list-icon-offset) + var(--spacing-icon-text));
+    line-height: var(--product-list-line-height);
 }
 
 .featureList li::before {
@@ -94,9 +93,10 @@
 
 .trustList li {
     position: relative;
-    padding-left: calc(var(--spacing-2xl) + var(--spacing-icon-text));
+    padding-left: calc(var(--product-list-icon-offset-large) + var(--spacing-md));
     font-size: var(--font-size-xl);
     line-height: var(--line-height-base);
+    text-wrap: balance;
 }
 
 .trustList li::before {
