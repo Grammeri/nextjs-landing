@@ -4,12 +4,12 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
 import { Button } from '@/shared/ui/button';
-import { NEXTJS_TEST_KIT_PRODUCT_COPY } from '@/shared/config/products/nextjs-test-kit';
+import { STARTER_PRODUCT_COPY } from '@/shared/config/products/starter';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
-import NextJsTestKitPricingCard from '@/shared/ui/product-pricing/NextJsTestKitPricingCard';
+import StarterPricingCard from '@/shared/ui/product-pricing/StarterPricingCard';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 
-export default function NextJsTestKitPage() {
+export default function StarterPage() {
   const pricingRef = useRef<HTMLDivElement>(null);
 
   const scrollToPricing = () => {
@@ -24,18 +24,20 @@ export default function NextJsTestKitPage() {
     <main className={styles.page}>
       <div className="container-wide">
         <ProductHero
-          title={NEXTJS_TEST_KIT_PRODUCT_COPY.name}
-          subtitle={`${NEXTJS_TEST_KIT_PRODUCT_COPY.shortDescription}.`}
+          title={STARTER_PRODUCT_COPY.name}
+          subtitle={`${STARTER_PRODUCT_COPY.shortDescription}.`}
           trustTitle="Built for clean project foundations"
-          trustDescription={NEXTJS_TEST_KIT_PRODUCT_COPY.cardDescription}
+          trustDescription={STARTER_PRODUCT_COPY.cardDescription}
           secondaryAction={
             <div className={styles.heroActions}>
               <Button as="a" href={docsEntryHref} variant="secondary">
                 Read Docs
               </Button>
+
               <Button as="a" href={toolingHref} variant="secondary">
                 View Tooling
               </Button>
+
               <Button onClick={scrollToPricing} variant="primary">
                 Buy license
               </Button>
@@ -114,9 +116,11 @@ export default function NextJsTestKitPage() {
               <li>
                 <Link href={docsEntryHref}>Starter documentation</Link>
               </li>
+
               <li>
                 <Link href={toolingHref}>Tooling overview</Link>
               </li>
+
               <li>
                 <Link href={structureHref}>Project structure overview</Link>
               </li>
@@ -127,7 +131,7 @@ export default function NextJsTestKitPage() {
 
       <div ref={pricingRef} className="container-wide">
         <div className={styles.pricingWrapper}>
-          <NextJsTestKitPricingCard />
+          <StarterPricingCard />
         </div>
       </div>
     </main>

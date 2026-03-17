@@ -28,7 +28,7 @@ function getStripe(): Stripe {
 // Supported products
 // ----------------------------
 
-const ALLOWED_PRODUCTS = ['authforge', 'nextjs-test-kit'] as const;
+const ALLOWED_PRODUCTS = ['authforge', 'starter'] as const;
 type AllowedProduct = (typeof ALLOWED_PRODUCTS)[number];
 
 // ----------------------------

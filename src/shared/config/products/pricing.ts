@@ -1,6 +1,6 @@
 import type { PricingCardProps } from '@/shared/ui/pricing-card';
 import { AUTHFORGE_PRICING_CARD } from './authforge';
-import { NEXTJS_TEST_KIT_PRICING_CARD } from './nextjs-test-kit';
+import { STARTER_PRICING_CARD } from './starter';
 
 export type PricingPageItem = {
   productId: string;
@@ -13,7 +13,7 @@ export const PRICING_PAGE_ITEMS: PricingPageItem[] = [
     card: AUTHFORGE_PRICING_CARD,
   },
   {
-    productId: 'nextjs-test-kit',
-    card: NEXTJS_TEST_KIT_PRICING_CARD,
+    productId: 'starter',
+    card: STARTER_PRICING_CARD,
   },
 ];

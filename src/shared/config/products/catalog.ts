@@ -1,6 +1,6 @@
 import type { BillingProduct, BillingProvider } from '@/lib/billing';
 import { AUTHFORGE_PRODUCT_COPY } from '@/shared/config/products/authforge';
-import { NEXTJS_TEST_KIT_PRODUCT_COPY } from '@/shared/config/products/nextjs-test-kit';
+import { STARTER_PRODUCT_COPY } from './starter';
 
 export type BillingCatalogItem = {
   provider: BillingProvider;
@@ -18,9 +18,18 @@ export const BILLING_CATALOG: Record<string, BillingCatalogItem> = {
       currency: 'usd',
     },
   },
-  // future products go here
-};
 
+  starter: {
+    provider: 'stripe',
+    product: {
+      productId: 'starter',
+      name: STARTER_PRODUCT_COPY.name,
+      description: STARTER_PRODUCT_COPY.shortDescription,
+      amount: 500,
+      currency: 'usd',
+    },
+  },
+};
 export type ProductGridItem = {
   href: string;
   title: string;
@@ -34,9 +43,9 @@ export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
     description: AUTHFORGE_PRODUCT_COPY.cardDescription,
   },
   {
-    href: '/products/nextjs-test-kit',
-    title: NEXTJS_TEST_KIT_PRODUCT_COPY.name,
-    description: NEXTJS_TEST_KIT_PRODUCT_COPY.cardDescription,
+    href: '/products/starter',
+    title: STARTER_PRODUCT_COPY.name,
+    description: STARTER_PRODUCT_COPY.cardDescription,
   },
   {
     href: '/products/coming-soon',

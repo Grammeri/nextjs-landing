@@ -1,6 +1,8 @@
 import type { PricingCardProps } from '@/shared/ui/pricing-card';
 
-export const NEXTJS_TEST_KIT_PRODUCT_COPY = {
+export const STARTER_PRODUCT_COPY = {
+  productId: 'starter',
+
   name: 'Next.js Professional Starter',
 
   shortDescription:
@@ -30,9 +32,9 @@ export const NEXTJS_TEST_KIT_PRODUCT_COPY = {
   },
 } as const;
 
-export const NEXTJS_TEST_KIT_PRICING_CARD: PricingCardProps = {
-  title: NEXTJS_TEST_KIT_PRODUCT_COPY.name,
-  description: NEXTJS_TEST_KIT_PRODUCT_COPY.shortDescription,
-  price: NEXTJS_TEST_KIT_PRODUCT_COPY.pricing.price,
-  features: NEXTJS_TEST_KIT_PRODUCT_COPY.pricing.features.map((text) => ({ text })),
+export const STARTER_PRICING_CARD: PricingCardProps = {
+  title: STARTER_PRODUCT_COPY.name,
+  description: STARTER_PRODUCT_COPY.shortDescription,
+  price: STARTER_PRODUCT_COPY.pricing.price,
+  features: STARTER_PRODUCT_COPY.pricing.features.map((text) => ({ text })),
 };

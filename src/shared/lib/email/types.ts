@@ -1,4 +1,4 @@
-export type EmailProduct = 'authforge' | 'nextjs-test-kit';
+export type EmailProduct = 'authforge' | 'starter';
 
 export type PurchaseEmailPayload = {
   to: string;

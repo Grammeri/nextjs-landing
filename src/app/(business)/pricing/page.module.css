@@ -3,10 +3,11 @@
 }
 
 .grid {
+  border: 5px solid red !important;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 2rem;
-  flex-wrap: wrap;
 }
 
 .card {
