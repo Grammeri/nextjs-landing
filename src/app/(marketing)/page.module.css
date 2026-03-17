@@ -21,9 +21,11 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-heading);
   color: var(--color-on-image-primary);
-  max-width: var(--hero-max-width);
-  margin: 0 0 var(--spacing-xl) 0;
-  text-align: left;
+
+  max-width: var(--hero-headline-max-width);
+  margin: 0 auto var(--spacing-xl) auto;
+
+  text-align: center;
 }
 
 .lead {
@@ -45,7 +47,7 @@
   grid-template-columns: repeat(2, var(--product-card-width));
   justify-content: center;
   gap: var(--spacing-lg);
-  border: 2px solid red;
+
 }
 
 @media (max-width: 1200px) {

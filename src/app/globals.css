@@ -204,6 +204,10 @@
   --header-height: 72px;
   --hero-min-height: 30vh;
   --hero-max-width: 1200px;
+
+  /* Hero typography layout */
+  --hero-headline-max-width: 72rem;
+
   --section-min-height-next: 40vh;
 
   /* Section layout paddings */
