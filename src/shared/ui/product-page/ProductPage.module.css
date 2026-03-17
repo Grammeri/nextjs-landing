@@ -41,8 +41,7 @@
     display: grid;
     grid-template-columns: repeat(var(--product-feature-grid-columns), minmax(0, 1fr));
     gap: var(--product-feature-grid-gap);
-    max-width: var(--product-feature-grid-max-width);
-    margin: 0 auto;
+    width: 100%;
     outline: 2px solid red;
 }
 
@@ -202,7 +201,6 @@
 .pricingWrapper {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    max-width: var(--pricing-card-max-width);
-    margin: 0 auto;
+    justify-items: center;
     outline: 2px solid red;
 }
