@@ -71,7 +71,7 @@
   --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
   /* List markers (checkmarks, bullets) */
-  --color-list-marker: var(--color-tertiary);
+  --color-list-marker: var(--color-texas-blue);
   /* Texas red */
 
   --color-success: #009639;
@@ -129,6 +129,7 @@
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
   --line-height-subheading: 1.3;
+  --list-line-height-compact: 1.25;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -199,6 +200,18 @@
   /* Container */
   --container-width: 1200px;
   --container-padding: 24px;
+
+  /* ===============================
+   Product Feature Grid
+   =============================== */
+
+  --product-feature-grid-columns: 3;
+
+  /* немного уже чем container — лучше визуальный баланс */
+  --product-feature-grid-max-width: var(--container-width);
+
+  /* минимальное расстояние между карточками */
+  --product-feature-grid-gap: var(--spacing-sm);
 
   /* Layout */
   --header-height: 72px;

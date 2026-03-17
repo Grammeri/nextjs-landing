@@ -3,6 +3,12 @@
   flex-direction: column;
   gap: var(--spacing-md);
   color: var(--color-on-image-primary);
+  outline: 2px solid red;
+}
+
+.paymentFull,
+.paymentCentered {
+  outline: 2px solid red;
 }
 
 .description,

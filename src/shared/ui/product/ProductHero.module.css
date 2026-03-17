@@ -4,6 +4,7 @@
   gap: var(--spacing-xl);
   padding-top: var(--section-padding-top-compact);
   padding-bottom: var(--section-padding-bottom-product);
+  outline: 2px solid red;
 }
 
 .text {

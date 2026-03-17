@@ -6,7 +6,7 @@ export const STARTER_PRODUCT_COPY = {
   name: 'Next.js Professional Starter',
 
   shortDescription:
-    'Clean, production-ready Next.js project foundation for developers and students.',
+    'Clean, production-ready Next.js project foundation for developers and students',
 
   cardDescription:
     'A polished Next.js project starter with clean architecture, modern tooling, and a predictable project structure. Perfect for new projects, learning modern practices, or completing technical assignments.',

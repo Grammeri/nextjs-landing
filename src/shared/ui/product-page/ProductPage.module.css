@@ -13,6 +13,7 @@
 .audienceList {
     display: grid;
     gap: var(--spacing-md);
+    outline: 2px solid red;
 }
 
 .audienceList li {
@@ -38,8 +39,11 @@
 
 .featureGrid {
     display: grid;
-    gap: var(--spacing-xl);
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--product-feature-grid-columns), minmax(0, 1fr));
+    gap: var(--product-feature-grid-gap);
+    max-width: var(--product-feature-grid-max-width);
+    margin: 0 auto;
+    outline: 2px solid red;
 }
 
 .featureCard {
@@ -53,22 +57,28 @@
 }
 
 .featureTitle {
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
+    margin: 0 0 var(--spacing-md) 0;
     font-weight: var(--font-weight-semibold);
-    min-height: calc(var(--font-size-h3) * var(--line-height-heading) * 2);
+    white-space: nowrap;
+
+    text-align: center;
+
+    margin-left: calc(-1 * var(--spacing-xl));
+    margin-right: calc(-1 * var(--spacing-xl));
 }
 
 .featureList {
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     margin: 0;
 }
 
 .featureList li {
     position: relative;
-    padding-left: var(--spacing-lg);
+    padding-left: calc(var(--spacing-lg) + var(--spacing-icon-text));
+    line-height: 1.05;
+    max-width: 32ch;
+    text-wrap: balance;
 }
 
 .featureList li::before {
@@ -135,14 +145,11 @@
     color: inherit;
 }
 
-.trustBlock li::before {
-    color: var(--color-texas-red-soft);
-}
-
 .steps {
     display: grid;
     gap: var(--spacing-md);
     counter-reset: steps;
+    outline: 2px solid red;
 }
 
 .steps li {
@@ -160,12 +167,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     width: var(--spacing-2xl);
     height: var(--spacing-2xl);
+
     border-radius: var(--radius-full);
-    background: var(--surface-step-bg);
+
+    background: var(--color-bg);
+    color: var(--color-texas-blue);
+
+    border: 2px solid var(--color-texas-blue);
+
     font-weight: var(--font-weight-semibold);
-    border: var(--focus-ring-width) solid var(--card-border-color);
 }
 
 .trustBlock {
@@ -177,6 +190,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+    outline: 2px solid red;
 }
 
 .trustText {
@@ -190,4 +204,5 @@
     grid-template-columns: minmax(0, 1fr);
     max-width: var(--pricing-card-max-width);
     margin: 0 auto;
+    outline: 2px solid red;
 }
