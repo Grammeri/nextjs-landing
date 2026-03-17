@@ -1,6 +1,11 @@
 .card {
   position: relative;
-  padding: var(--spacing-xl);
+
+  padding:
+    var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl) var(--spacing-xl);
+
+  min-height: var(--product-card-min-height);
+
   background: var(--color-texas-blue);
   border: 1px solid var(--card-border-color);
   border-radius: var(--card-border-radius);
@@ -8,9 +13,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition:
-    box-shadow var(--motion-duration-base) var(--motion-easing-standard),
-    transform var(--motion-duration-base) var(--motion-easing-standard);
 }
 
 .content {
@@ -44,4 +46,6 @@
 .card p {
   color: var(--color-on-image-primary);
   line-height: var(--line-height-base);
+  text-align: justify;
+  hyphens: auto;
 }

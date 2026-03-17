@@ -50,9 +50,4 @@ export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
     title: STARTER_PRODUCT_COPY.name,
     description: STARTER_PRODUCT_COPY.cardDescription,
   },
-  {
-    href: '/products/coming-soon',
-    title: 'Coming soon',
-    description: 'New products are currently under development. Stay tuned.',
-  },
 ];

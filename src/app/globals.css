@@ -363,6 +363,15 @@
   /* Pricing */
   --pricing-card-max-width: 420px;
 
+  /* Product cards */
+  --product-card-width: 440px;
+
+  /* Product card header height (aligns descriptions across cards) */
+  --product-card-header-height: 72px;
+
+  /* Minimum height for product cards (ensures visual balance) */
+  --product-card-min-height: 240px;
+
   /* selection base */
   --select-border-radius: var(--radius-md);
   --select-border-width: 1px;

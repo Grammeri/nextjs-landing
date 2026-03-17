@@ -42,8 +42,10 @@
 
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--spacing-sm);
+  grid-template-columns: repeat(2, var(--product-card-width));
+  justify-content: center;
+  gap: var(--spacing-lg);
+  border: 2px solid red;
 }
 
 @media (max-width: 1200px) {
