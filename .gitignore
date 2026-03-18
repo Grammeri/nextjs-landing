@@ -71,3 +71,6 @@ packages/**/node_modules/
 # ===============================
 docs/internal
 docs/internal/**
+
+# local audit reports
+knip-report.txt
