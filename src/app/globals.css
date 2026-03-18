@@ -255,6 +255,7 @@
   /* Product page text */
   --color-product-text: #223a5e;
   --color-product-text-muted: #415a77;
+  --color-product-surface-soft: color-mix(in srgb, var(--color-texas-blue) 12%, white 88%);
 
   /* Notice / Banner */
   --notice-surface-bg: var(--color-surface-muted);

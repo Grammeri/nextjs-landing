@@ -96,7 +96,6 @@
     padding-left: calc(var(--product-list-icon-offset-large) + var(--spacing-md));
     font-size: var(--font-size-xl);
     line-height: var(--line-height-base);
-    text-wrap: balance;
 }
 
 .trustList li::before {
@@ -135,6 +134,11 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-xs);
+    white-space: nowrap;
+}
+
+.contactLead {
+    white-space: nowrap;
 }
 
 .supportEmail {
@@ -186,8 +190,8 @@
 .trustBlock {
     padding: var(--spacing-2xl);
     border-radius: var(--card-border-radius);
-    border: var(--focus-ring-width) solid var(--color-texas-blue);
-    background: var(--color-bg);
+    border: var(--focus-ring-width) solid var(--color-tertiary-faded);
+    background: var(--color-secondary-faded);
     color: var(--color-product-text);
     display: flex;
     flex-direction: column;
@@ -205,4 +209,8 @@
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
     outline: 2px solid red;
+}
+
+.contactItem {
+    line-height: var(--product-list-line-height);
 }

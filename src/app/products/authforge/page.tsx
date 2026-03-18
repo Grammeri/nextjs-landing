@@ -44,6 +44,7 @@ export default function AuthForgeProductPage() {
           </div>
         }
       />
+
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience}>
         <ul className={styles.audienceList}>
           {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
@@ -51,6 +52,7 @@ export default function AuthForgeProductPage() {
           ))}
         </ul>
       </ProductSection>
+
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.included}>
         <div className={styles.featureGrid}>
           <div className={styles.featureCard}>
@@ -87,6 +89,7 @@ export default function AuthForgeProductPage() {
           </div>
         </div>
       </ProductSection>
+
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.howItWorks} align="center">
         <div className={styles.contentNarrow}>
           <ol className={styles.steps}>
@@ -96,25 +99,31 @@ export default function AuthForgeProductPage() {
           </ol>
         </div>
       </ProductSection>
+
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.tryBeforeYouBuy}>
         <div className={styles.trustBlock}>
           <p className={styles.trustText}>{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.description}</p>
+
           <ul className={styles.trustList}>
             <li>
               <Link href="/demo">{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}</Link>
             </li>
+
             <li>
               <Link href={docsEntryHref}>
                 {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
               </Link>
             </li>
+
             <li>
               <Link href={architectureHref}>
                 {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
               </Link>
             </li>
-            <li>
+
+            <li className={styles.contactItem}>
               {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
+              <span className={styles.contactLead}>Contact us at</span>{' '}
               <span className={styles.supportInline}>
                 <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
                 <CopySupportEmail />
@@ -123,6 +132,7 @@ export default function AuthForgeProductPage() {
           </ul>
         </div>
       </ProductSection>
+
       <div ref={pricingRef}>
         <div className={styles.pricingWrapper}>
           <AuthForgePricingCard />

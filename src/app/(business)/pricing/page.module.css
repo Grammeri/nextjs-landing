@@ -4,13 +4,13 @@
 
 .grid {
   border: 5px solid red !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--pricing-card-max-width), var(--pricing-card-max-width)));
+  justify-content: center;
+  gap: var(--spacing-2xl);
 }
 
 .card {
   width: 100%;
-  max-width: 420px;
+  display: flex;
 }

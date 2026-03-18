@@ -71,13 +71,13 @@ export const AUTHFORGE_PRODUCT_COPY = {
 
   tryBeforeYouBuy: {
     description:
-      'Before purchasing, you can explore the documentation, review the architecture, and test a working demo environment. The setup flow and core authentication journey have been verified through a clean-room onboarding check, including register, login, logout, password reset, secure cookie-based session handling, and demo-mode evaluation flows.',
+      'Before purchasing, you can explore the documentation, review the architecture, and test a working demo environment. The setup flow and core authentication journey have been verified through a clean room onboarding check, including register, login, logout, password reset, secure cookie-based session handling, and demo-mode evaluation flows.',
     links: {
       demoLabel: 'Live demo',
       docsLabel: 'Full documentation',
       architectureLabel: 'Architecture overview (including token-driven UI design system)',
     },
-    contactPrefix: 'Questions before or after purchase? Contact us at',
+    contactPrefix: 'Questions before or after purchase?',
   },
 
   pricing: {

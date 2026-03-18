@@ -1,3 +1,8 @@
+.shell {
+  width: min(100%, var(--pricing-card-max-width));
+  margin-inline: auto;
+}
+
 .card {
   display: flex;
   flex-direction: column;

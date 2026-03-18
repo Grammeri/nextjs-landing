@@ -42,95 +42,99 @@ export function PricingCard({
   const [showError, setShowError] = useState(false);
 
   return (
-    <ProductCard interactive={false}>
-      <div className={styles.card}>
-        <h3>{title}</h3>
+    <div className={styles.shell}>
+      <ProductCard interactive={false}>
+        <div className={styles.card}>
+          <h3>{title}</h3>
 
-        <p className={styles.description}>{description}</p>
-        <p className={styles.price}>{price}</p>
+          <p className={styles.description}>{description}</p>
+          <p className={styles.price}>{price}</p>
 
-        <ul className={styles.features}>
-          {features.map((feature) => (
-            <li key={feature.text} className={styles.feature}>
-              <span className={styles.icon} aria-hidden="true">
-                <CheckIcon className={styles.iconSvg} />
-              </span>
-              <span>{feature.text}</span>
-            </li>
-          ))}
-        </ul>
+          <ul className={styles.features}>
+            {features.map((feature) => (
+              <li key={feature.text} className={styles.feature}>
+                <span className={styles.icon} aria-hidden="true">
+                  <CheckIcon className={styles.iconSvg} />
+                </span>
+                <span>{feature.text}</span>
+              </li>
+            ))}
+          </ul>
 
-        {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
+          {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
 
-        <div className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}>
-          <SelectableGroup>
-            {onPayWithStripe && (
-              <StripeButton
-                selected={selectedProvider === 'stripe'}
-                disabled={!termsAccepted}
-                onSelect={() => {
-                  setSelectedProvider('stripe');
-                  if (!termsAccepted) {
-                    setShowError(true);
-                    return;
-                  }
+          <div
+            className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
+          >
+            <SelectableGroup>
+              {onPayWithStripe && (
+                <StripeButton
+                  selected={selectedProvider === 'stripe'}
+                  disabled={!termsAccepted}
+                  onSelect={() => {
+                    setSelectedProvider('stripe');
+                    if (!termsAccepted) {
+                      setShowError(true);
+                      return;
+                    }
 
-                  setShowError(false);
-                  void onPayWithStripe(termsAccepted);
-                }}
-              />
-            )}
-
-            {onPayWithPaypal && (
-              <PaypalButton
-                selected={selectedProvider === 'paypal'}
-                disabled={!termsAccepted}
-                onSelect={() => {
-                  setSelectedProvider('paypal');
-                  if (!termsAccepted) {
-                    setShowError(true);
-                    return;
-                  }
-
-                  setShowError(false);
-                  void onPayWithPaypal(termsAccepted);
-                }}
-              />
-            )}
-          </SelectableGroup>
-
-          <div className={styles.consentWrapper}>
-            <label className={styles.consentLabel}>
-              <input
-                type="checkbox"
-                checked={termsAccepted}
-                aria-invalid={showError}
-                onChange={(e) => {
-                  setTermsAccepted(e.target.checked);
-                  if (e.target.checked) {
                     setShowError(false);
-                  }
-                }}
-                className={showError ? styles.checkboxError : undefined}
-              />
-              <span>
-                I agree to the{' '}
-                <Link href="/legal" className={styles.termsLink}>
-                  Terms & Conditions
-                </Link>
-              </span>
-            </label>
+                    void onPayWithStripe(termsAccepted);
+                  }}
+                />
+              )}
 
-            {showError && (
-              <p className={styles.errorText}>
-                <span aria-hidden="true">⚠</span>
-                <span>You must accept the Terms before proceeding.</span>
-              </p>
-            )}
+              {onPayWithPaypal && (
+                <PaypalButton
+                  selected={selectedProvider === 'paypal'}
+                  disabled={!termsAccepted}
+                  onSelect={() => {
+                    setSelectedProvider('paypal');
+                    if (!termsAccepted) {
+                      setShowError(true);
+                      return;
+                    }
+
+                    setShowError(false);
+                    void onPayWithPaypal(termsAccepted);
+                  }}
+                />
+              )}
+            </SelectableGroup>
+
+            <div className={styles.consentWrapper}>
+              <label className={styles.consentLabel}>
+                <input
+                  type="checkbox"
+                  checked={termsAccepted}
+                  aria-invalid={showError}
+                  onChange={(e) => {
+                    setTermsAccepted(e.target.checked);
+                    if (e.target.checked) {
+                      setShowError(false);
+                    }
+                  }}
+                  className={showError ? styles.checkboxError : undefined}
+                />
+                <span>
+                  I agree to the{' '}
+                  <Link href="/legal" className={styles.termsLink}>
+                    Terms & Conditions
+                  </Link>
+                </span>
+              </label>
+
+              {showError && (
+                <p className={styles.errorText}>
+                  <span aria-hidden="true">⚠</span>
+                  <span>You must accept the Terms before proceeding.</span>
+                </p>
+              )}
+            </div>
           </div>
+          {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
         </div>
-        {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
-      </div>
-    </ProductCard>
+      </ProductCard>
+    </div>
   );
 }
