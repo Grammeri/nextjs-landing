@@ -1,7 +1,7 @@
 import type { IconDefinition, IconNode, IconProps } from './types';
 import { LUCIDE_STROKE } from './lucide';
 
-export const checkIconDefinition: IconDefinition = {
+const checkIconDefinition: IconDefinition = {
   viewBox: '0 0 24 24',
   nodes: [{ tag: 'path', attrs: { d: 'M20 6L9 17l-5-5' } }],
 };

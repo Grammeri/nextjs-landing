@@ -151,7 +151,7 @@ const slugifyHeading = (value: string): string =>
     .trim()
     .replace(/\s+/g, '-');
 
-export const renderMarkdown = async (
+const renderMarkdown = async (
   markdown: string,
   currentSlug: string,
   product: DocsProduct,

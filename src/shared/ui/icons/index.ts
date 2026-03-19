@@ -1,11 +1,11 @@
 import type { IconDefinition, IconNode } from './types';
 import { LUCIDE_STROKE } from './lucide';
 
-export { ExternalLinkIcon, externalLinkIconDefinition } from './external-link';
-export { CheckIcon, checkIconDefinition } from './check';
+export { externalLinkIconDefinition } from './external-link';
+export { CheckIcon } from './check';
 export type { IconDefinition, IconNode, IconProps } from './types';
 
-export const copyIconDefinition: IconDefinition = {
+const copyIconDefinition: IconDefinition = {
   viewBox: '0 0 24 24',
   nodes: [
     { tag: 'rect', attrs: { x: '9', y: '9', width: '11', height: '11', rx: '2' } },
