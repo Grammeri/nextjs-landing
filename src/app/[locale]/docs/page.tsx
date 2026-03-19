@@ -23,7 +23,7 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
             Documentation
           </h1>
 
-          <ol className={styles.list}>
+          <ul className={styles.list}>
             <li className={styles.item}>
               <Link className={styles.link} href={authforgeDocsHref}>
                 AuthForge
@@ -35,7 +35,7 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
                 Starter
               </Link>
             </li>
-          </ol>
+          </ul>
         </section>
       </div>
     </main>

@@ -18,8 +18,8 @@
 
 .list {
   margin: 0;
-  padding-left: var(--spacing-lg);
-  list-style: decimal;
+  padding: 0;
+  list-style: none;
   color: var(--color-product-text);
 }
 
