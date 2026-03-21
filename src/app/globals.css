@@ -70,6 +70,12 @@
   --color-surface-cookie-button-border: var(--color-text-inverse);
   --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
+    /* Button — Fixed control sizing */
+    --button-font-size-fixed: 18px;
+    --button-line-height-fixed: 1.2;
+    --button-padding-y-fixed: 14px;
+    --button-padding-x-fixed: 24px;
+
   /* List markers (checkmarks, bullets) */
   --color-list-marker: var(--color-texas-blue);
   /* Texas red */
@@ -247,10 +253,11 @@
      Product lists
      =============================== */
   
-  --product-list-icon-offset: 10px;
-  --product-list-icon-offset-large: 12px;
-  --product-list-text-max-width: 40ch;
-  --product-list-line-height: 1.35;
+     --product-list-icon-offset: 10px;
+     --product-list-icon-offset-large: 12px;
+     --product-list-text-max-width: 40ch;
+     --product-list-line-height: 1.35;
+     --product-list-line-height-tight: 1.2;
 
   /* Product page text */
   --color-product-text: #223a5e;

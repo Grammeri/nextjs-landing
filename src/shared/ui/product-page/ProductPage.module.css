@@ -9,6 +9,23 @@
     gap: var(--spacing-md);
 }
 
+@media (max-width: 560px) {
+    .heroActions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+
+    .heroActions > a,
+    .heroActions > button {
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .audienceList {
     display: grid;
     gap: var(--spacing-md);
@@ -42,39 +59,50 @@
     grid-template-columns: repeat(var(--product-feature-grid-columns), minmax(0, 1fr));
     gap: var(--product-feature-grid-gap);
     width: 100%;
+    max-width: var(--product-feature-grid-max-width);
+    margin: 0 auto;
 }
 
 .featureCard {
-    padding: var(--spacing-lg);
-    border-radius: var(--card-border-radius);
+    padding-top: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+    padding-bottom: var(--spacing-2xl);
+    padding-left: var(--spacing-xl);
+    border-radius: var(--radius-md);
     border: var(--focus-ring-width) solid var(--color-tertiary-faded);
     background: var(--color-secondary-faded);
+    box-shadow: var(--shadow-xs);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    min-width: 0;
 }
 
 .featureTitle {
     margin: 0 0 var(--spacing-md) 0;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-heading);
     font-weight: var(--font-weight-semibold);
-    white-space: nowrap;
-
-    text-align: center;
-
-    margin-left: calc(-1 * var(--spacing-xl));
-    margin-right: calc(-1 * var(--spacing-xl));
+    text-align: left;
+    white-space: normal;
+    text-wrap: balance;
 }
 
 .featureList {
     display: grid;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     margin: 0;
+    width: 100%;
+    max-width: 44rem;
 }
 
 .featureList li {
     position: relative;
     padding-left: calc(var(--product-list-icon-offset) + var(--spacing-icon-text));
-    line-height: var(--product-list-line-height);
+    font-size: var(--font-size-lg);
+    line-height: var(--product-list-line-height-tight);
+    overflow-wrap: break-word;
 }
 
 .featureList li::before {
@@ -127,7 +155,7 @@
 .trustList a:focus-visible {
     outline: none;
     box-shadow: var(--focus-ring);
-    border-radius: var(--radius-xs);
+    border-radius: var(--radius-sm);
 }
 
 .supportInline {
@@ -201,7 +229,7 @@
 .trustText {
     margin: 0;
     font-size: var(--font-size-xl);
-    line-height: var(--line-height-tight);
+    line-height: var(--line-height-base);
 }
 
 .pricingWrapper {
@@ -213,4 +241,106 @@
 
 .contactItem {
     line-height: var(--product-list-line-height);
+}
+
+@media (max-width: 768px) {
+    .heroActions {
+        gap: var(--spacing-sm);
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: var(--spacing-md);
+    }
+
+    .featureCard {
+        padding: var(--spacing-lg);
+        gap: var(--spacing-md);
+    }
+
+    .featureTitle {
+        min-height: auto;
+    }
+
+    .featureList {
+        gap: var(--spacing-sm);
+        max-width: 100%;
+    }
+
+    .featureList li {
+        font-size: var(--font-size-xl);
+        line-height: var(--line-height-base);
+    }
+
+    .trustBlock {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .audienceList {
+        gap: var(--spacing-sm);
+    }
+
+    .steps li {
+        grid-template-columns: 40px 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .steps li::before {
+        width: 40px;
+        height: 40px;
+    }
+
+    .featureGrid {
+        gap: var(--spacing-sm);
+    }
+
+    .featureList li {
+        font-size: var(--font-size-xl);
+        line-height: var(--line-height-base);
+    }
+
+    .featureCard {
+        padding: var(--spacing-md);
+    }
+
+    .trustBlock {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 400px) {
+    .audienceList li,
+    .featureList li,
+    .trustList li,
+    .steps li,
+    .trustText {
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+    }
+
+    .featureTitle {
+
+    .featureCard {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+
+    .trustBlock {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+
+    .steps li {
+        grid-template-columns: 36px 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .steps li::before {
+        width: 36px;
+        height: 36px;
+    }
 }

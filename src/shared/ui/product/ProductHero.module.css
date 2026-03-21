@@ -30,9 +30,14 @@
 }
 
 .subtitle {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 40ch;
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  text-wrap: balance;
+  white-space: pre-line;
 }
 
 .trust {
@@ -64,3 +69,4 @@
 .action {
   display: flex;
 }
+

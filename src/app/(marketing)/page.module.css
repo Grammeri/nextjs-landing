@@ -9,12 +9,12 @@
   position: relative;
 
   padding-top: var(--section-padding-top-hero);
-  padding-bottom: calc(var(--section-padding-bottom-hero) + var(--spacing-2xl));
+  padding-bottom: calc(var(--section-padding-bottom-hero) + clamp(24px, 4vw, 48px));
 }
 
 .heroContent {
-  padding-top: var(--spacing-3xl);
   position: relative;
+  padding-top: clamp(32px, 6vw, 64px);
 }
 
 .headline {
@@ -23,10 +23,11 @@
   line-height: var(--line-height-heading);
   color: var(--color-on-image-primary);
 
-  max-width: var(--hero-headline-max-width);
-  margin: 0 auto var(--spacing-xl) auto;
+  max-width: min(100%, var(--hero-headline-max-width));
+  margin: 0 auto clamp(16px, 3vw, 32px) auto;
 
   text-align: center;
+  text-wrap: balance;
 }
 
 .lead {
@@ -34,10 +35,11 @@
   line-height: var(--line-height-base);
   color: var(--color-on-image-primary);
 
-  max-width: var(--hero-text-max-width);
+  max-width: min(100%, var(--hero-text-max-width));
   margin: 0 auto;
 
-  text-align: justify;
+  text-align: center;
+  text-wrap: pretty;
   hyphens: none;
   overflow-wrap: break-word;
 }
@@ -49,24 +51,71 @@
 
 .productsGrid {
   display: grid;
-  grid-template-columns: repeat(2, var(--product-card-width));
-  justify-content: center;
-  gap: var(--spacing-lg);
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 24px);
+  max-width: min(100%, 920px);
+  margin: 0 auto;
+  align-items: stretch;
 }
 
-@media (max-width: 1200px) {
-  .productsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .productsGrid {
-    grid-template-columns: 1fr;
-  }
+.productsGrid > * {
+  min-width: 0;
+  width: 100%;
 }
 
 .nextSection {
-  min-height: var(--section-min-height-next);
+  min-height: 0;
+}
+
+@media (max-width: 1024px) {
+  .heroContent {
+    padding-top: clamp(24px, 5vw, 48px);
+  }
+
+  .lead {
+    max-width: min(100%, 46rem);
+  }
+
+  .productsGrid {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-bottom: calc(var(--section-padding-bottom-hero) + var(--spacing-xl));
+  }
+
+  .headline {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .lead {
+    font-size: var(--font-size-lg);
+  }
+
+  .productsGrid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent {
+    padding-top: var(--spacing-xl);
+  }
+
+  .headline {
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(32px, 8vw, 42px);
+    line-height: 1.15;
+  }
+
+  .lead {
+    font-size: var(--font-size-base);
+  }
+
+  .productsGrid {
+    gap: var(--spacing-md);
+  }
 }
