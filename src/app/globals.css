@@ -119,13 +119,13 @@
     'Open Sans', 'Helvetica Neue', sans-serif;
   --font-family-mono:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-  --font-size-base: 20px;
-  --font-size-sm: 18px;
-  --font-size-lg: 22px;
-  --font-size-xl: 32px;
-  --font-size-h1: 64px;
-  --font-size-h2: 48px;
-  --font-size-h3: 36px;
+    --font-size-base: clamp(16px, 0.95rem + 0.2vw, 20px);
+    --font-size-sm: clamp(14px, 0.9rem + 0.15vw, 18px);
+    --font-size-lg: clamp(18px, 1rem + 0.3vw, 22px);
+    --font-size-xl: clamp(24px, 1.2rem + 1vw, 32px);
+    --font-size-h1: clamp(36px, 1.9rem + 2.8vw, 64px);
+    --font-size-h2: clamp(30px, 1.6rem + 1.8vw, 48px);
+    --font-size-h3: clamp(24px, 1.3rem + 1vw, 36px);
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
   --line-height-subheading: 1.3;
@@ -199,7 +199,7 @@
 
   /* Container */
   --container-width: 1200px;
-  --container-padding: 24px;
+  --container-padding: clamp(16px, 3vw, 24px);
 
   /* Narrow content blocks (instructions, steps, text-heavy sections) */
   --content-narrow-width: 720px;
@@ -228,18 +228,18 @@
   --section-min-height-next: 40vh;
 
   /* Section layout paddings */
-  --section-padding-top-hero: var(--spacing-sm);
-  --section-padding-bottom-hero: var(--spacing-sm);
+  --section-padding-top-hero: clamp(8px, 1.2vw, 16px);
+  --section-padding-bottom-hero: clamp(8px, 1.2vw, 16px);
 
-  --section-padding-top-default: var(--spacing-3xl);
-  --section-padding-bottom-default: var(--spacing-3xl);
+  --section-padding-top-default: clamp(32px, 6vw, 64px);
+  --section-padding-bottom-default: clamp(32px, 6vw, 64px);
 
-  --section-padding-top-compact: var(--spacing-xl);
-  --section-padding-bottom-compact: var(--spacing-xl);
+  --section-padding-top-compact: clamp(24px, 4vw, 32px);
+  --section-padding-bottom-compact: clamp(24px, 4vw, 32px);
 
   /* Product page sections */
-  --section-padding-top-product: var(--spacing-xl);
-  --section-padding-bottom-product: var(--spacing-xl);
+  --section-padding-top-product: clamp(24px, 4vw, 32px);
+  --section-padding-bottom-product: clamp(24px, 4vw, 32px);
 
   --spacing-icon-text: 12px;
 
@@ -276,7 +276,7 @@
   --content-surface-border: 1px solid var(--color-border);
   --content-surface-radius: var(--radius-lg);
   --content-surface-shadow: var(--card-shadow-soft);
-  --content-surface-padding: var(--spacing-2xl);
+  --content-surface-padding: clamp(16px, 3vw, 48px);
 
   /* Demo page */
   --demo-content-max-width: var(--container-width);
@@ -293,15 +293,15 @@
   --demo-point-marker-offset-y: 0.8em;
 
   /* Shared page shell / content surface */
-  --page-shell-padding-x: var(--spacing-xl);
-  --page-shell-padding-y: var(--spacing-3xl);
+  --page-shell-padding-x: clamp(16px, 3vw, 32px);
+  --page-shell-padding-y: clamp(32px, 5vw, 64px);
 
   /* offset between sticky header and page content */
   --page-shell-header-offset: var(--spacing-2xl);
 
   --content-surface-max-width: var(--container-width);
-  --content-surface-padding-x: var(--spacing-2xl);
-  --content-surface-padding-y: var(--spacing-2xl);
+  --content-surface-padding-x: clamp(16px, 3vw, 48px);
+  --content-surface-padding-y: clamp(16px, 3vw, 48px);
 
   /* Header surface */
   --header-bg-transparent: transparent;
@@ -327,9 +327,9 @@
   --footer-divider-offset: calc(var(--footer-column-gap) / 2);
 
   /* Footer layout tokens */
-  --footer-padding-y: var(--spacing-4xl);
+  --footer-padding-y: clamp(32px, 6vw, 96px);
   --footer-padding-x: var(--container-padding);
-  --footer-column-gap: var(--spacing-4xl);
+  --footer-column-gap: clamp(24px, 4vw, 96px);
   --footer-row-gap: var(--spacing-xxs);
   --footer-legal-link-gap: var(--spacing-xs);
 
@@ -390,7 +390,7 @@
   --pricing-card-max-width: 420px;
 
   /* Product cards */
-  --product-card-width: 440px;
+  --product-card-width: min(100%, 440px);
 
   /* Product card header height (aligns descriptions across cards) */
   --product-card-header-height: 72px;
@@ -619,18 +619,13 @@ ol {
 
 .container-wide {
   width: 100%;
-  padding-left: var(--spacing-xl);
-  padding-right: var(--spacing-xl);
+  padding-left: clamp(16px, 3vw, 32px);
+  padding-right: clamp(16px, 3vw, 32px);
 }
 
 .section {
-  padding: var(--spacing-3xl) 0;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: var(--spacing-2xl) 0;
-  }
+  padding-top: var(--section-padding-top-default);
+  padding-bottom: var(--section-padding-bottom-default);
 }
 
 /* Accessibility */
