@@ -38,7 +38,7 @@
     line-height: var(--product-cta-line-height);
 }
 
-@media (max-width: 585px) {
+@media (max-width: 610px) {
     .heroActions {
         display: flex;
         flex-direction: column;
@@ -53,8 +53,30 @@
         width: 100%;
         justify-content: center;
     }
-}
 
+    /* отключаем увеличение */
+    .heroActions > a:hover,
+    .heroActions > button:hover {
+        transform: none;
+    }
+
+    /* primary: инверсия */
+    .heroActions :global(.primary):hover {
+        background: transparent;
+        color: var(--color-texas-blue);
+        border-color: var(--color-texas-blue);
+    }
+
+    /* secondary: заливка */
+    .heroActions :global(.secondary):hover {
+        background: var(--color-texas-blue);
+        color: var(--color-text-inverse);
+    }
+
+    .supportEmail {
+        font-size: var(--font-size-lg);
+    }
+}
 .audienceList {
     display: grid;
     gap: var(--spacing-md);
@@ -114,7 +136,7 @@
     font-size: var(--font-size-xl);
     line-height: var(--line-height-heading);
     font-weight: var(--font-weight-semibold);
-    text-align: left;
+    text-align: center;
     white-space: normal;
     text-wrap: balance;
 }
@@ -192,7 +214,6 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-xs);
-    white-space: nowrap;
 }
 
 .contactLead {
@@ -358,14 +379,24 @@
     .featureList li,
     .trustList li,
     .steps li,
-    .trustText {
+    .trustText,
+    .supportText {
         font-size: var(--font-size-base);
         line-height: var(--line-height-base);
     }
 
+    /* все подзаголовки уровня секций */
+    :global(h2) {
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-heading);
+        text-align: center;
+    }
+
+    /* подзаголовки внутри карточек */
     .featureTitle {
         font-size: var(--font-size-lg);
         line-height: var(--line-height-heading);
+        text-align: center;
     }
 
     .featureCard {
@@ -386,5 +417,17 @@
     .steps li::before {
         width: 36px;
         height: 36px;
+    }
+
+    /* ✅ фикс layout email */
+    .supportInline {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .supportEmail {
+        display: inline;
     }
 }

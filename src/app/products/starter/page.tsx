@@ -7,6 +7,7 @@ import { Button } from '@/shared/ui/button';
 import { STARTER_PRODUCT_COPY } from '@/shared/config/products/starter';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import StarterPricingCard from '@/shared/ui/product-pricing/StarterPricingCard';
+import CopySupportEmail from '../authforge/_components/CopySupportEmail';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 
 export default function StarterPage() {
@@ -124,7 +125,12 @@ export default function StarterPage() {
             Questions before or after purchase?{' '}
             <span className={styles.contactLead}>Contact us at</span>{' '}
             <span className={styles.supportInline}>
-              <span className={styles.supportEmail}>support@software-forge.dev</span>
+              <span className={styles.supportEmail}>
+                support@software-
+                <br className={styles.mobileBreak} />
+                forge.dev
+              </span>
+              <CopySupportEmail />
             </span>
           </p>
         </div>

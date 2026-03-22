@@ -27,6 +27,12 @@
   transform: scale(var(--interaction-hover-scale));
 }
 
+@media (max-width: 610px) {
+  .button:hover {
+    transform: none;
+  }
+}
+
 .primary {
   background: var(--color-texas-blue);
   color: var(--color-text-inverse);
@@ -38,6 +44,20 @@
   border-color: var(--color-texas-blue);
 }
 
+@media (max-width: 610px) {
+  .primary:hover {
+    background: transparent;
+    color: var(--color-texas-blue);
+    border-color: var(--color-texas-blue);
+  }
+
+  .secondary:hover {
+    background: var(--color-texas-blue);
+    color: var(--color-text-inverse);
+    border-color: var(--color-texas-blue);
+  }
+}
+
 .inverted {
   background: var(--color-on-image-primary);
   color: var(--color-product-text);
@@ -47,4 +67,15 @@
 
 .inverted:hover {
   background: var(--color-surface-elevated);
+}
+@media (max-width: 400px) {
+  .button {
+    padding-top: calc(var(--button-padding-y-fixed) * 0.75) !important;
+    padding-right: calc(var(--button-padding-x-fixed) * 0.85) !important;
+    padding-bottom: calc(var(--button-padding-y-fixed) * 0.75) !important;
+    padding-left: calc(var(--button-padding-x-fixed) * 0.85) !important;
+
+    font-size: calc(var(--button-font-size-fixed) * 0.9) !important;
+    line-height: var(--line-height-base) !important;
+  }
 }
