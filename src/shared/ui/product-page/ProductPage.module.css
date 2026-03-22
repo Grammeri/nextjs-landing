@@ -42,18 +42,22 @@
 }
 
 .audienceList li {
-    position: relative;
-    padding-left: calc(var(--product-list-icon-offset-large) + var(--spacing-md));
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    align-items: start;
+    gap: var(--spacing-sm);
+
     font-size: var(--font-size-xl);
-    line-height: var(--line-height-base);
-    text-wrap: balance;
+    line-height: var(--product-list-line-height-premium);
+    text-wrap: pretty;
 }
 
 .audienceList li::before {
     content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-weight: var(--font-weight-semibold);
 }
 
@@ -132,7 +136,7 @@
     position: relative;
     padding-left: calc(var(--product-list-icon-offset-large) + var(--spacing-md));
     font-size: var(--font-size-xl);
-    line-height: var(--line-height-base);
+    line-height: var(--product-list-line-height-premium);
 }
 
 .trustList li::before {

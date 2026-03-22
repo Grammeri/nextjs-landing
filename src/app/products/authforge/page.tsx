@@ -45,12 +45,14 @@ export default function AuthForgeProductPage() {
         }
       />
 
-      <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience}>
-        <ul className={styles.audienceList}>
-          {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience} align="center">
+        <div className={`${styles.contentNarrow} ${styles.audienceContentWide}`}>
+          <ul className={`${styles.audienceList} ${styles.audienceListAuthforge}`}>
+            {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </ProductSection>
 
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.included}>
