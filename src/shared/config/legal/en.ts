@@ -22,6 +22,10 @@ export const LEGAL_PAGE_TITLE = 'Legal';
 export const LEGAL_PAGE_DESCRIPTION =
   'Terms, privacy, refund, license, and liability information for Software Forge products.';
 
+export const LEGAL_PAGE_INTRO = [
+  'These legal terms apply to software products, source code packages, templates, documentation, and related digital materials provided under the Software Forge brand, including but not limited to AuthForge, Next.js Professional Starter, and other developer tools distributed by Software Forge.',
+];
+
 export const LEGAL_SECTIONS: LegalSection[] = [
   {
     id: 'terms',
