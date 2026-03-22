@@ -99,7 +99,7 @@ export default function StarterPage() {
         </div>
       </ProductSection>
 
-      <ProductSection title="Try before you buy" showContact>
+      <ProductSection title="Try before you buy">
         <div className={styles.trustBlock}>
           <p className={styles.trustText}>
             Before purchasing, you can review the documentation, inspect the project structure, and
@@ -119,6 +119,14 @@ export default function StarterPage() {
               <Link href={structureHref}>Project structure overview</Link>
             </li>
           </ul>
+
+          <p className={styles.supportText}>
+            Questions before or after purchase?{' '}
+            <span className={styles.contactLead}>Contact us at</span>{' '}
+            <span className={styles.supportInline}>
+              <span className={styles.supportEmail}>support@software-forge.dev</span>
+            </span>
+          </p>
         </div>
       </ProductSection>
 

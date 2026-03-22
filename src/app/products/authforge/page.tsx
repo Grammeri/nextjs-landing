@@ -123,16 +123,16 @@ export default function AuthForgeProductPage() {
                   {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
                 </Link>
               </li>
-
-              <li className={styles.contactItem}>
-                {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
-                <span className={styles.contactLead}>Contact us at</span>{' '}
-                <span className={styles.supportInline}>
-                  <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
-                  <CopySupportEmail />
-                </span>
-              </li>
             </ul>
+
+            <p className={styles.supportText}>
+              {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
+              <span className={styles.contactLead}>Contact us at</span>{' '}
+              <span className={styles.supportInline}>
+                <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
+                <CopySupportEmail />
+              </span>
+            </p>
           </div>
         </div>
       </ProductSection>

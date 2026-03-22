@@ -269,6 +269,21 @@
     line-height: var(--product-list-line-height);
 }
 
+.audienceContentCentered {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.supportText {
+    margin-top: var(--spacing-md);
+
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-base);
+
+    color: var(--color-product-text);
+}
+
 @media (max-width: 768px) {
     .heroActions {
         gap: var(--spacing-sm);
