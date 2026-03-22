@@ -32,7 +32,7 @@ export default function AuthForgeProductPage() {
         trustDescription={AUTHFORGE_PRODUCT_COPY.hero.trustDescription}
         secondaryAction={
           <div className={styles.heroActions}>
-            <Button as="a" href="/demo" variant="secondary" className={styles.heroButton}>
+            <Button as="a" href="/demo" variant="secondary">
               {AUTHFORGE_PRODUCT_COPY.actions.viewDemo}
             </Button>
             <Button as="a" href={docsEntryHref} variant="secondary">
