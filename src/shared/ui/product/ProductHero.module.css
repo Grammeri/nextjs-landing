@@ -31,12 +31,12 @@
 
 .subtitle {
   margin: 0 auto;
-  max-width: 40ch;
+  max-width: var(--hero-text-max-width);
   font-size: var(--font-size-xl);
   line-height: var(--line-height-base);
   font-weight: var(--font-weight-medium);
   text-align: center;
-  text-wrap: balance;
+  text-wrap: pretty;
   white-space: pre-line;
 }
 

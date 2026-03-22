@@ -46,8 +46,8 @@ export default function AuthForgeProductPage() {
       />
 
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience} align="center">
-        <div className={`${styles.contentNarrow} ${styles.audienceContentWide}`}>
-          <ul className={`${styles.audienceList} ${styles.audienceListAuthforge}`}>
+        <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
+          <ul className={styles.audienceList}>
             {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -103,35 +103,37 @@ export default function AuthForgeProductPage() {
       </ProductSection>
 
       <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.tryBeforeYouBuy}>
-        <div className={styles.trustBlock}>
-          <p className={styles.trustText}>{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.description}</p>
+        <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
+          <div className={styles.trustBlock}>
+            <p className={styles.trustText}>{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.description}</p>
 
-          <ul className={styles.trustList}>
-            <li>
-              <Link href="/demo">{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}</Link>
-            </li>
+            <ul className={styles.trustList}>
+              <li>
+                <Link href="/demo">{AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}</Link>
+              </li>
 
-            <li>
-              <Link href={docsEntryHref}>
-                {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
-              </Link>
-            </li>
+              <li>
+                <Link href={docsEntryHref}>
+                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
+                </Link>
+              </li>
 
-            <li>
-              <Link href={architectureHref}>
-                {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
-              </Link>
-            </li>
+              <li>
+                <Link href={architectureHref}>
+                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
+                </Link>
+              </li>
 
-            <li className={styles.contactItem}>
-              {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
-              <span className={styles.contactLead}>Contact us at</span>{' '}
-              <span className={styles.supportInline}>
-                <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
-                <CopySupportEmail />
-              </span>
-            </li>
-          </ul>
+              <li className={styles.contactItem}>
+                {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
+                <span className={styles.contactLead}>Contact us at</span>{' '}
+                <span className={styles.supportInline}>
+                  <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
+                  <CopySupportEmail />
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </ProductSection>
 

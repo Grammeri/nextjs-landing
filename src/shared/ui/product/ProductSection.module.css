@@ -57,3 +57,18 @@
     gap: var(--spacing-md);
   }
 }
+
+.contact {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+
+  color: var(--color-product-text-muted);
+}
+
+.email {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-product-text);
+}

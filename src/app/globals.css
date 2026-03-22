@@ -236,7 +236,7 @@
 
   /* Hero typography layout */
   --hero-headline-max-width: 72rem;
-  --hero-text-max-width: 54rem;
+  --hero-text-max-width: 68rem;
 
   --section-min-height-next: 40vh;
 
@@ -250,11 +250,30 @@
   --section-padding-top-compact: clamp(24px, 4vw, 32px);
   --section-padding-bottom-compact: clamp(24px, 4vw, 32px);
 
-  /* Product page sections */
-  --section-padding-top-product: clamp(24px, 4vw, 32px);
-  --section-padding-bottom-product: clamp(24px, 4vw, 32px);
+/* ===============================
+   Product Sections
+   =============================== */
 
-  --spacing-icon-text: 12px;
+   --section-padding-top-product: clamp(24px, 4vw, 32px);
+   --section-padding-bottom-product: clamp(24px, 4vw, 32px);
+   
+   /* ===============================
+      Section Content System
+      =============================== */
+   
+   /* Inner spacing */
+   --section-content-padding: clamp(20px, 3vw, 48px);
+   --section-content-padding-compact: clamp(16px, 2vw, 32px);
+   --section-content-padding-wide: clamp(32px, 4vw, 64px);
+   
+   /* Width system */
+   --section-content-max-width: 900px;
+   --section-content-max-width-narrow: 720px;
+   --section-content-max-width-wide: 1100px;
+   
+   /* =============================== */
+   
+   --spacing-icon-text: 12px;
 
   /* ===============================
      Product lists

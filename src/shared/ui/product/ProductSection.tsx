@@ -12,6 +12,7 @@ export function ProductSection({ title, align = 'left', children }: ProductSecti
     <section className={styles.section} data-align={align}>
       <div className={styles.container}>
         {title && <h3 className={styles.title}>{title}</h3>}
+
         <div className={styles.content}>{children}</div>
       </div>
     </section>
