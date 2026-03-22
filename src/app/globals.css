@@ -70,11 +70,18 @@
   --color-surface-cookie-button-border: var(--color-text-inverse);
   --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
-    /* Button — Fixed control sizing */
-    --button-font-size-fixed: 18px;
-    --button-line-height-fixed: 1.2;
-    --button-padding-y-fixed: 14px;
-    --button-padding-x-fixed: 24px;
+/* Button — Fixed control sizing */
+--button-font-size-fixed: 18px;
+--button-line-height-fixed: 1.2;
+--button-padding-y-fixed: 14px;
+--button-padding-x-fixed: 24px;
+
+/* Product CTA */
+--product-cta-font-size: 20px;
+--product-cta-line-height: 1.2;
+--product-cta-padding-y: 15px;
+--product-cta-padding-x: 28px;
+--product-cta-gap: var(--spacing-md);
 
   /* List markers (checkmarks, bullets) */
   --color-list-marker: var(--color-texas-blue);

@@ -6,10 +6,19 @@
 .heroActions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--product-cta-gap);
 }
 
-@media (max-width: 560px) {
+.heroActions > a,
+.heroActions > button {
+    padding-top: var(--product-cta-padding-y);
+    padding-right: var(--product-cta-padding-x);
+    padding-bottom: var(--product-cta-padding-y);
+    padding-left: var(--product-cta-padding-x);
+    font-size: var(--product-cta-font-size);
+    line-height: var(--product-cta-line-height);
+}
+@media (max-width: 585px) {
     .heroActions {
         display: flex;
         flex-direction: column;
@@ -323,6 +332,9 @@
     }
 
     .featureTitle {
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-heading);
+    }
 
     .featureCard {
         padding: var(--spacing-sm);
