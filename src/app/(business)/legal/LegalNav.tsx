@@ -29,17 +29,19 @@ export default function LegalNav() {
 
   return (
     <div className={styles.legalNav}>
-      <nav className={styles.legalNavScroll} aria-label="Legal sections">
-        {SECTIONS.map((section) => (
-          <a
-            key={section.id}
-            href={`#${section.id}`}
-            className={active === section.id ? styles.active : ''}
-          >
-            {section.label}
-          </a>
-        ))}
-      </nav>
+      <div className={styles.legalNavInner}>
+        <nav className={styles.legalNavScroll} aria-label="Legal sections">
+          {SECTIONS.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              className={active === section.id ? styles.active : ''}
+            >
+              {section.label}
+            </a>
+          ))}
+        </nav>
+      </div>
     </div>
   );
 }

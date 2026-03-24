@@ -1,16 +1,22 @@
 .legalNav {
-  display: flex;
-  align-items: center;
-
   position: sticky;
   top: var(--header-height);
   z-index: 5;
 
   background: var(--color-surface-base);
-
-  padding: var(--spacing-sm) var(--spacing-md);
-
   border-bottom: 1px solid var(--legal-nav-divider-color);
+
+  width: 100%;
+}
+
+.legalNavInner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  padding: var(--spacing-sm) var(--container-padding);
 }
 
 .legalNav::before {

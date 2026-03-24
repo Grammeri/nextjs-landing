@@ -48,10 +48,11 @@
   /* ===============================
    Surface — Semantic
    =============================== */
-  --color-surface-base: var(--color-bg);
-  --color-surface-raised: var(--color-bg);
-  --color-surface-overlay: var(--color-bg);
-  --color-surface-inverse: var(--color-surface-system);
+   --color-surface-base: var(--color-bg);
+   --color-surface-raised: var(--color-bg);
+   --color-surface-overlay: var(--color-bg);
+   --color-surface-inverse: var(--color-surface-system);
+   --color-surface-subtle: #f8fafc;
 
   /* Texas flag inspired */
   --color-texas-blue: var(--color-product-text);
@@ -718,14 +719,26 @@ ol {
     }
   }
 
-.pageSurface {
-  max-width: var(--content-surface-max-width);
-  margin: 0 auto;
-
-  padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
-
-  background: var(--content-surface-bg);
-  border: var(--content-surface-border);
-  border-radius: var(--content-surface-radius);
-  box-shadow: var(--content-surface-shadow);
-}
+  .pageSurface {
+    max-width: var(--content-surface-max-width);
+    margin: 0 auto;
+  
+    padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
+  
+    background: var(--content-surface-bg);
+    border: var(--content-surface-border);
+    border-radius: var(--content-surface-radius);
+    box-shadow: var(--content-surface-shadow);
+  }
+  
+  @media (max-width: 480px) {
+    .pageSurface {
+      max-width: none;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
