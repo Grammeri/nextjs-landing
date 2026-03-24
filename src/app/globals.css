@@ -420,17 +420,33 @@
   --focus-ring-color: var(--color-accent);
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 
-  /* Pricing */
-  --pricing-card-max-width: 420px;
+/* Pricing */
+--pricing-card-max-width: 420px;
 
-  /* Product cards */
-  --product-card-width: min(100%, 440px);
+/* ===============================
+   Pricing Page
+   =============================== */
 
-  /* Product card header height (aligns descriptions across cards) */
-  --product-card-header-height: 72px;
+--pricing-page-padding-top: 4rem;
+--pricing-page-padding-bottom: 4rem;
+--pricing-page-padding-x: 1.5rem;
 
-  /* Minimum height for product cards (ensures visual balance) */
-  --product-card-min-height: 240px;
+/* Mobile */
+--pricing-page-padding-top-mobile: 2rem;
+--pricing-page-padding-bottom-mobile: 2rem;
+
+/* Grid spacing */
+--pricing-grid-gap: var(--spacing-2xl);
+--pricing-grid-gap-mobile: var(--spacing-lg);
+
+/* Product cards */
+--product-card-width: min(100%, 440px);
+
+/* Product card header height (aligns descriptions across cards) */
+--product-card-header-height: 72px;
+
+/* Minimum height for product cards (ensures visual balance) */
+--product-card-min-height: 240px;
 
   /* selection base */
   --select-border-radius: var(--radius-md);
