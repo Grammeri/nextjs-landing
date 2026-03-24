@@ -47,11 +47,18 @@
 }
 
 .trustTitle {
-  margin: var(--spacing-2xl) 0 0;
-  font-size: var(--font-size-xl); /* 🔥 делаем базовым эталоном */
+  margin: var(--spacing-xl) 0 0;
+  font-size: var(--font-size-xl);
   line-height: var(--line-height-heading);
   font-weight: var(--font-weight-semibold);
   text-align: center;
+}
+
+/* mobile — аккуратнее и плотнее */
+@media (max-width: 480px) {
+  .trustTitle {
+    margin-top: var(--spacing-md);
+  }
 }
 
 .trustDescription {
