@@ -60,8 +60,7 @@ export function PricingCard({
               </li>
             ))}
           </ul>
-
-          {paymentTitle && <p className={styles.paymentTitle}>{paymentTitle}</p>}
+          {paymentTitle && <p className={`${styles.paymentTitle} paymentTitle`}>{paymentTitle}</p>}
 
           <div
             className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
