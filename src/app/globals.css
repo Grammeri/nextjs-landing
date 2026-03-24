@@ -541,12 +541,14 @@
   --legal-nav-hover-color: var(--color-text-secondary);
   --legal-nav-divider-color: var(--color-border);
   --legal-nav-height: 56px;
+
+--legal-total-offset: calc(var(--header-height) + var(--legal-nav-height));
 }
 
 html,
 body {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-height) + var(--spacing-md));
+  scroll-padding-top: calc(var(--legal-total-offset) + var(--spacing-md));
 }
 
 /* Box sizing */
@@ -700,16 +702,22 @@ ol {
    Page Layout System
    =============================== */
 
-.pageShell {
-  min-height: 100vh;
-
-  padding-top: calc(var(--page-shell-padding-y) + var(--page-shell-header-offset));
-  padding-bottom: var(--page-shell-padding-y);
-  padding-left: var(--page-shell-padding-x);
-  padding-right: var(--page-shell-padding-x);
-
-  background-color: var(--color-surface-base);
-}
+   .pageShell {
+    min-height: 100vh;
+  
+    padding-top: calc(var(--page-shell-padding-y) + var(--page-shell-header-offset));
+    padding-bottom: var(--page-shell-padding-y);
+    padding-left: var(--page-shell-padding-x);
+    padding-right: var(--page-shell-padding-x);
+  
+    background-color: var(--color-surface-base);
+  }
+  
+   @media (max-width: 768px) {
+    .pageShell {
+      padding-top: var(--spacing-lg);
+    }
+  }
 
 .pageSurface {
   max-width: var(--content-surface-max-width);

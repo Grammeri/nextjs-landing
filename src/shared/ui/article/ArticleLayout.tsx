@@ -13,15 +13,17 @@ export function ArticleTitle({ children }: Props) {
 }
 
 type ArticleSectionProps = {
-  id?: string;
+  anchorId?: string;
   title: string;
   children: React.ReactNode;
 };
 
-export function ArticleSection({ id, title, children }: ArticleSectionProps) {
+export function ArticleSection({ anchorId, title, children }: ArticleSectionProps) {
   return (
-    <section id={id} className={styles.section}>
-      <h2 className={styles.heading}>{title}</h2>
+    <section className={styles.section}>
+      <h2 id={anchorId} className={styles.heading}>
+        {title}
+      </h2>
       {children}
     </section>
   );

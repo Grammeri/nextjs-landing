@@ -1,14 +1,20 @@
 .shell {
   width: min(100%, var(--pricing-card-max-width));
   margin-inline: auto;
+
+  box-sizing: border-box;
+  padding-inline: var(--spacing-md);
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  align-items: stretch; /* 👈 добавили */
   gap: var(--spacing-md);
   color: var(--color-on-image-primary);
   outline: 2px solid red;
+
+  min-width: 0;
 }
 
 .paymentFull,
@@ -31,8 +37,8 @@
     text-align: center;
     margin-inline: auto;
 
-    max-width: 280px; /* 👈 ключевой момент */
-    line-height: 1.5; /* 👈 улучшает читаемость */
+    max-width: 280px;
+    line-height: 1.5;
   }
 
   .price {
@@ -52,12 +58,20 @@
   display: grid;
   gap: var(--spacing-sm);
   color: var(--color-on-image-primary);
+
+  min-width: 0;
 }
 
 .feature {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
+
+  min-width: 0;
+}
+
+.feature > * {
+  min-width: 0;
 }
 
 .icon {
@@ -80,7 +94,10 @@
   letter-spacing: var(--select-section-letter-spacing);
   text-transform: var(--select-section-text-transform);
   color: var(--select-section-color);
-  text-align: var(--select-section-text-align);
+
+  text-align: center;
+
+  width: 100%;          /* 👈 ключ */
 }
 
 .consentWrapper {

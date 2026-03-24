@@ -24,14 +24,14 @@ export default function LegalPage() {
           <LegalNav />
 
           {LEGAL_SECTIONS.map((section) => (
-            <ArticleSection key={section.id} id={section.id} title={section.title}>
+            <ArticleSection key={section.id} anchorId={section.id} title={section.title}>
               {section.paragraphs.map((paragraph, i) => (
                 <ArticleText key={i}>{paragraph}</ArticleText>
               ))}
             </ArticleSection>
           ))}
 
-          <ArticleSection id="contact" title="Contact">
+          <ArticleSection anchorId="contact" title="Contact">
             <ArticleText>
               Seller: <strong>{LEGAL_CONTACT.seller}</strong>
             </ArticleText>

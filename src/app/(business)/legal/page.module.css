@@ -1,34 +1,51 @@
-/* Anchor navigation */
 .legalNav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: var(--legal-nav-gap);
 
   position: sticky;
-  top: calc(var(--header-height) - 1px);
-
-  background: var(--color-surface-base);
+  top: var(--header-height);
   z-index: 5;
 
-  padding-top: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 1px solid var(--legal-nav-divider-color);
+  background: var(--color-surface-base);
 
-  font-size: var(--legal-nav-font-size);
-  font-weight: var(--legal-nav-font-weight);
-  color: var(--legal-nav-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+
+  border-bottom: 1px solid var(--legal-nav-divider-color);
 }
 
+/* overlay to hide content under header */
 .legalNav::before {
   content: '';
   position: absolute;
-  top: calc(-1 * var(--spacing-sm));
+  top: calc(-1 * var(--spacing-md));
   left: 0;
   right: 0;
-  height: var(--spacing-sm);
+  height: var(--spacing-md);
   background: var(--color-surface-base);
   pointer-events: none;
+}
+.legalNavScroll {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.legalNavScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.legalNavScroll a {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .legalNav a {
@@ -45,17 +62,15 @@
   color: var(--color-texas-blue);
 }
 
-/* Offset for anchor scrolling */
-
-.legalNav~section[id] {
-  scroll-margin-top: var(--legal-nav-height);
-}
-
 .legalNav a.active {
   color: var(--color-texas-blue);
 }
 
-.legalNav~section {
+.legalNav ~ section h2[id] {
+  scroll-margin-top: calc(var(--legal-total-offset) - var(--spacing-xs));
+}
+
+.legalNav ~ section {
   padding-top: 0 !important;
   border-top: none !important;
 }
