@@ -26,6 +26,25 @@
   color: var(--color-on-image-primary);
 }
 
+@media (max-width: 480px) {
+  .description {
+    text-align: center;
+    margin-inline: auto;
+
+    max-width: 280px; /* 👈 ключевой момент */
+    line-height: 1.5; /* 👈 улучшает читаемость */
+  }
+
+  .price {
+    text-align: center;
+  }
+
+  .card h3,
+  .card h2 {
+    text-align: center;
+  }
+}
+
 .features {
   list-style: none;
   padding: 0;
