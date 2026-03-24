@@ -13,7 +13,6 @@
   border-bottom: 1px solid var(--legal-nav-divider-color);
 }
 
-/* overlay to hide content under header */
 .legalNav::before {
   content: '';
   position: absolute;
@@ -24,6 +23,14 @@
   background: var(--color-surface-base);
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+  .legalNav {
+    background: var(--color-surface-muted);
+    box-shadow: var(--shadow-xs);
+  }
+}
+
 .legalNavScroll {
   display: flex;
   align-items: center;
@@ -49,6 +56,8 @@
 }
 
 .legalNav a {
+  position: relative;
+
   color: var(--legal-nav-color);
   text-decoration: none;
 
@@ -64,10 +73,22 @@
 
 .legalNav a.active {
   color: var(--color-texas-blue);
+  font-weight: var(--font-weight-semibold);
+}
+
+.legalNav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-texas-blue);
+  border-radius: 2px;
 }
 
 .legalNav ~ section h2[id] {
-  scroll-margin-top: calc(var(--legal-total-offset) - var(--spacing-xs));
+  scroll-margin-top: var(--legal-total-offset);
 }
 
 .legalNav ~ section {
