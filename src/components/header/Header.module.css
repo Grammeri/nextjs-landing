@@ -50,6 +50,7 @@
 
   transition: color var(--motion-duration-fast) var(--motion-easing-standard);
 }
+
 .brand:hover {
   color: var(--header-brand-hover-color);
 }
@@ -65,8 +66,9 @@
   gap: clamp(12px, 2vw, 24px);
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
+
 .navLink {
   font-size: 22px;
   font-weight: var(--font-weight-medium);
@@ -92,22 +94,25 @@
 
 @media (max-width: 480px) {
   .inner {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    min-height: auto;
-    padding-top: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
+    justify-content: space-between;
+
+    min-height: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .brand {
-    text-align: center;
+    font-size: var(--font-size-base);
   }
 
   .nav {
-    width: auto;
-    justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+  }
+
+  .navLink {
+    font-size: var(--font-size-sm);
   }
 }
