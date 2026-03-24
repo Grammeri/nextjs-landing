@@ -48,7 +48,7 @@
   /* ===============================
    Surface — Semantic
    =============================== */
-   --color-surface-base: var(--color-bg);
+   --color-surface-base: var(--content-surface-bg);
    --color-surface-raised: var(--color-bg);
    --color-surface-overlay: var(--color-bg);
    --color-surface-inverse: var(--color-surface-system);
@@ -710,7 +710,7 @@ ol {
     padding-left: var(--page-shell-padding-x);
     padding-right: var(--page-shell-padding-x);
   
-    background-color: var(--color-surface-base);
+    background-color: var(--content-surface-bg);
   }
   
    @media (max-width: 768px) {
@@ -735,9 +735,12 @@ ol {
     .pageSurface {
       max-width: none;
       margin: 0;
-      border-radius: 0;
+  
+      background: transparent;   /* ВАЖНО */
       border: none;
       box-shadow: none;
+      border-radius: 0;
+  
       padding-left: 0;
       padding-right: 0;
     }
