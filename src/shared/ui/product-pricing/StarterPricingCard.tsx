@@ -4,6 +4,7 @@ import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { PricingCard } from '@/shared/ui/pricing-card';
+import { UI_TEXT } from '@/shared/config/ui';
 
 export default function StarterPricingCard() {
   const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('nextjs-test-kit');
@@ -16,7 +17,7 @@ export default function StarterPricingCard() {
   return (
     <PricingCard
       {...card}
-      paymentTitle="Select payment method"
+      paymentTitle={BILLING_PROVIDERS.paypal ? UI_TEXT.payment.multiple : UI_TEXT.payment.single}
       onPayWithStripe={checkoutWithStripe}
       onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
       footerNote="Access instructions will be sent by email after purchase"

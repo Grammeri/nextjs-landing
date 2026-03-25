@@ -422,7 +422,7 @@
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 
 /* Pricing */
---pricing-card-max-width: 420px;
+--pricing-card-max-width: 520px;
 
 /* ===============================
    Pricing Page

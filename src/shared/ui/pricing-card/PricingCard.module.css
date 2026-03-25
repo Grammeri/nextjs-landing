@@ -1,5 +1,6 @@
 .shell {
-  width: min(100%, var(--pricing-card-max-width));
+  width: 100%;
+  max-width: var(--pricing-card-max-width);
   margin-inline: auto;
 
   box-sizing: border-box;
@@ -9,27 +10,54 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* 👈 добавили */
-  gap: var(--spacing-md);
+  align-items: stretch;
+
+  gap: 0; /* 👈 убрали одинаковые отступы */
+
   color: var(--color-on-image-primary);
   outline: 2px solid red;
 
   min-width: 0;
+}
+.card h3 {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-semibold);
+
+  text-align: center;
+
+  margin-bottom: var(--spacing-md); /* 👈 больше воздуха */
+
+  letter-spacing: -0.01em; /* 👈 subtle premium типографика */
 }
 
 .paymentFull,
 .paymentCentered {
   outline: 2px solid red;
 }
+.description {
+  color: var(--color-on-image-secondary);
 
-.description,
+  margin-top: 0;
+  margin-bottom: var(--spacing-md); /* 👈 ключевой отступ */
+}
+
 .footerNote {
   color: var(--color-on-image-secondary);
+
+  margin-top: var(--spacing-md); /* 👈 ВОТ ЭТО добавляем */
 }
 
 .price {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-lg); /* 👈 уменьшаем */
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-semibold);
+
+  letter-spacing: -0.01em; /* 👈 премиум штрих */
+
   color: var(--color-on-image-primary);
+
+  margin-bottom: var(--spacing-md);
 }
 
 @media (max-width: 480px) {
