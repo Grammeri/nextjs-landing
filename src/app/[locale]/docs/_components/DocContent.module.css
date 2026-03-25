@@ -29,6 +29,13 @@
     scroll-margin-top: calc(var(--header-height) + var(--spacing-md));
 }
 
+@media (max-width: 480px) {
+    .markdown h2 {
+        margin-top: var(--spacing-xl);
+        margin-bottom: var(--spacing-sm);
+    }
+}
+
 .markdown h3 {
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
@@ -42,7 +49,12 @@
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
-    color: var(--color-product-text-muted);
+}
+
+@media (max-width: 480px) {
+    .markdown p {
+        line-height: 1.65;
+    }
 }
 
 .markdown p+pre {
@@ -60,6 +72,12 @@
     list-style: disc;
 }
 
+@media (max-width: 480px) {
+    .markdown ul {
+        padding-left: var(--spacing-lg);
+    }
+}
+
 .markdown ol {
     margin-bottom: var(--spacing-md);
     padding-left: var(--spacing-xl);
@@ -71,6 +89,13 @@
     margin-bottom: var(--spacing-xs);
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
+}
+
+@media (max-width: 480px) {
+    .markdown li {
+        line-height: 1.5;
+        margin-bottom: var(--spacing-sm);
+    }
 }
 
 .markdown li::marker {
@@ -170,6 +195,13 @@
     font-size: var(--font-size-code);
     line-height: var(--line-height-base);
     overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+    .markdown pre {
+        padding: var(--spacing-sm);
+        font-size: 0.85em;
+    }
 }
 
 .markdown code {
@@ -282,6 +314,12 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+    :global(.docs-copy-inline) {
+        gap: var(--spacing-sm);
+    }
 }
 
 :global(.docs-copy-icon) {
