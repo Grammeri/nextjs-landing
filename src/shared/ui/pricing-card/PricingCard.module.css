@@ -12,12 +12,22 @@
   flex-direction: column;
   align-items: stretch;
 
-  gap: 0; /* 👈 убрали одинаковые отступы */
+  gap: 0;
 
   color: var(--color-on-image-primary);
   outline: 2px solid red;
 
   min-width: 0;
+
+  padding: var(--spacing-xl); /* 👈 ВОТ КЛЮЧ */
+}
+
+@media (max-width: 480px) {
+  .card {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: var(--spacing-lg);
+  }
 }
 .card h3 {
   font-size: var(--font-size-xl);
@@ -26,9 +36,9 @@
 
   text-align: center;
 
-  margin-bottom: var(--spacing-md); /* 👈 больше воздуха */
+  margin-bottom: var(--spacing-md);
 
-  letter-spacing: -0.01em; /* 👈 subtle premium типографика */
+  letter-spacing: -0.01em;
 }
 
 .paymentFull,
@@ -38,26 +48,37 @@
 .description {
   color: var(--color-on-image-secondary);
 
-  margin-top: 0;
-  margin-bottom: var(--spacing-md); /* 👈 ключевой отступ */
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .description {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 .footerNote {
   color: var(--color-on-image-secondary);
 
-  margin-top: var(--spacing-md); /* 👈 ВОТ ЭТО добавляем */
+  margin-top: var(--spacing-md);
 }
 
 .price {
-  font-size: var(--font-size-lg); /* 👈 уменьшаем */
-  line-height: var(--line-height-heading);
-  font-weight: var(--font-weight-semibold);
-
-  letter-spacing: -0.01em; /* 👈 премиум штрих */
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-medium);
 
   color: var(--color-on-image-primary);
 
   margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .price {
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -98,6 +119,13 @@
   min-width: 0;
 }
 
+@media (max-width: 480px) {
+  .feature {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
 .feature > * {
   min-width: 0;
 }
@@ -125,7 +153,7 @@
 
   text-align: center;
 
-  width: 100%;          /* 👈 ключ */
+  width: 100%;
 }
 
 .consentWrapper {

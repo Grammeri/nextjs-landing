@@ -12,9 +12,11 @@
 
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
 
-  /* DEBUG LAYOUT */
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
+
   outline: 2px solid blue;
 }
 
@@ -40,12 +42,11 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
 
   /* DEBUG LAYOUT */
   outline: 2px dotted green;
 }
-
 @media (max-width: 768px) {
   .container {
     gap: var(--spacing-lg);

@@ -46,14 +46,12 @@ export default function StarterPage() {
       />
 
       <ProductSection title="Who is this starter for" align="center">
-        <div className={`${styles.sectionContent} ${styles.audienceContentCentered}`}>
-          <ul className={styles.audienceList}>
-            <li>Developers starting a new Next.js project</li>
-            <li>Students completing technical assignments</li>
-            <li>Engineers who want a clean project baseline</li>
-            <li>Developers learning modern tooling practices</li>
-          </ul>
-        </div>
+        <ul className={styles.audienceList}>
+          <li>Developers starting a new Next.js project</li>
+          <li>Students completing technical assignments</li>
+          <li>Engineers who want a clean project baseline</li>
+          <li>Developers learning modern tooling practices</li>
+        </ul>
       </ProductSection>
 
       <ProductSection title="What’s included">

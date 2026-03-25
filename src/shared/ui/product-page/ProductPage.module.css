@@ -54,21 +54,18 @@
         justify-content: center;
     }
 
-    /* отключаем увеличение */
-    .heroActions > a:hover,
+        .heroActions > a:hover,
     .heroActions > button:hover {
         transform: none;
     }
 
-    /* primary: инверсия */
-    .heroActions :global(.primary):hover {
+        .heroActions :global(.primary):hover {
         background: transparent;
         color: var(--color-texas-blue);
         border-color: var(--color-texas-blue);
     }
 
-    /* secondary: заливка */
-    .heroActions :global(.secondary):hover {
+        .heroActions :global(.secondary):hover {
         background: var(--color-texas-blue);
         color: var(--color-text-inverse);
     }
@@ -116,9 +113,9 @@
 }
 
 .featureCard {
-    padding-top: var(--spacing-2xl);
+    padding-top: var(--spacing-sm);
     padding-right: var(--spacing-xl);
-    padding-bottom: var(--spacing-2xl);
+    padding-bottom: calc(var(--spacing-3xl) + 12px);
     padding-left: var(--spacing-xl);
     border-radius: var(--radius-md);
     border: var(--focus-ring-width) solid var(--color-tertiary-faded);
@@ -126,18 +123,26 @@
     box-shadow: var(--shadow-xs);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: var(--spacing-lg);
     min-width: 0;
 }
 
 .featureTitle {
     margin: 0 0 var(--spacing-md) 0;
-    font-size: var(--font-size-xl);
+
+    font-size: calc(var(--font-size-xl) + 1px);
     line-height: var(--line-height-heading);
     font-weight: var(--font-weight-semibold);
+
     text-align: center;
-    white-space: normal;
+
+    min-height: 3em;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
     text-wrap: balance;
 }
 
@@ -146,22 +151,26 @@
     gap: var(--spacing-lg);
     margin: 0;
     width: 100%;
+    align-self: stretch;
     max-width: 44rem;
 }
 
 .featureList li {
-    position: relative;
-    padding-left: calc(var(--product-list-icon-offset) + var(--spacing-icon-text));
-    font-size: var(--font-size-lg);
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    align-items: start;
+    gap: var(--spacing-sm);
+
+    font-size: calc(var(--font-size-lg) + 1px);
     line-height: var(--product-list-line-height-tight);
-    overflow-wrap: break-word;
 }
 
 .featureList li::before {
     content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-weight: var(--font-weight-semibold);
 }
 
@@ -304,8 +313,7 @@
 
     color: var(--color-product-text);
 }
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .heroActions {
         gap: var(--spacing-sm);
     }
@@ -317,7 +325,10 @@
     }
 
     .featureCard {
-        padding: var(--spacing-lg);
+        padding-top: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+        padding-bottom: calc(var(--spacing-lg) + 28px);
+        padding-left: var(--spacing-lg);
         gap: var(--spacing-md);
     }
 
@@ -365,7 +376,10 @@
     }
 
     .featureCard {
-        padding: var(--spacing-md);
+        padding-top: var(--spacing-md);
+        padding-right: var(--spacing-md);
+        padding-bottom: calc(var(--spacing-md) + 28px);
+        padding-left: var(--spacing-md);
     }
 
     .trustBlock {
@@ -385,22 +399,23 @@
         line-height: var(--line-height-base);
     }
 
-    /* все подзаголовки уровня секций */
-    :global(h2) {
+       :global(h2) {
         font-size: var(--font-size-lg);
         line-height: var(--line-height-heading);
         text-align: center;
     }
 
-    /* подзаголовки внутри карточек */
-    .featureTitle {
+        .featureTitle {
         font-size: var(--font-size-lg);
         line-height: var(--line-height-heading);
         text-align: center;
     }
 
     .featureCard {
-        padding: var(--spacing-sm);
+        padding-top: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+        padding-bottom: calc(var(--spacing-sm) + 28px); /* 👈 добавили низ */
+        padding-left: var(--spacing-sm);
         gap: var(--spacing-sm);
     }
 
@@ -419,8 +434,7 @@
         height: 36px;
     }
 
-    /* ✅ фикс layout email */
-    .supportInline {
+      .supportInline {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
