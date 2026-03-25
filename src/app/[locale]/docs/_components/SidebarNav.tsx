@@ -10,6 +10,7 @@ import styles from '../_styles/layout.module.css';
 type SidebarNavProps = {
   items: DocNavItem[];
   product: DocsProduct;
+  onLinkClick?: () => void;
 };
 
 const resolveLocale = (pathname: string | null) => {
@@ -28,7 +29,7 @@ const buildHref = (locale: string, product: DocsProduct, slug?: string) => {
 const isActivePath = (pathname: string, href: string) =>
   pathname === href || pathname.startsWith(`${href}/`);
 
-export default function SidebarNav({ items, product }: SidebarNavProps) {
+export default function SidebarNav({ items, product, onLinkClick }: SidebarNavProps) {
   const pathname = usePathname();
   const locale = resolveLocale(pathname);
 
@@ -38,12 +39,21 @@ export default function SidebarNav({ items, product }: SidebarNavProps) {
         const href = buildHref(locale, product, item.slug);
         const active = href ? isActivePath(pathname, href) : false;
 
+        const hasActiveChild =
+          item.children?.some((child) => {
+            const childHref = buildHref(locale, product, child.slug);
+            return childHref && pathname ? isActivePath(pathname, childHref) : false;
+          }) ?? false;
+
         return (
           <li key={item.title} className={styles.navItem}>
             {href ? (
               <Link
                 href={href}
-                className={`${styles.navLink} ${active ? styles.navLinkActive : ''}`}
+                onClick={onLinkClick}
+                className={`${styles.navGroup} ${styles.navLink} ${
+                  active && !hasActiveChild ? styles.navLinkActive : ''
+                }`}
               >
                 {item.title}
               </Link>
@@ -63,6 +73,7 @@ export default function SidebarNav({ items, product }: SidebarNavProps) {
                       {childHref ? (
                         <Link
                           href={childHref}
+                          onClick={onLinkClick}
                           className={`${styles.navLink} ${childActive ? styles.navLinkActive : ''}`}
                         >
                           {child.title}

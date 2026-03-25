@@ -142,15 +142,21 @@ export async function getNav(product: DocsProduct = 'authforge'): Promise<DocNav
   }
 
   const groups: DocNavItem[] = config.navGroups
-    .map((group) => ({
-      title: group.title,
-      children: items.filter((item) => {
+    .map((group) => {
+      const children = items.filter((item) => {
         const lastSlugPart = item.slug?.split('/').pop();
-
         return lastSlugPart ? group.slugs.includes(lastSlugPart) : false;
-      }),
-    }))
-    .filter((group) => group.children && group.children.length > 0);
+      });
+
+      if (!children.length) return null;
+
+      return {
+        title: group.title,
+        slug: children[0]?.slug,
+        children,
+      };
+    })
+    .filter(Boolean) as DocNavItem[];
 
   return groups;
 }

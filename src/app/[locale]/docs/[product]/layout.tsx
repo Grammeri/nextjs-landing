@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 
 import DocsAnchorScroll from '../_components/DocsAnchorScroll';
-import SidebarNav from '../_components/SidebarNav';
+import DocsLayoutClient from '../_components/DocsLayoutClient';
 import { getNav } from '../_engine/getNav';
 import { getDocsProductConfig, isDocsProduct } from '../_lib/products';
 import styles from '../_styles/layout.module.css';
@@ -27,17 +27,15 @@ export default async function DocsProductLayout({ children, params }: DocsProduc
   return (
     <section className={styles.pageShell} data-docs-scope={product}>
       <DocsAnchorScroll />
-      <div className={styles.layout}>
-        <aside className={styles.sidebar} aria-label={config.sidebarAriaLabel}>
-          <div className={styles.sidebarInner}>
-            <div className={styles.sidebarTitle}>{config.sidebarTitle}</div>
-            <div className={styles.sidebarTitleDivider} />
-            <SidebarNav items={nav} product={product} />
-          </div>
-        </aside>
-        <div className={styles.divider} aria-hidden="true" />
-        <div className={styles.content}>{children}</div>
-      </div>
+
+      <DocsLayoutClient
+        nav={nav}
+        product={product}
+        sidebarTitle={config.sidebarTitle}
+        sidebarAriaLabel={config.sidebarAriaLabel}
+      >
+        {children}
+      </DocsLayoutClient>
     </section>
   );
 }

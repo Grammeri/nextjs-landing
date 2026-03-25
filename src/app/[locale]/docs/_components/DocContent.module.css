@@ -211,6 +211,19 @@
         transform 0.15s ease;
 }
 
+@media (max-width: 480px) {
+    :global(.docs-copy-button) {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+
+        width: var(--spacing-lg);
+        height: var(--spacing-lg);
+
+        opacity: 0.9;
+    }
+}
+
 :global(.docs-copy-button:hover) {
     color: var(--color-product-text);
     border-color: var(--color-product-text);
@@ -250,6 +263,19 @@
     height: var(--spacing-2xl);
     margin-left: var(--spacing-xs);
     opacity: 1;
+}
+
+@media (max-width: 480px) {
+    :global(.docs-copy-button--inline) {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+
+        width: var(--spacing-lg);
+        height: var(--spacing-lg);
+
+        opacity: 0.9;
+    }
 }
 
 :global(.docs-copy-inline) {
