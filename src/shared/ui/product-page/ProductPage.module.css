@@ -54,7 +54,7 @@
         justify-content: center;
     }
 
-        .heroActions > a:hover,
+    .heroActions > a:hover,
     .heroActions > button:hover {
         transform: none;
     }
@@ -177,7 +177,7 @@
 .trustList {
     display: grid;
     gap: var(--spacing-sm);
-    margin: 0;
+    margin: var(--spacing-lg) 0 0 0; /* 👈 ВОТ ЭТО */
 }
 
 .trustList li {

@@ -270,7 +270,7 @@
    /* Width system */
    --section-content-max-width: 900px;
    --section-content-max-width-narrow: 720px;
-   --section-content-max-width-wide: 1280px;
+   --section-content-max-width-wide: 1100px;
    
    /* =============================== */
    
@@ -338,14 +338,21 @@
   --content-surface-padding-x: clamp(16px, 3vw, 48px);
   --content-surface-padding-y: clamp(16px, 3vw, 48px);
 
-  /* Header surface */
-  --header-bg-transparent: transparent;
-  --header-bg-scrolled: rgb(5, 25, 62);
-  --header-backdrop-blur: blur(6px);
-  --header-transition-duration: 0.2s;
-  --header-transition-easing: ease;
-  --header-z-index: 10;
-  --header-border-color: rgba(0, 0, 0, 0.06);
+/* Header surface */
+--header-bg-transparent: transparent;
+--header-bg-scrolled: rgb(5, 25, 62);
+--header-backdrop-blur: blur(6px);
+--header-transition-duration: 0.2s;
+--header-transition-easing: ease;
+--header-z-index: 10;
+--header-border-color: rgba(0, 0, 0, 0.06);
+
+/* ===============================
+   Header — Scrolled State (text)
+   =============================== */
+
+   --header-text-inverse: color-mix(in srgb, var(--color-text-inverse) 85%, transparent);
+   --header-text-inverse-strong: var(--color-text-inverse);
 
   /* Footer surface */
   --footer-bg: rgba(10, 20, 35);

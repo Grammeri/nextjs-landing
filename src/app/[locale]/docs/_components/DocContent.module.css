@@ -336,3 +336,17 @@
     gap: var(--spacing-xs);
     max-width: 100%;
 }
+
+/* ===============================
+   Code blocks — mobile fix
+   =============================== */
+
+   .markdown pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .markdown code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }

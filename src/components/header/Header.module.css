@@ -3,7 +3,7 @@
   top: 0;
   z-index: var(--header-z-index);
 
-  background: var(--color-surface-base);
+  background: transparent;
   backdrop-filter: none;
 
   border-bottom: 1px solid var(--header-border-color);
@@ -20,14 +20,14 @@
 }
 
 .scrolled {
-  background-color: var(--color-surface-base);
-  backdrop-filter: none;
+  background-color: var(--color-texas-blue);
 
-  --header-link-color: var(--color-product-text-muted);
-  --header-link-hover-color: var(--color-product-text);
+  --header-link-color: var(--header-text-inverse);
+  --header-link-hover-color: var(--header-text-inverse-strong);
 
-  --header-brand-color: var(--color-product-text);
-  --header-brand-hover-color: var(--color-product-text);
+  /* 👇 ключевой фикс */
+  --header-brand-color: var(--header-link-color);
+  --header-brand-hover-color: var(--header-link-hover-color);
 }
 
 .inner {
