@@ -48,7 +48,7 @@
 .description {
   color: var(--color-on-image-secondary);
 
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-xs);
   margin-bottom: var(--spacing-md);
 }
 
