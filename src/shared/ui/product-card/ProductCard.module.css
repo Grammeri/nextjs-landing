@@ -74,7 +74,7 @@
 @media (max-width: 480px) {
   .card {
     padding: var(--spacing-lg);
-    min-height: auto;
+    min-height: clamp(240px, 68vw, 300px);
   }
 
   .content {
