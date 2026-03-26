@@ -1,12 +1,14 @@
 .page {
-  padding: var(--section-padding-top-default) 0 var(--section-padding-bottom-default);
+  padding-top: var(--section-padding-top-default);
+  padding-bottom: clamp(20px, 3vw, 40px);
 }
 
 .panel {
-  border: 1px solid var(--color-texas-blue);
+  border: 1px solid color-mix(in srgb, var(--color-texas-blue) 55%, white 45%);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
+  padding: clamp(32px, 4vw, 48px);
   color: var(--color-product-text);
+  background: color-mix(in srgb, var(--color-bg) 98%, var(--color-surface-subtle) 2%);
 }
 
 .title {
@@ -24,7 +26,7 @@
 }
 
 .item {
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .item:last-child {
@@ -37,15 +39,30 @@
   cursor: pointer;
   transition:
     color 0.2s ease,
-    background-color 0.2s ease;
+    text-decoration-color 0.2s ease;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: transparent;
 }
 
 .link:hover {
   color: var(--color-accent);
+  text-decoration-color: currentColor;
 }
 
 .link:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
   border-radius: var(--radius-xs);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .panel {
+    padding: var(--spacing-xl);
+  }
 }
