@@ -123,11 +123,7 @@ export default function StarterPage() {
             Questions before or after purchase?{' '}
             <span className={styles.contactLead}>Contact us at</span>{' '}
             <span className={styles.supportInline}>
-              <span className={styles.supportEmail}>
-                support@software-
-                <br className={styles.mobileBreak} />
-                forge.dev
-              </span>
+              <span className={styles.supportEmail}>support@software-forge.dev</span>
               <CopySupportEmail />
             </span>
           </p>
