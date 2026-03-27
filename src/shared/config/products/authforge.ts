@@ -25,9 +25,9 @@ export const AUTHFORGE_PRODUCT_COPY = {
     trustTitle: 'Built for real production use',
     trustDescription:
       'AuthForge is a production-ready authentication foundation for modern SaaS products.\n\n' +
-      'The package includes a verified setup and onboarding flow designed for real production environments.\n\n' +
+      'The package includes a verified setup and onboarding flow, validated through a clean-room installation check.\n\n' +
       'The baseline provides server-side sessions, HttpOnly cookies, route-level rate limiting, and breached password checks.\n\n' +
-      'The architecture is database-agnostic by design. PostgreSQL is included as a production-ready reference setup via Prisma, not as a hard dependency.',
+      'The authentication architecture is database-agnostic by design. The package includes a Prisma + PostgreSQL reference implementation for production-oriented deployments.',
   },
 
   audience: [
@@ -49,6 +49,7 @@ export const AUTHFORGE_PRODUCT_COPY = {
         'HttpOnly cookies',
         'Rate limiting on auth routes',
         'Breached password checks',
+        'Zod-based runtime validation',
       ],
     },
     architecture: {
@@ -56,7 +57,7 @@ export const AUTHFORGE_PRODUCT_COPY = {
       items: [
         'Database-agnostic authentication architecture',
         'Prisma-based reference implementation (PostgreSQL)',
-        'Token-driven UI (use our tokens or plug in your own styling system)',
+        'Token-driven UI styling approach (use our tokens or plug in your own styling system)',
       ],
     },
   },
@@ -75,7 +76,7 @@ export const AUTHFORGE_PRODUCT_COPY = {
     links: {
       demoLabel: 'Live demo',
       docsLabel: 'Full documentation',
-      architectureLabel: 'Architecture overview (including token-driven UI design system)',
+      architectureLabel: 'Architecture overview (including the token-driven UI styling approach)',
     },
     contactPrefix: 'Questions before or after purchase?',
   },
@@ -83,11 +84,11 @@ export const AUTHFORGE_PRODUCT_COPY = {
   pricing: {
     price: '$99 — One-time license',
     features: [
-      '1 project',
+      'License for 1 project',
       'Lifetime access',
-      'Updates included',
+      'Product updates included',
       '14-day refund if access was not used',
-      'Support via email',
+      'Email support',
     ],
     footerNote: 'Access instructions will be sent by email after purchase',
   },
