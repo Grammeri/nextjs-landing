@@ -24,8 +24,6 @@
 
   --header-link-color: var(--header-text-inverse);
   --header-link-hover-color: var(--header-text-inverse-strong);
-
-  /* 👇 ключевой фикс */
   --header-brand-color: var(--header-link-color);
   --header-brand-hover-color: var(--header-link-hover-color);
 }
@@ -93,26 +91,30 @@
 }
 
 @media (max-width: 480px) {
+  .header {
+    border-bottom: none;
+  }
+
   .inner {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    min-height: 56px;
+    min-height: var(--header-height);
     padding-top: 0;
     padding-bottom: 0;
   }
 
   .brand {
-    font-size: var(--font-size-base);
+    font-size: 14px;
   }
 
   .nav {
-    gap: var(--spacing-sm);
+    gap: 8px;
     justify-content: flex-end;
   }
 
   .navLink {
-    font-size: var(--font-size-sm);
+    font-size: 14px;
   }
 }

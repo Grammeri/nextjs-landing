@@ -38,11 +38,12 @@
    MOBILE (<= 768)
    =============================== */
 
-   @media (max-width: 768px) {
+@media (max-width: 768px) {
     .layout {
         grid-template-columns: 1fr;
         padding-left: var(--spacing-md);
         padding-right: var(--spacing-md);
+        padding-top: var(--spacing-md);
     }
 
     .divider {
@@ -54,12 +55,37 @@
    SIDEBAR (DESKTOP)
    =============================== */
 
-.sidebar {
+   .sidebar {
     width: calc(var(--spacing-6xl) + var(--spacing-xl) + var(--spacing-sm));
     align-self: start;
-    padding-top: var(--spacing-sm);
+    padding-top: var(--spacing-lg);
     position: sticky;
     top: var(--header-height);
+}
+
+.sidebarInner {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarTitle {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    letter-spacing: -0.01em;
+    color: var(--color-product-text);
+    margin-bottom: var(--spacing-md);
+}
+
+.sidebarTitleDivider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin-bottom: var(--spacing-lg);
+}
+@media (min-width: 769px) {
+    .sidebarTitleDivider {
+        display: none;
+    }
 }
 
 /* ===============================
@@ -76,14 +102,12 @@
         height: 100vh;
 
         background: var(--color-surface-raised);
-
         padding: var(--spacing-lg);
 
         transform: translateX(-100%);
         transition: transform 0.25s ease;
 
         z-index: 130;
-
         overflow-y: auto;
     }
 
@@ -104,10 +128,10 @@
 }
 
 /* ===============================
-   MOBILE MENU BUTTON
+   MOBILE TOPBAR + MENU BUTTON
    =============================== */
 
-   .mobileTopbar {
+.mobileTopbar {
     display: none;
 }
 
@@ -122,24 +146,29 @@
     justify-content: center;
     gap: 4px;
 }
-
 .mobileMenuLine {
     display: block;
     width: 14px;
     height: 2px;
     border-radius: var(--radius-full);
-    background: var(--color-accent);
+    background: var(--color-product-text-muted);
 }
 
 @media (max-width: 768px) {
     .mobileTopbar {
         display: flex;
         align-items: center;
-        min-height: 44px;
+        min-height: 40px;
+        padding-top: 6px;
         padding-left: var(--spacing-md);
         padding-right: var(--spacing-md);
-        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 0;
+
         background: var(--color-bg);
+
+        position: sticky;
+        top: var(--header-height);
+        z-index: 100;
     }
 
     .mobileMenuButton {
@@ -168,7 +197,7 @@
    CONTENT
    =============================== */
 
-   .content {
+.content {
     margin-top: 0;
     padding-left: var(--spacing-3xl);
     padding-right: var(--spacing-3xl);
@@ -185,8 +214,8 @@
 
 @media (max-width: 480px) {
     .layout {
-        padding-left: var(--spacing-xl);
-        padding-right: var(--spacing-sm);
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
     }
 }
 

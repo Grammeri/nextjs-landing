@@ -229,11 +229,14 @@
 
   /* минимальное расстояние между карточками */
   --product-feature-grid-gap: var(--spacing-sm);
-
   /* Layout */
   --header-height: 72px;
   --hero-min-height: 30vh;
   --hero-max-width: 1200px;
+
+  @media (max-width: 480px) {
+    --header-height: 40px;
+  }
 
   /* Hero typography layout */
   --hero-headline-max-width: 72rem;
