@@ -25,13 +25,19 @@ export default function DocsLayoutClient({
 
   return (
     <>
-      <button
-        className={styles.mobileMenuButton}
-        onClick={() => setIsSidebarOpen(true)}
-        aria-label="Open navigation"
-      >
-        ☰
-      </button>
+      <div className={styles.mobileTopbar}>
+        <button
+          className={styles.mobileMenuButton}
+          onClick={() => setIsSidebarOpen(true)}
+          aria-label="Open navigation"
+        >
+          <span className={styles.mobileMenuIcon} aria-hidden="true">
+            <span className={styles.mobileMenuLine} />
+            <span className={styles.mobileMenuLine} />
+            <span className={styles.mobileMenuLine} />
+          </span>
+        </button>
+      </div>
 
       <div className={styles.layout}>
         <aside
