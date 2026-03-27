@@ -10,7 +10,7 @@ export const DOCS_PRODUCTS: Record<DocsProduct, DocsProductConfig> = {
     sidebarTitle: 'AuthForge Documentation',
     sidebarAriaLabel: 'AuthForge documentation',
     contentDir: 'authforge',
-    defaultDocSlug: 'quick-start',
+    defaultDocSlug: 'getting-started',
   },
 
   starter: {
