@@ -10,6 +10,10 @@ export default function DocsAnchorScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+
     const scopeEl = document.querySelector('[data-docs-scope]') ?? document.querySelector('main');
 
     if (!(scopeEl instanceof HTMLElement)) return;
