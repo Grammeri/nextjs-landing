@@ -38,7 +38,7 @@
    MOBILE (<= 768)
    =============================== */
 
-@media (max-width: 768px) {
+   @media (max-width: 768px) {
     .layout {
         grid-template-columns: 1fr;
         padding-left: var(--spacing-md);
@@ -47,11 +47,6 @@
 
     .divider {
         display: none;
-    }
-
-    .content {
-        padding-left: 0;
-        padding-right: 0;
     }
 }
 
@@ -144,12 +139,26 @@
    CONTENT
    =============================== */
 
-.content {
+   .content {
     margin-top: 0;
     padding-left: var(--spacing-3xl);
     padding-right: var(--spacing-3xl);
     color: var(--color-product-text);
     min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .layout {
+        padding-left: var(--spacing-xl);
+        padding-right: var(--spacing-sm);
+    }
 }
 
 /* ===============================
