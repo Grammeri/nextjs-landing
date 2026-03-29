@@ -377,6 +377,10 @@
   --footer-column-gap: clamp(24px, 4vw, 96px);
   --footer-row-gap: var(--spacing-xxs);
   --footer-legal-link-gap: var(--spacing-xs);
+  --footer-font-size: 18px;
+  --footer-font-size-mobile: 15px;
+  --footer-line-height: 1.45;
+  --footer-line-height-mobile: 1.3;
 
   /* Surface / Card */
   --surface-card-bg: var(--color-surface-system);
