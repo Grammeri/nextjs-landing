@@ -32,7 +32,7 @@
     .markdown h2 {
         margin-top: var(--spacing-xl);
         margin-bottom: var(--spacing-sm);
-        scroll-margin-top: calc(var(--header-height) + 56px + var(--spacing-md));
+        scroll-margin-top: calc(var(--header-height) + var(--docs-mobile-scroll-offset) + var(--spacing-md));
     }
 }
 
@@ -47,7 +47,7 @@
 
 @media (max-width: 480px) {
     .markdown h3 {
-        scroll-margin-top: calc(var(--header-height) + 56px + var(--spacing-md));
+        scroll-margin-top: calc(var(--header-height) + var(--docs-mobile-scroll-offset) + var(--spacing-md));
     }
 }
 .markdown p {
@@ -243,9 +243,9 @@
     cursor: pointer;
     opacity: 1;
     transition:
-        color 0.15s ease,
-        border-color 0.15s ease,
-        transform 0.15s ease;
+        color var(--docs-copy-button-transition-duration) ease,
+        border-color var(--docs-copy-button-transition-duration) ease,
+        transform var(--docs-copy-button-transition-duration) ease;
 }
 
 @media (max-width: 480px) {

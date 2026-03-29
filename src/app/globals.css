@@ -119,19 +119,21 @@
    Docs Layout Spacing
    =============================== */
 
-  --docs-space-paragraph: var(--spacing-md);
-  --docs-space-list: var(--spacing-sm);
-  --docs-space-section: var(--spacing-xl);
-  --docs-space-subsection: var(--spacing-lg);
-  --docs-space-code: var(--spacing-lg);
-  --docs-space-table: var(--spacing-lg);
-  --docs-space-hr: var(--spacing-lg);
-  --docs-sidebar-drawer-width: 280px;
-  --docs-mobile-menu-icon-gap: 4px;
-  --docs-mobile-menu-line-width: 14px;
---docs-mobile-menu-line-height: 2px;
---docs-mobile-topbar-min-height: 40px;
---docs-mobile-topbar-padding-top: 6px;
+   --docs-space-paragraph: var(--spacing-md);
+   --docs-space-list: var(--spacing-sm);
+   --docs-space-section: var(--spacing-xl);
+   --docs-space-subsection: var(--spacing-lg);
+   --docs-space-code: var(--spacing-lg);
+   --docs-space-table: var(--spacing-lg);
+   --docs-space-hr: var(--spacing-lg);
+   --docs-sidebar-drawer-width: 280px;
+   --docs-mobile-menu-icon-gap: 4px;
+   --docs-mobile-menu-line-width: 14px;
+   --docs-mobile-menu-line-height: 2px;
+   --docs-mobile-topbar-min-height: 40px;
+   --docs-mobile-topbar-padding-top: 6px;
+   --docs-mobile-scroll-offset: 56px;
+   --docs-copy-button-transition-duration: 0.15s;
 
   /* Typography — final marketing scale */
   --font-base:
