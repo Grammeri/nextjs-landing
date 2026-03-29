@@ -74,3 +74,4 @@ docs/internal/**
 
 # local audit reports
 knip-report.txt
+token-list.txt
