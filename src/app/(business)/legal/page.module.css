@@ -32,8 +32,12 @@
 
 @media (max-width: 768px) {
   .legalNav {
-    background: var(--color-surface-muted);
+    background: var(--content-surface-bg);
     box-shadow: var(--shadow-xs);
+  }
+
+  .legalNav::before {
+    background: var(--content-surface-bg);
   }
 }
 
