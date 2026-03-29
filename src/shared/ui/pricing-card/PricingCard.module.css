@@ -15,11 +15,10 @@
   gap: 0;
 
   color: var(--color-on-image-primary);
-  outline: 2px solid red;
-
+ 
   min-width: 0;
 
-  padding: var(--spacing-xl); /* 👈 ВОТ КЛЮЧ */
+  padding: var(--spacing-xl);
 }
 
 @media (max-width: 480px) {
@@ -41,10 +40,6 @@
   letter-spacing: -0.01em;
 }
 
-.paymentFull,
-.paymentCentered {
-  outline: 2px solid red;
-}
 .description {
   color: var(--color-on-image-secondary);
 

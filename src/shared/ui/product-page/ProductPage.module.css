@@ -77,7 +77,6 @@
 .audienceList {
     display: grid;
     gap: var(--spacing-md);
-    outline: 2px solid red;
 }
 
 .audienceList li {
@@ -292,7 +291,6 @@
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
     margin-top: var(--section-padding-top-product);
-    outline: 2px solid red;
 }
 
 .contactItem {
