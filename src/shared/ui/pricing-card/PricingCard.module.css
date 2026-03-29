@@ -23,11 +23,12 @@
 
 @media (max-width: 480px) {
   .card {
-    font-size: 16px;
-    line-height: 1.5;
-    padding: var(--spacing-lg);
+    font-size: var(--pricing-card-font-size-mobile);
+    line-height: var(--pricing-card-line-height-mobile);
+    padding: var(--spacing-xs);
   }
 }
+
 .card h3 {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-heading);
@@ -49,8 +50,8 @@
 
 @media (max-width: 480px) {
   .description {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: var(--pricing-card-font-size-mobile);
+    line-height: var(--pricing-card-line-height-mobile);
   }
 }
 
@@ -72,7 +73,7 @@
 
 @media (max-width: 480px) {
   .price {
-    font-size: 18px;
+    font-size: var(--pricing-card-price-font-size-mobile);
   }
 }
 
@@ -81,8 +82,8 @@
     text-align: center;
     margin-inline: auto;
 
-    max-width: 280px;
-    line-height: 1.5;
+    max-width: var(--pricing-card-description-max-width-mobile);
+    line-height: var(--pricing-card-line-height-mobile);
   }
 
   .price {
@@ -114,26 +115,41 @@
   min-width: 0;
 }
 
-@media (max-width: 480px) {
-  .feature {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-}
-
-.feature > * {
-  min-width: 0;
-}
-
 .icon {
   display: inline-flex;
+  flex: 0 0 var(--spacing-xl);
   width: var(--spacing-xl);
+  justify-content: center;
   color: var(--color-on-image-primary);
 }
 
 .iconSvg {
   width: var(--spacing-lg);
   height: var(--spacing-lg);
+}
+
+@media (max-width: 480px) {
+  .icon {
+    flex: 0 0 var(--pricing-card-feature-icon-slot-mobile);
+    width: var(--pricing-card-feature-icon-slot-mobile);
+    justify-content: center;
+  }
+
+  .iconSvg {
+    width: var(--pricing-card-feature-icon-size-mobile);
+    height: var(--pricing-card-feature-icon-size-mobile);
+  }
+}
+
+@media (max-width: 480px) {
+  .icon {
+    width: var(--pricing-card-feature-icon-slot-mobile);
+  }
+
+  .iconSvg {
+    width: var(--pricing-card-feature-icon-size-mobile);
+    height: var(--pricing-card-feature-icon-size-mobile);
+  }
 }
 
 .paymentTitle {

@@ -81,7 +81,7 @@
 
 .audienceList li {
     display: grid;
-    grid-template-columns: 20px 1fr;
+    grid-template-columns: var(--product-list-check-column-width) 1fr;
     align-items: start;
     gap: var(--spacing-sm);
     font-size: var(--font-size-xl);
@@ -114,7 +114,7 @@
 .featureCard {
     padding-top: var(--spacing-sm);
     padding-right: var(--spacing-xl);
-    padding-bottom: calc(var(--spacing-3xl) + 12px);
+    padding-bottom: calc(var(--spacing-3xl) + var(--product-feature-card-extra-padding-bottom-desktop));
     padding-left: var(--spacing-xl);
     border-radius: var(--radius-md);
     border: var(--focus-ring-width) solid var(--color-tertiary-faded);
@@ -156,7 +156,7 @@
 
 .featureList li {
     display: grid;
-    grid-template-columns: 20px 1fr;
+    grid-template-columns: var(--product-list-check-column-width) 1fr;
     align-items: start;
     gap: var(--spacing-sm);
 
@@ -298,7 +298,7 @@
 }
 
 .audienceContentCentered {
-    max-width: 720px;
+    max-width: var(--content-narrow-width);
     margin: 0 auto;
     width: 100%;
 }
@@ -325,7 +325,7 @@
     .featureCard {
         padding-top: var(--spacing-lg);
         padding-right: var(--spacing-lg);
-        padding-bottom: calc(var(--spacing-lg) + 28px);
+        padding-bottom: calc(var(--spacing-lg) + var(--product-feature-card-extra-padding-bottom-mobile));
         padding-left: var(--spacing-lg);
         gap: var(--spacing-md);
     }
@@ -355,13 +355,13 @@
     }
 
     .steps li {
-        grid-template-columns: 40px 1fr;
+        grid-template-columns: var(--product-steps-marker-size-mobile) 1fr;
         gap: var(--spacing-sm);
     }
 
     .steps li::before {
-        width: 40px;
-        height: 40px;
+        width: var(--product-steps-marker-size-mobile);
+        height: var(--product-steps-marker-size-mobile);
     }
 
     .featureGrid {
@@ -376,7 +376,7 @@
     .featureCard {
         padding-top: var(--spacing-md);
         padding-right: var(--spacing-md);
-        padding-bottom: calc(var(--spacing-md) + 28px);
+        padding-bottom: calc(var(--spacing-md) + var(--product-feature-card-extra-padding-bottom-mobile));
         padding-left: var(--spacing-md);
     }
 
@@ -412,7 +412,7 @@
     .featureCard {
         padding-top: var(--spacing-sm);
         padding-right: var(--spacing-sm);
-        padding-bottom: calc(var(--spacing-sm) + 28px); /* 👈 добавили низ */
+        padding-bottom: calc(var(--spacing-sm) + var(--product-feature-card-extra-padding-bottom-mobile));
         padding-left: var(--spacing-sm);
         gap: var(--spacing-sm);
     }
@@ -423,20 +423,20 @@
     }
 
     .steps li {
-        grid-template-columns: 36px 1fr;
+        grid-template-columns: var(--product-steps-marker-size-mobile-compact) 1fr;
         gap: var(--spacing-sm);
     }
-
+    
     .steps li::before {
-        width: 36px;
-        height: 36px;
+        width: var(--product-steps-marker-size-mobile-compact);
+        height: var(--product-steps-marker-size-mobile-compact);
     }
 
       .supportInline {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 2px;
+        gap: var(--spacing-xxs);
     }
 
     .supportEmail {
