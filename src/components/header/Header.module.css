@@ -40,7 +40,7 @@
 }
 
 .brand {
-  font-size: 22px;
+  font-size: var(--header-font-size);
   font-weight: var(--font-weight-bold);
   color: var(--header-brand-color);
   text-decoration: none;
@@ -61,14 +61,14 @@
 
 .nav {
   display: flex;
-  gap: clamp(12px, 2vw, 24px);
+  gap: var(--header-nav-gap);
   align-items: center;
   justify-content: flex-end;
   flex-wrap: nowrap;
 }
 
 .navLink {
-  font-size: 22px;
+  font-size: var(--header-font-size);
   font-weight: var(--font-weight-medium);
 
   color: var(--header-link-color);
@@ -106,15 +106,15 @@
   }
 
   .brand {
-    font-size: 14px;
+    font-size: var(--header-font-size-mobile);
   }
 
   .nav {
-    gap: 8px;
+    gap: var(--header-nav-gap-mobile);
     justify-content: flex-end;
   }
 
   .navLink {
-    font-size: 14px;
+    font-size: var(--header-font-size-mobile);
   }
 }
