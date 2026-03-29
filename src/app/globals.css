@@ -456,6 +456,8 @@
 --pricing-card-description-max-width-mobile: 280px;
 --pricing-card-feature-icon-slot-mobile: var(--spacing-lg);
 --pricing-card-feature-icon-size-mobile: var(--spacing-md);
+--pricing-card-checkbox-offset-top: 3px;
+--pricing-card-error-accent-width: 3px;
 
 /* ===============================
    Pricing Page

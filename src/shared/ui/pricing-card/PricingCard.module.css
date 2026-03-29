@@ -130,19 +130,6 @@
 
 @media (max-width: 480px) {
   .icon {
-    flex: 0 0 var(--pricing-card-feature-icon-slot-mobile);
-    width: var(--pricing-card-feature-icon-slot-mobile);
-    justify-content: center;
-  }
-
-  .iconSvg {
-    width: var(--pricing-card-feature-icon-size-mobile);
-    height: var(--pricing-card-feature-icon-size-mobile);
-  }
-}
-
-@media (max-width: 480px) {
-  .icon {
     width: var(--pricing-card-feature-icon-slot-mobile);
   }
 
@@ -186,7 +173,7 @@
   appearance: none;
   -webkit-appearance: none;
 
-  margin-top: 3px;
+  margin-top: var(--pricing-card-checkbox-offset-top);
 
   width: var(--control-checkbox-size);
   height: var(--control-checkbox-size);
@@ -245,7 +232,7 @@
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-sm);
 
-  border-left: 3px solid var(--color-error);
+  border-left: var(--pricing-card-error-accent-width) solid var(--color-error);
 }
 
 .termsLink {
