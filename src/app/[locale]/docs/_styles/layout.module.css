@@ -97,15 +97,15 @@
         position: fixed;
         top: 0;
         left: 0;
-
-        width: 280px;
+    
+        width: var(--docs-sidebar-drawer-width);
         height: 100vh;
 
         background: var(--color-surface-raised);
         padding: var(--spacing-lg);
 
         transform: translateX(-100%);
-        transition: transform 0.25s ease;
+        transition: transform var(--docs-sidebar-drawer-transition-duration) ease;
 
         z-index: 130;
         overflow-y: auto;
@@ -144,7 +144,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: var(--docs-mobile-menu-icon-gap);
 }
 .mobileMenuLine {
     display: block;
@@ -158,8 +158,8 @@
     .mobileTopbar {
         display: flex;
         align-items: center;
-        min-height: 40px;
-        padding-top: 6px;
+        min-height: var(--docs-mobile-topbar-min-height);
+        padding-top: var(--docs-mobile-topbar-padding-top);
         padding-left: var(--spacing-md);
         padding-right: var(--spacing-md);
         padding-bottom: 0;
