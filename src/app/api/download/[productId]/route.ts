@@ -7,26 +7,29 @@ export const runtime = 'nodejs';
 
 export async function GET(request: Request, context: { params: Promise<{ productId: string }> }) {
   try {
-    // 🔥 В Next 16 params — это Promise
     const { productId } = await context.params;
 
     const url = new URL(request.url);
-    const email = url.searchParams.get('email');
+    const token = url.searchParams.get('token');
 
-    if (!email) {
-      return NextResponse.json({ error: 'Missing email' }, { status: 400 });
+    if (!token) {
+      return NextResponse.json({ error: 'Missing token' }, { status: 400 });
     }
 
     const license = await prisma.license.findFirst({
       where: {
         productId,
-        email,
+        downloadToken: token,
         status: 'ACTIVE',
       },
     });
 
     if (!license) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    if (license.downloadTokenExpiresAt && license.downloadTokenExpiresAt < new Date()) {
+      return NextResponse.json({ error: 'Download link expired' }, { status: 403 });
     }
 
     const filePath = path.resolve(process.cwd(), 'private', `${productId}.zip`);

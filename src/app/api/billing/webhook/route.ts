@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { randomBytes } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
@@ -41,6 +42,10 @@ const HANDLED_EVENTS = new Set<string>([
   'charge.refunded',
   'payment_intent.canceled',
 ]);
+
+function createDownloadToken(): string {
+  return randomBytes(32).toString('hex');
+}
 
 // ----------------------------
 // Webhook handler
@@ -254,6 +259,8 @@ export async function POST(request: Request) {
       },
     });
 
+    const downloadToken = createDownloadToken();
+
     // ✅ issue license (idempotent)
     await prisma.license.upsert({
       where: { orderId: createdOrder.id },
@@ -262,18 +269,23 @@ export async function POST(request: Request) {
         productId,
         email,
         status: 'ACTIVE',
+        downloadToken,
+        downloadTokenExpiresAt: null,
       },
       update: {
         status: 'ACTIVE',
         revokedAt: null,
         productId,
         email,
+        downloadToken,
+        downloadTokenExpiresAt: null,
       },
     });
 
     await sendPurchaseEmail({
       to: email,
       product: productId,
+      downloadToken,
     });
 
     console.log('[webhook] purchase processed', {
