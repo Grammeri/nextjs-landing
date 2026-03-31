@@ -45,26 +45,28 @@ model Order {
 }
 
 model License {
-  id         String        @id @default(cuid())
+  id                     String        @id @default(cuid())
 
-  orderId    String        @unique
-  order      Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId                String        @unique
+  order                  Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
-  productId  String
-  email      String
+  productId              String
+  email                  String
 
-  status     LicenseStatus @default(ACTIVE)
+  status                 LicenseStatus @default(ACTIVE)
 
-  revokedAt  DateTime?
-  validUntil DateTime?
+  downloadToken          String?       @unique
+  downloadTokenExpiresAt DateTime?
 
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
+  revokedAt              DateTime?
+  validUntil             DateTime?
+
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
 
   @@index([email, productId])
   @@index([status])
 }
-
 model BillingEvent {
   id              String             @id @default(cuid())
 
