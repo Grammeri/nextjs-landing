@@ -83,7 +83,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const successUrl = `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
+    const successUrl = `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&productId=${body.productId}`;
     const cancelUrl = `${siteUrl}/pricing`;
 
     const result = await createCheckout({

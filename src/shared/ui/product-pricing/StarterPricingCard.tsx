@@ -7,7 +7,7 @@ import { PricingCard } from '@/shared/ui/pricing-card';
 import { UI_TEXT } from '@/shared/config/ui';
 
 export default function StarterPricingCard() {
-  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('nextjs-test-kit');
+  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('starter');
 
   const item = PRICING_PAGE_ITEMS.find((p) => p.productId === 'starter');
   const card = item?.card;
