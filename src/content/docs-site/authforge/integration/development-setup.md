@@ -139,9 +139,19 @@ This command generates a local snapshot of the tracked file structure.
 
 Generated artifacts are intended for local documentation use and should not be committed.
 
-For details, see:
+For details, see [Generate project structure tree](./commands#generate-project-structure-tree).
 
-Project File Tree Generation Workflow
+## Public Documentation Boundary
+
+Public documentation rendered by the landing site is maintained inside the deployable landing repository.
+
+This public documentation layer is intentionally separated from private product repositories.
+
+The landing deployment must not require private Git submodules or private product repository contents in order to render public documentation pages.
+
+Private product repositories may still keep their own internal or source documentation, but public website documentation is maintained as deployment-safe content inside the landing system.
+
+This separation ensures that Preview and Production deployments can be built reliably on Vercel without build-time dependency on private product repository access.
 
 ## Husky (Git Hooks)
 

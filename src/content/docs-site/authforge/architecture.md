@@ -48,6 +48,16 @@ auth-forge/
 
 Each area has a clearly defined responsibility.
 
+## Public Documentation Boundary
+
+Public documentation rendered through the public website is stored inside the deployable landing repository.
+
+Public documentation delivery must not depend on private product repositories or private Git submodules at build time.
+
+Product repositories may still keep their own internal or source documentation, but public documentation used by the website is maintained as deployment-safe content inside the landing system.
+
+This separation ensures that Preview and Production deployments can be built on Vercel without requiring access to private product repository contents during the build.
+
 ## Dependency Direction
 
 AuthForge enforces strict dependency flow:
