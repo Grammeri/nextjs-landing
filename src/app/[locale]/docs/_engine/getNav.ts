@@ -57,9 +57,7 @@ const titleFromSlug = (slug: string) =>
   slug.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 
 const getDocsRoot = (product: DocsProduct) => {
-  const { contentDir } = getDocsProductConfig(product);
-
-  return path.join(process.cwd(), 'content', contentDir, 'docs', 'site');
+  return path.join(process.cwd(), 'src', 'content', 'docs-site', product);
 };
 
 async function readDirRecursive(

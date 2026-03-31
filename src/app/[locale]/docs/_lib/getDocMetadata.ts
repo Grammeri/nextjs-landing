@@ -9,7 +9,7 @@ import type { DocMetadata, DocsProduct } from './types';
 const getDocsRoot = (product: DocsProduct) => {
   const { contentDir } = getDocsProductConfig(product);
 
-  return path.join(process.cwd(), 'content', contentDir, 'docs', 'site');
+  return path.join(process.cwd(), 'src', 'content', 'docs-site', product);
 };
 
 export async function getDocMetadata(product: DocsProduct, slug: string[]): Promise<DocMetadata> {
