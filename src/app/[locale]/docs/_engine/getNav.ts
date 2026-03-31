@@ -9,14 +9,14 @@ import {
   NAV_GROUPS as AUTHFORGE_NAV_GROUPS,
   ROOT_ORDER as AUTHFORGE_ROOT_ORDER,
   SECTION_TITLES as AUTHFORGE_SECTION_TITLES,
-} from '../../../../../content/authforge/docs/nav';
+} from '@/content/docs-nav/authforge/nav';
 import {
   DOC_TITLES as STARTER_DOC_TITLES,
   FLATTEN_SECTIONS as STARTER_FLATTEN_SECTIONS,
   NAV_GROUPS as STARTER_NAV_GROUPS,
   ROOT_ORDER as STARTER_ROOT_ORDER,
   SECTION_TITLES as STARTER_SECTION_TITLES,
-} from '../../../../../content/starter/docs/nav';
+} from '@/content/docs-nav/starter/nav';
 import { getDocsProductConfig } from '../_lib/products';
 import type { DocNavItem, DocsProduct } from '../_lib/types';
 
