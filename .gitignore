@@ -75,3 +75,6 @@ docs/internal/**
 # local audit reports
 knip-report.txt
 token-list.txt
+
+# local downloaded test archives
+*-test.zip
