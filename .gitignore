@@ -58,8 +58,9 @@ packages/**/node_modules/
 # ===============================
 # Private downloadable assets
 # ===============================
-/private
-/private/**
+/private/*
+!/private/authforge.zip
+!/private/starter.zip
 
 # ===============================
 # Prisma generated client (safety)
