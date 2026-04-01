@@ -22,7 +22,7 @@ export const DOCS_PRODUCTS: Record<DocsProduct, DocsProductConfig> = {
     sidebarTitle: 'Starter Documentation',
     sidebarAriaLabel: 'Starter documentation',
     contentDir: 'starter',
-    defaultDocSlug: 'quick-start',
+    defaultDocSlug: 'getting-started',
   },
 };
 
