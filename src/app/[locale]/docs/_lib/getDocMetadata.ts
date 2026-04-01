@@ -7,8 +7,6 @@ import { getDocsProductConfig } from './products';
 import type { DocMetadata, DocsProduct } from './types';
 
 const getDocsRoot = (product: DocsProduct) => {
-  const { contentDir } = getDocsProductConfig(product);
-
   return path.join(process.cwd(), 'src', 'content', 'docs-site', product);
 };
 

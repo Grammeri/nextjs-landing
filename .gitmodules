@@ -1,6 +1,0 @@
-[submodule "content/authforge"]
-	path = content/authforge
-	url = git@github.com:Grammeri/AuthForge.git
-[submodule "content/starter"]
-	path = content/starter
-	url = https://github.com/Grammeri/nextjs-professional-starter.git
