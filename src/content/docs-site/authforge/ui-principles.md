@@ -1,22 +1,26 @@
 # UI Principles
 
-This document defines the golden rules for UI design in AuthForge.
+This document defines the core UI rules used by AuthForge.
 
-It establishes a strict, token-based system for typography, spacing, radius, borders, and motion.
+It establishes the token-based system for typography, spacing, radius, borders, and motion.
 
-The goal is to provide a stable, predictable UI foundation, prevent visual drift, and ensure long-term maintainability.
+It is intended for engineers and contributors who implement or modify product UI.
 
-These principles describe the default UI system used by AuthForge. You may adapt or extend them, but doing so means you take responsibility for consistency and maintainability.
+It is not a branding guide, marketing style guide, or content writing guide.
+
+These principles define the default UI system used by AuthForge.
 
 ---
 
 ## Scope
 
-These principles apply to all UI rendered by the application.
+## Scope
 
-They define system constraints and usage rules for the UI.
+These principles apply to all UI rendered by AuthForge.
 
-The document itself follows the rules it defines.
+They define system constraints and usage rules for visual implementation.
+
+This document follows the rules it defines.
 
 ## Core principles
 
@@ -32,13 +36,15 @@ The system is intentionally constrained.
 
 ## Responsive design
 
-AuthForge UI is responsive by default.
+AuthForge UI must be responsive by default.
 
-Authentication screens use a mobile-first layout and adapt automatically to different screen sizes.
+Authentication screens must use a mobile-first layout.
 
-Layouts rely on flexible containers and vertical form composition, ensuring consistent behavior across mobile devices, tablets, and desktops.
+Layouts must rely on flexible containers and vertical form composition.
 
-No additional configuration is required for responsive behavior.
+Responsive behavior must remain consistent across mobile devices, tablets, and desktops.
+
+Per-screen responsive exceptions must be documented when introduced.
 
 ## Typography system
 
@@ -74,7 +80,7 @@ Tokens:
 
 H2 is a secondary section heading.
 
-H2 is used for sub-sections and logical grouping.
+H2 is used for sub-sections, logical grouping, and internal section titles within screens.
 
 Tokens:
 
@@ -83,7 +89,7 @@ Tokens:
 
 H3 is an internal heading.
 
-H3 is used for minor sections or labeled groups.
+H3 is used for minor sections, labeled groups, or small structural divisions inside larger sections.
 
 Tokens:
 
@@ -105,7 +111,7 @@ Body text must never be scaled up to heading sizes.
 
 Meta is secondary or supporting text.
 
-Meta is used for hints, helper text, secondary links, and minor labels.
+Meta is used for hints, helper text, validation support text, secondary links, and minor labels.
 
 Meta text must use muted color tokens.
 
@@ -194,24 +200,28 @@ Examples include:
 - text alignment
 - cursor behavior
 
-These values are allowed to be defined inline or in component styles.
+These values may be defined inline or in component styles.
+
+Non-tokenized values must not be used as substitutes for existing visual tokens.
+
+If the same visual value starts repeating across multiple components, it should be evaluated for inclusion in the token system.
 
 ## Prohibited practices
 
 The following practices are not allowed:
 
-- Arbitrary pixel values for visual styling
-- Introducing new design tokens without updating the UI principles
-- Visual-based styling decisions
-- Global overrides of semantic elements
+- Using arbitrary pixel values for visual styling outside the token system
+- Introducing new design tokens without updating this document
+- Making styling decisions based on appearance rather than semantic role
+- Applying global overrides to semantic elements as a substitute for explicit UI roles
 - Bypassing the token system for convenience
 
 ## Summary
 
-AuthForge provides an opinionated UI foundation.
+AuthForge uses a constrained UI system.
 
 Design tokens define the visual system.
 
-Golden rules define how tokens are used.
+These rules define how tokens are applied.
 
-The system is intentionally limited to remain stable and predictable.
+The system is intentionally limited to preserve stability and predictability.
