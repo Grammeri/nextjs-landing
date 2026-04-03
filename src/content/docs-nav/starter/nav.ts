@@ -5,6 +5,7 @@ type NavGroupConfig = {
 
 export const DOC_TITLES: Record<string, string> = {
   'ci-pipeline': 'CI Pipeline',
+  'project-tree': 'Project Tree',
 };
 
 export const SECTION_TITLES: Record<string, string> = {};
@@ -14,6 +15,7 @@ export const ROOT_ORDER: string[] = [
   'development-setup',
   'commands',
   'project-structure',
+  'project-tree',
   'tooling',
   'ci-pipeline',
   'troubleshooting',
@@ -26,7 +28,7 @@ export const NAV_GROUPS: NavGroupConfig[] = [
   },
   {
     title: 'Architecture',
-    slugs: ['project-structure'],
+    slugs: ['project-structure', 'project-tree'],
   },
   {
     title: 'Tooling',
