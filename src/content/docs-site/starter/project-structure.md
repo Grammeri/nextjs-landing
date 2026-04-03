@@ -30,7 +30,7 @@ Additional configuration files may include:
 - ESLint configuration
 - Prettier configuration
 - Commitlint configuration
-- CI pipeline configuration
+- CI workflow configuration
 
 Keeping configuration files at the root improves discoverability and
 avoids deep configuration hierarchies.
@@ -81,23 +81,10 @@ This directory contains the documentation structure used by the starter.
 
 Typical contents include:
 
-- docs/nav.ts
-- docs/site/
+- `docs/nav.ts`
+- `docs/site/`
 
 Documentation inside this directory is not part of the runtime application.
-
-## Architecture Decision Records
-
-Architectural decisions are recorded as ADR documents.
-
-```text
-internal/adr
-```
-
-Each ADR file documents a single engineering decision and its rationale.
-
-ADR documents preserve historical context and help explain why certain
-design choices were made.
 
 ## Developer Scripts
 
