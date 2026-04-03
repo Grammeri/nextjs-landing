@@ -7,7 +7,7 @@ export const runtime = 'nodejs';
 
 const DOWNLOAD_FILES: Record<string, string> = {
   authforge: 'authforge-v1.0.0.zip',
-  starter: 'nextjs-professional-starter-v0.1.0.zip',
+  starter: 'nextjs-professional-starter-v1.0.0.zip',
 };
 
 export async function GET(request: Request, context: { params: Promise<{ productId: string }> }) {

@@ -60,7 +60,7 @@ packages/**/node_modules/
 # ===============================
 /private/*
 !/private/authforge.zip
-!/private/nextjs-professional-starter-v0.1.0.zip
+!/private/nextjs-professional-starter-v1.0.0.zip
 
 # ===============================
 # Prisma generated client (safety)
