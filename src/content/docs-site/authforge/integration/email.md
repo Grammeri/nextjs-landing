@@ -1,9 +1,9 @@
 # Email Delivery
 
-This document explains how email delivery is handled in AuthForge, how demo mode differs from
-real provider-based delivery, and what was validated in the preview commerce flow.
+This document explains how email delivery is handled in AuthForge and how demo mode differs from
+real provider-based delivery.
 
-Email sending is kept separate from authentication and purchase domain rules so that delivery
+Email sending is kept separate from authentication domain rules so that delivery
 infrastructure can change without rewriting core business logic.
 
 ---
@@ -15,23 +15,23 @@ AuthForge includes email-driven flows such as:
 - email verification
 - password reset
 - account-related notifications
-- post-purchase access and download emails
 
 Email delivery is treated as an infrastructure concern and a replaceable side effect,
-not as part of the core authentication or purchase domain model.
+not as part of the core authentication domain model.
 
 This separation allows AuthForge to:
 
 - run in demo mode without external email services
 - switch to real providers in preview and production environments
-- keep authentication and purchase logic stable while changing delivery infrastructure
+- keep authentication logic stable while changing delivery infrastructure
 
 ## Demo Mode Behavior
 
 In demo mode:
 
-- email delivery can be stubbed
-- verification and password reset links can be returned directly in API responses
+- email delivery is stubbed through the demo provider
+- registration may expose a demo verification link
+- password reset may expose a demo reset link
 - no external email provider is required
 
 Demo mode is intended for local development, testing, and evaluation only.
@@ -43,12 +43,11 @@ Production and production-like preview validation should use a real email provid
 For production-style delivery, AuthForge uses a real provider integration configured through
 environment variables.
 
-AuthForge may include a small internal integration layer for sending emails, but provider
-selection, credentials, sender identity, and delivery configuration remain infrastructure-level
-concerns.
+AuthForge includes a small internal integration layer for sending emails, with demo and Resend-based providers behind a replaceable provider boundary.
 
-This means AuthForge does not hard-code delivery to a single provider and does not require
-changes to authentication or purchase domain logic when email infrastructure changes.
+Provider credentials, sender identity, and delivery configuration remain infrastructure-level concerns.
+
+This means AuthForge does not require changes to authentication domain logic when email infrastructure changes.
 
 ## Supported Provider Pattern
 
@@ -70,59 +69,53 @@ Common variables include:
 
 - `RESEND_API_KEY`
 - `EMAIL_FROM`
-- `NEXT_PUBLIC_SITE_URL`
+- `APP_URL`
 - `AUTH_DEMO_MODE`
 
 These values control:
 
 - provider authentication
 - sender identity
-- absolute URL generation for verification, reset, or download links
+- absolute URL generation for verification and reset links
 - demo-mode behavior
 
 Provider-specific requirements may vary, but the delivery integration should remain isolated
-from authentication and purchase domain rules.
+from authentication domain rules.
 
 ## Integration Principles
 
 When integrating email delivery:
 
 - keep provider-specific logic isolated
-- avoid embedding provider logic directly into authentication services
+- avoid embedding provider SDK logic directly into authentication services
 - treat sending as a side effect, not as a domain rule
 - generate links from environment-aware configuration
 - keep delivery concerns replaceable
 
-Email delivery failures should not corrupt authentication state, order state, or license state.
+Email delivery failures should not corrupt authentication state.
 
-## Purchase Email Flow
+## Authentication Email Flow
 
-AuthForge also supports transactional purchase emails for paid product delivery.
+AuthForge currently uses email delivery for authentication-related flows such as verification, resend verification, and password reset.
 
-A typical purchase email flow includes:
+A typical authentication email flow includes:
 
-- successful checkout
-- webhook processing
-- order creation
-- license creation
-- generation of a secure download link
-- delivery of a product-specific access email
+- user action that triggers an auth email flow
+- token generation inside the authentication domain
+- link generation from `APP_URL`
+- provider-based delivery in production mode or demo-provider behavior in demo mode
 
-The email itself is part of post-purchase delivery, but the order and license lifecycle must
-remain consistent even when the delivery provider changes.
+The email itself is part of delivery infrastructure, while authentication state remains governed by the domain layer.
 
-## Preview Validation Status
+## Validation Status
 
-The preview commerce flow validated real transactional delivery with:
+The current AuthForge implementation includes:
 
-- Stripe checkout
-- webhook processing
-- database persistence
-- Resend-based email delivery
-- secure download links built from `NEXT_PUBLIC_SITE_URL`
+- a demo email provider for local and evaluation flows
+- a Resend-based provider for real transactional auth email delivery
+- link generation built from `APP_URL`
 
-This validation confirmed that post-purchase emails can be sent successfully without changing
-authentication or purchase domain logic.
+This confirms that authentication-related emails can be delivered through a replaceable provider layer without changing core authentication domain logic.
 
 ## Customizing Email Content
 
@@ -134,9 +127,8 @@ Common customization points include:
 - body templates
 - branding and visual styling
 - localization
-- product-specific access instructions
 
-Template rendering should remain decoupled from authentication and billing logic.
+Template rendering should remain decoupled from authentication logic.
 
 ## Error Handling
 
@@ -146,10 +138,10 @@ Recommended approach:
 
 - log delivery failures
 - avoid leaking provider-specific errors to end users
-- preserve correct authentication, order, and license state
+- preserve correct authentication state
 - keep retry and operational handling outside the domain model where possible
 
-Authentication and purchase behavior should remain deterministic even when email delivery fails.
+Authentication behavior should remain deterministic even when email delivery fails.
 
 ## Security Considerations
 
@@ -158,17 +150,17 @@ When configuring email delivery:
 - protect provider credentials
 - never expose secrets to the client
 - use absolute URLs from trusted environment configuration
-- ensure verification, reset, and download links are secure
+- ensure verification and reset links are secure
 - ensure protected resources still require server-side validation
 
-Email delivery must never bypass verification, entitlement checks, or other security rules
+Email delivery must never bypass verification or other security rules
 enforced by the server.
 
 ## Summary
 
-AuthForge keeps email delivery decoupled from authentication and purchase domain logic.
+AuthForge keeps email delivery decoupled from authentication domain logic.
 
 Demo mode supports development without real providers, while preview and production deployments
-can use real transactional delivery through provider configuration such as Resend.
+can use real transactional auth email delivery through provider configuration such as Resend.
 
 This approach keeps core logic stable, testable, and independent of delivery infrastructure.

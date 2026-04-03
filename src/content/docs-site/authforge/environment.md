@@ -32,25 +32,27 @@ not the architecture.
 
 ## Required Variables
 
-The following variables are required for all environments unless stated otherwise.
+The following variables are required for the application runtime unless stated otherwise.
 
 | Variable            | Required | Description                                                        |
 | ------------------- | -------- | ------------------------------------------------------------------ |
-| `DATABASE_URL`      | yes      | PostgreSQL connection string used by Prisma                        |
 | `APP_URL`           | yes      | Public application URL used to build verification and reset links  |
 | `AUTH_TOKEN_PEPPER` | yes      | Secret used to harden token hashing (minimum length 32 characters) |
+
+`DATABASE_URL` is also required for any environment that uses the database-backed authentication flow and Prisma runtime.
 
 `NODE_ENV` is also used internally by the application runtime to distinguish development and production behavior.
 
 In most setups, it is provided automatically by the Node.js / hosting environment and does not need to be defined manually in `.env`.
 
-Additional runtime secrets (if required by your deployment) are validated at application startup in `src/shared/config/env.ts`.
+Runtime environment validation for the application layer is implemented in `src/shared/config/env.ts`.
+Some infrastructure and database-related variables may also be required outside that file depending on the local or deployment setup.
 
-AuthForge v1.0.0 is validated against Prisma 6.x.
+AuthForge currently uses Prisma 6.x in the validated project baseline.
 
 Starting with Prisma 7, Prisma introduces an adapter-based runtime model and a `prisma.config.ts` configuration file for datasource management (see [Prisma Upgrade Guides](https://www.prisma.io/docs/orm/more/upgrade-guides)).
 
-AuthForge v1.0.0 intentionally retains the Prisma 6.x runtime model to ensure compatibility with traditional Node.js server deployments.
+The current AuthForge baseline intentionally retains the Prisma 6.x runtime model to ensure compatibility with traditional Node.js server deployments.
 
 ## Optional Variables
 
@@ -61,6 +63,12 @@ Some environment variables are optional and enable additional functionality.
 | `AUTH_DEMO_MODE`              | no       | Enables backend demo mode for local development                |
 | `NEXT_PUBLIC_DEMO_MODE`       | no       | Enables frontend demo-only UI behavior                         |
 | `NEXT_PUBLIC_DEMO_RETURN_URL` | no       | URL used by demo-only UI to return to the product landing page |
+| `DATABASE_URL`                | depends  | Required for database-backed runtime and Prisma usage          |
+| `POSTGRES_VERSION`            | no       | Local Docker PostgreSQL image version                          |
+| `POSTGRES_PORT`               | no       | Local Docker PostgreSQL host port                              |
+| `POSTGRES_DB`                 | no       | Local Docker PostgreSQL database name                          |
+| `POSTGRES_USER`               | no       | Local Docker PostgreSQL username                               |
+| `POSTGRES_PASSWORD`           | no       | Local Docker PostgreSQL password                               |
 
 See also:
 
@@ -116,8 +124,9 @@ These variables control demo mode behavior.
 
 When backend demo mode is enabled:
 
-- email delivery is disabled
-- verification and reset links are returned in the API response for development convenience
+- production email delivery is disabled
+- registration may expose a demo verification link for development convenience
+- password reset may expose a demo reset link for development convenience
 - demo-friendly authentication behavior is enabled
 
 Frontend demo variables control only demo-specific UI behavior and do not replace backend authentication rules.
@@ -178,12 +187,11 @@ AUTH_TOKEN_PEPPER=CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_12345
 # ============================================================
 
 # Enables demo UI features (like "Back to product" button)
-# IMPORTANT:
-# - Must be true ONLY in demo (Vercel)
-# - Must stay false in production ZIP
+# Set to true only for demo-oriented UI deployments.
 NEXT_PUBLIC_DEMO_MODE=false
 
 # URL where user returns from demo (landing product page)
+# Used only when demo UI mode is enabled.
 # Example:
 # https://your-domain.com/products/authforge
 NEXT_PUBLIC_DEMO_RETURN_URL=

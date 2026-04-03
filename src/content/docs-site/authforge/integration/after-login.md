@@ -15,7 +15,7 @@ AuthForge does not enforce redirects inside the authentication domain or API rou
 After login:
 
 - the authentication session is created
-- the client receives a successful response
+- the client receives a successful authentication response
 - navigation decisions are handled on the client side
 
 ## Customizing the Redirect
@@ -106,7 +106,7 @@ Such coupling makes the system harder to reason about and extend.
 
 AuthForge provides a built-in logout endpoint that invalidates the current session.
 
-Logout is handled server-side to ensure that authentication cookies are properly cleared
+Logout invalidation is handled server-side to ensure that authentication cookies are properly cleared
 and the session becomes invalid.
 
 ### API endpoint
@@ -138,10 +138,11 @@ Example:
 <button onClick={logout}>Logout</button>
 ```
 
-AuthForge intentionally does not provide an application dashboard or built-in account UI.
+If you use the client API logout helper, post-logout navigation remains the responsibility of the consuming application.
 
-Integrating logout into your application's navigation is the responsibility of the consuming
-application.
+AuthForge also includes a server action logout flow that clears the session and redirects to `/login`.
+
+AuthForge intentionally does not provide an application dashboard or built-in account UI.
 
 ## Summary
 

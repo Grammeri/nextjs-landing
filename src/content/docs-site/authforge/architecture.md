@@ -123,7 +123,7 @@ From `src/app/`, `src/shared/`, or other features:
 
 ```ts
 import { LoginForm } from '@/features/auth/public';
-import { register } from '@/features/auth/server';
+import { registerUser } from '@/features/auth/server';
 ```
 
 ### Forbidden
@@ -199,7 +199,8 @@ AuthForge supports a demo mode controlled by the environment variable:
 When demo mode is enabled:
 
 - email delivery is replaced by a demo provider
-- verification and password reset links are returned in API responses
+- registration may return a demo verification link in the API response
+- password reset may return a demo reset link in the API response
 - email verification requirements are relaxed for local testing
 
 The demo mode flag is implemented in:
@@ -212,7 +213,7 @@ The database layer is located in `packages/db/`.
 
 AuthForge uses Prisma as the ORM.
 
-AuthForge v1.0.0 is validated against **Prisma 6.x** as the stable baseline
+The current AuthForge baseline is validated against **Prisma 6.x**
 for traditional Node.js and PostgreSQL server environments.
 
 Major dependency upgrades (including future Prisma major versions)

@@ -4,7 +4,7 @@ This document describes the security baseline implemented in AuthForge.
 
 AuthForge is designed as a secure-by-default authentication foundation. The system ships with production-safe defaults and does not rely on optional configuration flags to enable security features.
 
-Core authentication security guarantees remain the same in both demo and production modes.
+Core authentication architecture remains the same in both demo and production modes, but some security checks are intentionally relaxed in demo mode for local development convenience.
 
 Some operational behavior may differ in demo mode (for example, relaxed email verification checks) to simplify local development.
 
@@ -42,7 +42,7 @@ Session guarantees:
 - `sameSite=lax` reduces cross-site request risks
 - Session expiration is enforced server-side
 
-Session validation occurs on every authenticated request.
+Session validation is enforced server-side through session lookup and expiration checks in the authentication model.
 
 ## Token Security
 
@@ -70,7 +70,7 @@ Validation guarantees:
 - Invalid input never reaches the persistence layer
 - Validation rules remain centralized in schema files
 
-UI components do not contain validation logic.
+Server-side validation remains centralized in schema files and route handling. Client-side form layers also use schema-based validation helpers for UX, but domain enforcement does not rely on client execution.
 
 ## Rate Limiting
 
@@ -80,8 +80,9 @@ Characteristics:
 
 - Fixed-window strategy
 - In-memory storage
-- 5 attempts per 15-minute window
 - Keyed by IP address, and by email where available for the specific route
+
+The current configuration uses a 15-minute rate-limit window. The exact attempt limit is defined in the auth rate-limit configuration.
 
 Protected routes include:
 
@@ -115,7 +116,7 @@ Example:
 Invalid credentials
 ```
 
-Error disclosure behavior is identical in demo and production modes.
+Authentication error disclosure remains intentionally constrained in both demo and production modes, although demo mode may expose additional operational convenience flows such as demo verification or reset links.
 
 ## Demo Mode Isolation
 
@@ -123,10 +124,10 @@ AuthForge supports a demo mode for local testing.
 
 Demo mode:
 
-- disables external side effects such as email delivery
-- keeps authentication logic fully active
-- keeps database persistence fully active
-- preserves core authentication security guarantees
+- disables external side effects such as production email delivery
+- keeps authentication logic active
+- keeps database persistence active
+- preserves the core authentication architecture while allowing local-development convenience flows
 
 Demo mode preserves the core authentication model, but some operational behavior changes for local development convenience (for example demo verification and reset flows).
 

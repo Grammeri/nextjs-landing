@@ -13,11 +13,15 @@ authentication flows.
 Use this path if you want the fastest possible local setup in the default demo mode
 configuration.
 
-No external services or email providers are required.
+No external email provider is required in demo mode, but local database infrastructure is still required.
 
-### Enable demo mode in `.env`
+### Configure `.env` for demo mode
 
-Before running setup, make sure your `.env` file enables demo mode:
+Before running setup, create and complete your `.env` file.
+
+Demo mode must be enabled, but AuthForge still requires the full runtime environment configuration documented in [Environment Variables](./environment).
+
+At minimum, enable demo mode in addition to the other required variables:
 
 ```env
 AUTH_DEMO_MODE=true
@@ -85,13 +89,13 @@ Before starting the development server, make sure Docker is running for local de
 pnpm setup
 ```
 
-This command will:
+This command is intended to:
 
 - install dependencies
 - activate optional Git hooks (if the project is inside a Git repository)
 - start the PostgreSQL Docker service for local development
 - generate Prisma Client
-- apply all database migrations
+- apply database migrations
 
 ### Start the development server
 
@@ -109,8 +113,9 @@ Open the login or registration page and complete an authentication flow.
 
 In demo mode:
 
-- emails are not sent
-- verification and reset links are returned in the API response
+- production email delivery is not used
+- registration may return a `demoVerificationUrl`
+- password reset may return a `demoResetPasswordUrl`
 - most authentication logic works the same as in production
 
 ### Subsequent runs
@@ -158,8 +163,9 @@ AuthForge can run in demo mode when `AUTH_DEMO_MODE=true`.
 In demo mode:
 
 - email delivery is stubbed
-- verification and password reset links are returned in the API response instead of being sent
-- authentication flows work without external dependencies
+- registration may expose a demo verification link instead of sending an email
+- password reset may expose a demo reset link instead of sending an email
+- authentication flows work without an external email provider
 
 Email delivery is intentionally delegated to the consuming application.
 

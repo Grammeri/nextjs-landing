@@ -137,7 +137,9 @@ pnpm docs:tree
 
 This command generates a local snapshot of the tracked file structure.
 
-Generated artifacts are intended for local documentation use and should not be committed.
+Generated artifacts are intended for documentation and review workflows.
+
+Repository policy for committing generated artifacts depends on the current project workflow.
 
 For details, see [Generate project structure tree](./commands#generate-project-structure-tree).
 
@@ -200,7 +202,7 @@ Prettier enforces a single formatting style across the entire project.
 ### Important notes
 
 - formatting is mandatory
-- if files are not formatted, commits will fail
+- if files are not formatted, local hooks or CI may fail
 - do not fight Prettier — let it format the code
 
 ### Recommended workflow

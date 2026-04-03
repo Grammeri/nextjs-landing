@@ -30,9 +30,9 @@ Only side effects that require external services are altered.
 When demo mode is enabled:
 
 - email delivery is stubbed
-- verification and password reset links are logged instead of being sent
-- demo users or predefined credentials may be available
-- security-sensitive behavior is preserved but simplified for local usage
+- registration may return a demo verification link instead of sending an email
+- password reset may return a demo reset link instead of sending an email
+- some security-sensitive behavior is preserved, while selected checks are simplified for local usage
 
 AuthForge does not include a built-in email delivery provider.
 Email sending is intentionally delegated to the consuming application.
@@ -43,23 +43,23 @@ The goal is to remove operational friction while preserving predictable behavior
 
 ## What Does NOT Change
 
-The following components behave exactly the same as in production:
+The following components retain the same overall architecture as in production:
 
-- authentication domain logic
-- API routes and request handling
+- authentication domain structure
+- API route surface
 - session and cookie strategy
 - database schema and migrations
-- UI components and user flows
+- core UI flows
 
-Demo mode does not bypass authentication rules or weaken architectural boundaries.
+Demo mode does not introduce a separate codebase or weaken architectural boundaries, but some authentication checks are intentionally relaxed for local-development convenience.
 
 ## Domain Integrity
 
-Demo mode does not alter domain invariants or authentication rules.
+Demo mode does not introduce a separate domain model.
 
-All validation logic, session policies, and security boundaries remain enforced exactly as in production.
+Validation logic, session policies, and architectural boundaries remain active, but selected authentication checks may be relaxed for demo-mode usage.
 
-Only external side effects are replaced with local stubs.
+External email-related side effects are replaced with local stub behavior.
 
 ## Configuration
 
@@ -86,9 +86,9 @@ AUTH_DEMO_MODE=true
 When this variable is enabled:
 
 - email delivery is stubbed
-- verification and password reset links are logged locally
-- demo users or predefined credentials may be available
-- security-sensitive behavior is preserved but simplified for local usage
+- registration may expose a demo verification link
+- password reset may expose a demo reset link
+- selected authentication checks may be simplified for local-development usage
 
 ### Disable demo mode for production
 
@@ -108,9 +108,9 @@ Demo mode is safe for local development but must never be enabled in publicly ac
 
 Key principles:
 
-- demo mode does not introduce shared users or shared databases
-- demo credentials are local to the running instance
+- demo mode does not introduce a separate shared demo account model
 - sensitive operations are still validated by the domain layer
+- frontend demo UI behavior remains separate from backend authentication rules
 
 Production deployments must explicitly disable demo mode.
 
@@ -122,11 +122,7 @@ Use demo mode only for:
 - evaluation after cloning the repository
 - internal demos
 
-When connecting AuthForge to a new database (for example Neon or Supabase),
-ensure that the database schema matches the Prisma schema.
-
-If the database was created manually or imported from a previous version,
-column naming mismatches may occur (camelCase vs snake_case).
+When connecting AuthForge to a new database, ensure that the database schema matches the Prisma schema and current migrations.
 
 Demo mode is not designed for production use and must be explicitly disabled before deploying to any public environment.
 
