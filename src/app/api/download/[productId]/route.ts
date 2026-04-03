@@ -5,6 +5,11 @@ import fs from 'node:fs';
 
 export const runtime = 'nodejs';
 
+const DOWNLOAD_FILES: Record<string, string> = {
+  authforge: 'authforge-v1.0.0.zip',
+  starter: 'nextjs-professional-starter-v0.1.0.zip',
+};
+
 export async function GET(request: Request, context: { params: Promise<{ productId: string }> }) {
   try {
     const { productId } = await context.params;
@@ -32,7 +37,8 @@ export async function GET(request: Request, context: { params: Promise<{ product
       return NextResponse.json({ error: 'Download link expired' }, { status: 403 });
     }
 
-    const filePath = path.resolve(process.cwd(), 'private', `${productId}.zip`);
+    const storageFilename = DOWNLOAD_FILES[productId] ?? `${productId}.zip`;
+    const filePath = path.resolve(process.cwd(), 'private', storageFilename);
 
     console.log('Download path:', filePath);
 
@@ -46,7 +52,7 @@ export async function GET(request: Request, context: { params: Promise<{ product
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="${productId}.zip"`,
+        'Content-Disposition': `attachment; filename="${storageFilename}"`,
         'Cache-Control': 'no-store',
       },
     });
