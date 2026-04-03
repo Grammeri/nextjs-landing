@@ -59,7 +59,7 @@ packages/**/node_modules/
 # Private downloadable assets
 # ===============================
 /private/*
-!/private/authforge.zip
+!/private/authforge-v1.0.0.zip
 !/private/nextjs-professional-starter-v1.0.0.zip
 
 # ===============================
