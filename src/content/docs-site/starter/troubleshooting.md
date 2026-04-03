@@ -22,7 +22,7 @@ Alternatively, enable pnpm using Corepack:
 
 ```bash
 corepack enable
-corepack prepare pnpm@latest --activate
+corepack prepare pnpm@10.6.2 --activate
 ```
 
 ## Node.js version is too old

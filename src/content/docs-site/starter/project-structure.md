@@ -77,13 +77,12 @@ Project documentation is stored in the `docs` directory.
 docs/
 ```
 
-This directory contains internal developer documentation.
+This directory contains the documentation structure used by the starter.
 
-Architectural Decision Records are stored separately in the `internal/adr` directory.
+Typical contents include:
 
-- engineering standards
-- architectural decision records
-- repository policies
+- docs/nav.ts
+- docs/site/
 
 Documentation inside this directory is not part of the runtime application.
 

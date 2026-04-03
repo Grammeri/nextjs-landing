@@ -100,15 +100,19 @@ Formatting should normally be handled automatically by editor integrations or Gi
 
 Husky provides Git hooks that run automated checks during commits.
 
-Hooks are installed automatically when dependencies are installed.
+The Starter source package includes the Husky hook files as part of the intended development baseline.
+
+Hooks are installed automatically during dependency installation through the package lifecycle script.
 
 ```bash
 pnpm install
 ```
 
-The hooks ensure that linting and formatting rules are applied before changes are committed.
+The hooks help ensure that linting and formatting rules are applied before changes are committed.
 
 Git hooks are optional and do not affect the runtime behavior of the project.
+
+They are relevant only when the extracted package is used inside a Git working copy.
 
 ## lint-staged
 

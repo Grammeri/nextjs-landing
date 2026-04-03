@@ -20,47 +20,36 @@ CI acts as a final verification layer after local development checks.
 
 ## CI Environment
 
-The pipeline runs in a clean environment and installs dependencies
-before executing verification steps.
+The pipeline runs in a clean environment and installs dependencies before executing verification steps.
 
-Typical steps include:
+The current workflow performs the following stages:
 
 - dependency installation
-- type checking
-- linting
-- formatting verification
+- combined repository checks
 - application build
 
-These checks ensure that the repository can be built and validated
-from a fresh environment.
+The combined repository checks include TypeScript validation, linting, and formatting verification.
+
+These checks ensure that the repository can be built and validated from a fresh environment.
 
 ## Validation Steps
 
-The CI pipeline performs the same checks that developers can run locally.
+The CI pipeline installs dependencies, runs the combined repository checks, and then builds the application.
 
-TypeScript validation:
+Install dependencies:
 
-```bash
-pnpm tsc
-```
+````bash
+pnpm install --frozen-lockfile
 
-Linting:
+Run combined checks:
 
-```bash
-pnpm lint
-```
+pnpm check
 
-Formatting verification:
+Build application:
 
-```bash
-pnpm format:check
-```
-
-Application build:
-
-```bash
 pnpm build
-```
+
+The combined check command covers the same validation categories that developers can run locally, including TypeScript validation, linting, and formatting verification.
 
 If any of these steps fail, the CI job fails.
 
@@ -70,7 +59,7 @@ Developers can run the same validation locally using:
 
 ```bash
 pnpm check
-```
+````
 
 Running these checks before pushing changes helps ensure that the CI
 pipeline will succeed.

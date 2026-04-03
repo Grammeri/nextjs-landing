@@ -103,6 +103,6 @@ Generate a project directory tree.
 pnpm run tree
 ```
 
-This command runs a helper script that prints the repository structure.
+This command runs a helper script that generates the repository tree used for documentation and repository inspection.
 
 It is useful for documentation, architecture discussions, and repository inspection.

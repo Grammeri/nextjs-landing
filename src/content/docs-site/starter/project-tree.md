@@ -30,24 +30,16 @@ nextjs-professional-starter/
 ├─ commitlint.config.cjs
 ├─ docs
 │  ├─ nav.ts
-│  ├─ site
-│  │  ├─ ci-pipeline.md
-│  │  ├─ commands.md
-│  │  ├─ development-setup.md
-│  │  ├─ project-structure.md
-│  │  ├─ project-tree.md
-│  │  ├─ quick-start.md
-│  │  ├─ tooling.md
-│  │  └─ troubleshooting.md
-│  ├─ standards
-│  │  └─ developer-documentation-standard.md
-│  └─ starter
-│     └─ project-configuration-and-tooling.md
+│  └─ site
+│     ├─ ci-pipeline.md
+│     ├─ commands.md
+│     ├─ development-setup.md
+│     ├─ project-structure.md
+│     ├─ project-tree.md
+│     ├─ quick-start.md
+│     ├─ tooling.md
+│     └─ troubleshooting.md
 ├─ eslint.config.mjs
-├─ internal
-│  └─ adr
-│     ├─ adr-001-project-scope-and-boundaries.md
-│     └─ adr-002-documentation-structure-and-scope.md
 ├─ LICENSE
 ├─ next-env.d.ts
 ├─ next.config.ts
@@ -72,4 +64,5 @@ nextjs-professional-starter/
 │     └─ .gitkeep
 ├─ tsconfig.json
 └─ VERSION
+
 ```
