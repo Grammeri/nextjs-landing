@@ -15,7 +15,7 @@ The project uses **pnpm** as the package manager.
 pnpm provides deterministic dependency resolution and efficient disk
 usage through a content-addressable store.
 
-It is recommended to use **pnpm 9 or newer**.
+The project is configured for **pnpm 10.6.2**.
 
 Typical development commands are executed using pnpm.
 
@@ -25,7 +25,7 @@ Example:
 pnpm install
 ```
 
-This command installs all project dependencies defined in package.json.
+This command installs all project dependencies defined in `package.json`.
 
 ## TypeScript
 
@@ -85,14 +85,14 @@ The project uses Husky to run automated checks during Git operations.
 Git hooks ensure that code quality rules are applied before changes are
 committed.
 
-Typical checks executed during commits include:
+Typical commit-time checks include:
 
-- linting
-- formatting
-- staged file validation
+- staged file formatting
+- staged file linting
+- commit message validation
 
-This prevents incorrectly formatted or broken code from entering the
-repository.
+This helps prevent incorrectly formatted, invalid, or unchecked changes
+from entering the repository.
 
 ## Commitlint
 
@@ -133,12 +133,13 @@ The repository includes a CI workflow configuration:
 Continuous integration automatically runs verification checks when
 changes are pushed to the repository.
 
-Typical CI checks include:
+The current CI workflow performs the following stages:
 
 - dependency installation
-- linting
-- type checking
-- formatting verification
+- combined repository checks
+- application build
+
+The combined repository checks cover TypeScript validation, linting, and formatting verification.
 
 Automated CI helps maintain repository stability and prevents
 regressions.

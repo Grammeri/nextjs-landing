@@ -29,7 +29,9 @@ Download the starter ZIP archive and extract it to a local directory.
 
 Example location:
 
+```text
 C:\Projects\nextjs-professional-starter
+```
 
 Avoid placing the project inside cloud-synchronized folders such as OneDrive or Dropbox.
 
@@ -43,7 +45,7 @@ Open a terminal inside the project directory and install dependencies.
 pnpm install
 ```
 
-This command installs all required packages defined in package.json.
+This command installs all required packages defined in `package.json`.
 
 ## Start the Development Server
 
@@ -91,8 +93,8 @@ The repository includes:
 
 - project structure
 - development tooling
-- code quality pipeline
-- CI configuration
+- code quality checks
+- project documentation
 
 Application logic such as authentication, databases, or product features is intentionally not included.
 
