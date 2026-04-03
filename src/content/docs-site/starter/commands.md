@@ -100,7 +100,7 @@ It is commonly used before committing or pushing changes.
 Generate a project directory tree.
 
 ```bash
-pnpm tree
+pnpm run tree
 ```
 
 This command runs a helper script that prints the repository structure.
