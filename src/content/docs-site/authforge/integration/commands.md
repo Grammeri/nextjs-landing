@@ -1,6 +1,6 @@
 # AuthForge Commands Reference
 
-This document lists all available project commands.
+This document lists the main project commands exposed through `package.json` scripts, along with optional direct Docker commands.
 
 These commands are intended for development and local environment management.
 
@@ -14,6 +14,12 @@ These commands are intended for development and local environment management.
 pnpm install
 ```
 
+### Prepare Git hooks manually
+
+```bash
+pnpm prepare
+```
+
 ### Run full project setup
 
 ```bash
@@ -23,6 +29,8 @@ pnpm setup
 This command will:
 
 - install dependencies
+- activate Git hooks through the `prepare` lifecycle script when applicable
+- generate Prisma Client through the `postinstall` lifecycle script
 - start the PostgreSQL container
 - apply database migrations
 
@@ -39,7 +47,7 @@ http://localhost:3000
 
 ## Database
 
-### Start PostgreSQL container
+### Start PostgreSQL container (Docker Desktop must be running)
 
 ```bash
 pnpm db:up
@@ -59,7 +67,7 @@ pnpm db:down
 pnpm prisma:generate
 ```
 
-### Apply migrations
+### Apply migrations (requires a valid `.env` file with `DATABASE_URL`)
 
 ```bash
 pnpm prisma:migrate

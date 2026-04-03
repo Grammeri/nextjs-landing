@@ -14,8 +14,6 @@ These principles define the default UI system used by AuthForge.
 
 ## Scope
 
-## Scope
-
 These principles apply to all UI rendered by AuthForge.
 
 They define system constraints and usage rules for visual implementation.
@@ -38,13 +36,11 @@ The system is intentionally constrained.
 
 AuthForge UI must be responsive by default.
 
-Authentication screens must use a mobile-first layout.
+Authentication screens use constrained responsive layouts based on flexible containers and vertical form composition.
 
-Layouts must rely on flexible containers and vertical form composition.
+Current auth layout behavior relies on fluid sizing and container constraints rather than dedicated per-screen breakpoint rules.
 
-Responsive behavior must remain consistent across mobile devices, tablets, and desktops.
-
-Per-screen responsive exceptions must be documented when introduced.
+Any future responsive exceptions or breakpoint-specific deviations must be documented when introduced.
 
 ## Typography system
 
@@ -54,14 +50,9 @@ Text size is chosen by semantic meaning.
 
 Only the predefined typography scale is allowed.
 
-Display is used only for large marketing or hero sections.
+Display is reserved for future marketing or hero-specific typography roles if such tokens are introduced.
 
-Display is not allowed in authentication flows or forms.
-
-Tokens:
-
-- `--text-display`
-- `--line-display`
+AuthForge does not currently define display typography tokens in the active UI token set.
 
 H1 is the primary heading of a screen.
 
@@ -71,7 +62,8 @@ Requirements:
 
 - Exactly one H1 per screen
 - Applied explicitly
-- No global element overrides
+- Typography roles must not rely on browser defaults as design intent
+- Global baseline styling for semantic headings may exist, but screen-level heading roles must still be applied explicitly in UI implementation
 
 Tokens:
 
@@ -95,6 +87,13 @@ Tokens:
 
 - `--text-h3`
 - `--line-h3`
+
+Large body is an intermediate typography role used where standard body text is too small but a heading would be semantically incorrect.
+
+Tokens:
+
+- `--text-lg`
+- `--line-lg`
 
 Body is the default UI text size.
 
@@ -159,6 +158,7 @@ Tokens:
 - `--radius-sm`
 - `--radius-md`
 - `--radius-lg`
+- `--radius-full`
 
 Components must not define custom border-radius values.
 
@@ -172,6 +172,7 @@ Tokens:
 
 - `--border-width-none`
 - `--border-width-sm`
+- `--border-width-md`
 
 Arbitrary border widths are not allowed.
 
@@ -210,10 +211,10 @@ If the same visual value starts repeating across multiple components, it should 
 
 The following practices are not allowed:
 
-- Using arbitrary pixel values for visual styling outside the token system
+- Using non-tokenized visual values when an existing visual token already covers the same purpose
 - Introducing new design tokens without updating this document
 - Making styling decisions based on appearance rather than semantic role
-- Applying global overrides to semantic elements as a substitute for explicit UI roles
+- Using global semantic element styling as a substitute for explicit UI role assignment
 - Bypassing the token system for convenience
 
 ## Summary
