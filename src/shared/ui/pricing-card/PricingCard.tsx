@@ -61,6 +61,12 @@ export function PricingCard({
             ))}
           </ul>
           {paymentTitle && <p className={`${styles.paymentTitle} paymentTitle`}>{paymentTitle}</p>}
+          <p
+            className={styles.salesNotice}
+            style={{ color: '#b42318', textTransform: 'uppercase', letterSpacing: '0.08em' }}
+          >
+            Live sales opening soon !!!
+          </p>
 
           <div
             className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
