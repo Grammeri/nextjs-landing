@@ -69,7 +69,6 @@ export function PricingCard({
               {onPayWithStripe && (
                 <StripeButton
                   selected={selectedProvider === 'stripe'}
-                  disabled={!termsAccepted}
                   onSelect={() => {
                     setSelectedProvider('stripe');
                     if (!termsAccepted) {
@@ -86,7 +85,6 @@ export function PricingCard({
               {onPayWithPaypal && (
                 <PaypalButton
                   selected={selectedProvider === 'paypal'}
-                  disabled={!termsAccepted}
                   onSelect={() => {
                     setSelectedProvider('paypal');
                     if (!termsAccepted) {
