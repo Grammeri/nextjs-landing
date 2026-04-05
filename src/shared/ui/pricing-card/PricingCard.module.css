@@ -58,7 +58,11 @@
 .footerNote {
   color: var(--color-on-image-secondary);
 
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  text-align: left;
 }
 
 .price {
@@ -152,6 +156,23 @@
   text-align: center;
 
   width: 100%;
+}
+
+.deliveryNotice {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+
+  color: var(--color-on-image-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  text-align: left;
+}
+
+@media (max-width: 480px) {
+  .deliveryNotice {
+    font-size: var(--pricing-card-font-size-mobile);
+    line-height: var(--pricing-card-line-height-mobile);
+  }
 }
 
 .consentWrapper {
