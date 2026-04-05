@@ -86,8 +86,7 @@ export const AUTHFORGE_PRODUCT_COPY = {
     features: [
       'License for 1 project',
       'Lifetime access',
-      'Product updates included',
-      '14-day refund if access was not used',
+      'Includes source package v1.0.0',
       'Email support',
     ],
     footerNote: 'Access instructions will be sent by email after purchase',
@@ -104,8 +103,7 @@ export const AUTHFORGE_PRICING_CARD: PricingCardProps = {
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[0] },
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[1] },
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[2] },
-    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[3] },
-    { text: `${AUTHFORGE_PRODUCT_COPY.pricing.features[4]} (${AUTHFORGE_SUPPORT_EMAIL})` },
+    { text: `${AUTHFORGE_PRODUCT_COPY.pricing.features[3]} (${AUTHFORGE_SUPPORT_EMAIL})` },
   ],
   footerNote: AUTHFORGE_PRODUCT_COPY.pricing.footerNote,
 };
