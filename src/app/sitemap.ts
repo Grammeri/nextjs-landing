@@ -3,6 +3,10 @@ import path from 'path';
 import { MetadataRoute } from 'next';
 import { DOCS_PRODUCTS, getDocsRoute } from './[locale]/docs/_lib/products';
 
+function getBaseUrl(): string {
+  return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+}
+
 function collectMarkdownSlugs(dirPath: string, parentSegments: string[] = []): string[] {
   if (!fs.existsSync(dirPath)) {
     return [];
@@ -32,7 +36,7 @@ function collectMarkdownSlugs(dirPath: string, parentSegments: string[] = []): s
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = getBaseUrl();
   const now = new Date();
 
   const docPages: MetadataRoute.Sitemap = Object.values(DOCS_PRODUCTS).flatMap((product) => {
