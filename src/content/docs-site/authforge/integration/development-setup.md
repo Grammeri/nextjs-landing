@@ -227,6 +227,30 @@ ESLint helps prevent:
 Some rules may feel strict — this is intentional.
 If ESLint fails, fix the issue instead of disabling the rule.
 
+## TypeScript conventions
+
+AuthForge uses both `interface` and `type`.
+
+This is intentional.
+
+Use `interface` for object-shaped public contracts such as:
+
+- component props
+- service contracts
+- entity-like structures
+- extension-based object models
+
+Use `type` for:
+
+- union types
+- inferred types
+- utility type compositions
+- aliases for non-object or derived type expressions
+
+Do not rewrite existing code only to replace one with the other.
+
+Consistency within the local context is more important than enforcing a single keyword everywhere.
+
 ## Commitlint & Conventional Commits
 
 AuthForge requires commit messages to follow the Conventional Commits specification.

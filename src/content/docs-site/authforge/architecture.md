@@ -145,12 +145,19 @@ API routes are thin adapters. Each route:
 - delegates logic to the authentication domain
 - returns a normalized response
 
+Authentication routes use a code-driven response contract:
+
+- success responses use `{ success: true }`, optionally with demo-only fields
+- error responses use `{ code, errors? }`
+
 Route-level security checks include:
 
 - in-memory rate limiting for selected auth routes
 - breached password detection (HIBP Pwned Passwords) on `register` and `reset-password`
 
 All business logic lives exclusively inside the authentication domain.
+
+For the public authentication response contract, see [Auth API Contract](./integration/auth-api).
 
 ## UI Layer
 
@@ -199,8 +206,8 @@ AuthForge supports a demo mode controlled by the environment variable:
 When demo mode is enabled:
 
 - email delivery is replaced by a demo provider
-- registration may return a demo verification link in the API response
-- password reset may return a demo reset link in the API response
+- successful registration may return `demoVerificationUrl` in the API response
+- successful password reset requests may return `demoResetPasswordUrl` in the API response
 - email verification requirements are relaxed for local testing
 
 The demo mode flag is implemented in:
