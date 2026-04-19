@@ -12,6 +12,7 @@ export const DOC_TITLES: Record<string, string> = {
   'ui-principles': 'UI Principles',
   'project-tree': 'Project Tree',
   'integration/after-login': 'After Login',
+  'integration/auth-api': 'Auth API Contract',
   'integration/commands': 'Commands',
   'integration/development-setup': 'Development Setup',
   'integration/email': 'Email',
@@ -28,6 +29,7 @@ export const ROOT_ORDER: string[] = [
   'ui-principles',
   'project-tree',
   'integration/after-login',
+  'integration/auth-api',
   'integration/commands',
   'integration/development-setup',
   'integration/email',
@@ -50,6 +52,7 @@ export const NAV_GROUPS: NavGroupConfig[] = [
     title: 'Integration',
     slugs: [
       'integration/after-login',
+      'integration/auth-api',
       'integration/commands',
       'integration/development-setup',
       'integration/email',

@@ -30,8 +30,8 @@ Only side effects that require external services are altered.
 When demo mode is enabled:
 
 - email delivery is stubbed
-- registration may return a demo verification link instead of sending an email
-- password reset may return a demo reset link instead of sending an email
+- successful registration may return `demoVerificationUrl` instead of sending a real email
+- successful password reset requests may return `demoResetPasswordUrl` instead of sending a real email
 - some security-sensitive behavior is preserved, while selected checks are simplified for local usage
 
 AuthForge does not include a built-in email delivery provider.
@@ -50,6 +50,11 @@ The following components retain the same overall architecture as in production:
 - session and cookie strategy
 - database schema and migrations
 - core UI flows
+
+Authentication responses remain normalized in demo mode.
+
+Successful responses still use the same `{ success: true }` contract, with optional demo-only fields where applicable.
+Error responses remain code-driven.
 
 Demo mode does not introduce a separate codebase or weaken architectural boundaries, but some authentication checks are intentionally relaxed for local-development convenience.
 
@@ -86,8 +91,8 @@ AUTH_DEMO_MODE=true
 When this variable is enabled:
 
 - email delivery is stubbed
-- registration may expose a demo verification link
-- password reset may expose a demo reset link
+- successful registration may return `demoVerificationUrl`
+- successful password reset requests may return `demoResetPasswordUrl`
 - selected authentication checks may be simplified for local-development usage
 
 ### Disable demo mode for production
