@@ -1,28 +1,23 @@
-import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
-import PricingCardContainer from './_components/PricingCardContainer';
-import styles from './page.module.css';
+import { redirect } from 'next/navigation';
 
 type PricingPageProps = {
-  searchParams?: Promise<{
-    product?: string;
-  }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
 export default async function PricingPage({ searchParams }: PricingPageProps) {
   const params = await searchParams;
-  const product = params?.product;
+  const query = new URLSearchParams();
 
-  const visibleItems = PRICING_PAGE_ITEMS.filter((item) => !product || item.productId === product);
+  for (const [key, value] of Object.entries(params ?? {})) {
+    if (typeof value === 'string') {
+      query.set(key, value);
+      continue;
+    }
 
-  return (
-    <section className={styles.page}>
-      <div className={styles.grid}>
-        {visibleItems.map((item) => (
-          <div key={item.productId} className={styles.card}>
-            <PricingCardContainer productId={item.productId} card={item.card} />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+    if (Array.isArray(value)) {
+      value.forEach((item) => query.append(key, item));
+    }
+  }
+
+  redirect(`/en/pricing${query.size ? `?${query.toString()}` : ''}`);
 }
