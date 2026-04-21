@@ -5,7 +5,6 @@ import path from 'node:path';
 import { notFound } from 'next/navigation';
 import { marked } from 'marked';
 
-import { getDocsProductConfig } from './products';
 import type { DocsProduct, OutlineItem } from './types';
 
 const normalizeSlug = (slug: string) => {
@@ -45,15 +44,15 @@ const resolveInternalHref = (
   if (!cleaned || cleaned.startsWith('#')) {
     return null;
   }
+  if (cleaned.startsWith('/docs/') || /^\/[a-z]{2}\/docs\//.test(cleaned)) {
+    const localeAwarePrefix = new RegExp(`^/(?:[a-z]{2}/)?docs/${product}(?:/|$)`);
+    const localeAwareReplacePrefix = new RegExp(`^/(?:[a-z]{2}/)?docs/${product}/?`);
 
-  if (cleaned.startsWith('/docs/')) {
-    const productPrefix = `/docs/${product}/`;
-
-    if (!cleaned.startsWith(productPrefix) && cleaned !== `/docs/${product}`) {
+    if (!localeAwarePrefix.test(cleaned)) {
       return null;
     }
 
-    const stripped = cleaned.replace(new RegExp(`^/docs/${product}/?`), '').replace(/^\/+/, '');
+    const stripped = cleaned.replace(localeAwareReplacePrefix, '').replace(/^\/+/, '');
 
     return stripped || null;
   }

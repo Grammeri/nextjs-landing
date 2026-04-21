@@ -5,43 +5,52 @@ import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import CookieNotice from '@/components/cookie-notice/CookieNotice';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://software-forge.dev';
+const siteName = 'Software Forge';
+const defaultTitle = 'Software Forge — Production-ready SaaS foundations and developer products';
+const titleTemplate = '%s | Software Forge';
+const defaultDescription =
+  'Software Forge builds production-ready SaaS foundations and developer products, including AuthForge and Starter, with a focus on modern architecture, security, and clean implementation.';
+const ogImageAlt = 'Software Forge — Production-ready SaaS foundations and developer products';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://authforge.dev'),
+  metadataBase: new URL(siteUrl),
 
   title: {
-    default: 'AuthForge — Production-ready authentication for modern SaaS',
-    template: '%s | AuthForge',
+    default: defaultTitle,
+    template: titleTemplate,
   },
 
-  description:
-    'AuthForge is a production-ready authentication foundation for modern SaaS applications. Built with Next.js, TypeScript, Prisma, and secure best practices.',
+  description: defaultDescription,
 
   keywords: [
+    'software forge',
+    'saas starter',
+    'nextjs starter',
+    'auth starter',
     'authentication',
     'nextjs auth',
-    'saas authentication',
-    'auth boilerplate',
-    'nextjs authentication',
-    'auth system',
-    'saas security',
+    'developer products',
+    'saas boilerplate',
+    'production-ready saas',
+    'full-stack starter',
   ],
 
-  authors: [{ name: 'AuthForge' }],
-  creator: 'AuthForge',
-  publisher: 'AuthForge',
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
 
   openGraph: {
-    title: 'AuthForge — Production-ready authentication for modern SaaS',
-    description:
-      'Production-ready authentication foundation built with Next.js, TypeScript, and secure SaaS architecture.',
-    url: 'https://authforge.dev',
-    siteName: 'AuthForge',
+    title: defaultTitle,
+    description: defaultDescription,
+    url: siteUrl,
+    siteName,
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'AuthForge — Production-ready authentication foundation',
+        alt: ogImageAlt,
       },
     ],
     locale: 'en_US',
@@ -50,9 +59,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'AuthForge — Production-ready authentication for modern SaaS',
-    description:
-      'Production-ready authentication foundation built with Next.js and secure SaaS architecture.',
+    title: defaultTitle,
+    description: defaultDescription,
     images: ['/og-image.png'],
   },
 

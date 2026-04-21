@@ -17,7 +17,6 @@ import {
   ROOT_ORDER as STARTER_ROOT_ORDER,
   SECTION_TITLES as STARTER_SECTION_TITLES,
 } from '@/content/docs-nav/starter/nav';
-import { getDocsProductConfig } from '../_lib/products';
 import type { DocNavItem, DocsProduct } from '../_lib/types';
 
 type NavGroupConfig = {
