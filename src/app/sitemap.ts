@@ -3,6 +3,8 @@ import path from 'path';
 import { MetadataRoute } from 'next';
 import { DOCS_PRODUCTS, getDocsRoute } from './[locale]/docs/_lib/products';
 
+const DOCS_LOCALE = 'en';
+
 function getBaseUrl(): string {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 }
@@ -43,19 +45,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const docsDir = path.join(process.cwd(), 'src', 'content', 'docs-site', product.contentDir);
     const slugs = collectMarkdownSlugs(docsDir);
 
-    const docsLocale = 'en';
+    const shouldIncludeEntryPage = product.slug !== 'starter';
 
-    const entryPage: MetadataRoute.Sitemap[number] = {
-      url: `${baseUrl}/${docsLocale}${getDocsRoute(product.slug)}`,
-      lastModified: now,
-    };
+    const entryPages: MetadataRoute.Sitemap = shouldIncludeEntryPage
+      ? [
+          {
+            url: `${baseUrl}/${DOCS_LOCALE}${getDocsRoute(product.slug)}`,
+            lastModified: now,
+          },
+        ]
+      : [];
 
-    const productDocPages = slugs.map((slug) => ({
-      url: `${baseUrl}/${docsLocale}${getDocsRoute(product.slug, slug)}`,
+    const productDocPages: MetadataRoute.Sitemap = slugs.map((slug) => ({
+      url: `${baseUrl}/${DOCS_LOCALE}${getDocsRoute(product.slug, slug)}`,
       lastModified: now,
     }));
 
-    return [entryPage, ...productDocPages];
+    return [...entryPages, ...productDocPages];
   });
 
   const staticPages: MetadataRoute.Sitemap = [
