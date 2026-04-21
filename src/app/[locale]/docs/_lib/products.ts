@@ -1,7 +1,5 @@
 import type { DocsProduct, DocsProductConfig } from './types';
 
-const DEFAULT_DOCS_LOCALE = 'en';
-
 export const DOCS_PRODUCTS: Record<DocsProduct, DocsProductConfig> = {
   authforge: {
     slug: 'authforge',
@@ -46,25 +44,20 @@ const normalizeSlug = (slug?: string | string[]): string => {
   return slugPath.trim().replace(/^\/+|\/+$/g, '');
 };
 
-export const getDocsRoute = (
-  product: DocsProduct,
-  slug?: string | string[],
-  locale: string = DEFAULT_DOCS_LOCALE,
-): string => {
+export const getDocsRoute = (product: DocsProduct, slug?: string | string[]): string => {
   const normalizedSlug = normalizeSlug(slug);
-  const normalizedLocale = locale.trim() || DEFAULT_DOCS_LOCALE;
 
   if (!normalizedSlug) {
-    return `/${normalizedLocale}/docs/${product}`;
+    return `/docs/${product}`;
   }
 
-  return `/${normalizedLocale}/docs/${product}/${normalizedSlug}`;
+  return `/docs/${product}/${normalizedSlug}`;
 };
 
-export const getDocsEntryRoute = (product: DocsProduct, locale?: string): string => {
-  return getDocsRoute(product, undefined, locale);
+export const getDocsEntryRoute = (product: DocsProduct): string => {
+  return getDocsRoute(product);
 };
 
-export const getDefaultDocRoute = (product: DocsProduct, locale?: string): string => {
-  return getDocsRoute(product, getDocsProductConfig(product).defaultDocSlug, locale);
+export const getDefaultDocRoute = (product: DocsProduct): string => {
+  return getDocsRoute(product, getDocsProductConfig(product).defaultDocSlug);
 };

@@ -43,13 +43,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const docsDir = path.join(process.cwd(), 'src', 'content', 'docs-site', product.contentDir);
     const slugs = collectMarkdownSlugs(docsDir);
 
+    const docsLocale = 'en';
+
     const entryPage: MetadataRoute.Sitemap[number] = {
-      url: `${baseUrl}${getDocsRoute(product.slug)}`,
+      url: `${baseUrl}/${docsLocale}${getDocsRoute(product.slug)}`,
       lastModified: now,
     };
 
     const productDocPages = slugs.map((slug) => ({
-      url: `${baseUrl}${getDocsRoute(product.slug, slug)}`,
+      url: `${baseUrl}/${docsLocale}${getDocsRoute(product.slug, slug)}`,
       lastModified: now,
     }));
 
