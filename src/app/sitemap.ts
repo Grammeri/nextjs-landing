@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const docPages: MetadataRoute.Sitemap = Object.values(DOCS_PRODUCTS).flatMap((product) => {
-    const docsDir = path.join(process.cwd(), 'content', product.contentDir, 'docs', 'site');
+    const docsDir = path.join(process.cwd(), 'src', 'content', 'docs-site', product.contentDir);
     const slugs = collectMarkdownSlugs(docsDir);
 
     const entryPage: MetadataRoute.Sitemap[number] = {
