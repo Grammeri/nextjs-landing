@@ -6,10 +6,12 @@ export const STARTER_PRODUCT_COPY = {
   name: 'Next.js Professional Starter',
 
   shortDescription:
-    'Clean, production-ready Next.js project foundation for developers and students',
+    'Clean, production-ready Next.js starter kit with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and a CI-ready project structure',
 
   cardDescription:
-    'A polished Next.js project starter with clean architecture, modern tooling, and a predictable project structure. Perfect for new projects, learning modern practices, or completing technical assignments.',
+    'Next.js Professional Starter gives you a polished project baseline for starting real applications, technical assignments, and learning-focused builds without spending hours wiring up the same tooling from scratch.\n\n' +
+    'It combines a clean App Router setup, strict TypeScript configuration, predictable folder organization, formatting, linting, Git hooks, commit validation, and CI-ready structure.\n\n' +
+    'The result is a starter kit that feels small enough to understand, but organized enough to grow into a serious project.',
 
   underDevelopment: {
     title: 'Next.js Professional Starter',
@@ -20,15 +22,19 @@ export const STARTER_PRODUCT_COPY = {
     price: '$5 — One-time license',
 
     features: [
-      'Clean project architecture',
-      'TypeScript strict configuration',
+      'License for 1 project',
+      'Lifetime access to the source package',
+      'Includes Next.js Professional Starter v1.0.0',
+      'Clean App Router project structure',
+      'Strict TypeScript configuration',
       'ESLint + Prettier setup',
       'Husky Git hooks',
       'Conventional commits',
-      'CI workflow included',
-      'Production-ready project structure',
-      'Great starting point for projects and technical assignments',
+      'CI-ready workflow included',
+      'Useful for real projects and technical assignments',
     ],
+
+    footerNote: 'Access instructions are sent by email after purchase.',
   },
 } as const;
 
@@ -37,4 +43,5 @@ export const STARTER_PRICING_CARD: PricingCardProps = {
   description: STARTER_PRODUCT_COPY.shortDescription,
   price: STARTER_PRODUCT_COPY.pricing.price,
   features: STARTER_PRODUCT_COPY.pricing.features.map((text) => ({ text })),
+  footerNote: STARTER_PRODUCT_COPY.pricing.footerNote,
 };

@@ -9,11 +9,13 @@ export default function HomePage() {
         <section id="hero-section" className={styles.hero}>
           <div className="container">
             <div className={styles.heroContent}>
-              <h1 className={styles.headline}>Production-ready Foundations & Developer Products</h1>
+              <h1 className={styles.headline}>
+                Production-ready SaaS auth starter and Next.js starter kit
+              </h1>
               <p className={styles.lead}>
-                We build and sell production-ready foundations and developer products for engineers,
-                startups, and product teams — designed to be easy to adopt, extend, and use in real
-                production.
+                Software Forge builds production-ready developer foundations for teams shipping real
+                products: a secure authentication starter for SaaS apps and a clean Next.js starter
+                kit designed for fast setup, maintainable code, and confident extension.
               </p>
             </div>
           </div>

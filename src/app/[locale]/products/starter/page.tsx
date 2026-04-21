@@ -29,7 +29,7 @@ export default function StarterPage() {
           <ProductHero
             title={STARTER_PRODUCT_COPY.name}
             subtitle={`${STARTER_PRODUCT_COPY.shortDescription}.`}
-            trustTitle="Built for clean project foundations"
+            trustTitle="Built for clean Next.js project foundations"
             trustDescription={STARTER_PRODUCT_COPY.cardDescription}
             secondaryAction={
               <div className={styles.heroActions}>
@@ -50,10 +50,13 @@ export default function StarterPage() {
 
           <ProductSection title="Who is this starter for" align="center">
             <ul className={styles.audienceList}>
-              <li>Developers starting a new Next.js project</li>
-              <li>Students completing technical assignments</li>
-              <li>Engineers who want a clean project baseline</li>
-              <li>Developers learning modern tooling practices</li>
+              <li>
+                Developers starting a new Next.js project who want a clean, production-ready
+                baseline
+              </li>
+              <li>Students completing technical assignments with a professional project structure</li>
+              <li>Engineers who want TypeScript, linting, formatting, hooks, and CI already organized</li>
+              <li>Developers learning modern Next.js tooling and maintainable project conventions</li>
             </ul>
           </ProductSection>
 
@@ -64,14 +67,14 @@ export default function StarterPage() {
                 <ul className={styles.featureList}>
                   <li>Clean Next.js App Router setup</li>
                   <li>Predictable folder organization</li>
-                  <li>Separation between application, components, and libraries</li>
+                  <li>Clear separation between app routes, components, shared UI, and libraries</li>
                 </ul>
               </div>
 
               <div className={styles.featureCard}>
                 <h3 className={styles.featureTitle}>Developer tooling</h3>
                 <ul className={styles.featureList}>
-                  <li>TypeScript strict configuration</li>
+                  <li>Strict TypeScript configuration</li>
                   <li>ESLint for code quality</li>
                   <li>Prettier for consistent formatting</li>
                   <li>Husky Git hooks</li>
@@ -82,9 +85,9 @@ export default function StarterPage() {
               <div className={styles.featureCard}>
                 <h3 className={styles.featureTitle}>Automation</h3>
                 <ul className={styles.featureList}>
-                  <li>Continuous integration workflow</li>
-                  <li>Automated repository verification</li>
-                  <li>Consistent development workflow</li>
+                  <li>CI-ready workflow structure</li>
+                  <li>Automated repository checks</li>
+                  <li>Repeatable development workflow for real projects and assignments</li>
                 </ul>
               </div>
             </div>
@@ -93,10 +96,11 @@ export default function StarterPage() {
           <ProductSection title="How it works" align="center">
             <div className={styles.contentNarrow}>
               <ol className={styles.steps}>
-                <li>Download the source package</li>
+                <li>Download the Next.js Professional Starter source package</li>
                 <li>Install dependencies with pnpm</li>
-                <li>Review the project structure and developer tooling</li>
-                <li>Start building your own product or complete your assignment</li>
+                <li>Review the App Router structure and tooling setup</li>
+                <li>Run the development workflow locally</li>
+                <li>Start building your project or technical assignment on a clean foundation</li>
               </ol>
             </div>
           </ProductSection>
@@ -105,7 +109,9 @@ export default function StarterPage() {
             <div className={styles.trustBlock}>
               <p className={styles.trustText}>
                 Before purchasing, you can review the documentation, inspect the project structure,
-                and understand the tooling setup included in the starter.
+                and understand the tooling included in the starter. The package is designed to be
+                easy to read, quick to set up, and practical for both real projects and technical
+                assignments.
               </p>
 
               <ul className={styles.trustList}>

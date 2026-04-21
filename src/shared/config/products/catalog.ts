@@ -42,12 +42,14 @@ export type ProductGridItem = {
 export const PRODUCTS_GRID_ITEMS: ProductGridItem[] = [
   {
     href: '/products/authforge',
-    title: AUTHFORGE_PRODUCT_COPY.name,
-    description: AUTHFORGE_PRODUCT_COPY.cardDescription,
+    title: 'AuthForge',
+    description:
+      'A production-ready authentication starter for SaaS apps with email/password auth, email verification, password reset, secure sessions, rate limiting, and a Prisma + PostgreSQL reference implementation.',
   },
   {
     href: '/products/starter',
-    title: STARTER_PRODUCT_COPY.name,
-    description: STARTER_PRODUCT_COPY.cardDescription,
+    title: 'Next.js Professional Starter',
+    description:
+      'A clean Next.js starter kit for real projects and technical assignments, with TypeScript, ESLint, Prettier, Husky, and a CI-ready project structure built for maintainable development.',
   },
 ];

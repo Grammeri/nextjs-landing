@@ -3,7 +3,7 @@ import type { PricingCardProps } from '@/shared/ui/pricing-card';
 export const AUTHFORGE_PRODUCT_COPY = {
   name: 'AuthForge',
   shortDescription:
-    'Production-ready authentication foundation with verified setup,\nsecure sessions, and clean architecture',
+    'Production-ready authentication starter for SaaS apps with email/password auth, email verification, password reset, secure sessions, rate limiting, and a Prisma + PostgreSQL reference implementation',
   cardDescription:
     'Production-ready authentication foundation with secure sessions, baseline abuse protection, and verified setup for modern SaaS.',
   supportEmail: 'support@software-forge.dev',
@@ -22,32 +22,30 @@ export const AUTHFORGE_PRODUCT_COPY = {
   },
 
   hero: {
-    trustTitle: 'Built for real production use',
+    trustTitle: 'Built for SaaS teams shipping real products',
     trustDescription:
-      'AuthForge is a production-ready authentication foundation for modern SaaS products.\n\n' +
-      'The package includes a verified setup and onboarding flow, validated through a clean-room installation check.\n\n' +
-      'The baseline provides server-side sessions, HttpOnly cookies, route-level rate limiting, and breached password checks.\n\n' +
-      'The authentication architecture is database-agnostic by design. The package includes a Prisma + PostgreSQL reference implementation for production-oriented deployments.',
+      'AuthForge gives you a production-ready authentication foundation without forcing your team to build the core auth layer from scratch.\n\n' +
+      'It includes the flows most SaaS products need from day one: email/password sign-up, email verification, password reset, secure server-side sessions, HttpOnly cookies, and route-level rate limiting.\n\n' +
+      'The architecture is designed to stay adaptable as your product grows. AuthForge ships with a Prisma + PostgreSQL reference implementation while keeping the authentication domain direction database-agnostic.',
   },
 
   audience: [
-    'SaaS founders who do not want to build authentication from scratch',
-    'Developers shipping MVPs and production apps',
-    'Teams that need a real-world authentication foundation',
-    'Engineers learning modern authentication architecture',
+    'SaaS founders who need production-ready authentication without building every flow from scratch',
+    'Developers shipping MVPs, internal tools, and production SaaS apps',
+    'Teams that want secure sessions, verification, reset flows, and abuse protection handled early',
+    'Engineers learning how modern authentication architecture fits into a real Next.js product',
   ],
 
   features: {
     authentication: {
       title: 'Authentication',
-      items: ['Email & password authentication', 'Email verification', 'Password reset flows'],
+      items: ['Email/password authentication', 'Email verification flow', 'Password reset flow'],
     },
     sessionsAndSecurity: {
       title: 'Sessions & Security',
       items: [
-        'Server-side sessions',
-        'HttpOnly cookies',
-        'Rate limiting on auth routes',
+        'Server-side sessions with HttpOnly cookies',
+        'Route-level rate limiting for auth endpoints',
         'Breached password checks',
         'Zod-based runtime validation',
       ],
@@ -55,28 +53,29 @@ export const AUTHFORGE_PRODUCT_COPY = {
     architecture: {
       title: 'Architecture',
       items: [
-        'Database-agnostic authentication architecture',
-        'Prisma-based reference implementation (PostgreSQL)',
-        'Token-driven UI styling approach (use our tokens or plug in your own styling system)',
+        'Production-oriented authentication domain structure',
+        'Prisma + PostgreSQL reference implementation',
+        'Database-agnostic architecture direction',
+        'Token-driven UI styling approach',
       ],
     },
   },
 
   howItWorks: [
-    'Download the source package',
-    'Configure environment variables',
-    'Start PostgreSQL and connect your database',
-    'Run Prisma migrations',
-    'Launch the app and build your product',
+    'Download the AuthForge source package',
+    'Configure environment variables for your app',
+    'Connect PostgreSQL and run Prisma migrations',
+    'Launch the authentication flows locally',
+    'Extend the foundation inside your SaaS product',
   ],
 
   tryBeforeYouBuy: {
     description:
-      'Before purchasing, you can explore the documentation, review the architecture, and test a working demo environment. The setup flow and core authentication journey have been verified through a clean room onboarding check, including register, login, logout, password reset, secure cookie-based session handling, and demo-mode evaluation flows.',
+      'Before purchasing, you can review the documentation, inspect the architecture, and test a live demo. The core authentication journey has been checked through a clean-room onboarding flow, including registration, login, logout, password reset, secure cookie-based sessions, and demo-mode evaluation.',
     links: {
       demoLabel: 'Live demo',
       docsLabel: 'Full documentation',
-      architectureLabel: 'Architecture overview (including the token-driven UI styling approach)',
+      architectureLabel: 'Architecture overview',
     },
     contactPrefix: 'Questions before or after purchase?',
   },
@@ -85,11 +84,11 @@ export const AUTHFORGE_PRODUCT_COPY = {
     price: '$99 — One-time license',
     features: [
       'License for 1 project',
-      'Lifetime access',
-      'Includes source package v1.0.0',
-      'Email support',
+      'Lifetime access to the source package',
+      'Includes AuthForge v1.0.0',
+      'Email support at support@software-forge.dev',
     ],
-    footerNote: 'Access instructions will be sent by email after purchase',
+    footerNote: 'Access instructions are sent by email after purchase.',
   },
 } as const;
 
@@ -97,13 +96,14 @@ export const AUTHFORGE_SUPPORT_EMAIL = AUTHFORGE_PRODUCT_COPY.supportEmail;
 
 export const AUTHFORGE_PRICING_CARD: PricingCardProps = {
   title: AUTHFORGE_PRODUCT_COPY.name,
-  description: AUTHFORGE_PRODUCT_COPY.shortDescription,
+  description:
+    'Production-ready authentication starter for SaaS apps with secure sessions, verification flows, reset flows, rate limiting, and a Prisma + PostgreSQL reference implementation.',
   price: AUTHFORGE_PRODUCT_COPY.pricing.price,
   features: [
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[0] },
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[1] },
     { text: AUTHFORGE_PRODUCT_COPY.pricing.features[2] },
-    { text: `${AUTHFORGE_PRODUCT_COPY.pricing.features[3]} (${AUTHFORGE_SUPPORT_EMAIL})` },
+    { text: AUTHFORGE_PRODUCT_COPY.pricing.features[3] },
   ],
   footerNote: AUTHFORGE_PRODUCT_COPY.pricing.footerNote,
 };
