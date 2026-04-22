@@ -45,8 +45,18 @@ Key working areas:
 
 ## Build and verification
 
+Run project verification commands only inside WSL.
+
+Do not run project commands from Windows via UNC paths, `pushd`, or `cmd /c` against `\\wsl.localhost\...`.
+
+When using editor-integrated agents, always prefer WSL shell execution for verification commands.
+
 Use these commands after changes unless the user says otherwise:
 
 ```bash
-pnpm lint
-pnpm build
+cd ~/code/nextjs-landing && pnpm lint
+cd ~/code/nextjs-landing && pnpm build
+```
+If a single combined command is needed, use:
+
+cd ~/code/nextjs-landing && pnpm lint && pnpm build
