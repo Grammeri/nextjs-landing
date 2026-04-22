@@ -1,7 +1,5 @@
 export const UI_TEXT = {
   payment: {
-    single: 'Payment method',
-    multiple: 'Select payment method',
     en: {
       single: 'Payment method',
       multiple: 'Select payment method',
@@ -13,18 +11,18 @@ export const UI_TEXT = {
   },
   pricing: {
     en: {
-      deliveryNotice: 'After purchase, the delivery email may appear in Spam.',
+      deliveryNotice: 'After purchase, the email with your ZIP archive may appear in your Spam folder.',
       termsPrefix: 'I agree to the',
       termsLabel: 'Terms & Conditions',
       termsError: 'You must accept the Terms before proceeding.',
-      footerNote: 'Access instructions will be sent by email after purchase',
+      footerNote: 'After purchase, you will receive an email with your ZIP archive',
     },
     ru: {
-      deliveryNotice: 'После покупки письмо с доступом может попасть в Спам.',
+      deliveryNotice: 'После покупки письмо с ZIP-файлом может попасть в Спам.',
       termsPrefix: 'Я принимаю',
       termsLabel: 'Условия использования',
       termsError: 'Чтобы продолжить, необходимо принять условия.',
-      footerNote: 'Инструкции для доступа будут отправлены по email после покупки',
+      footerNote: 'После покупки на email будет отправлено письмо с ZIP-файлом',
     },
   },
 };
