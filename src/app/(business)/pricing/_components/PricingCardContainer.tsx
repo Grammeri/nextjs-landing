@@ -4,8 +4,8 @@ import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { PricingCard } from '@/shared/ui/pricing-card';
 import type { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
-import { UI_TEXT } from '@/shared/config/ui';
 import type { Locale } from '@/shared/config/i18n';
+import { getUiText } from '@/shared/lib/i18n/getUiText';
 
 type PricingCardContainerProps = {
   productId: string;
@@ -15,8 +15,9 @@ type PricingCardContainerProps = {
 
 export default function PricingCardContainer({ productId, card, locale }: PricingCardContainerProps) {
   const { checkoutWithStripe, checkoutWithPaypal } = useCheckout(productId);
-  const paymentText = UI_TEXT.payment[locale];
-  const pricingText = UI_TEXT.pricing[locale];
+  const uiText = getUiText(locale);
+  const paymentText = uiText.payment;
+  const pricingText = uiText.pricing;
 
   return (
     <PricingCard
