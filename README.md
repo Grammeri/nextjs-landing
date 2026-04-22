@@ -28,7 +28,40 @@ Start development server:
 pnpm dev
 ```
 
-Open http://localhost:3000 in your browser.
+Open `http://localhost:3000` in your browser.
+
+## WSL Workflow
+
+This repository should be developed and verified inside WSL.
+
+Do not run project commands from Windows via UNC paths such as `\\wsl.localhost\...`.
+Do not use Windows `pushd` or `cmd /c` against the WSL project path.
+
+Use a WSL shell from the project root:
+
+```bash
+cd ~/code/nextjs-landing
+```
+
+Run development commands inside WSL only:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Run verification commands inside WSL only:
+
+```bash
+cd ~/code/nextjs-landing && pnpm lint
+cd ~/code/nextjs-landing && pnpm build
+```
+
+If a single combined verification command is needed, use:
+
+```bash
+cd ~/code/nextjs-landing && pnpm lint && pnpm build
+```
 
 ## Build
 
@@ -44,9 +77,10 @@ This repository contains only the public-facing landing. Authentication, private
 
 ## Internal Documentation
 
-docs/internal/ contains system-level developer documentation for contributors. It is not part of the public website.
+`docs/internal/` contains system-level developer documentation for contributors.
+It is not part of the public website.
 
-## Product model
+## Product Model
 
 Each product published on this landing is sold as a one-time purchase
 with a single price per product.
