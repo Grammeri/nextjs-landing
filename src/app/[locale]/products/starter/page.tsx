@@ -2,16 +2,28 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
+import { BILLING_PROVIDERS } from '@/shared/config/billing';
+import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
+import { createPricingCard } from '@/shared/config/products/pricing';
+import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
+import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { Button } from '@/shared/ui/button';
-import { STARTER_PRODUCT_COPY } from '@/shared/config/products/starter';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
-import StarterPricingCard from '@/shared/ui/product-pricing/StarterPricingCard';
+import { PricingCard } from '@/shared/ui/pricing-card';
+import { UI_TEXT } from '@/shared/config/ui';
 import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 import layoutStyles from '@/app/products/layout.module.css';
 
 export default function StarterPage() {
+  const params = useParams<{ locale?: string }>();
+  const rawLocale = typeof params.locale === 'string' ? params.locale : DEFAULT_LOCALE;
+  const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
+  const productCopy = getProductCopy('starter', locale);
+  const pricingCard = createPricingCard('starter', locale);
+  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('starter');
   const pricingRef = useRef<HTMLDivElement>(null);
 
   const scrollToPricing = () => {
@@ -27,112 +39,85 @@ export default function StarterPage() {
       <div className={layoutStyles.productSurface}>
         <main className={styles.page}>
           <ProductHero
-            title={STARTER_PRODUCT_COPY.name}
-            subtitle={`${STARTER_PRODUCT_COPY.shortDescription}.`}
-            trustTitle="Built for clean Next.js project foundations"
-            trustDescription={STARTER_PRODUCT_COPY.cardDescription}
+            title={productCopy.name}
+            subtitle={`${productCopy.shortDescription}.`}
+            trustTitle={productCopy.hero.trustTitle}
+            trustDescription={productCopy.hero.trustDescription}
             secondaryAction={
               <div className={styles.heroActions}>
                 <Button as="a" href={docsEntryHref} variant="secondary">
-                  Read Docs
+                  {productCopy.actions.readDocs}
                 </Button>
 
                 <Button as="a" href={toolingHref} variant="secondary">
-                  View Tooling
+                  {productCopy.actions.viewTooling}
                 </Button>
 
                 <Button onClick={scrollToPricing} variant="primary">
-                  Buy license
+                  {productCopy.actions.buyLicense}
                 </Button>
               </div>
             }
           />
 
-          <ProductSection title="Who is this starter for" align="center">
+          <ProductSection title={productCopy.sectionTitles.audience} align="center">
             <ul className={styles.audienceList}>
-              <li>
-                Developers starting a new Next.js project who want a clean, production-ready
-                baseline
-              </li>
-              <li>Students completing technical assignments with a professional project structure</li>
-              <li>Engineers who want TypeScript, linting, formatting, hooks, and CI already organized</li>
-              <li>Developers learning modern Next.js tooling and maintainable project conventions</li>
+              {productCopy.audience.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </ProductSection>
 
-          <ProductSection title="What’s included">
+          <ProductSection title={productCopy.sectionTitles.included}>
             <div className={styles.featureGrid}>
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>Project structure</h3>
-                <ul className={styles.featureList}>
-                  <li>Clean Next.js App Router setup</li>
-                  <li>Predictable folder organization</li>
-                  <li>Clear separation between app routes, components, shared UI, and libraries</li>
-                </ul>
-              </div>
-
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>Developer tooling</h3>
-                <ul className={styles.featureList}>
-                  <li>Strict TypeScript configuration</li>
-                  <li>ESLint for code quality</li>
-                  <li>Prettier for consistent formatting</li>
-                  <li>Husky Git hooks</li>
-                  <li>Conventional commit validation</li>
-                </ul>
-              </div>
-
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>Automation</h3>
-                <ul className={styles.featureList}>
-                  <li>CI-ready workflow structure</li>
-                  <li>Automated repository checks</li>
-                  <li>Repeatable development workflow for real projects and assignments</li>
-                </ul>
-              </div>
+              {productCopy.featureGroups.map((group) => (
+                <div key={group.title} className={styles.featureCard}>
+                  <h3 className={styles.featureTitle}>{group.title}</h3>
+                  <ul className={styles.featureList}>
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </ProductSection>
 
-          <ProductSection title="How it works" align="center">
+          <ProductSection title={productCopy.sectionTitles.howItWorks} align="center">
             <div className={styles.contentNarrow}>
               <ol className={styles.steps}>
-                <li>Download the Next.js Professional Starter source package</li>
-                <li>Install dependencies with pnpm</li>
-                <li>Review the App Router structure and tooling setup</li>
-                <li>Run the development workflow locally</li>
-                <li>Start building your project or technical assignment on a clean foundation</li>
+                {productCopy.howItWorks.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ol>
             </div>
           </ProductSection>
 
-          <ProductSection title="Try before you buy">
+          <ProductSection title={productCopy.sectionTitles.tryBeforeYouBuy}>
             <div className={styles.trustBlock}>
-              <p className={styles.trustText}>
-                Before purchasing, you can review the documentation, inspect the project structure,
-                and understand the tooling included in the starter. The package is designed to be
-                easy to read, quick to set up, and practical for both real projects and technical
-                assignments.
-              </p>
+              <p className={styles.trustText}>{productCopy.tryBeforeYouBuy.description}</p>
 
               <ul className={styles.trustList}>
                 <li>
-                  <Link href={docsEntryHref}>Starter documentation</Link>
+                  <Link href={docsEntryHref}>{productCopy.tryBeforeYouBuy.links[0]?.label}</Link>
                 </li>
 
                 <li>
-                  <Link href={toolingHref}>Tooling overview</Link>
+                  <Link href={toolingHref}>{productCopy.tryBeforeYouBuy.links[1]?.label}</Link>
                 </li>
 
                 <li>
-                  <Link href={structureHref}>Project structure overview</Link>
+                  <Link href={structureHref}>{productCopy.tryBeforeYouBuy.links[2]?.label}</Link>
                 </li>
               </ul>
 
               <p className={styles.supportText}>
-                Questions before or after purchase?{' '}
-                <span className={styles.contactLead}>Contact us at</span>{' '}
+                {productCopy.tryBeforeYouBuy.contactPrefix}{' '}
+                <span className={styles.contactLead}>
+                  {productCopy.tryBeforeYouBuy.contactLead}
+                </span>{' '}
                 <span className={styles.supportInline}>
-                  <span className={styles.supportEmail}>support@software-forge.dev</span>
+                  <span className={styles.supportEmail}>{productCopy.supportEmail}</span>
                   <CopySupportEmail />
                 </span>
               </p>
@@ -141,7 +126,15 @@ export default function StarterPage() {
 
           <div ref={pricingRef}>
             <div className={styles.pricingWrapper}>
-              <StarterPricingCard />
+              <PricingCard
+                {...pricingCard}
+                paymentTitle={
+                  BILLING_PROVIDERS.paypal ? UI_TEXT.payment.multiple : UI_TEXT.payment.single
+                }
+                onPayWithStripe={checkoutWithStripe}
+                onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
+                footerNote="Access instructions will be sent by email after purchase"
+              />
             </div>
           </div>
         </main>

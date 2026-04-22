@@ -2,19 +2,28 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
+import { BILLING_PROVIDERS } from '@/shared/config/billing';
+import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
+import { createPricingCard } from '@/shared/config/products/pricing';
+import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
+import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { Button } from '@/shared/ui/button';
-import {
-  AUTHFORGE_PRODUCT_COPY,
-  AUTHFORGE_SUPPORT_EMAIL,
-} from '@/shared/config/products/authforge';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
-import AuthForgePricingCard from '@/shared/ui/product-pricing/AuthForgePricingCard';
+import { PricingCard } from '@/shared/ui/pricing-card';
+import { UI_TEXT } from '@/shared/config/ui';
 import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 import layoutStyles from '@/app/products/layout.module.css';
 
 export default function AuthForgeProductPage() {
+  const params = useParams<{ locale?: string }>();
+  const rawLocale = typeof params.locale === 'string' ? params.locale : DEFAULT_LOCALE;
+  const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
+  const productCopy = getProductCopy('authforge', locale);
+  const pricingCard = createPricingCard('authforge', locale);
+  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('authforge');
   const pricingRef = useRef<HTMLDivElement>(null);
 
   const scrollToPricing = () => {
@@ -29,114 +38,94 @@ export default function AuthForgeProductPage() {
       <div className={layoutStyles.productSurface}>
         <main className={styles.page}>
           <ProductHero
-            title={AUTHFORGE_PRODUCT_COPY.name}
-            subtitle={`${AUTHFORGE_PRODUCT_COPY.shortDescription}.`}
-            trustTitle={AUTHFORGE_PRODUCT_COPY.hero.trustTitle}
-            trustDescription={AUTHFORGE_PRODUCT_COPY.hero.trustDescription}
+            title={productCopy.name}
+            subtitle={`${productCopy.shortDescription}.`}
+            trustTitle={productCopy.hero.trustTitle}
+            trustDescription={productCopy.hero.trustDescription}
             secondaryAction={
               <div className={styles.heroActions}>
                 <Button as="a" href="/demo" variant="secondary">
-                  {AUTHFORGE_PRODUCT_COPY.actions.viewDemo}
+                  {productCopy.actions.viewDemo}
                 </Button>
                 <Button as="a" href={docsEntryHref} variant="secondary">
-                  {AUTHFORGE_PRODUCT_COPY.actions.readDocs}
+                  {productCopy.actions.readDocs}
                 </Button>
                 <Button onClick={scrollToPricing} variant="primary">
-                  {AUTHFORGE_PRODUCT_COPY.actions.buyLicense}
+                  {productCopy.actions.buyLicense}
                 </Button>
               </div>
             }
           />
 
-          <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.audience} align="center">
+          <ProductSection title={productCopy.sectionTitles.audience} align="center">
             <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
               <ul className={styles.audienceList}>
-                {AUTHFORGE_PRODUCT_COPY.audience.map((item) => (
+                {productCopy.audience.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
           </ProductSection>
 
-          <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.included}>
+          <ProductSection title={productCopy.sectionTitles.included}>
             <div className={styles.featureGrid}>
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>
-                  {AUTHFORGE_PRODUCT_COPY.features.authentication.title}
-                </h3>
-                <ul className={styles.featureList}>
-                  {AUTHFORGE_PRODUCT_COPY.features.authentication.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>
-                  {AUTHFORGE_PRODUCT_COPY.features.sessionsAndSecurity.title}
-                </h3>
-                <ul className={styles.featureList}>
-                  {AUTHFORGE_PRODUCT_COPY.features.sessionsAndSecurity.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.featureCard}>
-                <h3 className={styles.featureTitle}>
-                  {AUTHFORGE_PRODUCT_COPY.features.architecture.title}
-                </h3>
-                <ul className={styles.featureList}>
-                  {AUTHFORGE_PRODUCT_COPY.features.architecture.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              {productCopy.featureGroups.map((group) => (
+                <div key={group.title} className={styles.featureCard}>
+                  <h3 className={styles.featureTitle}>{group.title}</h3>
+                  <ul className={styles.featureList}>
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </ProductSection>
 
-          <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.howItWorks} align="center">
+          <ProductSection title={productCopy.sectionTitles.howItWorks} align="center">
             <div className={styles.contentNarrow}>
               <ol className={styles.steps}>
-                {AUTHFORGE_PRODUCT_COPY.howItWorks.map((item) => (
+                {productCopy.howItWorks.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ol>
             </div>
           </ProductSection>
 
-          <ProductSection title={AUTHFORGE_PRODUCT_COPY.sectionTitles.tryBeforeYouBuy}>
+          <ProductSection title={productCopy.sectionTitles.tryBeforeYouBuy}>
             <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
               <div className={styles.trustBlock}>
                 <p className={styles.trustText}>
-                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.description}
+                  {productCopy.tryBeforeYouBuy.description}
                 </p>
 
                 <ul className={styles.trustList}>
                   <li>
                     <Link href="/demo">
-                      {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.demoLabel}
+                      {productCopy.tryBeforeYouBuy.links[0]?.label}
                     </Link>
                   </li>
 
                   <li>
                     <Link href={docsEntryHref}>
-                      {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.docsLabel}
+                      {productCopy.tryBeforeYouBuy.links[1]?.label}
                     </Link>
                   </li>
 
                   <li>
                     <Link href={architectureHref}>
-                      {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.links.architectureLabel}
+                      {productCopy.tryBeforeYouBuy.links[2]?.label}
                     </Link>
                   </li>
                 </ul>
 
                 <p className={styles.supportText}>
-                  {AUTHFORGE_PRODUCT_COPY.tryBeforeYouBuy.contactPrefix}{' '}
-                  <span className={styles.contactLead}>Contact us at</span>{' '}
+                  {productCopy.tryBeforeYouBuy.contactPrefix}{' '}
+                  <span className={styles.contactLead}>
+                    {productCopy.tryBeforeYouBuy.contactLead}
+                  </span>{' '}
                   <span className={styles.supportInline}>
-                    <span className={styles.supportEmail}>{AUTHFORGE_SUPPORT_EMAIL}</span>
+                    <span className={styles.supportEmail}>{productCopy.supportEmail}</span>
                     <CopySupportEmail />
                   </span>
                 </p>
@@ -146,7 +135,14 @@ export default function AuthForgeProductPage() {
 
           <div ref={pricingRef}>
             <div className={styles.pricingWrapper}>
-              <AuthForgePricingCard />
+              <PricingCard
+                {...pricingCard}
+                paymentTitle={
+                  BILLING_PROVIDERS.paypal ? UI_TEXT.payment.multiple : UI_TEXT.payment.single
+                }
+                onPayWithStripe={checkoutWithStripe}
+                onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
+              />
             </div>
           </div>
         </main>

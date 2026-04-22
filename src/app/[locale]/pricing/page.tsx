@@ -1,18 +1,24 @@
-import { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
+import { getPricingPageItems } from '@/shared/config/products/pricing';
 import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
 import styles from '@/app/(business)/pricing/page.module.css';
+import { getLocale } from '@/shared/lib/i18n/getLocale';
 
 type PricingPageProps = {
+  params: Promise<{
+    locale: string;
+  }>;
   searchParams?: Promise<{
     product?: string;
   }>;
 };
 
-export default async function PricingPage({ searchParams }: PricingPageProps) {
-  const params = await searchParams;
-  const product = params?.product;
+export default async function PricingPage({ params, searchParams }: PricingPageProps) {
+  const { locale: localeParam } = await params;
+  const resolvedSearchParams = await searchParams;
+  const product = resolvedSearchParams?.product;
+  const pricingItems = getPricingPageItems(getLocale(localeParam));
 
-  const visibleItems = PRICING_PAGE_ITEMS.filter((item) => !product || item.productId === product);
+  const visibleItems = pricingItems.filter((item) => !product || item.productId === product);
 
   return (
     <section className={styles.page}>
