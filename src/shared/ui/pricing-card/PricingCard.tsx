@@ -20,6 +20,10 @@ export type PricingCardProps = {
   price: string;
   features: PricingFeature[];
   paymentTitle?: string;
+  deliveryNotice?: string;
+  termsPrefix?: string;
+  termsLabel?: string;
+  termsError?: string;
   onPayWithStripe?: (termsAccepted: boolean) => void | Promise<void>;
   onPayWithPaypal?: (termsAccepted: boolean) => void | Promise<void>;
   footerNote?: string;
@@ -32,6 +36,10 @@ export function PricingCard({
   price,
   features,
   paymentTitle,
+  deliveryNotice = 'After purchase, the delivery email may appear in Spam.',
+  termsPrefix = 'I agree to the',
+  termsLabel = 'Terms & Conditions',
+  termsError = 'You must accept the Terms before proceeding.',
   onPayWithStripe,
   onPayWithPaypal,
   footerNote,
@@ -61,9 +69,7 @@ export function PricingCard({
             ))}
           </ul>
           {paymentTitle && <p className={`${styles.paymentTitle} paymentTitle`}>{paymentTitle}</p>}
-          <p className={styles.deliveryNotice}>
-            After purchase, the delivery email may appear in Spam.
-          </p>
+          <p className={styles.deliveryNotice}>{deliveryNotice}</p>
 
           <div
             className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
@@ -117,9 +123,9 @@ export function PricingCard({
                   className={showError ? styles.checkboxError : undefined}
                 />
                 <span>
-                  I agree to the{' '}
+                  {termsPrefix}{' '}
                   <Link href="/legal" className={styles.termsLink}>
-                    Terms & Conditions
+                    {termsLabel}
                   </Link>
                 </span>
               </label>
@@ -127,7 +133,7 @@ export function PricingCard({
               {showError && (
                 <p className={styles.errorText}>
                   <span aria-hidden="true">⚠</span>
-                  <span>You must accept the Terms before proceeding.</span>
+                  <span>{termsError}</span>
                 </p>
               )}
             </div>

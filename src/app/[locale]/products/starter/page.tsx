@@ -3,16 +3,13 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
-import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
 import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
-import { useCheckout } from '@/shared/lib/billing/useCheckout';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
-import { PricingCard } from '@/shared/ui/pricing-card';
-import { UI_TEXT } from '@/shared/config/ui';
 import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 import layoutStyles from '@/app/products/layout.module.css';
@@ -23,7 +20,6 @@ export default function StarterPage() {
   const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
   const productCopy = getProductCopy('starter', locale);
   const pricingCard = createPricingCard('starter', locale);
-  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout('starter');
   const pricingRef = useRef<HTMLDivElement>(null);
 
   const scrollToPricing = () => {
@@ -126,15 +122,7 @@ export default function StarterPage() {
 
           <div ref={pricingRef}>
             <div className={styles.pricingWrapper}>
-              <PricingCard
-                {...pricingCard}
-                paymentTitle={
-                  BILLING_PROVIDERS.paypal ? UI_TEXT.payment.multiple : UI_TEXT.payment.single
-                }
-                onPayWithStripe={checkoutWithStripe}
-                onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
-                footerNote="Access instructions will be sent by email after purchase"
-              />
+              <PricingCardContainer productId="starter" card={pricingCard} locale={locale} />
             </div>
           </div>
         </main>

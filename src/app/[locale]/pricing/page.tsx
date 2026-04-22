@@ -16,7 +16,8 @@ export default async function PricingPage({ params, searchParams }: PricingPageP
   const { locale: localeParam } = await params;
   const resolvedSearchParams = await searchParams;
   const product = resolvedSearchParams?.product;
-  const pricingItems = getPricingPageItems(getLocale(localeParam));
+  const locale = getLocale(localeParam);
+  const pricingItems = getPricingPageItems(locale);
 
   const visibleItems = pricingItems.filter((item) => !product || item.productId === product);
 
@@ -25,7 +26,7 @@ export default async function PricingPage({ params, searchParams }: PricingPageP
       <div className={styles.grid}>
         {visibleItems.map((item) => (
           <div key={item.productId} className={styles.card}>
-            <PricingCardContainer productId={item.productId} card={item.card} />
+            <PricingCardContainer productId={item.productId} card={item.card} locale={locale} />
           </div>
         ))}
       </div>
