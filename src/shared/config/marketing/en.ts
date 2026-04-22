@@ -3,9 +3,9 @@ import type { MarketingDictionary } from './types';
 export const marketingEn: MarketingDictionary = {
   home: {
     hero: {
-      headline: 'Production-ready SaaS auth starter and Next.js starter kit',
+      headline: 'Ready-made solutions for SaaS and Next.js development',
       lead:
-        'Software Forge builds production-ready developer foundations for teams shipping real products: a secure authentication starter for SaaS apps and a clean Next.js starter kit designed for fast setup, maintainable code, and confident extension.',
+        'Software Forge builds ready-to-use solutions for teams shipping real products: secure authentication for SaaS applications and a clean Next.js project foundation designed for fast setup, maintainable development, and long-term product growth.',
     },
     products: [
       {

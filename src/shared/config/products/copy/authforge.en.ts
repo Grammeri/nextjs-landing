@@ -57,7 +57,7 @@ export const authforgeEn: ProductCopy = {
     },
   ],
   howItWorks: [
-    'Download the AuthForge source package',
+    'Download the AuthForge ZIP archive',
     'Configure environment variables for your app',
     'Connect PostgreSQL and run Prisma migrations',
     'Launch the authentication flows locally',
