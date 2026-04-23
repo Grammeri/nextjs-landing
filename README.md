@@ -20,67 +20,57 @@ Install dependencies:
 
 ```bash
 pnpm install
-```
 
 Start development server:
 
-```bash
 pnpm dev
-```
 
-Open `http://localhost:3000` in your browser.
+Open http://localhost:3000
+ in your browser.
 
-## WSL Workflow
+WSL Workflow
 
 This repository should be developed and verified inside WSL.
 
-Do not run project commands from Windows via UNC paths such as `\\wsl.localhost\...`.
-Do not use Windows `pushd` or `cmd /c` against the WSL project path.
+Do not run project commands from Windows via UNC paths such as \\wsl.localhost\..., and do not use Windows pushd or cmd /c against the WSL project path.
 
-Use a WSL shell from the project root:
+Open the project in WSL:
 
-```bash
 cd ~/code/nextjs-landing
-```
 
-Run development commands inside WSL only:
+Install dependencies:
 
-```bash
-pnpm install
-pnpm dev
-```
+cd ~/code/nextjs-landing && pnpm install
 
-Run verification commands inside WSL only:
+Start the development server:
 
-```bash
+cd ~/code/nextjs-landing && pnpm dev
+
+Run lint:
+
 cd ~/code/nextjs-landing && pnpm lint
+
+Run build:
+
 cd ~/code/nextjs-landing && pnpm build
-```
 
-If a single combined verification command is needed, use:
+Run full verification:
 
-```bash
 cd ~/code/nextjs-landing && pnpm lint && pnpm build
-```
-
-## Build
+Build
 
 To build the production version:
 
-```bash
 pnpm build
-```
-
-## Notes
+Notes
 
 This repository contains only the public-facing landing. Authentication, private dashboards, and backend logic are not included here.
 
-## Internal Documentation
+Internal Documentation
 
-`docs/internal/` contains system-level developer documentation for contributors.
-It is not part of the public website.
+docs/internal/ contains system-level developer documentation for contributors. It is not part of the public website.
 
-## Product Model
+Product model
 
 Each product published on this landing is sold as a one-time purchase
 with a single price per product.
