@@ -79,3 +79,8 @@ token-list.txt
 
 # local downloaded test archives
 *-test.zip
+
+# local editor / agent files
+.codex/
+.vscode/
+.codex

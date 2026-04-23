@@ -20,7 +20,7 @@ export const marketingRu: MarketingDictionary = {
         href: '/products/starter',
         title: 'Next.js Professional Starter',
         description:
-          'Профессиональная базовая настройка проекта на Next.js для реальных приложений и тестовых заданий: TypeScript, ESLint, Prettier, Husky и готовая к CI структура проекта для чистой и поддерживаемой разработки.',
+          'Профессиональная базовая настройка проекта на Next.js для реальных приложений и тестовых заданий: TypeScript, ESLint, Prettier, Husky и готовая конфигурация CI для чистой и поддерживаемой разработки.',
       },
     ],
   },
