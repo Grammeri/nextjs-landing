@@ -5,8 +5,6 @@ export const authforgeEn: ProductCopy = {
   name: 'AuthForge',
   shortDescription:
     'Production-ready authentication starter for SaaS apps with email/password auth, email verification, password reset, secure sessions, rate limiting, and a Prisma + PostgreSQL reference implementation',
-  cardDescription:
-    'Production-ready authentication foundation with secure sessions, baseline abuse protection, and verified setup for modern SaaS.',
   supportEmail: 'support@software-forge.dev',
   actions: {
     viewDemo: 'View Demo',

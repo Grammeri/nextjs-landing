@@ -5,8 +5,6 @@ export const authforgeRu: ProductCopy = {
   name: 'AuthForge',
   shortDescription:
     'Готовая аутентификация для SaaS-приложений на Next.js: регистрация и вход по email и паролю, подтверждение email, сброс пароля, безопасные сессии, ограничение частоты запросов и пример реализации на Prisma + PostgreSQL',
-  cardDescription:
-    'Production-ready основа аутентификации с безопасными сессиями, базовой защитой от злоупотреблений и проверенной настройкой для современного SaaS.',
   supportEmail: 'support@software-forge.dev',
   actions: {
     viewDemo: 'Смотреть демо',

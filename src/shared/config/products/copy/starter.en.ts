@@ -4,11 +4,7 @@ export const starterEn: ProductCopy = {
   productId: 'starter',
   name: 'Next.js Professional Starter',
   shortDescription:
-    'Clean, production-ready Next.js starter kit with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and a CI-ready project structure',
-  cardDescription:
-    'Next.js Professional Starter gives you a polished project baseline for starting real applications, technical assignments, and learning-focused builds without spending hours wiring up the same tooling from scratch.\n\n' +
-    'It combines a clean App Router setup, strict TypeScript configuration, predictable folder organization, formatting, linting, Git hooks, commit validation, and CI-ready structure.\n\n' +
-    'The result is a starter kit that feels small enough to understand, but organized enough to grow into a serious project.',
+    'A clean Next.js starter kit for real projects and technical assignments, with TypeScript, ESLint, Prettier, Husky, and a CI-ready project structure built for maintainable development',
   supportEmail: 'support@software-forge.dev',
   actions: {
     readDocs: 'Read Docs',

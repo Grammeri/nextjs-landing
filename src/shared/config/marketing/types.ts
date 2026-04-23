@@ -31,7 +31,6 @@ export type ProductCopy = {
   productId: ProductId;
   name: string;
   shortDescription: string;
-  cardDescription: string;
   supportEmail: string;
   actions: Record<string, string>;
   sectionTitles: {
