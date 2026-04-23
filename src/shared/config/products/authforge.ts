@@ -1,4 +1,4 @@
-import { authforgeEn } from '@/shared/config/products/copy/authforge.en';
+import { authforgeEn } from '@/shared/config/products/authforge/en';
 
 export const AUTHFORGE_PRODUCT_COPY = authforgeEn;
 
