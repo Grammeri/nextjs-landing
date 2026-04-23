@@ -2,14 +2,13 @@
 
 import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
-import { PricingCard } from '@/shared/ui/pricing-card';
-import type { PRICING_PAGE_ITEMS } from '@/shared/config/products/pricing';
+import { PricingCard, type PricingCardProps } from '@/shared/ui/pricing-card';
 import type { Locale } from '@/shared/config/i18n';
 import { getUiText } from '@/shared/lib/i18n/getUiText';
 
 type PricingCardContainerProps = {
   productId: string;
-  card: (typeof PRICING_PAGE_ITEMS)[number]['card'];
+  card: PricingCardProps;
   locale: Locale;
 };
 
