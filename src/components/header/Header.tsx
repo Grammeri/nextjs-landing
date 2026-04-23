@@ -2,7 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
+
+const headerLabels = {
+  en: {
+    docs: 'Docs',
+    pricing: 'Pricing',
+  },
+  ru: {
+    docs: 'Документация',
+    pricing: 'Цены',
+  },
+};
 
 function getHeaderHeightPx() {
   const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
@@ -12,6 +24,9 @@ function getHeaderHeightPx() {
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const locale = pathname.startsWith('/ru') ? 'ru' : 'en';
+  const labels = headerLabels[locale];
   const docsHref = '/en/docs';
 
   useEffect(() => {
@@ -48,10 +63,10 @@ export default function Header() {
           </Link>
           <nav className={styles.nav}>
             <Link href={docsHref} className={styles.navLink}>
-              Docs
+              {labels.docs}
             </Link>
             <Link href="/pricing" className={styles.navLink}>
-              Pricing
+              {labels.pricing}
             </Link>
           </nav>
         </div>

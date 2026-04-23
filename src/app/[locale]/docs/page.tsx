@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { getDocsEntryRoute } from './_lib/products';
 import styles from './page.module.css';
 
+const docsIndexTitle = {
+  en: 'Documentation',
+  ru: 'Документация',
+};
+
 type DocsIndexPageProps = {
   params: Promise<{
     locale: string;
@@ -11,6 +16,7 @@ type DocsIndexPageProps = {
 
 export default function DocsIndexPage({ params }: DocsIndexPageProps) {
   const { locale } = use(params);
+  const title = locale === 'ru' ? docsIndexTitle.ru : docsIndexTitle.en;
 
   const authforgeDocsHref = `/${locale}${getDocsEntryRoute('authforge')}`;
   const starterDocsHref = `/${locale}${getDocsEntryRoute('starter')}`;
@@ -20,7 +26,7 @@ export default function DocsIndexPage({ params }: DocsIndexPageProps) {
       <div className="container">
         <section className={styles.panel} aria-labelledby="docs-index-title">
           <h1 id="docs-index-title" className={styles.title}>
-            Documentation
+            {title}
           </h1>
 
           <ul className={styles.list}>
