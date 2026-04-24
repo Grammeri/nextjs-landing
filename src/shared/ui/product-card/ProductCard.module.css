@@ -4,16 +4,17 @@
   flex-direction: column;
   height: 100%;
 
-  padding: clamp(24px, 3vw, 32px) clamp(24px, 3vw, 32px) clamp(32px, 4vw, 48px)
-    clamp(24px, 3vw, 32px);
+  padding: clamp(24px, 3vw, 32px) clamp(24px, 3vw, 32px) clamp(32px, 4vw, 48px) clamp(24px, 3vw, 32px);
   min-height: var(--product-card-min-height);
 
-  background: var(--color-texas-blue);
-  border: 1px solid var(--card-border-color);
+  background: var(--product-card-bg, var(--color-texas-blue));
+  border: var(--border-width-sm) solid var(--product-card-border-color, var(--card-border-color));
   border-radius: var(--card-border-radius);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--product-card-shadow, var(--shadow-lg));
 
   transition:
+    background var(--motion-duration-base) var(--motion-easing-standard),
+    border-color var(--motion-duration-base) var(--motion-easing-standard),
     box-shadow var(--motion-duration-base) var(--motion-easing-standard),
     transform var(--motion-duration-base) var(--motion-easing-standard);
 }
@@ -33,7 +34,7 @@
 }
 
 .card:hover {
-  box-shadow: var(--interaction-hover-shadow);
+  box-shadow: var(--product-card-hover-shadow, var(--interaction-hover-shadow));
   transform: translateY(var(--interaction-hover-translate-y));
 }
 

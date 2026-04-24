@@ -7,6 +7,13 @@
   padding-inline: var(--spacing-md);
 }
 
+.shellUnderHeader {
+  --product-card-bg: var(--pricing-card-under-header-bg);
+  --product-card-border-color: var(--pricing-card-under-header-border);
+  --product-card-shadow: var(--pricing-card-under-header-shadow);
+  --product-card-hover-shadow: var(--pricing-card-under-header-shadow);
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -15,7 +22,7 @@
   gap: 0;
 
   color: var(--color-on-image-primary);
- 
+
   min-width: 0;
 
   padding: var(--spacing-xl);

@@ -482,6 +482,15 @@
   --pricing-card-checkbox-offset-top: 3px;
   --pricing-card-error-accent-width: 3px;
 
+  /* Pricing card — under sticky header state */
+  --pricing-card-under-header-bg: linear-gradient(180deg,
+    color-mix(in srgb, var(--color-accent) 92%, var(--color-text-inverse) 8%),
+    color-mix(in srgb, var(--color-accent) 76%, var(--color-texas-blue) 24%));
+  --pricing-card-under-header-border: color-mix(in srgb,
+    var(--color-text-inverse) 18%,
+    transparent);
+  --pricing-card-under-header-shadow: var(--shadow-overlay);
+
   /* ===============================
    Pricing Page
    =============================== */

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CheckIcon } from '@/shared/ui/icons';
 import { StripeButton, PaypalButton } from '@/shared/ui/payment-buttons';
 import { SelectableGroup } from '@/shared/ui/selection';
@@ -45,12 +45,66 @@ export function PricingCard({
   footerNote,
   paymentLayout = 'full',
 }: PricingCardProps) {
+  const shellRef = useRef<HTMLDivElement>(null);
+
   const [selectedProvider, setSelectedProvider] = useState<PaymentProvider | null>(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [isUnderHeader, setIsUnderHeader] = useState(false);
+
+  useEffect(() => {
+    const getHeaderHeight = () => {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue('--header-height')
+        .trim();
+
+      const value = Number.parseInt(raw, 10);
+
+      return Number.isFinite(value) ? value : 72;
+    };
+
+    let raf = 0;
+
+    const updateCardPosition = () => {
+      raf = 0;
+
+      const element = shellRef.current;
+
+      if (!element) {
+        setIsUnderHeader(false);
+        return;
+      }
+
+      const rect = element.getBoundingClientRect();
+      const headerHeight = getHeaderHeight();
+
+      setIsUnderHeader(rect.top <= headerHeight && rect.bottom > headerHeight);
+    };
+
+    const scheduleUpdate = () => {
+      if (raf) return;
+
+      raf = window.requestAnimationFrame(updateCardPosition);
+    };
+
+    updateCardPosition();
+
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+    };
+  }, []);
 
   return (
-    <div className={styles.shell}>
+    <div
+      ref={shellRef}
+      className={`${styles.shell} ${isUnderHeader ? styles.shellUnderHeader : ''}`}
+    >
       <ProductCard interactive={false}>
         <div className={styles.card}>
           <h3>{title}</h3>
