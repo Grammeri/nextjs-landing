@@ -48,11 +48,11 @@
   /* ===============================
    Surface — Semantic
    =============================== */
-   --color-surface-base: var(--content-surface-bg);
-   --color-surface-raised: var(--color-bg);
-   --color-surface-overlay: var(--color-bg);
-   --color-surface-inverse: var(--color-surface-system);
-   --color-surface-subtle: #f8fafc;
+  --color-surface-base: var(--content-surface-bg);
+  --color-surface-raised: var(--color-bg);
+  --color-surface-overlay: var(--color-bg);
+  --color-surface-inverse: var(--color-surface-system);
+  --color-surface-subtle: #f8fafc;
 
   /* Texas flag inspired */
   --color-texas-blue: var(--color-product-text);
@@ -71,18 +71,18 @@
   --color-surface-cookie-button-border: var(--color-text-inverse);
   --color-surface-cookie-button-hover-bg: rgba(255, 255, 255, 0.2);
 
-/* Button — Fixed control sizing */
---button-font-size-fixed: 18px;
---button-line-height-fixed: 1.2;
---button-padding-y-fixed: 14px;
---button-padding-x-fixed: 24px;
+  /* Button — Fixed control sizing */
+  --button-font-size-fixed: 18px;
+  --button-line-height-fixed: 1.2;
+  --button-padding-y-fixed: 14px;
+  --button-padding-x-fixed: 24px;
 
-/* Product CTA */
---product-cta-font-size: 20px;
---product-cta-line-height: 1.2;
---product-cta-padding-y: 15px;
---product-cta-padding-x: 28px;
---product-cta-gap: var(--spacing-md);
+  /* Product CTA */
+  --product-cta-font-size: 20px;
+  --product-cta-line-height: 1.2;
+  --product-cta-padding-y: 15px;
+  --product-cta-padding-x: 28px;
+  --product-cta-gap: var(--spacing-md);
 
   /* List markers (checkmarks, bullets) */
   --color-list-marker: var(--color-texas-blue);
@@ -119,21 +119,21 @@
    Docs Layout Spacing
    =============================== */
 
-   --docs-space-paragraph: var(--spacing-md);
-   --docs-space-list: var(--spacing-sm);
-   --docs-space-section: var(--spacing-xl);
-   --docs-space-subsection: var(--spacing-lg);
-   --docs-space-code: var(--spacing-lg);
-   --docs-space-table: var(--spacing-lg);
-   --docs-space-hr: var(--spacing-lg);
-   --docs-sidebar-drawer-width: 280px;
-   --docs-mobile-menu-icon-gap: 4px;
-   --docs-mobile-menu-line-width: 14px;
-   --docs-mobile-menu-line-height: 2px;
-   --docs-mobile-topbar-min-height: 40px;
-   --docs-mobile-topbar-padding-top: 6px;
-   --docs-mobile-scroll-offset: 56px;
-   --docs-copy-button-transition-duration: 0.15s;
+  --docs-space-paragraph: var(--spacing-md);
+  --docs-space-list: var(--spacing-sm);
+  --docs-space-section: var(--spacing-xl);
+  --docs-space-subsection: var(--spacing-lg);
+  --docs-space-code: var(--spacing-lg);
+  --docs-space-table: var(--spacing-lg);
+  --docs-space-hr: var(--spacing-lg);
+  --docs-sidebar-drawer-width: 280px;
+  --docs-mobile-menu-icon-gap: 4px;
+  --docs-mobile-menu-line-width: 14px;
+  --docs-mobile-menu-line-height: 2px;
+  --docs-mobile-topbar-min-height: 40px;
+  --docs-mobile-topbar-padding-top: 6px;
+  --docs-mobile-scroll-offset: 56px;
+  --docs-copy-button-transition-duration: 0.15s;
 
   /* Typography — final marketing scale */
   --font-base:
@@ -141,13 +141,13 @@
     'Open Sans', 'Helvetica Neue', sans-serif;
   --font-family-mono:
     ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-    --font-size-base: clamp(16px, 0.95rem + 0.2vw, 20px);
-    --font-size-sm: clamp(14px, 0.9rem + 0.15vw, 18px);
-    --font-size-lg: clamp(18px, 1rem + 0.3vw, 22px);
-    --font-size-xl: clamp(24px, 1.2rem + 1vw, 32px);
-    --font-size-h1: clamp(36px, 1.9rem + 2.8vw, 64px);
-    --font-size-h2: clamp(30px, 1.6rem + 1.8vw, 48px);
-    --font-size-h3: clamp(24px, 1.3rem + 1vw, 36px);
+  --font-size-base: clamp(16px, 0.95rem + 0.2vw, 20px);
+  --font-size-sm: clamp(14px, 0.9rem + 0.15vw, 18px);
+  --font-size-lg: clamp(18px, 1rem + 0.3vw, 22px);
+  --font-size-xl: clamp(24px, 1.2rem + 1vw, 32px);
+  --font-size-h1: clamp(36px, 1.9rem + 2.8vw, 64px);
+  --font-size-h2: clamp(30px, 1.6rem + 1.8vw, 48px);
+  --font-size-h3: clamp(24px, 1.3rem + 1vw, 36px);
   --line-height-base: 1.6;
   --line-height-heading: 1.2;
   --line-height-subheading: 1.3;
@@ -230,11 +230,11 @@
    Product Feature Grid
    =============================== */
 
-   --product-feature-grid-columns: 3;
-   --product-feature-grid-max-width: var(--container-width);
-   --product-feature-grid-gap: var(--spacing-sm);
-   --product-feature-card-extra-padding-bottom-desktop: 12px;
-   --product-feature-card-extra-padding-bottom-mobile: 28px;
+  --product-feature-grid-columns: 3;
+  --product-feature-grid-max-width: var(--container-width);
+  --product-feature-grid-gap: var(--spacing-sm);
+  --product-feature-card-extra-padding-bottom-desktop: 12px;
+  --product-feature-card-extra-padding-bottom-mobile: 28px;
   /* Layout */
   --header-height: 72px;
   --hero-min-height: 30vh;
@@ -260,44 +260,44 @@
   --section-padding-top-compact: clamp(24px, 4vw, 32px);
   --section-padding-bottom-compact: clamp(24px, 4vw, 32px);
 
-/* ===============================
+  /* ===============================
    Product Sections
    =============================== */
 
-   --section-padding-top-product: clamp(24px, 4vw, 32px);
-   --section-padding-bottom-product: clamp(24px, 4vw, 32px);
-   
-   /* ===============================
+  --section-padding-top-product: clamp(24px, 4vw, 32px);
+  --section-padding-bottom-product: clamp(24px, 4vw, 32px);
+
+  /* ===============================
       Section Content System
       =============================== */
-   
-   /* Inner spacing */
-   --section-content-padding: clamp(20px, 3vw, 48px);
-   --section-content-padding-compact: clamp(16px, 2vw, 32px);
-   --section-content-padding-wide: clamp(32px, 4vw, 64px);
-   
-   /* Width system */
---section-content-max-width: 900px;
---section-content-max-width-narrow: 720px;
---section-content-max-width-wide: 1100px;
---product-steps-marker-size-mobile: 40px;
---product-steps-marker-size-mobile-compact: 36px;
-   
-   /* =============================== */
-   
-   --spacing-icon-text: 12px;
+
+  /* Inner spacing */
+  --section-content-padding: clamp(20px, 3vw, 48px);
+  --section-content-padding-compact: clamp(16px, 2vw, 32px);
+  --section-content-padding-wide: clamp(32px, 4vw, 64px);
+
+  /* Width system */
+  --section-content-max-width: 900px;
+  --section-content-max-width-narrow: 720px;
+  --section-content-max-width-wide: 1100px;
+  --product-steps-marker-size-mobile: 40px;
+  --product-steps-marker-size-mobile-compact: 36px;
+
+  /* =============================== */
+
+  --spacing-icon-text: 12px;
 
   /* ===============================
      Product lists
      =============================== */
-  
-     --product-list-icon-offset: 10px;
-     --product-list-icon-offset-large: 12px;
-     --product-list-text-max-width: 40ch;
-     --product-list-line-height: 1.35;
-     --product-list-line-height-tight: 1.2;
-     --product-list-line-height-premium: 1.24;
-     --product-list-check-column-width: 20px;
+
+  --product-list-icon-offset: 10px;
+  --product-list-icon-offset-large: 12px;
+  --product-list-text-max-width: 40ch;
+  --product-list-line-height: 1.35;
+  --product-list-line-height-tight: 1.2;
+  --product-list-line-height-premium: 1.24;
+  --product-list-check-column-width: 20px;
 
   /* Product page text */
   --color-product-text: #223a5e;
@@ -350,25 +350,46 @@
   --content-surface-padding-x: clamp(16px, 3vw, 48px);
   --content-surface-padding-y: clamp(16px, 3vw, 48px);
 
-/* Header surface */
---header-bg-transparent: transparent;
---header-bg-scrolled: rgb(5, 25, 62);
---header-backdrop-blur: blur(6px);
---header-transition-duration: 0.2s;
---header-transition-easing: ease;
---header-z-index: 10;
---header-border-color: rgba(0, 0, 0, 0.06);
---header-font-size: 22px;
---header-font-size-mobile: 14px;
---header-nav-gap: clamp(12px, 2vw, 24px);
---header-nav-gap-mobile: var(--spacing-sm);
+  /* Header surface */
+  --header-bg-transparent: transparent;
+  --header-bg-scrolled: rgb(5, 25, 62);
+  --header-backdrop-blur: blur(6px);
+  --header-transition-duration: 0.2s;
+  --header-transition-easing: ease;
+  --header-z-index: 10;
+  --header-border-color: rgba(0, 0, 0, 0.06);
+  --header-font-size: 22px;
+  --header-font-size-mobile: 14px;
+  --header-nav-gap: clamp(12px, 2vw, 24px);
+  --header-nav-gap-mobile: var(--spacing-sm);
 
-/* ===============================
+  /* Header language dropdown */
+  --header-language-control-height: calc(var(--header-height) - var(--spacing-md));
+  --header-language-control-padding-x: var(--spacing-sm);
+  --header-language-control-padding-x-mobile: var(--spacing-xs);
+  --header-language-gap: var(--spacing-xs);
+  --header-language-gap-mobile: var(--spacing-xxs);
+
+  --header-language-font-size: calc(var(--header-font-size) * 0.78);
+  --header-language-font-size-mobile: calc(var(--header-font-size-mobile) * 0.9);
+  --header-language-font-weight: var(--font-weight-bold);
+  --header-language-letter-spacing: 0.08em;
+
+  --header-language-icon-size: calc(var(--header-font-size) * 1.05);
+  --header-language-icon-size-mobile: calc(var(--header-font-size-mobile) * 1.05);
+
+  --header-language-menu-min-width: calc(var(--header-height) + var(--spacing-xs));
+  --header-language-menu-bg: var(--color-bg);
+  --header-language-menu-color: var(--color-product-text);
+  --header-language-menu-hover-bg: color-mix(in srgb, var(--color-product-text) 8%, transparent);
+  --header-language-menu-active-bg: color-mix(in srgb, var(--color-product-text) 10%, transparent);
+
+  /* ===============================
    Header — Scrolled State (text)
    =============================== */
 
-   --header-text-inverse: color-mix(in srgb, var(--color-text-inverse) 85%, transparent);
-   --header-text-inverse-strong: var(--color-text-inverse);
+  --header-text-inverse: color-mix(in srgb, var(--color-text-inverse) 85%, transparent);
+  --header-text-inverse-strong: var(--color-text-inverse);
 
   /* Footer surface */
   --footer-bg: rgba(10, 20, 35);
@@ -376,9 +397,9 @@
   /* Footer decorative */
   --footer-divider-color: rgba(255, 255, 255, 0.12);
   --footer-divider-gradient: linear-gradient(to bottom,
-      transparent,
-      var(--footer-divider-color),
-      transparent);
+    transparent,
+    var(--footer-divider-color),
+    transparent);
 
   /* Footer divider metrics */
   --footer-divider-thickness: 1px;
@@ -450,41 +471,41 @@
   --focus-ring-color: var(--color-accent);
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 
-/* Pricing */
---pricing-card-max-width: 520px;
---pricing-card-font-size-mobile: 16px;
---pricing-card-line-height-mobile: 1.5;
---pricing-card-price-font-size-mobile: 18px;
---pricing-card-description-max-width-mobile: 280px;
---pricing-card-feature-icon-slot-mobile: var(--spacing-lg);
---pricing-card-feature-icon-size-mobile: var(--spacing-md);
---pricing-card-checkbox-offset-top: 3px;
---pricing-card-error-accent-width: 3px;
+  /* Pricing */
+  --pricing-card-max-width: 520px;
+  --pricing-card-font-size-mobile: 16px;
+  --pricing-card-line-height-mobile: 1.5;
+  --pricing-card-price-font-size-mobile: 18px;
+  --pricing-card-description-max-width-mobile: 280px;
+  --pricing-card-feature-icon-slot-mobile: var(--spacing-lg);
+  --pricing-card-feature-icon-size-mobile: var(--spacing-md);
+  --pricing-card-checkbox-offset-top: 3px;
+  --pricing-card-error-accent-width: 3px;
 
-/* ===============================
+  /* ===============================
    Pricing Page
    =============================== */
 
---pricing-page-padding-top: 4rem;
---pricing-page-padding-bottom: 4rem;
---pricing-page-padding-x: 1.5rem;
+  --pricing-page-padding-top: 4rem;
+  --pricing-page-padding-bottom: 4rem;
+  --pricing-page-padding-x: 1.5rem;
 
-/* Mobile */
---pricing-page-padding-top-mobile: 2rem;
---pricing-page-padding-bottom-mobile: 2rem;
+  /* Mobile */
+  --pricing-page-padding-top-mobile: 2rem;
+  --pricing-page-padding-bottom-mobile: 2rem;
 
-/* Grid spacing */
---pricing-grid-gap: var(--spacing-2xl);
---pricing-grid-gap-mobile: var(--spacing-lg);
+  /* Grid spacing */
+  --pricing-grid-gap: var(--spacing-2xl);
+  --pricing-grid-gap-mobile: var(--spacing-lg);
 
-/* Product cards */
---product-card-width: min(100%, 440px);
+  /* Product cards */
+  --product-card-width: min(100%, 440px);
 
-/* Product card header height (aligns descriptions across cards) */
---product-card-header-height: 72px;
+  /* Product card header height (aligns descriptions across cards) */
+  --product-card-header-height: 72px;
 
-/* Minimum height for product cards (ensures visual balance) */
---product-card-min-height: 240px;
+  /* Minimum height for product cards (ensures visual balance) */
+  --product-card-min-height: 240px;
 
   /* selection base */
   --select-border-radius: var(--radius-md);
@@ -583,7 +604,7 @@
   --legal-nav-active-underline-height: 2px;
   --legal-nav-active-underline-radius: 2px;
 
---legal-total-offset: calc(var(--header-height) + var(--legal-nav-height));
+  --legal-total-offset: calc(var(--header-height) + var(--legal-nav-height));
 }
 
 html,
@@ -742,46 +763,47 @@ ol {
    Page Layout System
    =============================== */
 
-   .pageShell {
-    min-height: 100vh;
-  
-    padding-top: calc(var(--page-shell-padding-y) + var(--page-shell-header-offset));
-    padding-bottom: var(--page-shell-padding-y);
-    padding-left: var(--page-shell-padding-x);
-    padding-right: var(--page-shell-padding-x);
-  
-    background-color: var(--content-surface-bg);
-  }
-  
-   @media (max-width: 768px) {
-    .pageShell {
-      padding-top: var(--spacing-lg);
-    }
-  }
+.pageShell {
+  min-height: 100vh;
 
+  padding-top: calc(var(--page-shell-padding-y) + var(--page-shell-header-offset));
+  padding-bottom: var(--page-shell-padding-y);
+  padding-left: var(--page-shell-padding-x);
+  padding-right: var(--page-shell-padding-x);
+
+  background-color: var(--content-surface-bg);
+}
+
+@media (max-width: 768px) {
+  .pageShell {
+    padding-top: var(--spacing-lg);
+  }
+}
+
+.pageSurface {
+  max-width: var(--content-surface-max-width);
+  margin: 0 auto;
+
+  padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
+
+  background: var(--content-surface-bg);
+  border: var(--content-surface-border);
+  border-radius: var(--content-surface-radius);
+  box-shadow: var(--content-surface-shadow);
+}
+
+@media (max-width: 480px) {
   .pageSurface {
-    max-width: var(--content-surface-max-width);
-    margin: 0 auto;
-  
-    padding: var(--content-surface-padding-y) var(--content-surface-padding-x);
-  
-    background: var(--content-surface-bg);
-    border: var(--content-surface-border);
-    border-radius: var(--content-surface-radius);
-    box-shadow: var(--content-surface-shadow);
+    max-width: none;
+    margin: 0;
+
+    background: transparent;
+    /* ВАЖНО */
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+
+    padding-left: 0;
+    padding-right: 0;
   }
-  
-  @media (max-width: 480px) {
-    .pageSurface {
-      max-width: none;
-      margin: 0;
-  
-      background: transparent;   /* ВАЖНО */
-      border: none;
-      box-shadow: none;
-      border-radius: 0;
-  
-      padding-left: 0;
-      padding-right: 0;
-    }
-  }
+}

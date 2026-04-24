@@ -3,6 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import {
+  getLocaleFromPathname,
+  getLocalizedHref,
+  type Locale,
+} from '@/shared/lib/i18n/localizedHref';
+
+import { LanguageDropdown } from './LanguageDropdown';
 import styles from './Header.module.css';
 
 const headerLabels = {
@@ -14,20 +22,25 @@ const headerLabels = {
     docs: 'Документация',
     pricing: 'Цены',
   },
-};
+} as const satisfies Record<Locale, { docs: string; pricing: string }>;
 
 function getHeaderHeightPx() {
   const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
   const value = Number.parseInt(raw, 10);
+
   return Number.isFinite(value) ? value : 72;
 }
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const locale = pathname.startsWith('/ru') ? 'ru' : 'en';
+
+  const locale = getLocaleFromPathname(pathname);
   const labels = headerLabels[locale];
-  const docsHref = '/en/docs';
+
+  const homeHref = getLocalizedHref(locale, '/');
+  const docsHref = getLocalizedHref(locale, '/docs');
+  const pricingHref = getLocalizedHref(locale, '/pricing');
 
   useEffect(() => {
     const headerHeight = getHeaderHeightPx();
@@ -42,14 +55,16 @@ export default function Header() {
 
     const onScroll = () => {
       if (raf) return;
+
       raf = window.requestAnimationFrame(update);
     };
 
-    update(); // initial state (important for reload on scrolled page)
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       if (raf) window.cancelAnimationFrame(raf);
+
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
@@ -58,16 +73,20 @@ export default function Header() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className="container">
         <div className={styles.inner}>
-          <Link href="/" className={styles.brand}>
+          <Link href={homeHref} className={styles.brand}>
             Software Forge
           </Link>
-          <nav className={styles.nav}>
+
+          <nav className={styles.nav} aria-label="Main navigation">
             <Link href={docsHref} className={styles.navLink}>
               {labels.docs}
             </Link>
-            <Link href="/pricing" className={styles.navLink}>
+
+            <Link href={pricingHref} className={styles.navLink}>
               {labels.pricing}
             </Link>
+
+            <LanguageDropdown />
           </nav>
         </div>
       </div>
