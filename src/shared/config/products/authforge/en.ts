@@ -22,7 +22,7 @@ export const authforgeEn: ProductCopy = {
     trustDescription:
       'AuthForge gives you a production-ready authentication foundation without forcing your team to build the core auth layer from scratch.\n\n' +
       'It includes the flows most SaaS products need from day one: email/password sign-up, email verification, password reset, secure server-side sessions, HttpOnly cookies, and route-level rate limiting.\n\n' +
-      'The architecture is designed to stay adaptable as your product grows. AuthForge ships with a Prisma + PostgreSQL reference implementation while keeping the authentication domain direction database-agnostic.',
+      'The architecture is designed to stay adaptable as your product grows. AuthForge ships with a Prisma + PostgreSQL reference implementation, a production email path with a Resend example, and a domain structure you can extend inside your own SaaS product.',
   },
   audience: [
     'SaaS founders who need production-ready authentication without building every flow from scratch',
@@ -33,14 +33,15 @@ export const authforgeEn: ProductCopy = {
   featureGroups: [
     {
       title: 'Authentication',
-      items: ['Email/password authentication', 'Email verification flow', 'Password reset flow'],
+      items: ['Email/password authentication', 'Email verification flow', 'Password reset flow', 'Strong password rules with inline strength feedback'],
     },
     {
       title: 'Sessions & Security',
       items: [
         'Server-side sessions with HttpOnly cookies',
+        'bcrypt password hashing',
         'Route-level rate limiting for auth endpoints',
-        'Breached password checks',
+        'Optional leaked-password checks outside local development',
         'Zod-based runtime validation',
       ],
     },
@@ -49,21 +50,23 @@ export const authforgeEn: ProductCopy = {
       items: [
         'Production-oriented authentication domain structure',
         'Prisma + PostgreSQL reference implementation',
-        'Database-agnostic architecture direction',
+        'Production email path with a Resend example',
+        'Demo mode for local evaluation without real email delivery',
         'Token-driven UI styling approach',
       ],
     },
   ],
   howItWorks: [
     'Download the AuthForge ZIP archive',
-    'Configure environment variables for your app',
+    'Configure environment variables for database and email',
     'Connect PostgreSQL and run Prisma migrations',
+    'Use demo mode for local evaluation without real email delivery',
     'Launch the authentication flows locally',
     'Extend the foundation inside your SaaS product',
   ],
   tryBeforeYouBuy: {
     description:
-      'Before purchasing, you can review the documentation, inspect the architecture, and test a live demo. The core authentication journey has been checked through a clean-room onboarding flow, including registration, login, logout, password reset, secure cookie-based sessions, and demo-mode evaluation.',
+      'Before purchasing, you can review the documentation, inspect the architecture, and test a live demo. The demo covers the core authentication journey: registration, email verification, login, logout, password reset, secure cookie-based sessions, and demo-mode evaluation.',
     links: [
       { key: 'demo', label: 'Live demo' },
       { key: 'docs', label: 'Full documentation' },
