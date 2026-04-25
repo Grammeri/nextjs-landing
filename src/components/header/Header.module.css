@@ -138,6 +138,7 @@
   flex-shrink: 0;
 
   color: currentColor;
+  transform: translateY(var(--header-language-icon-optical-offset-y));
 }
 
 .languageDropdownCurrent {
@@ -148,6 +149,7 @@
   line-height: 1;
   letter-spacing: var(--header-language-letter-spacing);
   text-transform: uppercase;
+  transform: translateY(var(--header-language-text-optical-offset-y));
 }
 
 .languageDropdownMenu {

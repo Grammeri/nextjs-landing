@@ -377,6 +377,8 @@
 
   --header-language-icon-size: calc(var(--header-font-size) * 1.05);
   --header-language-icon-size-mobile: calc(var(--header-font-size-mobile) * 1.05);
+  --header-language-icon-optical-offset-y: 0.12em;
+  --header-language-text-optical-offset-y: 0.18em;
 
   --header-language-menu-min-width: calc(var(--header-height) + var(--spacing-xs));
   --header-language-menu-bg: var(--color-bg);
