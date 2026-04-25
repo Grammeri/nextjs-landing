@@ -169,7 +169,14 @@
   margin-top: var(--spacing-xs);
   margin-bottom: var(--spacing-sm);
 
-  color: var(--color-on-image-secondary);
+  padding: var(--pricing-card-delivery-notice-padding-y)
+    var(--pricing-card-delivery-notice-padding-x);
+
+  color: var(--pricing-card-delivery-notice-color);
+  background: var(--pricing-card-delivery-notice-bg);
+  border: var(--border-width-sm) solid var(--pricing-card-delivery-notice-border);
+  border-radius: var(--pricing-card-delivery-notice-radius);
+
   font-size: var(--font-size-sm);
   line-height: var(--line-height-base);
   text-align: left;
@@ -264,11 +271,25 @@
 }
 
 .termsLink {
-  color: var(--color-texas-red);
-  text-decoration: underline;
-  transition: opacity var(--motion-duration-fast) var(--motion-easing-standard);
+  color: var(--pricing-card-link-color);
+  text-decoration-line: underline;
+  text-decoration-color: var(--pricing-card-link-underline-color);
+  text-decoration-thickness: var(--border-width-sm);
+  text-underline-offset: 0.18em;
+  transition:
+    color var(--motion-duration-fast) var(--motion-easing-standard),
+    text-decoration-color var(--motion-duration-fast) var(--motion-easing-standard),
+    opacity var(--motion-duration-fast) var(--motion-easing-standard);
 }
 
 .termsLink:hover {
-  opacity: var(--opacity-hover-subtle);
+  color: var(--pricing-card-link-hover-color);
+  text-decoration-color: var(--pricing-card-link-hover-underline-color);
+  opacity: var(--opacity-hover-visible);
+}
+
+.termsLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
 }

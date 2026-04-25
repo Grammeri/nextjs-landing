@@ -489,6 +489,22 @@
   --pricing-card-feature-icon-size-mobile: var(--spacing-md);
   --pricing-card-checkbox-offset-top: 3px;
   --pricing-card-error-accent-width: 3px;
+  --pricing-card-link-color: var(--color-on-image-primary);
+  --pricing-card-link-hover-color: var(--color-text-inverse);
+  --pricing-card-link-underline-color: color-mix(in srgb,
+    var(--color-text-inverse) 58%,
+    transparent);
+  --pricing-card-link-hover-underline-color: var(--color-text-inverse);
+  --pricing-card-delivery-notice-bg: color-mix(in srgb,
+    var(--color-text-inverse) 10%,
+    transparent);
+  --pricing-card-delivery-notice-border: color-mix(in srgb,
+    var(--color-text-inverse) 22%,
+    transparent);
+  --pricing-card-delivery-notice-color: var(--color-on-image-primary);
+  --pricing-card-delivery-notice-radius: var(--radius-md);
+  --pricing-card-delivery-notice-padding-y: var(--spacing-sm);
+  --pricing-card-delivery-notice-padding-x: var(--spacing-md);
 
   /* Pricing card — under sticky header state */
   --pricing-card-under-header-bg: linear-gradient(180deg,

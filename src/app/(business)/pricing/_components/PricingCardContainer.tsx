@@ -28,7 +28,7 @@ export default function PricingCardContainer({ productId, card, locale }: Pricin
       termsError={pricingText.termsError}
       onPayWithStripe={checkoutWithStripe}
       onPayWithPaypal={BILLING_PROVIDERS.paypal ? checkoutWithPaypal : undefined}
-      footerNote={pricingText.footerNote}
+      footerNote={undefined}
     />
   );
 }
