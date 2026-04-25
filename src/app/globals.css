@@ -393,6 +393,12 @@
 
   /* Footer surface */
   --footer-bg: rgba(10, 20, 35);
+  --footer-good-luck-icon-color: color-mix(in srgb,
+    var(--color-success) 64%,
+    var(--color-text-inverse) 36%);
+  --footer-good-luck-icon-size: calc(var(--control-size-lg) * 1.8);
+  --footer-good-luck-icon-offset: var(--spacing-lg);
+  --footer-good-luck-icon-opacity: 0.92;
 
   /* Footer decorative */
   --footer-divider-color: rgba(255, 255, 255, 0.12);
@@ -475,6 +481,7 @@
   --pricing-card-max-width: 520px;
   --pricing-card-font-size-mobile: 16px;
   --pricing-card-line-height-mobile: 1.5;
+  /* Footer surface */
   --pricing-card-price-font-size-mobile: 18px;
   --pricing-card-description-max-width-mobile: 280px;
   --pricing-card-feature-icon-slot-mobile: var(--spacing-lg);

@@ -4,6 +4,8 @@ import { LUCIDE_STROKE } from './lucide';
 export { externalLinkIconDefinition } from './external-link';
 export { CheckIcon } from './check';
 export type { IconDefinition, IconNode, IconProps } from './types';
+export { GlobeIcon } from './globe';
+export { GoodLuckIcon } from './good-luck-icon';
 
 const copyIconDefinition: IconDefinition = {
   viewBox: '0 0 24 24',

@@ -1,10 +1,17 @@
 .footer {
+  position: relative;
+
   width: 100%;
   background-color: var(--footer-bg);
-  border-top: 1px solid var(--header-border-color);
+  border-top: var(--border-width-sm) solid var(--header-border-color);
+
+  overflow: hidden;
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
+
   max-width: var(--container-width);
   margin: 0 auto;
   padding: clamp(24px, 4vw, 72px) var(--footer-padding-x);
@@ -44,12 +51,26 @@
   top: var(--spacing-xs);
   bottom: var(--spacing-xs);
   width: var(--footer-divider-thickness);
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--surface-card-border),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--surface-card-border),
+      transparent);
+}
+
+.goodLuckIcon {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+
+  width: 28px;
+  height: 28px;
+  max-width: none;
+
+  color: #8fdd95;
+  opacity: 0.95;
+
+  pointer-events: none;
+  z-index: 0;
 }
 
 .legalLink {
@@ -126,12 +147,10 @@
     transform: translateX(-50%);
     width: var(--footer-mobile-divider-width);
     height: var(--footer-divider-thickness);
-    background: linear-gradient(
-      to right,
-      transparent,
-      var(--surface-card-border),
-      transparent
-    );
+    background: linear-gradient(to right,
+        transparent,
+        var(--surface-card-border),
+        transparent);
   }
 
   .legalLink,
@@ -139,5 +158,12 @@
   .origin,
   .contact {
     text-align: center;
+  }
+
+  .goodLuckIcon {
+    left: 50%;
+    right: auto;
+    bottom: var(--spacing-sm);
+    transform: translateX(-50%);
   }
 }

@@ -1,8 +1,10 @@
 'use client';
 
-import styles from './Footer.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import { GoodLuckIcon } from '@/shared/ui/icons';
+import styles from './Footer.module.css';
 
 const footerLabels = {
   en: {
@@ -30,12 +32,15 @@ export default function Footer() {
           <span className={styles.origin}>{labels.origin}</span>
           <span className={styles.contact}>{labels.contact}</span>
         </div>
+
         <div className={styles.right}>
           <Link href="/legal" className={styles.legalLink}>
             {labels.legal}
           </Link>
         </div>
       </div>
+
+      <GoodLuckIcon className={styles.goodLuckIcon} />
     </footer>
   );
 }
