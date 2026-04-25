@@ -352,7 +352,7 @@
 
   /* Header surface */
   --header-bg-transparent: transparent;
-  --header-bg-scrolled: rgb(5, 25, 62);
+  --header-bg-scrolled: var(--color-texas-blue);
   --header-backdrop-blur: blur(6px);
   --header-transition-duration: 0.2s;
   --header-transition-easing: ease;
@@ -392,7 +392,7 @@
   --header-text-inverse-strong: var(--color-text-inverse);
 
   /* Footer surface */
-  --footer-bg: rgba(10, 20, 35);
+  --footer-bg: var(--color-texas-blue);
   --footer-good-luck-icon-color: color-mix(in srgb,
     var(--color-success) 64%,
     var(--color-text-inverse) 36%);
@@ -435,6 +435,7 @@
   --surface-step-bg: rgba(12, 28, 48, 0.4);
 
   /* Product card surface */
+  --product-card-bg-default: var(--color-texas-blue);
   --card-shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.25);
   --card-shadow-hover: 0 28px 60px rgba(0, 0, 0, 0.35);
   --card-border-color: rgba(255, 255, 255, 0.08);

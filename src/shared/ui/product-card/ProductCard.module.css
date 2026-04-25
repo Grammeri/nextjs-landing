@@ -7,7 +7,7 @@
   padding: clamp(24px, 3vw, 32px) clamp(24px, 3vw, 32px) clamp(32px, 4vw, 48px) clamp(24px, 3vw, 32px);
   min-height: var(--product-card-min-height);
 
-  background: var(--product-card-bg, var(--color-texas-blue));
+  background: var(--product-card-bg, var(--product-card-bg-default));
   border: var(--border-width-sm) solid var(--product-card-border-color, var(--card-border-color));
   border-radius: var(--card-border-radius);
   box-shadow: var(--product-card-shadow, var(--shadow-lg));

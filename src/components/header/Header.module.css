@@ -20,7 +20,7 @@
 }
 
 .scrolled {
-  background-color: var(--color-texas-blue);
+  background-color: var(--header-bg-scrolled);
 
   --header-link-color: var(--header-text-inverse);
   --header-link-hover-color: var(--header-text-inverse-strong);
