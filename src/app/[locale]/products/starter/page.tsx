@@ -1,132 +1,75 @@
-'use client';
-
-import { useRef } from 'react';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
-import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
-import { createPricingCard } from '@/shared/config/products/pricing';
-import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
-import { Button } from '@/shared/ui/button';
-import { ProductHero, ProductSection } from '@/shared/ui/product';
-import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
-import styles from '@/shared/ui/product-page/ProductPage.module.css';
-import layoutStyles from '@/app/products/layout.module.css';
+import type { Metadata } from 'next';
+
+import StarterProductPageClient from './StarterProductPageClient';
+
+type PageProps = {
+  params: Promise<{
+    locale?: string;
+  }>;
+};
+
+const STARTER_SEO = {
+  en: {
+    title: 'Next.js Professional Starter — clean App Router baseline',
+    description:
+      'Clean Next.js App Router starter kit for real projects and technical assignments: TypeScript, ESLint, Prettier, Husky, lint-staged, Conventional Commits, pnpm check, CI-ready workflow, VS Code settings, and EditorConfig.',
+    ogLocale: 'en_US',
+  },
+  ru: {
+    title: 'Next.js Professional Starter — база для App Router проекта',
+    description:
+      'Чистая основа Next.js App Router для реальных проектов и тестовых заданий: TypeScript, ESLint, Prettier, Husky, lint-staged, Conventional Commits, pnpm check, готовый CI workflow, настройки VS Code и EditorConfig.',
+    ogLocale: 'ru_RU',
+  },
+} as const;
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isSupportedLocale(rawLocale ?? DEFAULT_LOCALE)
+    ? (rawLocale ?? DEFAULT_LOCALE)
+    : DEFAULT_LOCALE;
+
+  const seo = locale === 'ru' ? STARTER_SEO.ru : STARTER_SEO.en;
+  const canonical = `/${locale}/products/starter`;
+
+  return {
+    title: seo.title,
+    description: seo.description,
+
+    alternates: {
+      canonical,
+      languages: {
+        en: '/en/products/starter',
+        ru: '/ru/products/starter',
+      },
+    },
+
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      type: 'website',
+      url: canonical,
+      locale: seo.ogLocale,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: seo.title,
+        },
+      ],
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.title,
+      description: seo.description,
+      images: ['/og-image.png'],
+    },
+  };
+}
 
 export default function StarterPage() {
-  const params = useParams<{ locale?: string }>();
-  const rawLocale = typeof params.locale === 'string' ? params.locale : DEFAULT_LOCALE;
-  const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-  const productCopy = getProductCopy('starter', locale);
-  const pricingCard = createPricingCard('starter', locale);
-  const pricingRef = useRef<HTMLDivElement>(null);
-
-  const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const docsEntryHref = `/${locale}${getDefaultDocRoute('starter')}`;
-  const toolingHref = `/${locale}${getDocsRoute('starter', 'tooling')}`;
-  const structureHref = `/${locale}${getDocsRoute('starter', 'project-structure')}`;
-
-  return (
-    <div className={layoutStyles.productLayout}>
-      <div className={layoutStyles.productSurface}>
-        <main className={styles.page}>
-          <ProductHero
-            title={productCopy.name}
-            subtitle={`${productCopy.shortDescription}.`}
-            trustTitle={productCopy.hero.trustTitle}
-            trustDescription={productCopy.hero.trustDescription}
-            secondaryAction={
-              <div className={styles.heroActions}>
-                <Button as="a" href={docsEntryHref} variant="secondary">
-                  {productCopy.actions.readDocs}
-                </Button>
-
-                <Button as="a" href={toolingHref} variant="secondary">
-                  {productCopy.actions.viewTooling}
-                </Button>
-
-                <Button onClick={scrollToPricing} variant="primary">
-                  {productCopy.actions.buyLicense}
-                </Button>
-              </div>
-            }
-          />
-
-          <ProductSection title={productCopy.sectionTitles.audience} align="center">
-            <ul className={styles.audienceList}>
-              {productCopy.audience.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.included}>
-            <div className={styles.featureGrid}>
-              {productCopy.featureGroups.map((group) => (
-                <div key={group.title} className={styles.featureCard}>
-                  <h3 className={styles.featureTitle}>{group.title}</h3>
-                  <ul className={styles.featureList}>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.howItWorks} align="center">
-            <div className={styles.contentNarrow}>
-              <ol className={styles.steps}>
-                {productCopy.howItWorks.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            </div>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.tryBeforeYouBuy}>
-            <div className={styles.trustBlock}>
-              <p className={styles.trustText}>{productCopy.tryBeforeYouBuy.description}</p>
-
-              <ul className={styles.trustList}>
-                <li>
-                  <Link href={docsEntryHref}>{productCopy.tryBeforeYouBuy.links[0]?.label}</Link>
-                </li>
-
-                <li>
-                  <Link href={toolingHref}>{productCopy.tryBeforeYouBuy.links[1]?.label}</Link>
-                </li>
-
-                <li>
-                  <Link href={structureHref}>{productCopy.tryBeforeYouBuy.links[2]?.label}</Link>
-                </li>
-              </ul>
-
-              <p className={styles.supportText}>
-                {productCopy.tryBeforeYouBuy.contactPrefix}{' '}
-                <span className={styles.contactLead}>
-                  {productCopy.tryBeforeYouBuy.contactLead}
-                </span>{' '}
-                <span className={styles.supportInline}>
-                  <span className={styles.supportEmail}>{productCopy.supportEmail}</span>
-                  <CopySupportEmail />
-                </span>
-              </p>
-            </div>
-          </ProductSection>
-
-          <div ref={pricingRef}>
-            <div className={styles.pricingWrapper}>
-              <PricingCardContainer productId="starter" card={pricingCard} locale={locale} />
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+  return <StarterProductPageClient />;
 }
