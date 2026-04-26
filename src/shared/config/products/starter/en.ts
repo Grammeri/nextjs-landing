@@ -46,7 +46,10 @@ export const starterEn: ProductCopy = {
         'ESLint for code quality',
         'Prettier for consistent formatting',
         'Husky Git hooks',
+        'Lint-staged checks for staged files',
         'Conventional commit validation',
+        'VS Code workspace settings and recommended extensions',
+        'EditorConfig for consistent formatting',
       ],
     },
     {
@@ -54,6 +57,7 @@ export const starterEn: ProductCopy = {
       items: [
         'CI-ready workflow structure',
         'Automated repository checks',
+        'One-command validation with pnpm check',
         'Repeatable development workflow for real projects and assignments',
       ],
     },
@@ -61,6 +65,7 @@ export const starterEn: ProductCopy = {
   howItWorks: [
     'Download the Next.js Professional Starter source package',
     'Install dependencies with pnpm',
+    'Run the project checks with pnpm check',
     'Review the App Router structure and tooling setup',
     'Run the development workflow locally',
     'Start building your project or technical assignment on a clean foundation',
