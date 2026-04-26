@@ -25,8 +25,8 @@ export default function AuthForgeProductPage() {
   const pricingCard = createPricingCard('authforge', locale);
   const pricingRef = useRef<HTMLDivElement>(null);
 
-  const docsEntryHref = getDefaultDocRoute('authforge');
-  const architectureHref = getDocsRoute('authforge', 'architecture');
+  const docsEntryHref = `/${locale}${getDefaultDocRoute('authforge')}`;
+  const architectureHref = `/${locale}${getDocsRoute('authforge', 'architecture')}`;
   const demoHref = `/${locale}/demo`;
 
   const scrollToPricing = () => {

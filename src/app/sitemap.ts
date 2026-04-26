@@ -74,7 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
     },
     {
-      url: `${baseUrl}/products/authforge`,
+      url: `${baseUrl}/en/products/authforge`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/ru/products/authforge`,
       lastModified: now,
     },
   ];

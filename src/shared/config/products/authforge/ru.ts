@@ -87,7 +87,7 @@ export const authforgeRu: ProductCopy = {
     features: [
       'Лицензия на 1 проект',
       'Бессрочный доступ к исходному пакету',
-      'Включает AuthForge v1.0.0',
+      'Включает AuthForge v2.0.0',
       'Поддержка по email: support@software-forge.dev',
     ],
     footerNote: 'Инструкции для доступа отправляются по email после покупки.',
