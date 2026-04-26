@@ -16,7 +16,7 @@ type DocsIndexPageProps = {
 
 export default function DocsIndexPage({ params }: DocsIndexPageProps) {
   const { locale } = use(params);
-  const title = locale === 'ru' ? docsIndexTitle.ru : docsIndexTitle.en;
+  const title = docsIndexTitle.en;
 
   const authforgeDocsHref = `/${locale}${getDocsEntryRoute('authforge')}`;
   const starterDocsHref = `/${locale}${getDocsEntryRoute('starter')}`;

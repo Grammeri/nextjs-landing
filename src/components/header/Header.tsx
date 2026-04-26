@@ -35,8 +35,17 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
+  const pathnameWithoutLocale = pathname.replace(/^\/(en|ru)(?=\/|$)/, '') || '/';
+  const isDocsPage =
+    pathnameWithoutLocale === '/docs' || pathnameWithoutLocale.startsWith('/docs/');
+  const isLegalPage = pathnameWithoutLocale === '/legal';
+  const isEnglishOnlySection = isDocsPage || isLegalPage;
+
   const locale = getLocaleFromPathname(pathname);
-  const labels = headerLabels[locale];
+  const displayLocale: Locale = isEnglishOnlySection ? 'en' : locale;
+  const labels = headerLabels[displayLocale];
+
+  const shouldShowLanguageDropdown = !isEnglishOnlySection;
 
   const homeHref = getLocalizedHref(locale, '/');
   const docsHref = getLocalizedHref(locale, '/docs');
@@ -86,7 +95,7 @@ export default function Header() {
               {labels.pricing}
             </Link>
 
-            <LanguageDropdown />
+            {shouldShowLanguageDropdown ? <LanguageDropdown /> : null}
           </nav>
         </div>
       </div>
