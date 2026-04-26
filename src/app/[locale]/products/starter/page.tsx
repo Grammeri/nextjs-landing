@@ -26,9 +26,9 @@ export default function StarterPage() {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const docsEntryHref = getDefaultDocRoute('starter');
-  const toolingHref = getDocsRoute('starter', 'tooling');
-  const structureHref = getDocsRoute('starter', 'project-structure');
+  const docsEntryHref = `/${locale}${getDefaultDocRoute('starter')}`;
+  const toolingHref = `/${locale}${getDocsRoute('starter', 'tooling')}`;
+  const structureHref = `/${locale}${getDocsRoute('starter', 'project-structure')}`;
 
   return (
     <div className={layoutStyles.productLayout}>

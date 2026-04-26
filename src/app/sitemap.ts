@@ -81,6 +81,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/ru/products/authforge`,
       lastModified: now,
     },
+    {
+      url: `${baseUrl}/en/products/starter`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/ru/products/starter`,
+      lastModified: now,
+    },
   ];
 
   return [...staticPages, ...docPages];
