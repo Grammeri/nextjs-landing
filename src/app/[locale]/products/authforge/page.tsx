@@ -1,144 +1,75 @@
-'use client';
+import type { Metadata } from 'next';
 
-import { useRef } from 'react';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
-
-import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
-import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
-import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
-import { createPricingCard } from '@/shared/config/products/pricing';
-import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
-import { Button } from '@/shared/ui/button';
-import { ProductHero, ProductSection } from '@/shared/ui/product';
+import AuthForgeProductPageClient from './AuthForgeProductPageClient';
 
-import layoutStyles from '@/app/products/layout.module.css';
-import styles from '@/shared/ui/product-page/ProductPage.module.css';
+type PageProps = {
+  params: Promise<{
+    locale?: string;
+  }>;
+};
+
+const AUTHFORGE_SEO = {
+  en: {
+    title: 'AuthForge — Next.js auth starter for SaaS',
+    description:
+      'Production-ready authentication starter with email/password auth, email verification, password reset, secure server-side sessions via HttpOnly cookies, route-level rate limiting, Prisma + PostgreSQL, a Resend email example, and demo mode for local evaluation.',
+    ogLocale: 'en_US',
+  },
+  ru: {
+    title: 'AuthForge — аутентификация для Next.js SaaS',
+    description:
+      'Готовая основа аутентификации: email/пароль, подтверждение email, сброс пароля, безопасные серверные сессии через HttpOnly cookies, rate limiting на уровне маршрутов, пример на Prisma + PostgreSQL, отправка писем через Resend и демо-режим для локальной проверки.',
+    ogLocale: 'ru_RU',
+  },
+} as const;
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isSupportedLocale(rawLocale ?? DEFAULT_LOCALE)
+    ? (rawLocale ?? DEFAULT_LOCALE)
+    : DEFAULT_LOCALE;
+
+  const seo = locale === 'ru' ? AUTHFORGE_SEO.ru : AUTHFORGE_SEO.en;
+  const canonical = `/${locale}/products/authforge`;
+
+  return {
+    title: seo.title,
+    description: seo.description,
+
+    alternates: {
+      canonical,
+      languages: {
+        en: '/en/products/authforge',
+        ru: '/ru/products/authforge',
+      },
+    },
+
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      type: 'website',
+      url: canonical,
+      locale: seo.ogLocale,
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: seo.title,
+        },
+      ],
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.title,
+      description: seo.description,
+      images: ['/og-image.png'],
+    },
+  };
+}
 
 export default function AuthForgeProductPage() {
-  const params = useParams<{ locale?: string }>();
-  const rawLocale = typeof params.locale === 'string' ? params.locale : DEFAULT_LOCALE;
-  const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
-
-  const productCopy = getProductCopy('authforge', locale);
-  const pricingCard = createPricingCard('authforge', locale);
-  const pricingRef = useRef<HTMLDivElement>(null);
-
-  const docsEntryHref = `/${locale}${getDefaultDocRoute('authforge')}`;
-  const architectureHref = `/${locale}${getDocsRoute('authforge', 'architecture')}`;
-  const demoHref = `/${locale}/demo`;
-
-  const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <div className={layoutStyles.productLayout}>
-      <div className={layoutStyles.productSurface}>
-        <main className={styles.page}>
-          <ProductHero
-            title={productCopy.name}
-            subtitle={`${productCopy.shortDescription}.`}
-            trustTitle={productCopy.hero.trustTitle}
-            trustDescription={productCopy.hero.trustDescription}
-            secondaryAction={
-              <div className={styles.heroActions}>
-                <Button as="a" href={demoHref} variant="secondary">
-                  {productCopy.actions.viewDemo}
-                </Button>
-
-                <Button as="a" href={docsEntryHref} variant="secondary">
-                  {productCopy.actions.readDocs}
-                </Button>
-
-                <Button onClick={scrollToPricing} variant="primary">
-                  {productCopy.actions.buyLicense}
-                </Button>
-              </div>
-            }
-          />
-
-          <ProductSection title={productCopy.sectionTitles.audience} align="center">
-            <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
-              <ul className={styles.audienceList}>
-                {productCopy.audience.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.included}>
-            <div className={styles.featureGrid}>
-              {productCopy.featureGroups.map((group) => (
-                <div key={group.title} className={styles.featureCard}>
-                  <h3 className={styles.featureTitle}>{group.title}</h3>
-
-                  <ul className={styles.featureList}>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.howItWorks} align="center">
-            <div className={styles.contentNarrow}>
-              <ol className={styles.steps}>
-                {productCopy.howItWorks.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            </div>
-          </ProductSection>
-
-          <ProductSection title={productCopy.sectionTitles.tryBeforeYouBuy}>
-            <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
-              <div className={styles.trustBlock}>
-                <p className={styles.trustText}>{productCopy.tryBeforeYouBuy.description}</p>
-
-                <ul className={styles.trustList}>
-                  <li>
-                    <Link href={demoHref}>{productCopy.tryBeforeYouBuy.links[0]?.label}</Link>
-                  </li>
-
-                  <li>
-                    <Link href={docsEntryHref}>
-                      {productCopy.tryBeforeYouBuy.links[1]?.label}
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href={architectureHref}>
-                      {productCopy.tryBeforeYouBuy.links[2]?.label}
-                    </Link>
-                  </li>
-                </ul>
-
-                <p className={styles.supportText}>
-                  {productCopy.tryBeforeYouBuy.contactPrefix}{' '}
-                  <span className={styles.contactLead}>
-                    {productCopy.tryBeforeYouBuy.contactLead}
-                  </span>{' '}
-                  <span className={styles.supportInline}>
-                    <span className={styles.supportEmail}>{productCopy.supportEmail}</span>
-                    <CopySupportEmail />
-                  </span>
-                </p>
-              </div>
-            </div>
-          </ProductSection>
-
-          <div ref={pricingRef}>
-            <div className={styles.pricingWrapper}>
-              <PricingCardContainer productId="authforge" card={pricingCard} locale={locale} />
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+  return <AuthForgeProductPageClient />;
 }
