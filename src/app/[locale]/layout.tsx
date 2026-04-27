@@ -1,4 +1,5 @@
-import { getLocale } from '@/shared/lib/i18n/getLocale';
+import { notFound } from 'next/navigation';
+import { isSupportedLocale } from '@/shared/config/i18n';
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -9,7 +10,10 @@ type LocaleLayoutProps = {
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
-  getLocale(locale);
+
+  if (!isSupportedLocale(locale)) {
+    notFound();
+  }
 
   return children;
 }
