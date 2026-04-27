@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { routes } from '@/shared/config/routes';
 import type { ProductId } from '@/shared/config/products/types';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
 import { getCheckoutSuccessText } from '@/shared/lib/i18n/getCheckoutSuccessText';
@@ -38,11 +39,11 @@ export default async function LocalizedCheckoutSuccessPage({
       </p>
 
       <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-        <Link href={`/${locale}/docs`}>
+        <Link href={routes.docs(locale)}>
           <button>{text.actions.readDocumentation}</button>
         </Link>
 
-        <Link href={`/${locale}/pricing`}>
+        <Link href={routes.pricing(locale)}>
           <button>{text.actions.backToPricing}</button>
         </Link>
       </div>

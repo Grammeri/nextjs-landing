@@ -2,6 +2,7 @@ import 'server-only';
 
 import { NextResponse } from 'next/server';
 import { BILLING_PROVIDERS } from '@/shared/config/billing';
+import { routes } from '@/shared/config/routes';
 import { BILLING_CATALOG } from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
 import { TERMS_VERSION } from '@/shared/config/legal';
@@ -86,8 +87,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const successUrl = `${siteUrl}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}&productId=${body.productId}`;
-    const cancelUrl = `${siteUrl}/${locale}/pricing`;
+    const successUrl = `${siteUrl}${routes.checkoutSuccess(locale)}?session_id={CHECKOUT_SESSION_ID}&productId=${body.productId}`;
+    const cancelUrl = `${siteUrl}${routes.pricing(locale)}`;
 
     const result = await createCheckout({
       provider: catalogItem.provider,
