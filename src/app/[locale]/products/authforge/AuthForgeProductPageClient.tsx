@@ -6,14 +6,14 @@ import { useParams } from 'next/navigation';
 
 import PricingCardContainer from '@/components/pricing/PricingCardContainer';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
-import CopySupportEmail from '@/app/products/authforge/_components/CopySupportEmail';
+import CopySupportEmail from '@/components/products/CopySupportEmail';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
 import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 
-import layoutStyles from '@/app/products/layout.module.css';
+import layoutStyles from '../layout.module.css';
 import styles from '@/shared/ui/product-page/ProductPage.module.css';
 
 export default function AuthForgeProductPageClient() {
