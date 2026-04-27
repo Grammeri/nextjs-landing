@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { routes } from '@/shared/config/routes';
 import type { ProductGridItem } from '@/shared/config/products/catalog';
-import { getLocaleFromPathname, getLocalizedHref } from '@/shared/lib/i18n/localizedHref';
+import { getLocaleFromPathname } from '@/shared/lib/i18n/localizedHref';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 
 type ProductsGridProps = {
@@ -18,7 +19,7 @@ export function ProductsGrid({ items }: ProductsGridProps) {
   return (
     <>
       {items.map((item, index) => {
-        const href = getLocalizedHref(locale, item.href);
+        const href = routes.product(locale, item.productId);
 
         return (
           <Link key={`${item.href}-${item.title}-${index}`} href={href}>
