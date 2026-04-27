@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { routes } from '@/shared/config/routes';
 import type { ProductId } from '@/shared/config/products/types';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
@@ -15,6 +16,32 @@ type LocalizedCheckoutSuccessPageProps = {
 
 function isProductId(value: string): value is ProductId {
   return value === 'authforge' || value === 'starter';
+}
+
+const CHECKOUT_SUCCESS_METADATA = {
+  en: {
+    title: 'Payment successful — Software Forge',
+  },
+  ru: {
+    title: 'Оплата прошла успешно — Software Forge',
+  },
+} as const;
+
+export async function generateMetadata({
+  params,
+}: Pick<LocalizedCheckoutSuccessPageProps, 'params'>): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = getLocale(localeParam);
+
+  const title = locale === 'ru' ? CHECKOUT_SUCCESS_METADATA.ru.title : CHECKOUT_SUCCESS_METADATA.en.title;
+
+  return {
+    title,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 }
 
 export default async function LocalizedCheckoutSuccessPage({
