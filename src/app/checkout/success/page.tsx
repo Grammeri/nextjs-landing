@@ -30,11 +30,11 @@ export default async function CheckoutSuccessPage({ searchParams }: CheckoutSucc
       </p>
 
       <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-        <Link href="/docs">
+        <Link href="/en/docs">
           <button>Read documentation</button>
         </Link>
 
-        <Link href="/pricing">
+        <Link href="/en/pricing">
           <button>Back to pricing</button>
         </Link>
       </div>
