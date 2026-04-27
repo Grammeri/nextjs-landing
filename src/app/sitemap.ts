@@ -66,11 +66,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
+      url: `${baseUrl}/en`,
       lastModified: now,
     },
     {
-      url: `${baseUrl}/pricing`,
+      url: `${baseUrl}/ru`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/en/pricing`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/ru/pricing`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/en/demo`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/ru/demo`,
       lastModified: now,
     },
     {
@@ -87,6 +103,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/ru/products/starter`,
+      lastModified: now,
+    },
+    {
+      url: `${baseUrl}/legal`,
       lastModified: now,
     },
   ];
