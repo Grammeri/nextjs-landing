@@ -1,4 +1,5 @@
 import { DEMO_URL } from '@/shared/config/demo';
+import { routes } from '@/shared/config/routes';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
 import { getDemoText } from '@/shared/lib/i18n/getDemoText';
 import { Button } from '@/shared/ui/button';
@@ -35,7 +36,7 @@ export default async function AuthForgeDemoPage({ params }: AuthForgeDemoPagePro
           {demoText.actions.openLiveDemo}
         </Button>
 
-        <Button as="a" href={`/${locale}/products/authforge`} variant="secondary">
+        <Button as="a" href={routes.product(locale, 'authforge')} variant="secondary">
           {demoText.actions.backToProductOverview}
         </Button>
       </div>
