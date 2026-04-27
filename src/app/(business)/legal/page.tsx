@@ -2,6 +2,8 @@ import LegalNav from './LegalNav';
 import { PageShell, ContentSurface } from '@/shared/ui/layout';
 import { ArticleLayout, ArticleTitle, ArticleSection, ArticleText } from '@/shared/ui/article';
 
+import type { Metadata } from 'next';
+
 import {
   LEGAL_PAGE_TITLE,
   LEGAL_PAGE_DESCRIPTION,
@@ -9,7 +11,7 @@ import {
   LEGAL_CONTACT,
 } from '@/shared/config/legal';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: `${LEGAL_PAGE_TITLE} — Software Forge`,
   description: LEGAL_PAGE_DESCRIPTION,
 };
