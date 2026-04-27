@@ -1,5 +1,5 @@
 import styles from './page.module.css';
-import layoutStyles from '@/app/(marketing)/layout.module.css';
+import layoutStyles from './home-layout.module.css';
 import { ProductsGrid } from '@/components/products-grid/ProductsGrid';
 import { getMarketingDictionary } from '@/shared/lib/i18n/getMarketingDictionary';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
