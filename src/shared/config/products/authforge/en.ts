@@ -82,7 +82,7 @@ export const authforgeEn: ProductCopy = {
     features: [
       'License for 1 project',
       'Lifetime access to the source package',
-      'Includes AuthForge v2.0.0',
+      'Includes AuthForge v1.0.0',
       'Email support at support@software-forge.dev',
     ],
     footerNote: 'Access instructions are sent by email after purchase.',
