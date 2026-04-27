@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { routes } from '@/shared/config/routes';
 import { GoodLuckIcon } from '@/shared/ui/icons';
 import styles from './Footer.module.css';
 
@@ -34,7 +35,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.right}>
-          <Link href="/legal" className={styles.legalLink}>
+          <Link href={routes.legal} className={styles.legalLink}>
             {labels.legal}
           </Link>
         </div>

@@ -1,12 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { routes } from '@/shared/config/routes';
 import { CheckIcon } from '@/shared/ui/icons';
 import { StripeButton, PaypalButton } from '@/shared/ui/payment-buttons';
 import { SelectableGroup } from '@/shared/ui/selection';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 import styles from './PricingCard.module.css';
-import Link from 'next/link';
 
 export type PricingFeature = {
   text: string;
@@ -178,7 +179,7 @@ export function PricingCard({
                 />
                 <span>
                   {termsPrefix}{' '}
-                  <Link href="/legal" className={styles.termsLink}>
+                  <Link href={routes.legal} className={styles.termsLink}>
                     {termsLabel}
                   </Link>
                 </span>
