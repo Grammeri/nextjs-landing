@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import type { Locale } from '@/shared/config/i18n';
 
 type CheckoutProvider = 'stripe' | 'paypal';
 
@@ -11,7 +12,7 @@ type CheckoutResponse = {
   checkoutUrl?: string;
 };
 
-export function useCheckout(productId: string) {
+export function useCheckout(productId: string, locale: Locale) {
   const checkout = useCallback(
     async (provider: CheckoutProvider, termsAccepted: boolean) => {
       // ✅ Feature flag guard
@@ -23,7 +24,7 @@ export function useCheckout(productId: string) {
       const res = await fetch('/api/billing/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId, provider, termsAccepted }),
+        body: JSON.stringify({ productId, provider, locale, termsAccepted }),
       });
 
       const data = (await res.json()) as CheckoutResponse;
@@ -34,7 +35,7 @@ export function useCheckout(productId: string) {
         alert('Failed to start checkout. Please try again.');
       }
     },
-    [productId],
+    [locale, productId],
   );
 
   return {

@@ -1,43 +1,25 @@
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
-const PRODUCT_TITLES = {
-  authforge: 'AuthForge',
-  starter: 'Next.js Professional Starter',
-} as const;
-
-type CheckoutSuccessPageProps = {
-  searchParams: Promise<{
-    productId?: string;
-  }>;
+type CheckoutSuccessRedirectPageProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default async function CheckoutSuccessPage({ searchParams }: CheckoutSuccessPageProps) {
-  const { productId } = await searchParams;
+export default async function CheckoutSuccessRedirectPage({
+  searchParams,
+}: CheckoutSuccessRedirectPageProps) {
+  const params = await searchParams;
+  const query = new URLSearchParams();
 
-  const productTitle =
-    productId && productId in PRODUCT_TITLES
-      ? PRODUCT_TITLES[productId as keyof typeof PRODUCT_TITLES]
-      : 'your product';
+  for (const [key, value] of Object.entries(params ?? {})) {
+    if (typeof value === 'string') {
+      query.set(key, value);
+      continue;
+    }
 
-  return (
-    <main style={{ maxWidth: 720, margin: '0 auto', padding: '96px 24px', textAlign: 'center' }}>
-      <h1 style={{ fontSize: 32, marginBottom: 16 }}>✅ Payment successful</h1>
+    if (Array.isArray(value)) {
+      value.forEach((item) => query.append(key, item));
+    }
+  }
 
-      <p style={{ fontSize: 18, marginBottom: 32 }}>
-        Thank you for purchasing <strong>{productTitle}</strong>.
-        <br />
-        Access instructions have been sent to your email.
-      </p>
-
-      <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-        <Link href="/en/docs">
-          <button>Read documentation</button>
-        </Link>
-
-        <Link href="/en/pricing">
-          <button>Back to pricing</button>
-        </Link>
-      </div>
-    </main>
-  );
+  redirect(`/en/checkout/success${query.size ? `?${query.toString()}` : ''}`);
 }

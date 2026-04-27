@@ -10,6 +10,7 @@ import type { ProductId } from '@/shared/config/products/types';
 type CheckoutRequestBody = {
   productId: string;
   provider: 'stripe' | 'paypal';
+  locale?: 'en' | 'ru';
   customerEmail?: string;
   clientReferenceId?: string;
   termsAccepted: boolean;
@@ -74,6 +75,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unknown productId' }, { status: 400 });
     }
 
+    const locale = body.locale === 'ru' ? 'ru' : 'en';
+
     if (catalogItem.provider !== body.provider) {
       return NextResponse.json(
         {
@@ -83,8 +86,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const successUrl = `${siteUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&productId=${body.productId}`;
-    const cancelUrl = `${siteUrl}/pricing`;
+    const successUrl = `${siteUrl}/${locale}/checkout/success?session_id={CHECKOUT_SESSION_ID}&productId=${body.productId}`;
+    const cancelUrl = `${siteUrl}/${locale}/pricing`;
 
     const result = await createCheckout({
       provider: catalogItem.provider,

@@ -13,7 +13,7 @@ type PricingCardContainerProps = {
 };
 
 export default function PricingCardContainer({ productId, card, locale }: PricingCardContainerProps) {
-  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout(productId);
+  const { checkoutWithStripe, checkoutWithPaypal } = useCheckout(productId, locale);
   const uiText = getUiText(locale);
   const paymentText = uiText.payment;
   const pricingText = uiText.pricing;
