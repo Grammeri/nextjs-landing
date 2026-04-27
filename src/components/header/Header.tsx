@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { routes } from '@/shared/config/routes';
 
 import {
   getLocaleFromPathname,
-  getLocalizedHref,
   type Locale,
 } from '@/shared/lib/i18n/localizedHref';
 
@@ -47,9 +47,9 @@ export default function Header() {
 
   const shouldShowLanguageDropdown = !isEnglishOnlySection;
 
-  const homeHref = getLocalizedHref(locale, '/');
-  const docsHref = getLocalizedHref(locale, '/docs');
-  const pricingHref = getLocalizedHref(locale, '/pricing');
+  const homeHref = routes.home(locale);
+  const docsHref = routes.docs(locale);
+  const pricingHref = routes.pricing(locale);
 
   useEffect(() => {
     const headerHeight = getHeaderHeightPx();
