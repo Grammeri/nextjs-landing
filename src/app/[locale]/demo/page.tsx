@@ -2,7 +2,7 @@ import { DEMO_URL } from '@/shared/config/demo';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
 import { getDemoText } from '@/shared/lib/i18n/getDemoText';
 import { Button } from '@/shared/ui/button';
-import styles from '@/app/(demo)/demo/page.module.css';
+import styles from './page.module.css';
 
 type AuthForgeDemoPageProps = {
   params: Promise<{
