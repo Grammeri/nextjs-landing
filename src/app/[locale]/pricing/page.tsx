@@ -1,6 +1,6 @@
 import { getPricingPageItems } from '@/shared/config/products/pricing';
-import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
-import styles from '@/app/(business)/pricing/page.module.css';
+import PricingCardContainer from '@/components/pricing/PricingCardContainer';
+import styles from './page.module.css';
 import { getLocale } from '@/shared/lib/i18n/getLocale';
 
 type PricingPageProps = {

@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import PricingCardContainer from '@/app/(business)/pricing/_components/PricingCardContainer';
+import PricingCardContainer from '@/components/pricing/PricingCardContainer';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
