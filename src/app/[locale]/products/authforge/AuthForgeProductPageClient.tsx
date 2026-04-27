@@ -9,6 +9,7 @@ import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/produ
 import CopySupportEmail from '@/components/products/CopySupportEmail';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
+import { routes } from '@/shared/config/routes';
 import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
@@ -27,7 +28,7 @@ export default function AuthForgeProductPageClient() {
 
   const docsEntryHref = `/${locale}${getDefaultDocRoute('authforge')}`;
   const architectureHref = `/${locale}${getDocsRoute('authforge', 'architecture')}`;
-  const demoHref = `/${locale}/demo`;
+  const demoHref = routes.demo(locale);
 
   const scrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
