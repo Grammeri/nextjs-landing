@@ -1,5 +1,7 @@
-import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import type { Metadata } from 'next';
+import { DEFAULT_LOCALE, isSupportedLocale, type Locale } from '@/shared/config/i18n';
+import { routes } from '@/shared/config/routes';
+import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
 
 import StarterProductPageClient from './StarterProductPageClient';
 
@@ -9,62 +11,49 @@ type PageProps = {
   }>;
 };
 
-const STARTER_SEO = {
-  en: {
-    title: 'Next.js Professional Starter — clean App Router baseline',
-    description:
-      'Clean Next.js App Router starter kit for real projects and technical assignments: TypeScript, ESLint, Prettier, Husky, lint-staged, Conventional Commits, pnpm check, CI-ready workflow, VS Code settings, and EditorConfig.',
-    ogLocale: 'en_US',
-  },
-  ru: {
-    title: 'Next.js Professional Starter — база для App Router проекта',
-    description:
-      'Чистая основа Next.js App Router для реальных проектов и тестовых заданий: TypeScript, ESLint, Prettier, Husky, lint-staged, Conventional Commits, pnpm check, готовый CI workflow, настройки VS Code и EditorConfig.',
-    ogLocale: 'ru_RU',
-  },
-} as const;
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale: rawLocale } = await params;
-  const locale = isSupportedLocale(rawLocale ?? DEFAULT_LOCALE)
-    ? (rawLocale ?? DEFAULT_LOCALE)
-    : DEFAULT_LOCALE;
+  const locale: Locale =
+    rawLocale && isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
 
-  const seo = locale === 'ru' ? STARTER_SEO.ru : STARTER_SEO.en;
-  const canonical = `/${locale}/products/starter`;
+  const productCopy = getProductCopy('starter', locale);
+  const title = `${productCopy.name} — Software Forge`;
+  const description = productCopy.shortDescription;
+  const canonical = routes.product(locale, 'starter');
+  const ogLocale = locale === 'ru' ? 'ru_RU' : 'en_US';
 
   return {
-    title: seo.title,
-    description: seo.description,
+    title,
+    description,
 
     alternates: {
       canonical,
       languages: {
-        en: '/en/products/starter',
-        ru: '/ru/products/starter',
+        en: routes.product('en', 'starter'),
+        ru: routes.product('ru', 'starter'),
       },
     },
 
     openGraph: {
-      title: seo.title,
-      description: seo.description,
+      title,
+      description,
       type: 'website',
       url: canonical,
-      locale: seo.ogLocale,
+      locale: ogLocale,
       images: [
         {
           url: '/og-image.png',
           width: 1200,
           height: 630,
-          alt: seo.title,
+          alt: title,
         },
       ],
     },
 
     twitter: {
       card: 'summary_large_image',
-      title: seo.title,
-      description: seo.description,
+      title,
+      description,
       images: ['/og-image.png'],
     },
   };
