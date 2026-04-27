@@ -75,10 +75,6 @@ export function getLocalizedHref(locale: Locale, href: string) {
         return `/${locale}${pathWithoutLocale}${suffix}`;
     }
 
-    if (locale === DEFAULT_LOCALE) {
-        return `${pathWithoutLocale}${suffix}`;
-    }
-
     const localizedPathname = pathWithoutLocale === '/' ? `/${locale}` : `/${locale}${pathWithoutLocale}`;
 
     return `${localizedPathname}${suffix}`;
