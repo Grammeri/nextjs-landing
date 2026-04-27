@@ -1,4 +1,4 @@
-import styles from '@/app/(marketing)/page.module.css';
+import styles from './page.module.css';
 import layoutStyles from '@/app/(marketing)/layout.module.css';
 import { ProductsGrid } from '@/components/products-grid/ProductsGrid';
 import { getMarketingDictionary } from '@/shared/lib/i18n/getMarketingDictionary';
