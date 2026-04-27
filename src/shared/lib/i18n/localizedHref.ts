@@ -1,8 +1,7 @@
-export const DEFAULT_LOCALE = 'en';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from '@/shared/config/i18n';
 
-export const SUPPORTED_LOCALES = ['en', 'ru'] as const;
-
-export type Locale = (typeof SUPPORTED_LOCALES)[number];
+export { DEFAULT_LOCALE, SUPPORTED_LOCALES };
+export type { Locale };
 
 const LOCALE_SET = new Set<string>(SUPPORTED_LOCALES);
 
