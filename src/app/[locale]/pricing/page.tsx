@@ -16,13 +16,13 @@ type PricingPageProps = {
 
 const PRICING_SEO = {
   en: {
-    title: 'Pricing — Software Forge',
+    title: 'Pricing',
     description:
       'Choose a Software Forge product and purchase production-ready Next.js foundations for SaaS, authentication, and professional project setup.',
     ogLocale: 'en_US',
   },
   ru: {
-    title: 'Цены — Software Forge',
+    title: 'Цены',
     description:
       'Выберите продукт Software Forge и купите готовую основу для Next.js SaaS, аутентификации и профессионального старта проекта.',
     ogLocale: 'ru_RU',

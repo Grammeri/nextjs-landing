@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   const locale = getLocale(localeParam);
   const dictionary = getMarketingDictionary(locale);
 
-  const title = `${dictionary.home.hero.headline} — Software Forge`;
+  const title = dictionary.home.hero.headline;
   const description = dictionary.home.hero.lead;
   const canonical = routes.home(locale);
 

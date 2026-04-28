@@ -20,10 +20,10 @@ function isProductId(value: string): value is ProductId {
 
 const CHECKOUT_SUCCESS_METADATA = {
   en: {
-    title: 'Payment successful — Software Forge',
+    title: 'Payment successful',
   },
   ru: {
-    title: 'Оплата прошла успешно — Software Forge',
+    title: 'Оплата прошла успешно',
   },
 } as const;
 

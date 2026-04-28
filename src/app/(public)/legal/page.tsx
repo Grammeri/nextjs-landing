@@ -12,13 +12,13 @@ import {
 } from '@/shared/config/legal';
 
 export const metadata: Metadata = {
-  title: `${LEGAL_PAGE_TITLE} — Software Forge`,
+  title: LEGAL_PAGE_TITLE,
   description: LEGAL_PAGE_DESCRIPTION,
   alternates: {
     canonical: '/legal',
   },
   openGraph: {
-    title: `${LEGAL_PAGE_TITLE} — Software Forge`,
+    title: LEGAL_PAGE_TITLE,
     description: LEGAL_PAGE_DESCRIPTION,
     type: 'website',
     url: '/legal',

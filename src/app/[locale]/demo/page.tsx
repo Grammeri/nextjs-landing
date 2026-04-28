@@ -19,7 +19,7 @@ export async function generateMetadata({
   const locale = getLocale(localeParam);
   const demoText = getDemoText(locale);
 
-  const title = `${demoText.title} — Software Forge`;
+  const title = demoText.title;
   const description = demoText.subtitle;
   const canonical = routes.demo(locale);
 

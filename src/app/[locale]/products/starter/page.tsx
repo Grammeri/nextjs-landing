@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     rawLocale && isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
 
   const productCopy = getProductCopy('starter', locale);
-  const title = `${productCopy.name} — Software Forge`;
+  const title = productCopy.name;
   const description = productCopy.shortDescription;
   const canonical = routes.product(locale, 'starter');
   const ogLocale = locale === 'ru' ? 'ru_RU' : 'en_US';
