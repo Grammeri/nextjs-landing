@@ -4,7 +4,7 @@ export const authforgeEn: ProductCopy = {
   productId: 'authforge',
   name: 'AuthForge',
   shortDescription:
-    'Production-ready authentication starter for SaaS apps with email/password auth, email verification, password reset, secure sessions, rate limiting, and a Prisma + PostgreSQL reference implementation',
+    'Production-ready Next.js authentication system for SaaS apps: email/password auth, email verification, password reset, secure sessions, route-level rate limiting, and a Prisma + PostgreSQL reference implementation',
   supportEmail: 'support@software-forge.dev',
   actions: {
     viewDemo: 'View Demo',
@@ -20,7 +20,7 @@ export const authforgeEn: ProductCopy = {
   hero: {
     trustTitle: 'Built for SaaS teams shipping real products',
     trustDescription:
-      'AuthForge gives you a production-ready authentication foundation without forcing your team to build the core auth layer from scratch.\n\n' +
+      'AuthForge gives Next.js SaaS teams a production-ready authentication and authorization layer without forcing them to build registration, login, verification, reset, and session handling from scratch.\n\n' +
       'It includes the flows most SaaS products need from day one: email/password sign-up, email verification, password reset, secure server-side sessions, HttpOnly cookies, and route-level rate limiting.\n\n' +
       'The architecture is designed to stay adaptable as your product grows. AuthForge ships with a Prisma + PostgreSQL reference implementation, a production email path with a Resend example, and a domain structure you can extend inside your own SaaS product.',
   },
@@ -77,7 +77,7 @@ export const authforgeEn: ProductCopy = {
   },
   pricing: {
     description:
-      'Production-ready authentication starter for SaaS apps with secure sessions, verification flows, reset flows, rate limiting, and a Prisma + PostgreSQL reference implementation.',
+      'Next.js authentication starter for SaaS products with secure server-side sessions, email verification, password reset, abuse protection, and a Prisma + PostgreSQL implementation example.',
     price: '$99 — One-time license',
     features: [
       'License for 1 project',

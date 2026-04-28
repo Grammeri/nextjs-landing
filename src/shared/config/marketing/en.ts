@@ -5,7 +5,7 @@ export const marketingEn: MarketingDictionary = {
     hero: {
       headline: 'Ready-made solutions for SaaS and Next.js development',
       lead:
-        'Software Forge builds ready-to-use solutions for teams shipping real products: secure authentication for SaaS applications and a clean Next.js project foundation designed for fast setup, maintainable development, and long-term product growth.',
+        'Software Forge builds ready-to-use solutions for teams shipping real products: a Next.js authentication system for SaaS applications and a clean Next.js project setup for fast development, maintainable code, and long-term product growth.',
     },
     products: [
       {
@@ -13,14 +13,14 @@ export const marketingEn: MarketingDictionary = {
         href: '/products/authforge',
         title: 'AuthForge',
         description:
-          'A production-ready authentication starter for SaaS apps with email/password auth, email verification, password reset, secure sessions, rate limiting, and a Prisma + PostgreSQL reference implementation.',
+          'Production-ready Next.js authentication and authorization for SaaS apps: email/password sign-up, email verification, password reset, secure server sessions, and HttpOnly cookies.',
       },
       {
         productId: 'starter',
         href: '/products/starter',
         title: 'Next.js Professional Starter',
         description:
-          'A clean Next.js starter kit for real projects and technical assignments, with TypeScript, ESLint, Prettier, Husky, and a CI-ready project structure built for maintainable development.',
+          'Ready-to-use Next.js project setup for real apps and technical assignments: App Router, TypeScript, ESLint, Prettier, Husky, and CI configuration.',
       },
     ],
   },

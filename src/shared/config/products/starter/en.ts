@@ -4,7 +4,7 @@ export const starterEn: ProductCopy = {
   productId: 'starter',
   name: 'Next.js Professional Starter',
   shortDescription:
-    'A clean Next.js starter kit for real projects and technical assignments, with TypeScript, ESLint, Prettier, Husky, and a CI-ready project structure built for maintainable development',
+    'Clean Next.js starter kit and project template for real apps, MVPs, and technical assignments: App Router, TypeScript, ESLint, Prettier, Husky, and CI-ready structure',
   supportEmail: 'support@software-forge.dev',
   actions: {
     readDocs: 'Read Docs',
@@ -18,17 +18,17 @@ export const starterEn: ProductCopy = {
     tryBeforeYouBuy: 'Try before you buy',
   },
   hero: {
-    trustTitle: 'Built for clean Next.js project foundations',
+    trustTitle: 'Built for fast Next.js project setup',
     trustDescription:
-      'Next.js Professional Starter gives you a polished project baseline for starting real applications, technical assignments, and learning-focused builds without spending hours wiring up the same tooling from scratch.\n\n' +
-      'It combines a clean App Router setup, strict TypeScript configuration, predictable folder organization, formatting, linting, Git hooks, commit validation, and CI-ready structure.\n\n' +
-      'The result is a starter kit that feels small enough to understand, but organized enough to grow into a serious project.',
+      'Next.js Professional Starter gives you a ready-to-use Next.js project setup for real applications, MVPs, technical assignments, and learning-focused builds without spending hours configuring TypeScript, ESLint, Prettier, Husky, and CI by hand.\n\n' +
+      'The package includes a clean App Router setup, strict TypeScript configuration, predictable folder organization, formatting, linting, Git hooks, commit validation, and CI-ready project structure.\n\n' +
+      'The result is a practical Next.js starter kit and project template that is easy to understand at the beginning and organized enough to grow into a serious project.',
   },
   audience: [
-    'Developers starting a new Next.js project who want a clean, production-ready baseline',
-    'Students completing technical assignments with a professional project structure',
-    'Engineers who want TypeScript, linting, formatting, hooks, and CI already organized',
-    'Developers learning modern Next.js tooling and maintainable project conventions',
+    'Developers starting a new Next.js project who want a ready-to-use setup without extra manual configuration',
+    'Students and developers completing technical assignments with a clean Next.js project template',
+    'Engineers who want TypeScript, ESLint, Prettier, Git hooks, commit checks, and CI already organized',
+    'Developers learning Next.js App Router, modern project structure, and maintainable development conventions',
   ],
   featureGroups: [
     {
@@ -72,7 +72,7 @@ export const starterEn: ProductCopy = {
   ],
   tryBeforeYouBuy: {
     description:
-      'Before purchasing, you can review the documentation, inspect the project structure, and understand the tooling included in the starter. The package is designed to be easy to read, quick to set up, and practical for both real projects and technical assignments.',
+      'Before purchasing, you can review the documentation, inspect the project structure, and understand the tooling included in the package. It is designed as a practical Next.js starter kit and project template that is easy to read, quick to run, and useful for real projects, MVPs, and technical assignments.',
     links: [
       { key: 'docs', label: 'Starter documentation' },
       { key: 'tooling', label: 'Tooling overview' },
@@ -83,7 +83,7 @@ export const starterEn: ProductCopy = {
   },
   pricing: {
     description:
-      'Clean, production-ready Next.js starter kit with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and a CI-ready project structure',
+      'Ready-to-use Next.js project setup with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and CI configuration for real apps and technical assignments.',
     price: '$5 — One-time license',
     features: [
       'License for 1 project',
