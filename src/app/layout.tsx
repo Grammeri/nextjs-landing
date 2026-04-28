@@ -23,19 +23,6 @@ export const metadata: Metadata = {
 
   description: defaultDescription,
 
-  keywords: [
-    'software forge',
-    'saas starter',
-    'nextjs starter',
-    'auth starter',
-    'authentication',
-    'nextjs auth',
-    'developer products',
-    'saas boilerplate',
-    'production-ready saas',
-    'full-stack starter',
-  ],
-
   authors: [{ name: siteName }],
   creator: siteName,
   publisher: siteName,
