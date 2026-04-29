@@ -10,14 +10,12 @@ export const marketingEn: MarketingDictionary = {
     products: [
       {
         productId: 'authforge',
-        href: '/products/authforge',
         title: 'AuthForge',
         description:
           'Production-ready Next.js authentication and authorization for SaaS apps: email/password sign-up, email verification, password reset, secure server sessions, and HttpOnly cookies.',
       },
       {
         productId: 'starter',
-        href: '/products/starter',
         title: 'Next.js Professional Starter',
         description:
           'Ready-to-use Next.js project setup for real apps and technical assignments: App Router, TypeScript, ESLint, Prettier, Husky, and CI configuration.',

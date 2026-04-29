@@ -10,14 +10,12 @@ export const marketingRu: MarketingDictionary = {
     products: [
       {
         productId: 'authforge',
-        href: '/products/authforge',
         title: 'AuthForge',
         description:
           'Готовая авторизация и аутентификация для SaaS-приложений на Next.js: регистрация, вход, подтверждение email, сброс пароля и безопасные серверные сессии.',
       },
       {
         productId: 'starter',
-        href: '/products/starter',
         title: 'Next.js Professional Starter',
         description:
           'Готовая настройка проекта на Next.js для реальных приложений и тестовых заданий: TypeScript, ESLint, Prettier, Husky и готовая конфигурация CI.',

@@ -18,11 +18,11 @@ export function ProductsGrid({ items }: ProductsGridProps) {
 
   return (
     <>
-      {items.map((item, index) => {
+      {items.map((item) => {
         const href = routes.product(locale, item.productId);
 
         return (
-          <Link key={`${item.href}-${item.title}-${index}`} href={href}>
+          <Link key={`--`} href={href}>
             <ProductCard interactive>
               <h3>{item.title}</h3>
               <p>{item.description}</p>

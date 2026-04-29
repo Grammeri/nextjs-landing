@@ -2,7 +2,6 @@ import type { ProductId } from '@/shared/config/products/types';
 
 export type MarketingProductCardCopy = {
   productId: ProductId;
-  href: string;
   title: string;
   description: string;
 };
