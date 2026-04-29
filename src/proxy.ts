@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const DEFAULT_LOCALE = 'en';
+import { DEFAULT_LOCALE } from '@/shared/config/i18n';
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
