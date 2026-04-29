@@ -4,7 +4,7 @@ export type BillingProduct = {
   productId: string;
   name: string;
   description?: string;
-  priceCents: number; // cents
+  priceCents: number;
   currency: 'usd';
 };
 
