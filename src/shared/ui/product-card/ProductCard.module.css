@@ -33,7 +33,11 @@
   margin-bottom: var(--spacing-sm);
 }
 
-.card:hover {
+.card[data-interactive='true'] {
+  cursor: pointer;
+}
+
+.card[data-interactive='true']:hover {
   box-shadow: var(--product-card-hover-shadow, var(--interaction-hover-shadow));
   transform: translateY(var(--interaction-hover-translate-y));
 }

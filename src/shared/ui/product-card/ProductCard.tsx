@@ -6,17 +6,21 @@ type ProductCardProps = {
   interactive?: boolean;
   variant?: 'default' | 'placeholder';
 };
-// test
+
 export function ProductCard({
   children,
   interactive = true,
   variant = 'default',
 }: ProductCardProps) {
   const isPlaceholder = variant === 'placeholder';
+  const isInteractive = interactive && !isPlaceholder;
+
   const childrenArray = Children.toArray(children);
+
   const titleIndex = childrenArray.findIndex(
     (child) => isValidElement(child) && child.type === 'h3',
   );
+
   const content = childrenArray.map((child, index) => {
     if (index === titleIndex && isValidElement(child) && child.type === 'h3') {
       return (
@@ -32,7 +36,7 @@ export function ProductCard({
   return (
     <div
       className={`${styles.card} ${isPlaceholder ? styles.placeholder : ''}`}
-      data-interactive={interactive}
+      data-interactive={isInteractive}
     >
       <div className={styles.content}>{content}</div>
     </div>
