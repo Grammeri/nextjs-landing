@@ -29,7 +29,7 @@ export async function createStripeCheckout(
             name: params.product.name,
             description: params.product.description,
           },
-          unit_amount: params.product.amount,
+          unit_amount: params.product.priceCents,
         },
         quantity: 1,
       },
