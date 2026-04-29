@@ -1,6 +1,12 @@
 .page {
-  color: var(--color-text);
   min-height: 100vh;
+  color: var(--color-text);
+
+  background-image: url('/images/hero/tx-inspired-home-page-bg.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .hero {
@@ -58,7 +64,7 @@
   align-items: stretch;
 }
 
-.productsGrid > * {
+.productsGrid>* {
   min-width: 0;
   width: 100%;
 }
