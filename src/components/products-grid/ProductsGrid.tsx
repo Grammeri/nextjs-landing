@@ -22,7 +22,7 @@ export function ProductsGrid({ items }: ProductsGridProps) {
         const href = routes.product(locale, item.productId);
 
         return (
-          <Link key={`--`} href={href}>
+          <Link key={href} href={href}>
             <ProductCard interactive>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
