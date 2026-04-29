@@ -247,6 +247,10 @@
   /* Hero typography layout */
   --hero-headline-max-width: 72rem;
   --hero-text-max-width: 68rem;
+  --hero-headline-font-size-mobile: clamp(32px, 8vw, 42px);
+
+  /* Home page */
+  --home-products-grid-max-width: 920px;
 
   --section-min-height-next: 40vh;
 

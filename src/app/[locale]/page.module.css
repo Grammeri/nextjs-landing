@@ -15,12 +15,12 @@
   position: relative;
 
   padding-top: var(--section-padding-top-hero);
-  padding-bottom: calc(var(--section-padding-bottom-hero) + clamp(24px, 4vw, 48px));
+  padding-bottom: calc(var(--section-padding-bottom-hero) + clamp(var(--spacing-lg), 4vw, var(--spacing-2xl)));
 }
 
 .heroContent {
   position: relative;
-  padding-top: clamp(32px, 6vw, 64px);
+  padding-top: clamp(var(--spacing-xl), 6vw, var(--spacing-3xl));
 }
 
 .headline {
@@ -58,8 +58,8 @@
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 3vw, 24px);
-  max-width: min(100%, 920px);
+  gap: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
+  max-width: min(100%, var(--home-products-grid-max-width));
   margin: 0 auto;
   align-items: stretch;
 }
@@ -75,7 +75,7 @@
 
 @media (max-width: 1024px) {
   .heroContent {
-    padding-top: clamp(24px, 5vw, 48px);
+    padding-top: clamp(var(--spacing-lg), 5vw, var(--spacing-2xl));
   }
 
   .lead {
@@ -113,7 +113,7 @@
 
   .headline {
     margin-bottom: var(--spacing-md);
-    font-size: clamp(32px, 8vw, 42px);
+    font-size: var(--hero-headline-font-size-mobile);
     line-height: 1.15;
   }
 
