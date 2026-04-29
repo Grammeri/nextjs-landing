@@ -1,43 +1,44 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import {
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_DEFAULT_TITLE,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  SITE_OG_IMAGE_ALT,
+  SITE_TITLE_TEMPLATE,
+  SITE_URL,
+} from '@/shared/config/site';
 
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import CookieNotice from '@/components/cookie-notice/CookieNotice';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://software-forge.dev';
-const siteName = 'Software Forge';
-const defaultTitle = 'Software Forge — Production-ready SaaS foundations and developer products';
-const titleTemplate = '%s | Software Forge';
-const defaultDescription =
-  'Software Forge builds production-ready SaaS foundations and developer products, including AuthForge and Starter, with a focus on modern architecture, security, and clean implementation.';
-const ogImageAlt = 'Software Forge — Production-ready SaaS foundations and developer products';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
 
   title: {
-    default: defaultTitle,
-    template: titleTemplate,
+    default: SITE_DEFAULT_TITLE,
+    template: SITE_TITLE_TEMPLATE,
   },
 
-  description: defaultDescription,
+  description: SITE_DEFAULT_DESCRIPTION,
 
-  authors: [{ name: siteName }],
-  creator: siteName,
-  publisher: siteName,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
 
   openGraph: {
-    title: defaultTitle,
-    description: defaultDescription,
-    url: siteUrl,
-    siteName,
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: '/og-image.png',
+        url: SITE_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: ogImageAlt,
+        alt: SITE_OG_IMAGE_ALT,
       },
     ],
     locale: 'en_US',
@@ -46,9 +47,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: defaultTitle,
-    description: defaultDescription,
-    images: ['/og-image.png'],
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
   },
 
   icons: {

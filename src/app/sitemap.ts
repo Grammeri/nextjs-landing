@@ -2,12 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { MetadataRoute } from 'next';
 import { DOCS_PRODUCTS, getDocsRoute } from './[locale]/docs/_lib/products';
+import { SITE_URL } from '@/shared/config/site';
 
 const DOCS_LOCALE = 'en';
-
-function getBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-}
 
 function collectMarkdownSlugs(dirPath: string, parentSegments: string[] = []): string[] {
   if (!fs.existsSync(dirPath)) {
@@ -38,7 +35,7 @@ function collectMarkdownSlugs(dirPath: string, parentSegments: string[] = []): s
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = getBaseUrl();
+  const baseUrl = SITE_URL;
   const now = new Date();
 
   const docPages: MetadataRoute.Sitemap = Object.values(DOCS_PRODUCTS).flatMap((product) => {

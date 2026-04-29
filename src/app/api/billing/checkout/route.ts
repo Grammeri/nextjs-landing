@@ -7,6 +7,7 @@ import { BILLING_CATALOG } from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
 import { TERMS_VERSION } from '@/shared/config/legal';
 import type { ProductId } from '@/shared/config/products/types';
+import { getRequiredSiteUrl } from '@/shared/config/site.server';
 
 type CheckoutRequestBody = {
   productId: string;
@@ -22,14 +23,7 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
-    if (!siteUrl || !siteUrl.startsWith('http')) {
-      return NextResponse.json(
-        { error: 'NEXT_PUBLIC_SITE_URL must include scheme (http/https)' },
-        { status: 500 },
-      );
-    }
+    const siteUrl = getRequiredSiteUrl();
 
     let body: CheckoutRequestBody;
 

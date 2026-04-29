@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { SITE_SITEMAP_URL } from '@/shared/config/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://software-forge.dev/sitemap.xml',
+    sitemap: SITE_SITEMAP_URL,
   };
 }

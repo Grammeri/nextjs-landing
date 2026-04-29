@@ -1,4 +1,5 @@
 import { PurchaseEmailPayload } from './types';
+import { getRequiredSiteUrl } from '@/shared/config/site.server';
 
 const PRODUCT_TITLES = {
   authforge: 'AuthForge',
@@ -14,13 +15,9 @@ type ResendSendEmailResponse = {
 };
 
 export async function sendPurchaseEmail(payload: PurchaseEmailPayload) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const siteUrl = getRequiredSiteUrl();
   const resendApiKey = process.env.RESEND_API_KEY;
   const emailFrom = process.env.EMAIL_FROM;
-
-  if (!siteUrl || !siteUrl.startsWith('http')) {
-    throw new Error('NEXT_PUBLIC_SITE_URL must include scheme (http/https)');
-  }
 
   if (!resendApiKey) {
     throw new Error('RESEND_API_KEY is not defined');
