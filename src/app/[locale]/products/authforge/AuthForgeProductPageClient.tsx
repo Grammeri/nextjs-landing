@@ -60,19 +60,19 @@ export default function AuthForgeProductPageClient() {
             }
           />
 
-          <ProductSection title={productCopy.sectionTitles.audience} align="center">
+          <ProductSection title={productCopy.audience.title} align="center">
             <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
               <ul className={styles.audienceList}>
-                {productCopy.audience.map((item) => (
+                {productCopy.audience.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
             </div>
           </ProductSection>
 
-          <ProductSection title={productCopy.sectionTitles.included}>
+          <ProductSection title={productCopy.included.title}>
             <div className={styles.featureGrid}>
-              {productCopy.featureGroups.map((group) => (
+              {productCopy.included.groups.map((group) => (
                 <div key={group.title} className={styles.featureCard}>
                   <h3 className={styles.featureTitle}>{group.title}</h3>
 
@@ -86,17 +86,17 @@ export default function AuthForgeProductPageClient() {
             </div>
           </ProductSection>
 
-          <ProductSection title={productCopy.sectionTitles.howItWorks} align="center">
+          <ProductSection title={productCopy.howItWorks.title} align="center">
             <div className={styles.contentNarrow}>
               <ol className={styles.steps}>
-                {productCopy.howItWorks.map((item) => (
+                {productCopy.howItWorks.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ol>
             </div>
           </ProductSection>
 
-          <ProductSection title={productCopy.sectionTitles.tryBeforeYouBuy}>
+          <ProductSection title={productCopy.tryBeforeYouBuy.title}>
             <div className={`${styles.sectionContent} ${styles.sectionContentWide}`}>
               <div className={styles.trustBlock}>
                 <p className={styles.trustText}>{productCopy.tryBeforeYouBuy.description}</p>

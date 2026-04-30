@@ -32,20 +32,24 @@ export type ProductCopy = {
   shortDescription: string;
   supportEmail: string;
   actions: Record<string, string>;
-  sectionTitles: {
-    audience: string;
-    included: string;
-    howItWorks: string;
-    tryBeforeYouBuy: string;
-  };
   hero: {
     trustTitle: string;
     trustDescription: string;
   };
-  audience: string[];
-  featureGroups: ProductFeatureGroupCopy[];
-  howItWorks: string[];
+  audience: {
+    title: string;
+    items: string[];
+  };
+  included: {
+    title: string;
+    groups: ProductFeatureGroupCopy[];
+  };
+  howItWorks: {
+    title: string;
+    items: string[];
+  };
   tryBeforeYouBuy: {
+    title: string;
     description: string;
     links: ProductLinkCopy[];
     contactPrefix: string;

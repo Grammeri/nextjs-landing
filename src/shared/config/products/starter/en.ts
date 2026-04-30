@@ -5,18 +5,6 @@ export const starterEn: ProductCopy = {
   name: 'Next.js Professional Starter',
   shortDescription:
     'Clean Next.js starter kit and project template for real apps, MVPs, and technical assignments: App Router, TypeScript, ESLint, Prettier, Husky, and CI-ready structure',
-  supportEmail: 'support@software-forge.dev',
-  actions: {
-    readDocs: 'Read Docs',
-    viewTooling: 'View Tooling',
-    buyLicense: 'Buy license',
-  },
-  sectionTitles: {
-    audience: 'Who is this starter for',
-    included: 'What’s included',
-    howItWorks: 'How it works',
-    tryBeforeYouBuy: 'Try before you buy',
-  },
   hero: {
     trustTitle: 'Built for fast Next.js project setup',
     trustDescription:
@@ -24,53 +12,68 @@ export const starterEn: ProductCopy = {
       'The package includes a clean App Router setup, strict TypeScript configuration, predictable folder organization, formatting, linting, Git hooks, commit validation, and CI-ready project structure.\n\n' +
       'The result is a practical Next.js starter kit and project template that is easy to understand at the beginning and organized enough to grow into a serious project.',
   },
-  audience: [
-    'Developers starting a new Next.js project who want a ready-to-use setup without extra manual configuration',
-    'Students and developers completing technical assignments with a clean Next.js project template',
-    'Engineers who want TypeScript, ESLint, Prettier, Git hooks, commit checks, and CI already organized',
-    'Developers learning Next.js App Router, modern project structure, and maintainable development conventions',
-  ],
-  featureGroups: [
-    {
-      title: 'Project structure',
-      items: [
-        'Clean Next.js App Router setup',
-        'Predictable folder organization',
-        'Clear separation between app routes, components, shared UI, and libraries',
-      ],
-    },
-    {
-      title: 'Developer tooling',
-      items: [
-        'Strict TypeScript configuration',
-        'ESLint for code quality',
-        'Prettier for consistent formatting',
-        'Husky Git hooks',
-        'Lint-staged checks for staged files',
-        'Conventional commit validation',
-        'VS Code workspace settings and recommended extensions',
-        'EditorConfig for consistent formatting',
-      ],
-    },
-    {
-      title: 'Automation',
-      items: [
-        'CI-ready workflow structure',
-        'Automated repository checks',
-        'One-command validation with pnpm check',
-        'Repeatable development workflow for real projects and assignments',
-      ],
-    },
-  ],
-  howItWorks: [
-    'Download the Next.js Professional Starter source package',
-    'Install dependencies with pnpm',
-    'Run the project checks with pnpm check',
-    'Review the App Router structure and tooling setup',
-    'Run the development workflow locally',
-    'Start building your project or technical assignment on a clean foundation',
-  ],
+  actions: {
+    readDocs: 'Read Docs',
+    viewTooling: 'View Tooling',
+    buyLicense: 'Buy license',
+  },
+  audience: {
+    title: 'Who is this starter for',
+    items: [
+      'Developers starting a new Next.js project who want a ready-to-use setup without extra manual configuration',
+      'Students and developers completing technical assignments with a clean Next.js project template',
+      'Engineers who want TypeScript, ESLint, Prettier, Git hooks, commit checks, and CI already organized',
+      'Developers learning Next.js App Router, modern project structure, and maintainable development conventions',
+    ],
+  },
+  included: {
+    title: 'What’s included',
+    groups: [
+      {
+        title: 'Project structure',
+        items: [
+          'Clean Next.js App Router setup',
+          'Predictable folder organization',
+          'Clear separation between app routes, components, shared UI, and libraries',
+        ],
+      },
+      {
+        title: 'Developer tooling',
+        items: [
+          'Strict TypeScript configuration',
+          'ESLint for code quality',
+          'Prettier for consistent formatting',
+          'Husky Git hooks',
+          'Lint-staged checks for staged files',
+          'Conventional commit validation',
+          'VS Code workspace settings and recommended extensions',
+          'EditorConfig for consistent formatting',
+        ],
+      },
+      {
+        title: 'Automation',
+        items: [
+          'CI-ready workflow structure',
+          'Automated repository checks',
+          'One-command validation with pnpm check',
+          'Repeatable development workflow for real projects and assignments',
+        ],
+      },
+    ],
+  },
+  howItWorks: {
+    title: 'How it works',
+    items: [
+      'Download the Next.js Professional Starter source package',
+      'Install dependencies with pnpm',
+      'Run the project checks with pnpm check',
+      'Review the App Router structure and tooling setup',
+      'Run the development workflow locally',
+      'Start building your project or technical assignment on a clean foundation',
+    ],
+  },
   tryBeforeYouBuy: {
+    title: 'Try before you buy',
     description:
       'Before purchasing, you can review the documentation, inspect the project structure, and understand the tooling included in the package. It is designed as a practical Next.js starter kit and project template that is easy to read, quick to run, and useful for real projects, MVPs, and technical assignments.',
     links: [
@@ -81,6 +84,7 @@ export const starterEn: ProductCopy = {
     contactPrefix: 'Questions before or after purchase?',
     contactLead: 'Contact us at',
   },
+  supportEmail: 'support@software-forge.dev',
   pricing: {
     description:
       'Ready-to-use Next.js project setup with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and CI configuration for real apps and technical assignments.',
