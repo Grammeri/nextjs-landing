@@ -5,13 +5,10 @@ import { getMarketingDictionary } from '@/shared/lib/i18n/getMarketingDictionary
 import { getLocale } from '@/shared/lib/i18n/getLocale';
 import { routes } from '@/shared/config/routes';
 
-type HomePageProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+export async function generateMetadata({
+  params
+}: PageProps<'/[locale]'>): Promise<Metadata> {
 
-export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
   const { locale: localeParam } = await params;
   const locale = getLocale(localeParam);
   const dictionary = getMarketingDictionary(locale);
@@ -57,7 +54,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   };
 }
 
-export default async function HomePage({ params }: HomePageProps) {
+export default async function HomePage({ params }: PageProps<'/[locale]'>) {
   const { locale: localeParam } = await params;
   const locale = getLocale(localeParam);
   const dictionary = getMarketingDictionary(locale);
