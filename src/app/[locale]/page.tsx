@@ -59,7 +59,8 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale: localeParam } = await params;
-  const dictionary = getMarketingDictionary(getLocale(localeParam));
+  const locale = getLocale(localeParam);
+  const dictionary = getMarketingDictionary(locale);
 
   return (
     <div className={styles.page}>
