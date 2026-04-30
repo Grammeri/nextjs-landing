@@ -63,7 +63,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className={styles.page}>
-      <section id="hero-section" className={styles.hero}>
+      <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroContent}>
             <h1 className={styles.headline}>{dictionary.home.hero.headline}</h1>
