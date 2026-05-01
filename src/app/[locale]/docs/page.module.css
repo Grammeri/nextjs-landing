@@ -1,12 +1,12 @@
 .page {
   padding-top: var(--section-padding-top-default);
-  padding-bottom: clamp(20px, 3vw, 40px);
+  padding-bottom: var(--docs-page-padding-bottom);
 }
 
 .panel {
   border: 1px solid color-mix(in srgb, var(--color-texas-blue) 55%, white 45%);
   border-radius: var(--radius-lg);
-  padding: clamp(32px, 4vw, 48px);
+  padding: var(--docs-page-content-padding);
   color: var(--color-product-text);
   background: color-mix(in srgb, var(--color-bg) 98%, var(--color-surface-subtle) 2%);
 }

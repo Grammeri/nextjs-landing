@@ -134,6 +134,8 @@
   --docs-mobile-topbar-padding-top: 6px;
   --docs-mobile-scroll-offset: 56px;
   --docs-copy-button-transition-duration: 0.15s;
+  --docs-page-padding-bottom: clamp(20px, 3vw, 40px);
+  --docs-page-content-padding: clamp(var(--spacing-xl), 4vw, var(--spacing-2xl));
 
   /* Typography — final marketing scale */
   --font-base:
@@ -222,6 +224,7 @@
   /* Container */
   --container-width: 1200px;
   --container-padding: clamp(16px, 3vw, 24px);
+  --container-wide-padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
 
   /* Narrow content blocks (instructions, steps, text-heavy sections) */
   --content-narrow-width: 720px;
@@ -253,6 +256,8 @@
   --home-products-grid-max-width: 920px;
 
   --section-min-height-next: 40vh;
+
+  --home-products-margin-bottom: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
 
   /* Section layout paddings */
   --section-padding-top-hero: clamp(8px, 1.2vw, 16px);
@@ -429,6 +434,7 @@
   --footer-line-height-mobile: 1.2;
   --footer-mobile-gap: 6px;
   --footer-mobile-divider-width: min(200px, 56%);
+  --footer-content-padding-y: clamp(var(--spacing-lg), 4vw, 72px);
 
   /* Surface / Card */
   --surface-card-bg: var(--color-surface-system);
@@ -780,8 +786,8 @@ ol {
 
 .container-wide {
   width: 100%;
-  padding-left: clamp(16px, 3vw, 32px);
-  padding-right: clamp(16px, 3vw, 32px);
+  padding-left: var(--container-wide-padding);
+  padding-right: var(--container-wide-padding);
 }
 
 .section {

@@ -30,7 +30,7 @@
   color: var(--color-on-image-primary);
 
   max-width: min(100%, var(--hero-headline-max-width));
-  margin: 0 auto clamp(16px, 3vw, 32px) auto;
+  margin: 0 auto var(--home-products-margin-bottom) auto;
 
   text-align: center;
   text-wrap: balance;

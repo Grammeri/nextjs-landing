@@ -14,7 +14,7 @@
 
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: clamp(24px, 4vw, 72px) var(--footer-padding-x);
+  padding: var(--footer-content-padding-y) var(--footer-padding-x);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: start;
