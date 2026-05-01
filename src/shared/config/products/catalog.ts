@@ -1,6 +1,5 @@
 import type { BillingProduct, BillingProvider } from '@/lib/billing';
 import type { ProductId } from '@/shared/config/products/types';
-import type { MarketingProductCardCopy } from '@/shared/config/marketing/types';
 
 import { AUTHFORGE_PRODUCT_COPY } from '@/shared/config/products/authforge';
 import { STARTER_PRODUCT_COPY } from './starter';
@@ -33,5 +32,3 @@ export const BILLING_CATALOG: Record<ProductId, BillingCatalogItem> = {
     },
   },
 };
-
-export type ProductGridItem = MarketingProductCardCopy;

@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { routes } from '@/shared/config/routes';
-import type { ProductGridItem } from '@/shared/config/products/catalog';
+import type { MarketingProductCardCopy } from '@/shared/config/marketing/types';
 import { getLocaleFromPathname } from '@/shared/lib/i18n/localizedHref';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
 
 type ProductsGridProps = {
-  items: ProductGridItem[];
+  items: MarketingProductCardCopy[];
 };
 
 export function ProductsGrid({ items }: ProductsGridProps) {
