@@ -540,11 +540,20 @@
   /* Product cards */
   --product-card-width: min(100%, 440px);
 
+  /* Product card spacing */
+  --product-card-padding-block-start: clamp(var(--spacing-lg), 3vw, var(--spacing-xl));
+  --product-card-padding-inline: clamp(var(--spacing-lg), 3vw, var(--spacing-xl));
+  --product-card-padding-block-end: clamp(var(--spacing-xl), 4vw, var(--spacing-2xl));
+
   /* Product card header height (aligns descriptions across cards) */
   --product-card-header-height: 72px;
 
   /* Minimum height for product cards (ensures visual balance) */
   --product-card-min-height: 240px;
+  --product-card-min-height-mobile: clamp(var(--product-card-min-height), 68vw, 300px);
+
+  /* Product card typography */
+  --product-card-title-font-size-mobile: var(--font-size-xl);
 
   /* selection base */
   --select-border-radius: var(--radius-md);
