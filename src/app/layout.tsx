@@ -13,6 +13,8 @@ import {
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import CookieNotice from '@/components/cookie-notice/CookieNotice';
+import { AnalyticsConsentProvider } from '@/components/analytics/AnalyticsConsentProvider';
+import ConsentedGoogleAnalytics from '@/components/analytics/ConsentedGoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,12 +72,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
+        <AnalyticsConsentProvider>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <Footer />
-        <CookieNotice />
+          <Footer />
+          <CookieNotice />
+          <ConsentedGoogleAnalytics />
+        </AnalyticsConsentProvider>
       </body>
     </html>
   );

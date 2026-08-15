@@ -39,6 +39,31 @@
   background: var(--color-surface-cookie-button-hover-bg);
 }
 
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.privacyLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.privacyLink:hover {
+  opacity: var(--opacity-hover-visible);
+}
+
+.privacyLink:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
 @keyframes cookieNoticeEnter {
   from {
     transform: translateY(120%);

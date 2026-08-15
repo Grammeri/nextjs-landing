@@ -1,49 +1,50 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useAnalyticsConsent } from '@/components/analytics/AnalyticsConsentProvider';
+import { routes } from '@/shared/config/routes';
 import { Button } from '@/shared/ui/button';
 import styles from './CookieNotice.module.css';
 
-const STORAGE_KEY = 'cookie_notice_accepted';
-
 export default function CookieNotice() {
   const pathname = usePathname();
-  const [hasAccepted, setHasAccepted] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const { isReady, isConsentPromptVisible, acceptAnalytics, rejectNonEssential } =
+    useAnalyticsConsent();
 
-  useEffect(() => {
-    try {
-      const accepted = window.localStorage.getItem(STORAGE_KEY) === 'true';
-      setHasAccepted(accepted);
-    } finally {
-      setIsReady(true);
-    }
-  }, []);
-
-  const handleAccept = () => {
-    setHasAccepted(true);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, 'true');
-    } catch {}
-  };
-
-  if (!isReady || pathname?.startsWith('/demo') || hasAccepted) {
+  if (!isReady || pathname?.startsWith('/demo') || !isConsentPromptVisible) {
     return null;
   }
 
   return (
-    <div className={styles.notice} role="region" aria-live="polite">
+    <div className={styles.notice} role="region" aria-live="polite" aria-label="Analytics consent">
       <div className={styles.inner}>
-        <p className={styles.text}>We use essential cookies to ensure this site works properly.</p>
+        <p className={styles.text}>
+          We use essential technologies to keep this site working. With your permission, we also use
+          Google Analytics to understand how visitors use Software Forge and improve the site. See our{' '}
+          <Link href={`${routes.legal}#privacy`} className={styles.privacyLink}>
+            Privacy Policy
+          </Link>
+          .
+        </p>
 
-        <Button
-          className={styles.cookieButton}
-          onClick={handleAccept}
-          aria-label="Accept cookie notice"
-        >
-          Got it
-        </Button>
+        <div className={styles.actions}>
+          <Button
+            className={styles.cookieButton}
+            onClick={rejectNonEssential}
+            aria-label="Reject non-essential analytics"
+          >
+            Reject non-essential
+          </Button>
+
+          <Button
+            className={styles.cookieButton}
+            onClick={acceptAnalytics}
+            aria-label="Accept analytics"
+          >
+            Accept analytics
+          </Button>
+        </div>
       </div>
     </div>
   );

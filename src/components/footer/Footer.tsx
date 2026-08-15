@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useAnalyticsConsent } from '@/components/analytics/AnalyticsConsentProvider';
 import { routes } from '@/shared/config/routes';
 import { GoodLuckIcon } from '@/shared/ui/icons';
 import styles from './Footer.module.css';
@@ -12,11 +13,13 @@ const footerLabels = {
     origin: 'Engineered in Texas. Used worldwide.',
     contact: 'Contact us: support@software-forge.dev',
     legal: 'Legal',
+    privacyChoices: 'Privacy choices',
   },
   ru: {
     origin: 'Разработано в Техасе. Используется по всему миру.',
     contact: 'Свяжитесь с нами: support@software-forge.dev',
     legal: 'Правовая информация',
+    privacyChoices: 'Настройки конфиденциальности',
   },
 };
 
@@ -24,6 +27,7 @@ export default function Footer() {
   const pathname = usePathname();
   const locale = pathname.startsWith('/ru') ? 'ru' : 'en';
   const labels = footerLabels[locale];
+  const { openPrivacyChoices } = useAnalyticsConsent();
 
   return (
     <footer className={styles.footer}>
@@ -38,6 +42,13 @@ export default function Footer() {
           <Link href={routes.legal} className={styles.legalLink}>
             {labels.legal}
           </Link>
+          <button
+            type="button"
+            className={styles.legalLink}
+            onClick={openPrivacyChoices}
+          >
+            {labels.privacyChoices}
+          </button>
         </div>
       </div>
 

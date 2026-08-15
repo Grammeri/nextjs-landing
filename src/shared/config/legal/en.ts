@@ -1,4 +1,4 @@
-export const TERMS_VERSION = '2025-01-01';
+export const TERMS_VERSION = '2026-08-15';
 
 export type LegalSection = {
   id: 'terms' | 'privacy' | 'refund' | 'license' | 'liability';
@@ -36,8 +36,8 @@ export const LEGAL_SECTIONS: LegalSection[] = [
       'By purchasing, downloading, accessing, or using the Product, you agree to these Terms. The Product is licensed, not sold.',
       'The Product is a developer tool and digital software asset intended to be integrated, configured, customized, tested, secured, and deployed by you. You are solely responsible for how the Product is implemented in your own project, service, business workflow, or production environment.',
       'You are responsible for ensuring that your use of the Product, your application logic, your user notices, your privacy and cookie practices, your security settings, your infrastructure choices, and your compliance with applicable laws and regulations are lawful in the jurisdictions where you operate.',
-      'Unless expressly stated otherwise on the relevant product page or checkout page, your purchase includes only the license rights expressly described in these Terms and does not include custom development, legal review, implementation services, security certification, managed hosting, compliance services, or ongoing support obligations.',
-      'Software Forge may update these Terms from time to time. The version in effect at the time of purchase governs that purchase unless applicable law requires otherwise. Nothing in these Terms excludes, limits, or overrides any rights that cannot be excluded or limited under applicable law.',
+      'Unless expressly stated otherwise on the relevant product page or checkout page, your license includes only the rights expressly described in these Terms and does not include custom development, legal review, implementation services, security certification, managed hosting, compliance services, or ongoing support obligations.',
+      'Software Forge may update these Terms from time to time. The version in effect at the time of purchase or download governs that transaction unless applicable law requires otherwise. Nothing in these Terms excludes, limits, or overrides any rights that cannot be excluded or limited under applicable law.',
     ],
   },
   {
@@ -45,7 +45,7 @@ export const LEGAL_SECTIONS: LegalSection[] = [
     navLabel: 'License',
     title: 'License Agreement',
     paragraphs: [
-      'Subject to your compliance with these Terms and payment of the applicable price, you receive a limited, non-exclusive, non-transferable, revocable license to use the Product for the scope stated on the applicable product page or checkout page. If no broader scope is expressly stated, the default license is for one project.',
+      'Subject to your compliance with these Terms and, where applicable, payment of the applicable price, you receive a limited, non-exclusive, non-transferable, revocable license to use the Product for the scope stated on the applicable product page or checkout page. If no broader scope is expressly stated, the default license is for one project.',
       'You may download, store, and modify the Product for your own internal use and for your permitted project needs. You may use the Product as part of a larger application or service that you develop.',
       'You may not resell, redistribute, sublicense, publish, share, lease, or transfer the Product itself, whether in original or modified form. You may not make the source code, package files, or original Product materials available to third parties except to contractors working on your behalf under confidentiality obligations and only to the extent necessary for your permitted use.',
       'All intellectual property rights in and to the Product remain reserved.',
@@ -66,9 +66,11 @@ export const LEGAL_SECTIONS: LegalSection[] = [
     navLabel: 'Privacy',
     title: 'Privacy Policy',
     paragraphs: [
-      'We process only the personal data reasonably necessary to sell and deliver the Product, communicate with customers, maintain order and license records, respond to support requests, comply with legal obligations, and protect against fraud, abuse, or unauthorized redistribution.',
+      'We process only the personal data reasonably necessary to sell and deliver the Product, communicate with customers, maintain order and license records, respond to support requests, operate and improve the Software Forge website, comply with legal obligations, and protect against fraud, abuse, or unauthorized redistribution.',
       'Depending on the transaction, we may process your name, email address, billing country, order details, invoice or transaction identifiers, product and license records, and communications you send to support. Payments are securely processed by third-party payment providers such as Stripe. We do not store full payment card details.',
-      'Where GDPR or similar laws apply, the legal bases for processing are typically the performance of a contract, compliance with legal obligations, and legitimate interests in operating, securing, and enforcing the business. Personal data is retained only for as long as reasonably necessary for product delivery, license administration, support, fraud prevention, recordkeeping, tax, accounting, and legal compliance.',
+      'Software Forge may use Google Analytics 4 to understand how visitors use the website and to improve the site. Analytics may process information such as pages viewed, approximate location, device and browser details, and similar usage data according to Google\'s service behavior. Google acts as an analytics service provider for this purpose.',
+      'Where consent is required, Google Analytics is enabled only after you grant analytics consent through the site consent notice. You may decline non-essential analytics. If you decline, Google Analytics is not loaded for that choice.',
+      'Where GDPR or similar laws apply, the legal bases for processing are typically the performance of a contract, compliance with legal obligations, consent where required for analytics, and legitimate interests in operating, securing, and enforcing the business. Personal data is retained only for as long as reasonably necessary for product delivery, license administration, support, fraud prevention, recordkeeping, tax, accounting, website analytics (where enabled), and legal compliance.',
       'Personal data may be shared only as reasonably necessary with payment processors, hosting, storage, email, analytics, or support service providers, and with advisors or authorities where required by law. If personal data is transferred outside your country, lawful transfer mechanisms will be used where required by applicable law.',
       'Where applicable law grants you rights, you may request access, correction, deletion, restriction, objection, portability, or information about the processing of your personal data by contacting support@software-forge.dev. You may also have the right to lodge a complaint with a competent data protection authority.',
     ],
@@ -81,7 +83,7 @@ export const LEGAL_SECTIONS: LegalSection[] = [
       'The Product is provided on an "as is" and "as available" basis to the maximum extent permitted by law. No warranty is made that the Product will be uninterrupted, error-free, fit for every purpose, compliant with every legal regime, or suitable for your specific business, regulatory, privacy, tax, operational, or security requirements.',
       'You are responsible for testing, reviewing, validating, and adapting the Product before using it in development, staging, or production.',
       'To the maximum extent permitted by law, liability is excluded for indirect, incidental, consequential, special, exemplary, or punitive damages, and for any loss of profits, revenue, business opportunity, goodwill, data, or expected savings arising out of or related to the Product or these Terms.',
-      'To the maximum extent permitted by law, total liability arising out of or relating to the Product or these Terms will not exceed the amount you paid for the Product giving rise to the claim. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law.',
+      'To the maximum extent permitted by law, total liability arising out of or relating to the Product or these Terms will not exceed the amount you paid for the Product giving rise to the claim or, if the Product was provided free of charge, zero. Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law.',
     ],
   },
 ];
