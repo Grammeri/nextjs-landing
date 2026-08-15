@@ -8,6 +8,7 @@ import { getFreeDownloadHref } from '@/shared/config/products/catalog';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
 import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
+import { trackStarterFreeDownload } from '@/shared/lib/analytics/events';
 import { Button } from '@/shared/ui/button';
 import { ProductHero, ProductSection } from '@/shared/ui/product';
 import CopySupportEmail from '@/components/products/CopySupportEmail';
@@ -45,7 +46,12 @@ export default function StarterProductPageClient() {
                   {productCopy.actions.viewTooling}
                 </Button>
 
-                <Button as="a" href={downloadHref} variant="primary">
+                <Button
+                  as="a"
+                  href={downloadHref}
+                  variant="primary"
+                  onClick={() => trackStarterFreeDownload(locale)}
+                >
                   {productCopy.actions.downloadFree}
                 </Button>
               </div>

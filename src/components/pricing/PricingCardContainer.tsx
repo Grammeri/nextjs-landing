@@ -6,6 +6,7 @@ import {
   isFreeDownloadProduct,
 } from '@/shared/config/products/catalog';
 import { useCheckout } from '@/shared/lib/billing/useCheckout';
+import { trackStarterFreeDownload } from '@/shared/lib/analytics/events';
 import { PricingCard, type PricingCardProps } from '@/shared/ui/pricing-card';
 import type { Locale } from '@/shared/config/i18n';
 import { getUiText } from '@/shared/lib/i18n/getUiText';
@@ -30,6 +31,7 @@ export default function PricingCardContainer({ productId, card, locale }: Pricin
           href: getFreeDownloadHref(productId),
           label: card.freeDownloadLabel,
           note: card.freeDownloadNote,
+          onClick: () => trackStarterFreeDownload(locale),
         }}
       />
     );

@@ -20,6 +20,7 @@ export type PricingCardFreeDownload = {
   href: string;
   label: string;
   note?: string;
+  onClick?: () => void;
 };
 
 export type PricingCardProps = {
@@ -141,7 +142,7 @@ export function PricingCard({
 
           {isFreeDownload && freeDownload ? (
             <div className={styles.consentWrapper}>
-              <Button as="a" href={freeDownload.href} variant="primary">
+              <Button as="a" href={freeDownload.href} variant="primary" onClick={freeDownload.onClick}>
                 {freeDownload.label}
               </Button>
               {freeDownload.note ? <p className={styles.footerNote}>{freeDownload.note}</p> : null}
