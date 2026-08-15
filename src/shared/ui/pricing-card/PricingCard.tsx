@@ -7,6 +7,7 @@ import { CheckIcon } from '@/shared/ui/icons';
 import { StripeButton, PaypalButton } from '@/shared/ui/payment-buttons';
 import { SelectableGroup } from '@/shared/ui/selection';
 import { ProductCard } from '@/shared/ui/product-card/ProductCard';
+import { Button } from '@/shared/ui/button';
 import styles from './PricingCard.module.css';
 
 export type PricingFeature = {
@@ -14,6 +15,12 @@ export type PricingFeature = {
 };
 
 type PaymentProvider = 'stripe' | 'paypal';
+
+export type PricingCardFreeDownload = {
+  href: string;
+  label: string;
+  note?: string;
+};
 
 export type PricingCardProps = {
   title: string;
@@ -29,6 +36,11 @@ export type PricingCardProps = {
   onPayWithPaypal?: (termsAccepted: boolean) => void | Promise<void>;
   footerNote?: string;
   paymentLayout?: 'full' | 'centered';
+  /** Copy helpers used by the container when building freeDownload. */
+  freeDownloadLabel?: string;
+  freeDownloadNote?: string;
+  /** When set, renders a free-download CTA instead of paid checkout UI. */
+  freeDownload?: PricingCardFreeDownload;
 };
 
 export function PricingCard({
@@ -45,6 +57,7 @@ export function PricingCard({
   onPayWithPaypal,
   footerNote,
   paymentLayout = 'full',
+  freeDownload,
 }: PricingCardProps) {
   const shellRef = useRef<HTMLDivElement>(null);
 
@@ -101,6 +114,8 @@ export function PricingCard({
     };
   }, []);
 
+  const isFreeDownload = Boolean(freeDownload);
+
   return (
     <div
       ref={shellRef}
@@ -123,77 +138,89 @@ export function PricingCard({
               </li>
             ))}
           </ul>
-          {paymentTitle && <p className={`${styles.paymentTitle} paymentTitle`}>{paymentTitle}</p>}
-          <p className={styles.deliveryNotice}>{deliveryNotice}</p>
 
-          <div
-            className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
-          >
-            <SelectableGroup>
-              {onPayWithStripe && (
-                <StripeButton
-                  selected={selectedProvider === 'stripe'}
-                  onSelect={() => {
-                    setSelectedProvider('stripe');
-                    if (!termsAccepted) {
-                      setShowError(true);
-                      return;
-                    }
-
-                    setShowError(false);
-                    void onPayWithStripe(termsAccepted);
-                  }}
-                />
-              )}
-
-              {onPayWithPaypal && (
-                <PaypalButton
-                  selected={selectedProvider === 'paypal'}
-                  onSelect={() => {
-                    setSelectedProvider('paypal');
-                    if (!termsAccepted) {
-                      setShowError(true);
-                      return;
-                    }
-
-                    setShowError(false);
-                    void onPayWithPaypal(termsAccepted);
-                  }}
-                />
-              )}
-            </SelectableGroup>
-
+          {isFreeDownload && freeDownload ? (
             <div className={styles.consentWrapper}>
-              <label className={styles.consentLabel}>
-                <input
-                  type="checkbox"
-                  checked={termsAccepted}
-                  aria-invalid={showError}
-                  onChange={(e) => {
-                    setTermsAccepted(e.target.checked);
-                    if (e.target.checked) {
-                      setShowError(false);
-                    }
-                  }}
-                  className={showError ? styles.checkboxError : undefined}
-                />
-                <span>
-                  {termsPrefix}{' '}
-                  <Link href={routes.legal} className={styles.termsLink}>
-                    {termsLabel}
-                  </Link>
-                </span>
-              </label>
-
-              {showError && (
-                <p className={styles.errorText}>
-                  <span aria-hidden="true">⚠</span>
-                  <span>{termsError}</span>
-                </p>
-              )}
+              <Button as="a" href={freeDownload.href} variant="primary">
+                {freeDownload.label}
+              </Button>
+              {freeDownload.note ? <p className={styles.footerNote}>{freeDownload.note}</p> : null}
             </div>
-          </div>
-          {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
+          ) : (
+            <>
+              {paymentTitle && <p className={`${styles.paymentTitle} paymentTitle`}>{paymentTitle}</p>}
+              <p className={styles.deliveryNotice}>{deliveryNotice}</p>
+
+              <div
+                className={paymentLayout === 'centered' ? styles.paymentCentered : styles.paymentFull}
+              >
+                <SelectableGroup>
+                  {onPayWithStripe && (
+                    <StripeButton
+                      selected={selectedProvider === 'stripe'}
+                      onSelect={() => {
+                        setSelectedProvider('stripe');
+                        if (!termsAccepted) {
+                          setShowError(true);
+                          return;
+                        }
+
+                        setShowError(false);
+                        void onPayWithStripe(termsAccepted);
+                      }}
+                    />
+                  )}
+
+                  {onPayWithPaypal && (
+                    <PaypalButton
+                      selected={selectedProvider === 'paypal'}
+                      onSelect={() => {
+                        setSelectedProvider('paypal');
+                        if (!termsAccepted) {
+                          setShowError(true);
+                          return;
+                        }
+
+                        setShowError(false);
+                        void onPayWithPaypal(termsAccepted);
+                      }}
+                    />
+                  )}
+                </SelectableGroup>
+
+                <div className={styles.consentWrapper}>
+                  <label className={styles.consentLabel}>
+                    <input
+                      type="checkbox"
+                      checked={termsAccepted}
+                      aria-invalid={showError}
+                      onChange={(e) => {
+                        setTermsAccepted(e.target.checked);
+                        if (e.target.checked) {
+                          setShowError(false);
+                        }
+                      }}
+                      className={showError ? styles.checkboxError : undefined}
+                    />
+                    <span>
+                      {termsPrefix}{' '}
+                      <Link href={routes.legal} className={styles.termsLink}>
+                        {termsLabel}
+                      </Link>
+                    </span>
+                  </label>
+
+                  {showError && (
+                    <p className={styles.errorText}>
+                      <span aria-hidden="true">⚠</span>
+                      <span>{termsError}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+              {footerNote ? <p className={styles.footerNote}>{footerNote}</p> : null}
+            </>
+          )}
         </div>
       </ProductCard>
     </div>

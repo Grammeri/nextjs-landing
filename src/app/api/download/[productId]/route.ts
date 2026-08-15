@@ -10,9 +10,37 @@ const DOWNLOAD_FILES: Record<string, string> = {
   starter: 'nextjs-professional-starter-v1.0.0.zip',
 };
 
+const STARTER_ZIP = DOWNLOAD_FILES.starter;
+
+function serveZip(storageFilename: string) {
+  const filePath = path.resolve(process.cwd(), 'private', storageFilename);
+
+  console.log('Download path:', filePath);
+
+  if (!fs.existsSync(filePath)) {
+    console.error('File not found at:', filePath);
+    return NextResponse.json({ error: 'File not found' }, { status: 404 });
+  }
+
+  const fileBuffer = fs.readFileSync(filePath);
+
+  return new NextResponse(fileBuffer, {
+    headers: {
+      'Content-Type': 'application/zip',
+      'Content-Disposition': `attachment; filename="${storageFilename}"`,
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
 export async function GET(request: Request, context: { params: Promise<{ productId: string }> }) {
   try {
     const { productId } = await context.params;
+
+    // Free direct download for Starter only — never a generic unauthenticated path.
+    if (productId === 'starter') {
+      return serveZip(STARTER_ZIP);
+    }
 
     const url = new URL(request.url);
     const token = url.searchParams.get('token');
@@ -38,24 +66,8 @@ export async function GET(request: Request, context: { params: Promise<{ product
     }
 
     const storageFilename = DOWNLOAD_FILES[productId] ?? `${productId}.zip`;
-    const filePath = path.resolve(process.cwd(), 'private', storageFilename);
 
-    console.log('Download path:', filePath);
-
-    if (!fs.existsSync(filePath)) {
-      console.error('File not found at:', filePath);
-      return NextResponse.json({ error: 'File not found' }, { status: 404 });
-    }
-
-    const fileBuffer = fs.readFileSync(filePath);
-
-    return new NextResponse(fileBuffer, {
-      headers: {
-        'Content-Type': 'application/zip',
-        'Content-Disposition': `attachment; filename="${storageFilename}"`,
-        'Cache-Control': 'no-store',
-      },
-    });
+    return serveZip(storageFilename);
   } catch (error) {
     console.error('Download error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

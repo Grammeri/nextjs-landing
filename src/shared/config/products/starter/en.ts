@@ -15,7 +15,7 @@ export const starterEn: ProductCopy = {
   actions: {
     readDocs: 'Read Docs',
     viewTooling: 'View Tooling',
-    buyLicense: 'Buy license',
+    downloadFree: 'Download Free',
   },
   audience: {
     title: 'Who is this starter for',
@@ -73,35 +73,35 @@ export const starterEn: ProductCopy = {
     ],
   },
   tryBeforeYouBuy: {
-    title: 'Try before you buy',
+    title: 'Explore the starter',
     description:
-      'Before purchasing, you can review the documentation, inspect the project structure, and understand the tooling included in the package. It is designed as a practical Next.js starter kit and project template that is easy to read, quick to run, and useful for real projects, MVPs, and technical assignments.',
+      'Review the documentation, tooling, and project structure before downloading. The starter is completely free and ready to use for real projects, MVPs, technical assignments, and learning-focused builds.',
     links: [
       { key: 'docs', label: 'Starter documentation' },
       { key: 'tooling', label: 'Tooling overview' },
       { key: 'structure', label: 'Project structure overview' },
     ],
-    contactPrefix: 'Questions before or after purchase?',
+    contactPrefix: 'Questions about the starter?',
     contactLead: 'Contact us at',
   },
   supportEmail: 'support@software-forge.dev',
   pricing: {
     description:
       'Ready-to-use Next.js project setup with App Router, TypeScript, ESLint, Prettier, Husky, conventional commits, and CI configuration for real apps and technical assignments.',
-    price: '$5 — One-time license',
+    price: 'FREE',
     features: [
-      'License for 1 project',
-      'Lifetime access to the source package',
       'Includes Next.js Professional Starter v1.0.0',
       'Clean App Router project structure',
       'Strict TypeScript configuration',
       'ESLint + Prettier setup',
       'Husky Git hooks',
       'Conventional commits',
-      'CI-ready workflow included',
+      'CI-ready workflow',
       'Useful for real projects and technical assignments',
     ],
-    footerNote: 'Access instructions are sent by email after purchase.',
+    footerNote: 'No checkout. Instant ZIP download.',
+    downloadCta: 'Download Free Starter',
+    downloadNote: 'No checkout. Instant ZIP download.',
   },
   underDevelopment: {
     title: 'Next.js Professional Starter',

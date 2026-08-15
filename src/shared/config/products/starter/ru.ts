@@ -15,7 +15,7 @@ export const starterRu: ProductCopy = {
   actions: {
     readDocs: 'Читать документацию',
     viewTooling: 'Смотреть инструменты',
-    buyLicense: 'Купить лицензию',
+    downloadFree: 'Скачать бесплатно',
   },
   audience: {
     title: 'Для кого это подойдет',
@@ -73,35 +73,35 @@ export const starterRu: ProductCopy = {
     ],
   },
   tryBeforeYouBuy: {
-    title: 'Оцените продукт перед покупкой',
+    title: 'Посмотреть Starter',
     description:
-      'Перед покупкой вы можете ознакомиться с документацией, посмотреть структуру проекта и набор инструментов. Пакет спроектирован как готовый шаблон проекта на Next.js, который легко читать, быстро запускать и практично использовать в реальных проектах, MVP и тестовых заданиях.',
+      'Изучите документацию, инструменты и структуру проекта перед скачиванием. Starter полностью бесплатен и готов к использованию в реальных проектах, MVP, тестовых заданиях и учебных сборках.',
     links: [
       { key: 'docs', label: 'Полная документация' },
       { key: 'tooling', label: 'Обзор инструментов' },
       { key: 'structure', label: 'Обзор структуры проекта' },
     ],
-    contactPrefix: 'Есть вопросы до или после покупки?',
+    contactPrefix: 'Есть вопросы по Starter?',
     contactLead: 'Свяжитесь с нами:',
   },
   supportEmail: 'support@software-forge.dev',
   pricing: {
     description:
       'Готовая настройка проекта на Next.js: App Router, TypeScript, ESLint, Prettier, Husky, проверка коммитов и CI-конфигурация для реальных приложений и тестовых заданий.',
-    price: '$5 — Разовая лицензия',
+    price: 'Бесплатно',
     features: [
-      'Лицензия на 1 проект',
-      'Бессрочный доступ к исходному пакету',
       'Включает Next.js Professional Starter v1.0.0',
       'Чистая структура проекта App Router',
       'Строгая конфигурация TypeScript',
       'Настройка ESLint + Prettier',
       'Husky Git hooks',
       'Проверка сообщений коммитов по принятому стандарту',
-      'Готовый CI workflow включен',
+      'Готовый CI workflow',
       'Полезно для реальных проектов и тестовых заданий',
     ],
-    footerNote: 'Инструкции для доступа отправляются по email после покупки.',
+    footerNote: 'Без оплаты. ZIP-архив доступен сразу.',
+    downloadCta: 'Скачать Starter бесплатно',
+    downloadNote: 'Без оплаты. ZIP-архив доступен сразу.',
   },
   underDevelopment: {
     title: 'Next.js Professional Starter',

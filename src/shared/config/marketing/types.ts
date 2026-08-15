@@ -60,6 +60,9 @@ export type ProductCopy = {
     price: string;
     features: string[];
     footerNote: string;
+    /** Present for free-download products (e.g. Starter). */
+    downloadCta?: string;
+    downloadNote?: string;
   };
   underDevelopment?: {
     title: string;

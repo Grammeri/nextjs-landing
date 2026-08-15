@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import PricingCardContainer from '@/components/pricing/PricingCardContainer';
 import { getDefaultDocRoute, getDocsRoute } from '@/app/[locale]/docs/_lib/products';
+import { getFreeDownloadHref } from '@/shared/config/products/catalog';
 import { DEFAULT_LOCALE, isSupportedLocale } from '@/shared/config/i18n';
 import { createPricingCard } from '@/shared/config/products/pricing';
 import { getProductCopy } from '@/shared/lib/i18n/getProductCopy';
@@ -20,11 +20,7 @@ export default function StarterProductPageClient() {
   const locale = isSupportedLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
   const productCopy = getProductCopy('starter', locale);
   const pricingCard = createPricingCard('starter', locale);
-  const pricingRef = useRef<HTMLDivElement>(null);
-
-  const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const downloadHref = getFreeDownloadHref('starter');
 
   const docsEntryHref = `/${locale}${getDefaultDocRoute('starter')}`;
   const toolingHref = `/${locale}${getDocsRoute('starter', 'tooling')}`;
@@ -49,8 +45,8 @@ export default function StarterProductPageClient() {
                   {productCopy.actions.viewTooling}
                 </Button>
 
-                <Button onClick={scrollToPricing} variant="primary">
-                  {productCopy.actions.buyLicense}
+                <Button as="a" href={downloadHref} variant="primary">
+                  {productCopy.actions.downloadFree}
                 </Button>
               </div>
             }
@@ -120,7 +116,7 @@ export default function StarterProductPageClient() {
             </div>
           </ProductSection>
 
-          <div ref={pricingRef}>
+          <div>
             <div className={styles.pricingWrapper}>
               <PricingCardContainer productId="starter" card={pricingCard} locale={locale} />
             </div>

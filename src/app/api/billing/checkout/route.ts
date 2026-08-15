@@ -3,10 +3,12 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import { BILLING_PROVIDERS } from '@/shared/config/billing';
 import { routes } from '@/shared/config/routes';
-import { BILLING_CATALOG } from '@/shared/config/products/catalog';
+import {
+  getBillingCatalogItem,
+  isFreeDownloadProduct,
+} from '@/shared/config/products/catalog';
 import { createCheckout } from '@/lib/billing';
 import { TERMS_VERSION } from '@/shared/config/legal';
-import type { ProductId } from '@/shared/config/products/types';
 import { getRequiredSiteUrl } from '@/shared/config/site.server';
 
 type CheckoutRequestBody = {
@@ -57,6 +59,13 @@ export async function POST(request: Request) {
 
     const userAgent = request.headers.get('user-agent') ?? 'unknown';
 
+    if (isFreeDownloadProduct(body.productId)) {
+      return NextResponse.json(
+        { error: 'This product is free and does not require checkout' },
+        { status: 400 },
+      );
+    }
+
     if (!BILLING_PROVIDERS[body.provider]) {
       return NextResponse.json(
         { error: `${body.provider} checkout is not enabled yet` },
@@ -64,7 +73,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const catalogItem = BILLING_CATALOG[body.productId as ProductId];
+    const catalogItem = getBillingCatalogItem(body.productId);
 
     if (!catalogItem) {
       return NextResponse.json({ error: 'Unknown productId' }, { status: 400 });
