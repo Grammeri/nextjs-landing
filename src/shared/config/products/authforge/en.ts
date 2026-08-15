@@ -87,7 +87,7 @@ export const authforgeEn: ProductCopy = {
   pricing: {
     description:
       'Next.js authentication starter for SaaS products with secure server-side sessions, email verification, password reset, abuse protection, and a Prisma + PostgreSQL implementation example.',
-    price: '$99 — One-time license',
+    price: '$1.99 — One-time license',
     features: [
       'License for 1 project',
       'Lifetime access to the source package',

@@ -16,7 +16,7 @@ export const BILLING_CATALOG: Record<ProductId, BillingCatalogItem> = {
       productId: 'authforge',
       name: AUTHFORGE_PRODUCT_COPY.name,
       description: AUTHFORGE_PRODUCT_COPY.shortDescription,
-      priceCents: 9900,
+      priceCents: 199,
       currency: 'usd',
     },
   },
